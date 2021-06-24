@@ -1,4 +1,6 @@
 - name: Building and running
   href: setup.md
+- name: Compiling into an .msi
+  href: wixproj.md
 - name: Project layout
   href: project-layout.md
