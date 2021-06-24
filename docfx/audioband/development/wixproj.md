@@ -18,6 +18,7 @@ You will find your .msi in `src/AudioBandInstaller/bin/Release/`.
 However, if you add a new AudioSource, you have to do some extra setup to make sure the .msi accounts for your new AudioSource.
 The steps aren't too hard though, just make sure you don't miss any:
 
+- Run `powershell.exe -File tools/patchinstaller.ps1 MAJOR_VERSION MINOR_VERSION PATCH_VERSION` from the root of the folder
 - Add YourAudioSourcePath as a constant to the `<DefineConstants>` tag inside of `.wixproj`
 - Add a `<HeatDirectory>` tag inside of .wixproj for your AudioSource
 - Add a project reference to your AudioSource
