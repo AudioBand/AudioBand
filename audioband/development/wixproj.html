@@ -95,6 +95,7 @@ If you did not add any AudioSources, it is pretty easy to compile. Set your envi
 <p>However, if you add a new AudioSource, you have to do some extra setup to make sure the .msi accounts for your new AudioSource.
 The steps aren't too hard though, just make sure you don't miss any:</p>
 <ul>
+<li>Run <code>powershell.exe -File tools/patchinstaller.ps1 MAJOR_VERSION MINOR_VERSION PATCH_VERSION</code> from the root of the folder</li>
 <li>Add YourAudioSourcePath as a constant to the <code>&lt;DefineConstants&gt;</code> tag inside of <code>.wixproj</code></li>
 <li>Add a <code>&lt;HeatDirectory&gt;</code> tag inside of .wixproj for your AudioSource</li>
 <li>Add a project reference to your AudioSource</li>
