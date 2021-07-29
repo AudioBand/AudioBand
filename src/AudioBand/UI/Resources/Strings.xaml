@@ -4,6 +4,7 @@
     <!--  Common settings  -->
     <sys:String x:Key="WidthLabelText">Width</sys:String>
     <sys:String x:Key="HeightLabelText">Height</sys:String>
+    <sys:String x:Key="RotationLabelText">Rotation Angle</sys:String>
     <sys:String x:Key="VisibilityLabelText">Visibility</sys:String>
     <sys:String x:Key="StatusVisible">Visible</sys:String>
     <sys:String x:Key="StatusHidden">Hidden</sys:String>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
@@ -10,9 +12,6 @@ using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
 using NLog;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.Linq;
 
 namespace AudioBand.UI
 {
@@ -53,17 +52,17 @@ namespace AudioBand.UI
         }
 
         /// <summary>
-        /// A list of all the ViewModels.
+        /// Gets a list of all the ViewModels.
         /// </summary>
         public IViewModelContainer ViewModels { get; }
 
         /// <summary>
-        /// A collection of all available AudioSources.
+        /// Gets a collection of all available AudioSources.
         /// </summary>
         public ObservableCollection<IInternalAudioSource> AudioSources { get; private set; }
 
         /// <summary>
-        /// A collection of all possible UserProfiles.
+        /// Gets a collection of all possible UserProfiles.
         /// </summary>
         public ObservableCollection<UserProfile> Profiles { get; private set; }
 
@@ -121,6 +120,11 @@ namespace AudioBand.UI
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the RotationAngle of the current profile.
+        /// </summary>
+        public int RotationAngle => SelectedProfile.GeneralSettings.RotationAngle;
 
         private void ShowSettingsWindowCommandOnExecute()
         {

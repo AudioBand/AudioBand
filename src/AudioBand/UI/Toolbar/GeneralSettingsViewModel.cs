@@ -52,6 +52,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the Rotation Angle.
+        /// </summary>
+        [TrackState]
+        public double RotationAngle
+        {
+            get => _model.RotationAngle;
+            set => SetProperty(_model, nameof(_model.RotationAngle), value);
+        }
+
+        /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         [TrackState]

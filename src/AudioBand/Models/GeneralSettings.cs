@@ -21,5 +21,10 @@ namespace AudioBand.Models
         /// Gets or sets the background color of the toolbar.
         /// </summary>
         public Color BackgroundColor { get; set; } = Colors.Transparent;
+
+        /// <summary>
+        /// Gets or sets the RotationAngle of the toolbar.
+        /// </summary>
+        public int RotationAngle { get; set; } = 0;
     }
 }

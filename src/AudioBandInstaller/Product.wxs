@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?define ProductVersion = '0.9.8'?>
 <?define ProductId = '9484a268-b3a4-4ded-a525-112be5422272'?>
+<?define UpgradeCode = 'F5673DE4-C5B8-403C-B353-773AC427BEC3'?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-   <Product Id="$(var.ProductId)" Name="AudioBand" Language="1033" Version="$(var.ProductVersion)" Manufacturer="AudioBand" UpgradeCode="F5673DE4-C5B8-403C-B353-773AC427BEC3">
+   <Product Id="$(var.ProductId)" Name="AudioBand" Language="1033" Version="$(var.ProductVersion)" Manufacturer="AudioBand" UpgradeCode="$(var.UpgradeCode)">
       <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
       <Icon Id="AudiobandIcon" SourceFile="audioband.ico" />
       <Property Id="ARPPRODUCTICON" Value="AudiobandIcon" />

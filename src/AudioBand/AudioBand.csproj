@@ -219,6 +219,7 @@
     <Compile Include="TextFormatting\TextPlaceholderFactory.cs" />
     <Compile Include="TextFormatting\TextPlaceholderParameter.cs" />
     <Compile Include="UI\ValueConverters\FlagToBoolConverter.cs" />
+    <Compile Include="UI\ValueConverters\HalfIntConverter.cs" />
     <Compile Include="UI\ValueConverters\Converters.cs" />
     <Compile Include="UI\ValueConverters\MultiConverters.cs" />
     <Compile Include="UI\ValueConverters\PathToImageSourceConverter.cs" />
