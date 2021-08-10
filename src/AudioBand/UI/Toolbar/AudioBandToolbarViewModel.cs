@@ -27,6 +27,7 @@ namespace AudioBand.UI
         private readonly IAudioSession _audioSession;
         private IAudioSource _selectedAudioSource;
         private UserProfile _selectedUserProfile;
+        private int _rotationAngle;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioBandToolbarViewModel"/> class.
@@ -124,7 +125,17 @@ namespace AudioBand.UI
         /// <summary>
         /// Gets the RotationAngle of the current profile.
         /// </summary>
-        public int RotationAngle => SelectedProfile.GeneralSettings.RotationAngle;
+        public int RotationAngle
+        {
+            get => _rotationAngle;
+            set
+            {
+                if (SetProperty(ref _rotationAngle, value))
+                {
+                    SelectedProfile.GeneralSettings.RotationAngle = value;
+                }
+            }
+        }
 
         private void ShowSettingsWindowCommandOnExecute()
         {

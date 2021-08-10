@@ -162,7 +162,7 @@
     </UserControl.ContextMenu>
     <Canvas Width="{Binding ViewModels.GeneralSettingsViewModel.Width}" Height="{Binding ViewModels.GeneralSettingsViewModel.Height}">
         <Canvas.RenderTransform>
-            <RotateTransform CenterX="{Binding ViewModels.GeneralSettingsViewModel.Width, Converter={x:Static audioband:Converters.HalfInt}}" CenterY="{Binding ViewModels.GeneralSettingsViewModel.Height, Converter={x:Static audioband:Converters.HalfInt}}" Angle="{Binding RotationAngle}" />
+            <RotateTransform CenterX="0" CenterY="0" Angle="{Binding RotationAngle}" />
         </Canvas.RenderTransform>
         <Canvas.InputBindings>
             <MouseBinding MouseAction="LeftDoubleClick"
