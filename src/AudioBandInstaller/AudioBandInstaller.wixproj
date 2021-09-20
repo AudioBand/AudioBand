@@ -137,9 +137,9 @@
     <HeatDirectory Directory="..\Win10AudioSource\bin\$(Configuration)\Windows10" PreprocessorVariable="var.Win10HarvestPath" OutputFile="$(ProjectDir)\Win10HeatGenerated.wxs" ComponentGroupName="Win10Files" DirectoryRefId="AUDIOSOURCESFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="false" Transforms="$(ProjectDir)\AudioSourcesXsl.xslt" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>powershell.exe -File ../../tools/updateversion.ps1</PreBuildEvent>
+    <PostBuildEvent />
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>powershell.exe -File ../../tools/resetversion.ps1</PostBuildEvent>
+    <PreBuildEvent />
   </PropertyGroup>
 </Project>
