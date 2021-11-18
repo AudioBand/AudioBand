@@ -193,15 +193,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Toc",
       "source_relative_path": "audioband/toc.yml",
       "output": {
         ".html": {
           "relative_path": "audioband/toc.html",
-          "hash": "CncKMx7wU94XtCHDDwM8JmiD2zbqct0g4R7YZpwue6o="
+          "hash": "UdqhJCgMleXHLBocNCnxIU3gyYtGlHcep+DIj2opItQ="
         }
       },
       "is_incremental": false,
@@ -232,12 +229,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidTocInclude"
+      ],
       "type": "Toc",
       "source_relative_path": "audiosource-docs/toc.yml",
       "output": {
         ".html": {
           "relative_path": "audiosource-docs/toc.html",
-          "hash": "VOmFDpz7SWwTPvxA+trRLK+zlAQAwQsnP2DbDDQBnjI="
+          "hash": "s893OxqVWUbh8uEwov6g8w7inhANkIERQkozIN6V9PA="
         }
       },
       "is_incremental": false,
@@ -300,15 +300,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "9kFfHLo8C6bNjA9cjvwhwE334sU5eBpYVjcuc/rhFhs="
+          "hash": "geC2sslajLbA2gEbcPxuvVB9Dkn04ZcYFKAUpEkGzuw="
         }
       },
       "is_incremental": false,
