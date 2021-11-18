@@ -14,18 +14,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "audioband/Windows11.md",
-      "output": {
-        ".html": {
-          "relative_path": "audioband/Windows11.html",
-          "hash": "550MudZWpvQ+5PfNBl8PK0Bbw9xh2dFAKniKZAajrEI="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "audioband/audiosources/index.md",
       "output": {
         ".html": {
@@ -206,6 +194,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "audioband/windows11.md",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/Windows11.html",
+          "hash": "550MudZWpvQ+5PfNBl8PK0Bbw9xh2dFAKniKZAajrEI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "audiosource-api/index.md",
       "output": {
         ".html": {
@@ -288,15 +288,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "dZLqI3MwZOQMLYWywJt54E0c9zEQZDhBbHfs5WNn6wk="
+          "hash": "XV195n0fB8qxnhSwdjtl4LiJaFUcy+2OwGG3msjFFAQ="
         }
       },
       "is_incremental": false,
@@ -328,7 +325,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 18,
-          "skipped_file_count": 18
+          "skipped_file_count": 17
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

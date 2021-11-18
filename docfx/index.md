@@ -1,5 +1,6 @@
 # Welcome to the AudioBand documentation homepage.
 Refer to the links below to get started.
+
 ## Links
-1. [AudioBand help and documentation](audioband/Installation.md)
-2. [Documentation for implmenting an audiosource](audiosource-docs/index.md)
+1. [AudioBand help and documentation](audioband/index.md)
+2. [Documentation for implementing an audiosource](audiosource-docs/index.md)
