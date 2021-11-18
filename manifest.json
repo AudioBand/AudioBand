@@ -14,18 +14,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "audioband/Installation.md",
-      "output": {
-        ".html": {
-          "relative_path": "audioband/Installation.html",
-          "hash": "sizu2iYd7jFuFf90qO0JpciyfXkcD61Ze++IOp2KUes="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "audioband/Windows11.md",
       "output": {
         ".html": {
@@ -193,12 +181,24 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "audioband/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/index.html",
+          "hash": "mM/KGx+bKTbKeWUNP1DzjGNP+Tbbmob3qOjgWu7j5lM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "audioband/toc.yml",
       "output": {
         ".html": {
           "relative_path": "audioband/toc.html",
-          "hash": "UdqhJCgMleXHLBocNCnxIU3gyYtGlHcep+DIj2opItQ="
+          "hash": "y8SImUPxaJQ79xlLG1iVrfc3XfSg85SpT90b76DB7yE="
         }
       },
       "is_incremental": false,
@@ -288,12 +288,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "5YrxjVyvcFsiNnzkihA9rgk8oj/U0vsPZOjilpcASpU="
+          "hash": "dZLqI3MwZOQMLYWywJt54E0c9zEQZDhBbHfs5WNn6wk="
         }
       },
       "is_incremental": false,
@@ -305,7 +308,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "geC2sslajLbA2gEbcPxuvVB9Dkn04ZcYFKAUpEkGzuw="
+          "hash": "EkfH0S98GHecBgKHBtoR/d957ar7R7Ug35pCFw875YQ="
         }
       },
       "is_incremental": false,
@@ -325,7 +328,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 18,
-          "skipped_file_count": 18
+          "skipped_file_count": 17
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

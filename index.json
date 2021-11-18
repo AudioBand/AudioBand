@@ -64,8 +64,8 @@
     "title": "FAQ",
     "keywords": "FAQ Q. Why is there a margin on the right of the toolbar? This occurs if you've moved the toolbar, then lock the task bar. Restarting explorer should get rid of the margin"
   },
-  "audioband/Installation.html": {
-    "href": "audioband/Installation.html",
+  "audioband/index.html": {
+    "href": "audioband/index.html",
     "title": "Audioband Documentation",
     "keywords": "Audioband Documentation Welcome to the documentation pages! On the left you will find more pages with more in-depth information. For a basic installation, see this page. CLICK HERE FOR WINDOWS 11 INSTALLATION Quick Start Requirements .Net framework 4.7 Windows 10 Installation Download the Latest Release and run the .msi . Follow the instructions on the screen. Usage Right click on the Taskbar, go to the Toolbars drop-out and select Audio Band . Right click on the Audio Band Toolbar and select an audio source (eg. Windows10). Do any audio source specific setup . Spotify, for example requires some additional setup. Important Previous versions of Windows are not supported. Audioband may still work but it has not been tested. Note High DPI is supported on Windows 10 1703 and above. Info Logs can be found in the temp folder: %temp%\\AudioBand.log Settings are saved in the app data directory: %appdata%\\AudioBand"
   },

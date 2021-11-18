@@ -1,5 +1,5 @@
 - name: Installation
-  href: Installation.md
+  href: index.md
 - name: Windows11 Installation
   href: windows11.md
 - name: Audio Sources Setup
