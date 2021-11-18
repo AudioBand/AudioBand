@@ -14,6 +14,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "audioband/Windows11.md",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/Windows11.html",
+          "hash": "550MudZWpvQ+5PfNBl8PK0Bbw9xh2dFAKniKZAajrEI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "audioband/audiosources/index.md",
       "output": {
         ".html": {
@@ -187,18 +199,6 @@
         ".html": {
           "relative_path": "audioband/toc.html",
           "hash": "y8SImUPxaJQ79xlLG1iVrfc3XfSg85SpT90b76DB7yE="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "audioband/windows11.md",
-      "output": {
-        ".html": {
-          "relative_path": "audioband/Windows11.html",
-          "hash": "550MudZWpvQ+5PfNBl8PK0Bbw9xh2dFAKniKZAajrEI="
         }
       },
       "is_incremental": false,
