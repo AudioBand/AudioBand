@@ -7,6 +7,6 @@ Check below for links on the specific audio source and setup instructions.
 - [Spotify](spotify.md)
 - [iTunes](itunes.md)
 - [MusicBee](musicbee.md)
+- [Windows 10](windows10.md)
 
-## Audio source development
-[See here to find out how to develop and add a custom audio source](~/audiosource-docs/index.md)
+## [Audio source development](~/audiosource-docs/index.md)

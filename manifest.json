@@ -14,11 +14,35 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "audioband/Installation.md",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/Installation.html",
+          "hash": "sizu2iYd7jFuFf90qO0JpciyfXkcD61Ze++IOp2KUes="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "audioband/Windows11.md",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/Windows11.html",
+          "hash": "550MudZWpvQ+5PfNBl8PK0Bbw9xh2dFAKniKZAajrEI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "audioband/audiosources/index.md",
       "output": {
         ".html": {
           "relative_path": "audioband/audiosources/index.html",
-          "hash": "Czd8s/iISSixGaFhBLNOwV+PcGmZ4DUh28f8qQCk/jU="
+          "hash": "WtmgSJEFFvhgyHCccrCsAJsIfn8WwQd2GjQE8id091s="
         }
       },
       "is_incremental": false,
@@ -30,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/audiosources/itunes.html",
-          "hash": "WyjnSjJit5lcYFHNWo8ir8cpIHms3C02s549JefC2+8="
+          "hash": "J8uY0aMG0tNWc/WkO4ozn+1Z+d+0d3TCRalpbco3Kt8="
         }
       },
       "is_incremental": false,
@@ -42,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/audiosources/musicbee.html",
-          "hash": "jIODhRoE2oNndDbMXyj5FFdgo3EgASoRWu6fU8QTAeE="
+          "hash": "YonYE1j+w5jqPr7tofK5uD9jsPp8FSIlevxNnH8FCvQ="
         }
       },
       "is_incremental": false,
@@ -54,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/audiosources/spotify.html",
-          "hash": "GJOyNYox0c6NtXgBYWDR6wpRW/cRyujEOor/oQYs94U="
+          "hash": "AzT4Otlhr6/TYJKFACVLSej4CtY7GLl8RoFeBsO0flQ="
         }
       },
       "is_incremental": false,
@@ -66,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/audiosources/windows10.html",
-          "hash": "3bIrfZpbr+TfqtKrQ5T836lxAmtNTamKWwC9RiP6T0c="
+          "hash": "sXYDmo432FGoiRBrAIG9f5lKX1yUp9PkmTGXSywlo68="
         }
       },
       "is_incremental": false,
@@ -78,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/customization/albumartpopup.html",
-          "hash": "Hbduf1w1OGBSbU8KdJ+k9v4jWE/tsHvSIVtBpTQ/JqE="
+          "hash": "A75fHSCcBFHQcflBwYjmdPV8zw8imW1XWjR4Lmc5Agw="
         }
       },
       "is_incremental": false,
@@ -90,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/customization/general.html",
-          "hash": "xJ4K1bsVFqUNa65CRrIBXtzzK8sx/1J+GPaeJErxw8U="
+          "hash": "erHUWn2yU6e++4nFUPuacZRAgrLLzNmm3bB4WJYC0mg="
         }
       },
       "is_incremental": false,
@@ -102,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/customization/index.html",
-          "hash": "v4NZh83AuZRFbziaNw+nixN0KmOQSlDjk+KLygc/LA0="
+          "hash": "K8K2nPBmxNrwoaCxaBWhkSxpaz+PgvIlg6wJkHexEXE="
         }
       },
       "is_incremental": false,
@@ -114,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/customization/textlabels.html",
-          "hash": "k1RoTQg95ZJMb9adH8AEgCbnimrs7JEfnrszL6036rE="
+          "hash": "byHY81L91eRiDobhg3La0KW2xqF6oL3E3ZqZQBrcXF8="
         }
       },
       "is_incremental": false,
@@ -126,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/development/project-layout.html",
-          "hash": "nHcMErl+sibvhck3fwsPj3Ufd6Pvxx36pv/tpHDFq3c="
+          "hash": "8LHjD2Felvtg4Rpy96iTU9j936l14iraOxiEqvuKLuU="
         }
       },
       "is_incremental": false,
@@ -138,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/development/setup.html",
-          "hash": "p7CByroQ1ocDxEUjMAh43Kvze9OjRekAgaVOOzgveb4="
+          "hash": "ZfkA9MzP6Ve5oBTXGFVuQJRicKf35EiU7Y7x4uI9TBc="
         }
       },
       "is_incremental": false,
@@ -150,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "audioband/development/wixproj.html",
-          "hash": "iNrpy9gJApanaxssGmYeuJAiLVOYE6zAJEa4me5xDlE="
+          "hash": "heVDqoitIXT96yg0isW9DpiZwHL3yKzE32erDyDXy9k="
         }
       },
       "is_incremental": false,
@@ -162,31 +186,22 @@
       "output": {
         ".html": {
           "relative_path": "audioband/faq.html",
-          "hash": "CMGJxMw/Z+4UewC+Z2CAawmkeqy2hdfO7gEsXjfo4dM="
+          "hash": "egU/jV3MKapO4gIPWzIMm0Y0brN/tf+aKEGcTl9NMtw="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "audioband/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "audioband/index.html",
-          "hash": "fnlEW/m1AHwn4D6A5dQ5Zivz0bXLfwevx0Kf10ajaXE="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Toc",
       "source_relative_path": "audioband/toc.yml",
       "output": {
         ".html": {
           "relative_path": "audioband/toc.html",
-          "hash": "TKQkvf7L62cq7OEfWlUVLlQ1QrtGJY9cPJYkZNLbH5g="
+          "hash": "CncKMx7wU94XtCHDDwM8JmiD2zbqct0g4R7YZpwue6o="
         }
       },
       "is_incremental": false,
@@ -198,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "audiosource-api/index.html",
-          "hash": "oSG+m9xdZUdx8f6NEiQR3LF8Szv2XEYK/uLPuui0xg4="
+          "hash": "+sArSEmwKXXzsEZDwlDxIiVtN4sqq79ZweJ+vlKkRzw="
         }
       },
       "is_incremental": false,
@@ -210,22 +225,19 @@
       "output": {
         ".html": {
           "relative_path": "audiosource-docs/index.html",
-          "hash": "eOgRnFnnTr8iNu2H8UFzMQ5sJScQAPnm55PdOpcs9JQ="
+          "hash": "Yp/PUyjKQYW1qjfHHuGzy4u7lVCTN/yWiEFD+EZSxiE="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidTocInclude"
-      ],
       "type": "Toc",
       "source_relative_path": "audiosource-docs/toc.yml",
       "output": {
         ".html": {
           "relative_path": "audiosource-docs/toc.html",
-          "hash": "s893OxqVWUbh8uEwov6g8w7inhANkIERQkozIN6V9PA="
+          "hash": "VOmFDpz7SWwTPvxA+trRLK+zlAQAwQsnP2DbDDQBnjI="
         }
       },
       "is_incremental": false,
@@ -281,19 +293,22 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "h5Io/Sf6gLOCHaV41NoANMymAXNOknE6/FE2PzOVbQM="
+          "hash": "5YrxjVyvcFsiNnzkihA9rgk8oj/U0vsPZOjilpcASpU="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "EkfH0S98GHecBgKHBtoR/d957ar7R7Ug35pCFw875YQ="
+          "hash": "9kFfHLo8C6bNjA9cjvwhwE334sU5eBpYVjcuc/rhFhs="
         }
       },
       "is_incremental": false,
@@ -312,8 +327,8 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 17,
-          "skipped_file_count": 16
+          "total_file_count": 18,
+          "skipped_file_count": 18
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

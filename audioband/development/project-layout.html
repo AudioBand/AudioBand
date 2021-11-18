@@ -79,14 +79,16 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="project-layout">Project layout</h1>
 
-<p>Last commit at this time of writing / update: <code>f13b2f226991e46704684e060873e03b26441f0e</code></p>
+<p>Last commit at this time of writing / update: <code>33d68c84bd484d8b6f09bafcde2df08f2a853e23</code></p>
 <p>Here are the main projects in the solution:</p>
 <ul>
 <li><strong>AudioBand</strong>: The is the &quot;main&quot; project where audioband lives</li>
 <li><strong>AudioBand.Logging</strong>: This project contains shared logging facilities</li>
 <li><strong>AudioBand.AudioSource</strong>: This project contains the audiosource interface</li>
+<li><strong>AudioBand.Test</strong>: This project contains Tests to test the functionality of AudioBand.</li>
 <li><strong>AudioSourceHost</strong>: This project contains the assembly used to host an audio source in a separate app domain</li>
 <li>*<strong>AudioSource</strong>: These are the projects for the included audio sources.</li>
+<li><strong>AudioBandInstaller</strong>: Can be ignored for most developers, this project handles creating the installer (.msi).</li>
 </ul>
 <h1 id="audioband-project">AudioBand project</h1>
 <h2 id="entry-point">Entry point</h2>
@@ -111,8 +113,20 @@
 <li>If the audio source is selected in the settings, then it is activated.</li>
 </ol>
 <h2 id="app-settings-loading">App settings loading</h2>
+<h3 id="new-settings-v010-and-upwards">New Settings (v0.10 and upwards)</h3>
+<p>The current settings use <code>json</code> to store information. The <code>Settings/AppSettings</code> is how the settings are opened up to the rest of the code, while <code>Settings/Persistence/Settings</code> is the Datatype that actual gets written/read by <code>Settings/Persistence/PersistentSettings</code>.</p>
+<p>You should avoid manually editing the settings files, and when writing code for AudioBand you should always make sure this is avoided.</p>
+<h3 id="old-settings-up-until-v0910">Old Settings (up until v0.9.10)</h3>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The Old Settings description was written before the new settings system was in place.</p>
+</div>
 <p>App settings are loaded and exposed by the <code>Settings/AppSettings</code> class. Persistence is done through <code>Settings/Persistence/PersistSettings</code>. The serialization format for settings uses the <code>toml</code> format. Toml is used because when the project was created, configuration was simple and editing the file in a text editor was the way to change settings. Toml was a good use case for that. Now, the settings have more nesting and more lists, which is less readable with toml however there is now a settings UI so editing the file isn't required. So migration to another serialization format isn't something required for now.</p>
 <h3 id="settings-migrations">Settings migrations</h3>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Starting with the new system, migrations are no longer needed when adding settings (automatically handled). Though they are kept to allow older users to update with ease to the newest versions.</p>
+</div>
 <p>As the settings evolve, the serialization format can change so there are settings migrations located in the <code>Migrations</code> subfolder. These classes update old configuration files to the latest format. If an older version of the settings is detected, then a lookup is done in <code>SettingsMigration.cs</code> to find the appropriate way to transform the settings file. Mapping is done with <code>AutoMapper</code>.</p>
 <h2 id="views-and-viewmodels">Views and ViewModels</h2>
 <p>Views and viewmodels are stored together in the <code>UI</code> subfolder.</p>
@@ -135,7 +149,7 @@ public Size Size =&gt; new Size(Width, Height);
 <li><code>IResettable</code>: Custom interface that exposes a method to reset the viewmodel to default values. The base class implements a command to call reset and the method <code>ResetObject&lt;T&gt;</code> to reset an object to its default value.</li>
 <li><code>BeginEdit</code>,<code>EndEdit</code> and <code>CancelEdit</code> commands and methods. The attribute <code>TrackState</code> can is used to automatically call those methods.</li>
 </ul>
-<pre><code class="lang-csharp">// Automatically calls beginedit method if the value is changed
+<pre><code class="lang-csharp">// Automatically calls BeginEdit method if the value is changed
 [TrackState]
 public int Width
 {
@@ -144,7 +158,7 @@ public int Width
 }
 </code></pre>
 <h2 id="message-bus">Message bus</h2>
-<p>Under the <code>Messages</code> folder there is a simple <code>IMessageBus</code> interface. Messages are used sparingly for communicating between the settings window &lt;-&gt; toolbar and between view models.</p>
+<p>Under the <code>Messages</code> folder there is a simple <code>IMessageBus</code> interface. Messages are used sparingly for communicating between the Settings Window &lt;-&gt; Toolbar and between ViewModels.</p>
 <h2 id="other">Other</h2>
 <h3 id="dpi">Dpi</h3>
 <p>Since we are in an interop scenario, there are some issues with automatic dpi handling so it is done manually through the <code>DpiScaling</code> behavior located in the <code>UI/behaviors</code> folder.</p>

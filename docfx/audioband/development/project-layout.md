@@ -1,13 +1,15 @@
 # Project layout
 
-Last commit at this time of writing / update: `f13b2f226991e46704684e060873e03b26441f0e`
+Last commit at this time of writing / update: `33d68c84bd484d8b6f09bafcde2df08f2a853e23`
 
 Here are the main projects in the solution:
 - **AudioBand**: The is the "main" project where audioband lives
 - **AudioBand.Logging**: This project contains shared logging facilities
 - **AudioBand.AudioSource**: This project contains the audiosource interface
+- **AudioBand.Test**: This project contains Tests to test the functionality of AudioBand.
 - **AudioSourceHost**: This project contains the assembly used to host an audio source in a separate app domain
 - ***AudioSource**: These are the projects for the included audio sources.
+- **AudioBandInstaller**: Can be ignored for most developers, this project handles creating the installer (.msi).
 
 # AudioBand project
 
@@ -31,9 +33,21 @@ Audio source loading is done by the `AudioSource/AudioSourceManager` class. Each
 3. If the audio source is selected in the settings, then it is activated.
 
 ## App settings loading
+### New Settings (v0.10 and upwards)
+The current settings use `json` to store information. The `Settings/AppSettings` is how the settings are opened up to the rest of the code, while `Settings/Persistence/Settings` is the Datatype that actual gets written/read by `Settings/Persistence/PersistentSettings`.
+
+You should avoid manually editing the settings files, and when writing code for AudioBand you should always make sure this is avoided.
+
+### Old Settings (up until v0.9.10)
+> [!NOTE]
+> The Old Settings description was written before the new settings system was in place.
+
 App settings are loaded and exposed by the `Settings/AppSettings` class. Persistence is done through `Settings/Persistence/PersistSettings`. The serialization format for settings uses the `toml` format. Toml is used because when the project was created, configuration was simple and editing the file in a text editor was the way to change settings. Toml was a good use case for that. Now, the settings have more nesting and more lists, which is less readable with toml however there is now a settings UI so editing the file isn't required. So migration to another serialization format isn't something required for now.
 
 ### Settings migrations
+> [!NOTE]
+> Starting with the new system, migrations are no longer needed when adding settings (automatically handled). Though they are kept to allow older users to update with ease to the newest versions.
+
 As the settings evolve, the serialization format can change so there are settings migrations located in the `Migrations` subfolder. These classes update old configuration files to the latest format. If an older version of the settings is detected, then a lookup is done in `SettingsMigration.cs` to find the appropriate way to transform the settings file. Mapping is done with `AutoMapper`.
 
 ## Views and ViewModels
@@ -58,7 +72,7 @@ public Size Size => new Size(Width, Height);
 - `BeginEdit`,`EndEdit` and `CancelEdit` commands and methods. The attribute `TrackState` can is used to automatically call those methods.
 
 ```csharp
-// Automatically calls beginedit method if the value is changed
+// Automatically calls BeginEdit method if the value is changed
 [TrackState]
 public int Width
 {
@@ -68,7 +82,7 @@ public int Width
 ```
 
 ## Message bus
-Under the `Messages` folder there is a simple `IMessageBus` interface. Messages are used sparingly for communicating between the settings window <-> toolbar and between view models.
+Under the `Messages` folder there is a simple `IMessageBus` interface. Messages are used sparingly for communicating between the Settings Window <-> Toolbar and between ViewModels.
 
 ## Other
 ### Dpi

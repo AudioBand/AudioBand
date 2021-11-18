@@ -1,25 +1,28 @@
 # Audioband Documentation
-Here you will find links to get you started with AudioBand.
-See below for installation. See the links on the side for more information.
+Welcome to the documentation pages!
+On the left you will find more pages with more in-depth information.
 
-## [CLICK HERE FOR WINDOWS 11 INSTALLATION](https://svr333.github.io/audio-band/audioband/windows11.html)
+For a basic installation, see this page.
+
+## [CLICK HERE FOR WINDOWS 11 INSTALLATION](Windows11.md)
 
 ## Quick Start
 ### Requirements
-- **.Net framework 4.7**
-- **Windows 10**
+- .Net framework 4.7
+- Windows 10
 
 ### Installation
-Find the latest download in the [Releases](https://github.com/AudioBand/audio-band/releases) page and download the installer (.msi) file.
+Download the [Latest Release](https://github.com/AudioBand/audio-band/releases/latest/download/audioband.msi) and run the `.msi`.  
+Follow the instructions on the screen.
 
 ### Usage
-1. Right click on the taskbar and select `Audio Band` from the toolbars submenu. (_See images below_)
-2. Right click on the Audio Band toolbar and select an audio source (ex. Spotify)
+1. Right click on the Taskbar, go to the `Toolbars` drop-out and select `Audio Band`.
+2. Right click on the Audio Band Toolbar and select an audio source (eg. Windows10).
 3. [Do any audio source specific setup](audiosources/index.md). Spotify, for example requires some additional setup.
-4. Check out other helpful links in the side
+
 
 > [!IMPORTANT]
-> Previous versions of windows are not supported. Audioband may still work but there is no testing on older versions.
+> Previous versions of Windows are not supported. Audioband may still work but it has not been tested.
 
 > [!NOTE]
 > High DPI is supported on Windows 10 1703 and above.
@@ -27,11 +30,3 @@ Find the latest download in the [Releases](https://github.com/AudioBand/audio-ba
 ### Info
 - Logs can be found in the temp folder: `%temp%\AudioBand.log`
 - Settings are saved in the app data directory: `%appdata%\AudioBand`
-
-![](~/images/hover-over.png)
-
-![](~/images/click-audiosource.png)
-
-
-## Links
-- [Audio source development](~/audiosource-api/index.md)

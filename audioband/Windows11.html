@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Windows 10 </title>
+    <title>Windows 11 Installation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Windows 10 ">
+    <meta name="title" content="Windows 11 Installation ">
     <meta name="generator" content="docfx 2.58.0.0">
     
-    <link rel="shortcut icon" href="../../favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../styles/docfx.css">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
     
-    <meta property="docfx:rel" content="../../">
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -34,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -77,19 +77,27 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="windows-10">Windows 10</h1>
+<h1 id="windows-11-installation">Windows 11 Installation</h1>
 
-<p>No specific setup required for Windows 10</p>
-<p>The Windows 10 AudioSource uses the <a href="https://docs.microsoft.com/en-us/uwp/api/windows.media.systemmediatransportcontrols">SMTC API</a> to control media on your desktop.
-Practically, anytime you can use your media keys to control any form of media, this AudioSource will work.</p>
-<h2 id="limitations">Limitations</h2>
-<p>Sadly, the <code>SMTC API</code> is still being developed and improved and is not a fine-tuned product yet, it also depends on the media sources to correctly implement these.</p>
-<p><a href="https://github.com/ModernFlyouts-Community/ModernFlyouts/blob/main/docs/GSMTC-Support-And-Popular-Apps.md">Right Here</a> you can find a list of tested out AudioSources which will/will not work with this AudioSource.</p>
-<p>Before filing a Bug Report saying that Windows10 AudioSource doesn't work, please check on <a href="(https://github.com/ModernFlyouts-Community/ModernFlyouts/blob/main/docs/GSMTC-Support-And-Popular-Apps.md)">The List</a> first if it has full support.</p>
+<p>The installation process is very similar to installing on Windows 10, and once installed, everything is the same as on Windows 10.</p>
+<p>In order for Audio-Band to run properly, we have to patch the Taskbar using an external tool.</p>
+<h2 id="step-1-patching-the-taskbar">Step 1: Patching The Taskbar</h2>
+<p>There are 2 tools to achieve this, they're both super easy to install but they have some different functionalities.<br>
+Information on these tools can be found at the bottom of this page if you're interested.</p>
+<p>If you just want to patch it, <a href="https://github.com/valinet/ExplorerPatcher/releases/latest/download/ep_setup.exe">Download ExplorerPatcher</a> and just run the install. Nothing else should be required.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>This will only work with apps who also have media hardware keys enabled. (eg. Using On-Keyboard key to pause/play music or <code>fn + f-key</code> on laptop.)</p>
+<p>To change settings of the ExplorerPatcher, you just right click the Taskbar and click on Properties.</p>
 </div>
+<h2 id="step-2-installing-audioband">Step 2: Installing AudioBand</h2>
+<p>Now you just install AudioBand like you would before.
+Get the <a href="https://github.com/AudioBand/audio-band/releases/latest/download/audioband.msi">Latest Download</a> and run it, and you're good to go.</p>
+<h2 id="extra-info-taskbar-patchers">Extra Info: Taskbar Patchers</h2>
+<p>If you'd like some more info on the choices of Taskbar Patchers, this is the place.</p>
+<p>There are two options, namely <a href="https://www.startallback.com/">StartAllBack</a> and <a href="https://github.com/valinet/ExplorerPatcher">ExplorerPatcher</a>.</p>
+<p>A feature list can be found on the pages there.<br>
+Normally, these apps are made by the same guy, the only difference is that <code>ExplorerPatcher</code> is FOSS (Free and Open Source Software) but it doesn't have all the functionality that <code>StartAllBack</code> has.</p>
+<p>However, <code>StartAllBack</code> is proprietary software.</p>
 </article>
           </div>
           
@@ -98,7 +106,7 @@ Practically, anytime you can use your media keys to control any form of media, t
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/AudioBand/audio-band/blob/gh-pages/docfx/audioband/audiosources/windows10.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/AudioBand/audio-band/blob/gh-pages/docfx/audioband/Windows11.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -125,8 +133,8 @@ Practically, anytime you can use your media keys to control any form of media, t
       </footer>
     </div>
     
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../../styles/docfx.js"></script>
-    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
   </body>
 </html>

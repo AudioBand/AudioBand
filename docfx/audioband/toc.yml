@@ -1,12 +1,14 @@
-- name: Introduction
+- name: Installation
   href: index.md
+- name: Windows11 Installation
+  href: windows11.md
 - name: Audio Sources Setup
   href: audiosources/toc.yml
   topicHref: audiosources/index.md
 - name: Customization
   href: customization/toc.yml
   topicHref: customization/index.md
-- name: FAQ
-  href: faq.md
 - name: Development
   href: development/toc.yml
+- name: FAQ
+  href: faq.md
