@@ -10,7 +10,7 @@ See below for installation. See the links on the side for more information.
 - **Windows 10**
 
 ### Installation
-Find the latest download in the [Releases](https://github.com/svr333/audio-band/releases) page and download the installer (.msi) file.
+Find the latest download in the [Releases](https://github.com/AudioBand/audio-band/releases) page and download the installer (.msi) file.
 
 ### Usage
 1. Right click on the taskbar and select `Audio Band` from the toolbars submenu. (_See images below_)

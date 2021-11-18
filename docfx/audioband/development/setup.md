@@ -1,6 +1,6 @@
 ## Setup
 1. Install `Visual Studio 2019`. Make sure to install support for `.Net Framework 4.7` development.
-2. Clone the repo `git clone git@github.com:dsafa/audio-band.git`
+2. Clone the repo `git clone git@github.com:AudioBand/audio-band.git`
 3. Open the solution file under `src/AudioBand.sln` in visual studio.
 4. Restore nuget packages before building
 5. The toolbar will have to be installed after being built (see `Running local version` section).
