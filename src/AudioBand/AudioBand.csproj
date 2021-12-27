@@ -521,7 +521,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper">
-      <Version>8.1.1</Version>
+      <Version>10.1.1</Version>
     </PackageReference>
     <PackageReference Include="Dsafa.WpfColorPicker">
       <Version>1.3.0</Version>
