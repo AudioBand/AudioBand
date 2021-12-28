@@ -1,0 +1,798 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  commentId: T:AudioBand.AudioSource.TrackInfoChangedEventArgs
+  id: TrackInfoChangedEventArgs
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.TrackInfoChangedEventArgs.#ctor
+  - AudioBand.AudioSource.TrackInfoChangedEventArgs.Album
+  - AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt
+  - AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist
+  - AudioBand.AudioSource.TrackInfoChangedEventArgs.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength
+  - AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName
+  langs:
+  - csharp
+  - vb
+  name: TrackInfoChangedEventArgs
+  nameWithType: TrackInfoChangedEventArgs
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  type: Class
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: TrackInfoChangedEventArgs
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 9
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nEvent arguments for the <xref href=\"AudioBand.AudioSource.IAudioSource.TrackInfoChanged\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public sealed class TrackInfoChangedEventArgs : EventArgs, ISerializable
+    content.vb: >-
+      <Serializable>
+
+      Public NotInheritable Class TrackInfoChangedEventArgs
+          Inherits EventArgs
+          Implements ISerializable
+  inheritance:
+  - System.Object
+  - System.EventArgs
+  implements:
+  - System.Runtime.Serialization.ISerializable
+  inheritedMembers:
+  - System.EventArgs.Empty
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.#ctor
+  commentId: M:AudioBand.AudioSource.TrackInfoChangedEventArgs.#ctor
+  id: '#ctor'
+  parent: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: TrackInfoChangedEventArgs()
+  nameWithType: TrackInfoChangedEventArgs.TrackInfoChangedEventArgs()
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackInfoChangedEventArgs()
+  type: Constructor
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: .ctor
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 15
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nInitializes a new instance of the <xref href=\"AudioBand.AudioSource.TrackInfoChangedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public TrackInfoChangedEventArgs()
+    content.vb: Public Sub New
+  overload: AudioBand.AudioSource.TrackInfoChangedEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName
+  commentId: P:AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName
+  id: TrackName
+  parent: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: TrackName
+  nameWithType: TrackInfoChangedEventArgs.TrackName
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: TrackName
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 33
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the track Name.\n"
+  example: []
+  syntax:
+    content: public string TrackName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the track.
+    content.vb: Public Property TrackName As String
+  overload: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist
+  commentId: P:AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist
+  id: Artist
+  parent: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Artist
+  nameWithType: TrackInfoChangedEventArgs.Artist
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Artist
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 39
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the artist.\n"
+  example: []
+  syntax:
+    content: public string Artist { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the artist.
+    content.vb: Public Property Artist As String
+  overload: AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt
+  commentId: P:AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt
+  id: AlbumArt
+  parent: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: AlbumArt
+  nameWithType: TrackInfoChangedEventArgs.AlbumArt
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: AlbumArt
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 45
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the album art image. If <xref uid=\"langword_csharp_null\" name=\"null\" href=\"\"></xref>, a placeholder will be used.\n"
+  example: []
+  syntax:
+    content: public Image AlbumArt { get; set; }
+    parameters: []
+    return:
+      type: System.Drawing.Image
+      description: The album art.
+    content.vb: Public Property AlbumArt As Image
+  overload: AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.Album
+  commentId: P:AudioBand.AudioSource.TrackInfoChangedEventArgs.Album
+  id: Album
+  parent: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Album
+  nameWithType: TrackInfoChangedEventArgs.Album
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.Album
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Album
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 51
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the album name.\n"
+  example: []
+  syntax:
+    content: public string Album { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the album.
+    content.vb: Public Property Album As String
+  overload: AudioBand.AudioSource.TrackInfoChangedEventArgs.Album*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength
+  commentId: P:AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength
+  id: TrackLength
+  parent: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: TrackLength
+  nameWithType: TrackInfoChangedEventArgs.TrackLength
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: TrackLength
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 57
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the length of the track.\n"
+  example: []
+  syntax:
+    content: public TimeSpan TrackLength { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+      description: The length of the track.
+    content.vb: Public Property TrackLength As TimeSpan
+  overload: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:AudioBand.AudioSource.TrackInfoChangedEventArgs.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  id: System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  isEii: true
+  parent: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: TrackInfoChangedEventArgs.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: System.Runtime.Serialization.ISerializable.GetObjectData
+    path: src/AudioBand.AudioSource/TrackInfoChangedEventArgs.cs
+    startLine: 60
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  example: []
+  syntax:
+    content: void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+    parameters:
+    - id: info
+      type: System.Runtime.Serialization.SerializationInfo
+    - id: context
+      type: System.Runtime.Serialization.StreamingContext
+    content.vb: Sub System.Runtime.Serialization.ISerializable.GetObjectData(info As SerializationInfo, context As StreamingContext) Implements ISerializable.GetObjectData
+  overload: AudioBand.AudioSource.TrackInfoChangedEventArgs.System#Runtime#Serialization#ISerializable#GetObjectData*
+  implements:
+  - System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  nameWithType.vb: TrackInfoChangedEventArgs.System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  name.vb: System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+references:
+- uid: AudioBand.AudioSource.IAudioSource.TrackInfoChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.TrackInfoChanged
+  isExternal: true
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.EventArgs.Empty
+  commentId: F:System.EventArgs.Empty
+  parent: System.EventArgs
+  isExternal: true
+  name: Empty
+  nameWithType: EventArgs.Empty
+  fullName: System.EventArgs.Empty
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  commentId: T:AudioBand.AudioSource.TrackInfoChangedEventArgs
+  name: TrackInfoChangedEventArgs
+  nameWithType: TrackInfoChangedEventArgs
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.#ctor*
+  commentId: Overload:AudioBand.AudioSource.TrackInfoChangedEventArgs.#ctor
+  name: TrackInfoChangedEventArgs
+  nameWithType: TrackInfoChangedEventArgs.TrackInfoChangedEventArgs
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackInfoChangedEventArgs
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName*
+  commentId: Overload:AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName
+  name: TrackName
+  nameWithType: TrackInfoChangedEventArgs.TrackName
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist*
+  commentId: Overload:AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist
+  name: Artist
+  nameWithType: TrackInfoChangedEventArgs.Artist
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.Artist
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt*
+  commentId: Overload:AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt
+  name: AlbumArt
+  nameWithType: TrackInfoChangedEventArgs.AlbumArt
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.AlbumArt
+- uid: System.Drawing.Image
+  commentId: T:System.Drawing.Image
+  parent: System.Drawing
+  isExternal: true
+  name: Image
+  nameWithType: Image
+  fullName: System.Drawing.Image
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.Album*
+  commentId: Overload:AudioBand.AudioSource.TrackInfoChangedEventArgs.Album
+  name: Album
+  nameWithType: TrackInfoChangedEventArgs.Album
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.Album
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength*
+  commentId: Overload:AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength
+  name: TrackLength
+  nameWithType: TrackInfoChangedEventArgs.TrackLength
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.TrackLength
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: AudioBand.AudioSource.TrackInfoChangedEventArgs.System#Runtime#Serialization#ISerializable#GetObjectData*
+  commentId: Overload:AudioBand.AudioSource.TrackInfoChangedEventArgs.System#Runtime#Serialization#ISerializable#GetObjectData
+  name: ISerializable.GetObjectData
+  nameWithType: TrackInfoChangedEventArgs.ISerializable.GetObjectData
+  fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs.System.Runtime.Serialization.ISerializable.GetObjectData
+  nameWithType.vb: TrackInfoChangedEventArgs.System.Runtime.Serialization.ISerializable.GetObjectData
+  name.vb: System.Runtime.Serialization.ISerializable.GetObjectData
+- uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: System.Runtime.Serialization.ISerializable
+  isExternal: true
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: ISerializable.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  spec.csharp:
+  - uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ISerializable.GetObjectData
+    fullName: System.Runtime.Serialization.ISerializable.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: ISerializable.GetObjectData
+    fullName: System.Runtime.Serialization.ISerializable.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Runtime.Serialization.SerializationInfo
+  commentId: T:System.Runtime.Serialization.SerializationInfo
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: SerializationInfo
+  nameWithType: SerializationInfo
+  fullName: System.Runtime.Serialization.SerializationInfo
+- uid: System.Runtime.Serialization.StreamingContext
+  commentId: T:System.Runtime.Serialization.StreamingContext
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: StreamingContext
+  nameWithType: StreamingContext
+  fullName: System.Runtime.Serialization.StreamingContext

@@ -1,0 +1,474 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.SettingChangedEventArgs
+  commentId: T:AudioBand.AudioSource.SettingChangedEventArgs
+  id: SettingChangedEventArgs
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.SettingChangedEventArgs.#ctor(System.String)
+  - AudioBand.AudioSource.SettingChangedEventArgs.SettingName
+  langs:
+  - csharp
+  - vb
+  name: SettingChangedEventArgs
+  nameWithType: SettingChangedEventArgs
+  fullName: AudioBand.AudioSource.SettingChangedEventArgs
+  type: Class
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/SettingChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SettingChangedEventArgs
+    path: src/AudioBand.AudioSource/SettingChangedEventArgs.cs
+    startLine: 7
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nProvides data for a <xref href=\"AudioBand.AudioSource.IAudioSource.SettingChanged\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
+  example: []
+  syntax:
+    content: >-
+      [Serializable]
+
+      public sealed class SettingChangedEventArgs : EventArgs
+    content.vb: >-
+      <Serializable>
+
+      Public NotInheritable Class SettingChangedEventArgs
+          Inherits EventArgs
+  inheritance:
+  - System.Object
+  - System.EventArgs
+  inheritedMembers:
+  - System.EventArgs.Empty
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: AudioBand.AudioSource.SettingChangedEventArgs.#ctor(System.String)
+  commentId: M:AudioBand.AudioSource.SettingChangedEventArgs.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: AudioBand.AudioSource.SettingChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: SettingChangedEventArgs(String)
+  nameWithType: SettingChangedEventArgs.SettingChangedEventArgs(String)
+  fullName: AudioBand.AudioSource.SettingChangedEventArgs.SettingChangedEventArgs(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/SettingChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: .ctor
+    path: src/AudioBand.AudioSource/SettingChangedEventArgs.cs
+    startLine: 15
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nInitializes a new instance of the <xref href=\"AudioBand.AudioSource.SettingChangedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class\nwith the setting&apos;s name.\n"
+  example: []
+  syntax:
+    content: public SettingChangedEventArgs(string settingName)
+    parameters:
+    - id: settingName
+      type: System.String
+      description: Name of the setting that changed.
+    content.vb: Public Sub New(settingName As String)
+  overload: AudioBand.AudioSource.SettingChangedEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.SettingChangedEventArgs.SettingName
+  commentId: P:AudioBand.AudioSource.SettingChangedEventArgs.SettingName
+  id: SettingName
+  parent: AudioBand.AudioSource.SettingChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: SettingName
+  nameWithType: SettingChangedEventArgs.SettingName
+  fullName: AudioBand.AudioSource.SettingChangedEventArgs.SettingName
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/SettingChangedEventArgs.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SettingName
+    path: src/AudioBand.AudioSource/SettingChangedEventArgs.cs
+    startLine: 24
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the name of the setting that changed.\n"
+  example: []
+  syntax:
+    content: public string SettingName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the setting.
+    content.vb: Public Property SettingName As String
+  overload: AudioBand.AudioSource.SettingChangedEventArgs.SettingName*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: AudioBand.AudioSource.IAudioSource.SettingChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.SettingChanged
+  isExternal: true
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System.EventArgs.Empty
+  commentId: F:System.EventArgs.Empty
+  parent: System.EventArgs
+  isExternal: true
+  name: Empty
+  nameWithType: EventArgs.Empty
+  fullName: System.EventArgs.Empty
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AudioBand.AudioSource.SettingChangedEventArgs
+  commentId: T:AudioBand.AudioSource.SettingChangedEventArgs
+  name: SettingChangedEventArgs
+  nameWithType: SettingChangedEventArgs
+  fullName: AudioBand.AudioSource.SettingChangedEventArgs
+- uid: AudioBand.AudioSource.SettingChangedEventArgs.#ctor*
+  commentId: Overload:AudioBand.AudioSource.SettingChangedEventArgs.#ctor
+  name: SettingChangedEventArgs
+  nameWithType: SettingChangedEventArgs.SettingChangedEventArgs
+  fullName: AudioBand.AudioSource.SettingChangedEventArgs.SettingChangedEventArgs
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AudioBand.AudioSource.SettingChangedEventArgs.SettingName*
+  commentId: Overload:AudioBand.AudioSource.SettingChangedEventArgs.SettingName
+  name: SettingName
+  nameWithType: SettingChangedEventArgs.SettingName
+  fullName: AudioBand.AudioSource.SettingChangedEventArgs.SettingName

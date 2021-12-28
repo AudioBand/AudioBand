@@ -1,0 +1,163 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.SettingOptions
+  commentId: T:AudioBand.AudioSource.SettingOptions
+  id: SettingOptions
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.SettingOptions.Hidden
+  - AudioBand.AudioSource.SettingOptions.ReadOnly
+  - AudioBand.AudioSource.SettingOptions.Sensitive
+  langs:
+  - csharp
+  - vb
+  name: SettingOptions
+  nameWithType: SettingOptions
+  fullName: AudioBand.AudioSource.SettingOptions
+  type: Enum
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/SettingOptions.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SettingOptions
+    path: src/AudioBand.AudioSource/SettingOptions.cs
+    startLine: 7
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nFlags for audio source settings.\n"
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum SettingOptions
+    content.vb: >-
+      <Flags>
+
+      Public Enum SettingOptions
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AudioBand.AudioSource.SettingOptions.Hidden
+  commentId: F:AudioBand.AudioSource.SettingOptions.Hidden
+  id: Hidden
+  parent: AudioBand.AudioSource.SettingOptions
+  langs:
+  - csharp
+  - vb
+  name: Hidden
+  nameWithType: SettingOptions.Hidden
+  fullName: AudioBand.AudioSource.SettingOptions.Hidden
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/SettingOptions.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Hidden
+    path: src/AudioBand.AudioSource/SettingOptions.cs
+    startLine: 13
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nSetting is invisible to the user.\n"
+  example: []
+  syntax:
+    content: Hidden = 1
+    return:
+      type: AudioBand.AudioSource.SettingOptions
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AudioBand.AudioSource.SettingOptions.ReadOnly
+  commentId: F:AudioBand.AudioSource.SettingOptions.ReadOnly
+  id: ReadOnly
+  parent: AudioBand.AudioSource.SettingOptions
+  langs:
+  - csharp
+  - vb
+  name: ReadOnly
+  nameWithType: SettingOptions.ReadOnly
+  fullName: AudioBand.AudioSource.SettingOptions.ReadOnly
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/SettingOptions.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: ReadOnly
+    path: src/AudioBand.AudioSource/SettingOptions.cs
+    startLine: 18
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nSetting cannot be modified by the user.\n"
+  example: []
+  syntax:
+    content: ReadOnly = 2
+    return:
+      type: AudioBand.AudioSource.SettingOptions
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AudioBand.AudioSource.SettingOptions.Sensitive
+  commentId: F:AudioBand.AudioSource.SettingOptions.Sensitive
+  id: Sensitive
+  parent: AudioBand.AudioSource.SettingOptions
+  langs:
+  - csharp
+  - vb
+  name: Sensitive
+  nameWithType: SettingOptions.Sensitive
+  fullName: AudioBand.AudioSource.SettingOptions.Sensitive
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/SettingOptions.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Sensitive
+    path: src/AudioBand.AudioSource/SettingOptions.cs
+    startLine: 23
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nIndicates a sensitive setting such as a password, causing a warning to be given.\n"
+  example: []
+  syntax:
+    content: Sensitive = 4
+    return:
+      type: AudioBand.AudioSource.SettingOptions
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: AudioBand.AudioSource.SettingOptions
+  commentId: T:AudioBand.AudioSource.SettingOptions
+  parent: AudioBand.AudioSource
+  name: SettingOptions
+  nameWithType: SettingOptions
+  fullName: AudioBand.AudioSource.SettingOptions

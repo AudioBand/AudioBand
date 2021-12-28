@@ -1,0 +1,346 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.IAudioSourceLogger
+  commentId: T:AudioBand.AudioSource.IAudioSourceLogger
+  id: IAudioSourceLogger
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.IAudioSourceLogger.Debug(System.Object)
+  - AudioBand.AudioSource.IAudioSourceLogger.Debug(System.String)
+  - AudioBand.AudioSource.IAudioSourceLogger.Error(System.Object)
+  - AudioBand.AudioSource.IAudioSourceLogger.Error(System.String)
+  - AudioBand.AudioSource.IAudioSourceLogger.Info(System.Object)
+  - AudioBand.AudioSource.IAudioSourceLogger.Info(System.String)
+  - AudioBand.AudioSource.IAudioSourceLogger.Warn(System.Object)
+  - AudioBand.AudioSource.IAudioSourceLogger.Warn(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IAudioSourceLogger
+  nameWithType: IAudioSourceLogger
+  fullName: AudioBand.AudioSource.IAudioSourceLogger
+  type: Interface
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: IAudioSourceLogger
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 5
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nProvides access to logging facilities for a audio source.\n"
+  example: []
+  syntax:
+    content: public interface IAudioSourceLogger
+    content.vb: Public Interface IAudioSourceLogger
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Debug(System.String)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Debug(System.String)
+  id: Debug(System.String)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Debug(String)
+  nameWithType: IAudioSourceLogger.Debug(String)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Debug(System.String)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Debug
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 11
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog a debug level message.\n"
+  example: []
+  syntax:
+    content: void Debug(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: Message to be logged.
+    content.vb: Sub Debug(message As String)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Debug*
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Debug(System.Object)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Debug(System.Object)
+  id: Debug(System.Object)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Debug(Object)
+  nameWithType: IAudioSourceLogger.Debug(Object)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Debug(System.Object)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Debug
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 17
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog a debug level message.\n"
+  example: []
+  syntax:
+    content: void Debug(object value)
+    parameters:
+    - id: value
+      type: System.Object
+      description: Value to be logged.
+    content.vb: Sub Debug(value As Object)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Debug*
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Info(System.String)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Info(System.String)
+  id: Info(System.String)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Info(String)
+  nameWithType: IAudioSourceLogger.Info(String)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Info(System.String)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Info
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 23
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog an info level message.\n"
+  example: []
+  syntax:
+    content: void Info(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: Message to be logged.
+    content.vb: Sub Info(message As String)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Info*
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Info(System.Object)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Info(System.Object)
+  id: Info(System.Object)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Info(Object)
+  nameWithType: IAudioSourceLogger.Info(Object)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Info(System.Object)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Info
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 29
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog an info level message.\n"
+  example: []
+  syntax:
+    content: void Info(object value)
+    parameters:
+    - id: value
+      type: System.Object
+      description: Value to be logged.
+    content.vb: Sub Info(value As Object)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Info*
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Warn(System.String)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Warn(System.String)
+  id: Warn(System.String)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Warn(String)
+  nameWithType: IAudioSourceLogger.Warn(String)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Warn(System.String)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Warn
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 35
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog a warning level message.\n"
+  example: []
+  syntax:
+    content: void Warn(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: Message to be logged.
+    content.vb: Sub Warn(message As String)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Warn*
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Warn(System.Object)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Warn(System.Object)
+  id: Warn(System.Object)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Warn(Object)
+  nameWithType: IAudioSourceLogger.Warn(Object)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Warn(System.Object)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Warn
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 41
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog a warning level message.\n"
+  example: []
+  syntax:
+    content: void Warn(object value)
+    parameters:
+    - id: value
+      type: System.Object
+      description: Value to be logged.
+    content.vb: Sub Warn(value As Object)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Warn*
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Error(System.String)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Error(System.String)
+  id: Error(System.String)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Error(String)
+  nameWithType: IAudioSourceLogger.Error(String)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Error(System.String)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Error
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 47
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog an error level message.\n"
+  example: []
+  syntax:
+    content: void Error(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: Message to be logged.
+    content.vb: Sub Error(message As String)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Error*
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Error(System.Object)
+  commentId: M:AudioBand.AudioSource.IAudioSourceLogger.Error(System.Object)
+  id: Error(System.Object)
+  parent: AudioBand.AudioSource.IAudioSourceLogger
+  langs:
+  - csharp
+  - vb
+  name: Error(Object)
+  nameWithType: IAudioSourceLogger.Error(Object)
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Error(System.Object)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Error
+    path: src/AudioBand.AudioSource/IAudioSourceLogger.cs
+    startLine: 53
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLog an error level message.\n"
+  example: []
+  syntax:
+    content: void Error(object value)
+    parameters:
+    - id: value
+      type: System.Object
+      description: Value to be logged.
+    content.vb: Sub Error(value As Object)
+  overload: AudioBand.AudioSource.IAudioSourceLogger.Error*
+references:
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Debug*
+  commentId: Overload:AudioBand.AudioSource.IAudioSourceLogger.Debug
+  name: Debug
+  nameWithType: IAudioSourceLogger.Debug
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Debug
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Info*
+  commentId: Overload:AudioBand.AudioSource.IAudioSourceLogger.Info
+  name: Info
+  nameWithType: IAudioSourceLogger.Info
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Info
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Warn*
+  commentId: Overload:AudioBand.AudioSource.IAudioSourceLogger.Warn
+  name: Warn
+  nameWithType: IAudioSourceLogger.Warn
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Warn
+- uid: AudioBand.AudioSource.IAudioSourceLogger.Error*
+  commentId: Overload:AudioBand.AudioSource.IAudioSourceLogger.Error
+  name: Error
+  nameWithType: IAudioSourceLogger.Error
+  fullName: AudioBand.AudioSource.IAudioSourceLogger.Error

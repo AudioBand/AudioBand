@@ -1,0 +1,219 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.ISupportsRatings
+  commentId: T:AudioBand.AudioSource.ISupportsRatings
+  id: ISupportsRatings
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync(AudioBand.AudioSource.TrackRating)
+  - AudioBand.AudioSource.ISupportsRatings.TrackRatingChanged
+  langs:
+  - csharp
+  - vb
+  name: ISupportsRatings
+  nameWithType: ISupportsRatings
+  fullName: AudioBand.AudioSource.ISupportsRatings
+  type: Interface
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/ISupportsRatings.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: ISupportsRatings
+    path: src/AudioBand.AudioSource/ISupportsRatings.cs
+    startLine: 8
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nIndicates that this audio source supports ratings on tracks.\n"
+  example: []
+  syntax:
+    content: public interface ISupportsRatings
+    content.vb: Public Interface ISupportsRatings
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: AudioBand.AudioSource.ISupportsRatings.TrackRatingChanged
+  commentId: E:AudioBand.AudioSource.ISupportsRatings.TrackRatingChanged
+  id: TrackRatingChanged
+  parent: AudioBand.AudioSource.ISupportsRatings
+  langs:
+  - csharp
+  - vb
+  name: TrackRatingChanged
+  nameWithType: ISupportsRatings.TrackRatingChanged
+  fullName: AudioBand.AudioSource.ISupportsRatings.TrackRatingChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/ISupportsRatings.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: TrackRatingChanged
+    path: src/AudioBand.AudioSource/ISupportsRatings.cs
+    startLine: 13
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when the the track&apos;s rating has changed.\n"
+  example: []
+  syntax:
+    content: event EventHandler<TrackRating> TrackRatingChanged
+    return:
+      type: System.EventHandler{AudioBand.AudioSource.TrackRating}
+    content.vb: Event TrackRatingChanged As EventHandler(Of TrackRating)
+- uid: AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync(AudioBand.AudioSource.TrackRating)
+  commentId: M:AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync(AudioBand.AudioSource.TrackRating)
+  id: SetTrackRatingAsync(AudioBand.AudioSource.TrackRating)
+  parent: AudioBand.AudioSource.ISupportsRatings
+  langs:
+  - csharp
+  - vb
+  name: SetTrackRatingAsync(TrackRating)
+  nameWithType: ISupportsRatings.SetTrackRatingAsync(TrackRating)
+  fullName: AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync(AudioBand.AudioSource.TrackRating)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/ISupportsRatings.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SetTrackRatingAsync
+    path: src/AudioBand.AudioSource/ISupportsRatings.cs
+    startLine: 20
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when a new rating is being set.\n"
+  example: []
+  syntax:
+    content: Task SetTrackRatingAsync(TrackRating newRating)
+    parameters:
+    - id: newRating
+      type: AudioBand.AudioSource.TrackRating
+      description: The new rating of the track.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous set rating operation.
+    content.vb: Function SetTrackRatingAsync(newRating As TrackRating) As Task
+  overload: AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync*
+references:
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: System.EventHandler{AudioBand.AudioSource.TrackRating}
+  commentId: T:System.EventHandler{AudioBand.AudioSource.TrackRating}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<TrackRating>
+  nameWithType: EventHandler<TrackRating>
+  fullName: System.EventHandler<AudioBand.AudioSource.TrackRating>
+  nameWithType.vb: EventHandler(Of TrackRating)
+  fullName.vb: System.EventHandler(Of AudioBand.AudioSource.TrackRating)
+  name.vb: EventHandler(Of TrackRating)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AudioBand.AudioSource.TrackRating
+    name: TrackRating
+    nameWithType: TrackRating
+    fullName: AudioBand.AudioSource.TrackRating
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AudioBand.AudioSource.TrackRating
+    name: TrackRating
+    nameWithType: TrackRating
+    fullName: AudioBand.AudioSource.TrackRating
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync*
+  commentId: Overload:AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync
+  name: SetTrackRatingAsync
+  nameWithType: ISupportsRatings.SetTrackRatingAsync
+  fullName: AudioBand.AudioSource.ISupportsRatings.SetTrackRatingAsync
+- uid: AudioBand.AudioSource.TrackRating
+  commentId: T:AudioBand.AudioSource.TrackRating
+  parent: AudioBand.AudioSource
+  name: TrackRating
+  nameWithType: TrackRating
+  fullName: AudioBand.AudioSource.TrackRating
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

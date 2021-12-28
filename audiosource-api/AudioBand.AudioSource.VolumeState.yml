@@ -1,0 +1,188 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.VolumeState
+  commentId: T:AudioBand.AudioSource.VolumeState
+  id: VolumeState
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.VolumeState.High
+  - AudioBand.AudioSource.VolumeState.Low
+  - AudioBand.AudioSource.VolumeState.Mid
+  - AudioBand.AudioSource.VolumeState.Off
+  langs:
+  - csharp
+  - vb
+  name: VolumeState
+  nameWithType: VolumeState
+  fullName: AudioBand.AudioSource.VolumeState
+  type: Enum
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/VolumeState.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: VolumeState
+    path: src/AudioBand.AudioSource/VolumeState.cs
+    startLine: 5
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nSpecifies the Volume State of the audio source.\n"
+  example: []
+  syntax:
+    content: public enum VolumeState
+    content.vb: Public Enum VolumeState
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AudioBand.AudioSource.VolumeState.Off
+  commentId: F:AudioBand.AudioSource.VolumeState.Off
+  id: Off
+  parent: AudioBand.AudioSource.VolumeState
+  langs:
+  - csharp
+  - vb
+  name: Off
+  nameWithType: VolumeState.Off
+  fullName: AudioBand.AudioSource.VolumeState.Off
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/VolumeState.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Off
+    path: src/AudioBand.AudioSource/VolumeState.cs
+    startLine: 10
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nNo volume.\n"
+  example: []
+  syntax:
+    content: Off = 0
+    return:
+      type: AudioBand.AudioSource.VolumeState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AudioBand.AudioSource.VolumeState.Low
+  commentId: F:AudioBand.AudioSource.VolumeState.Low
+  id: Low
+  parent: AudioBand.AudioSource.VolumeState
+  langs:
+  - csharp
+  - vb
+  name: Low
+  nameWithType: VolumeState.Low
+  fullName: AudioBand.AudioSource.VolumeState.Low
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/VolumeState.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Low
+    path: src/AudioBand.AudioSource/VolumeState.cs
+    startLine: 15
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nLess than 33% volume.\n"
+  example: []
+  syntax:
+    content: Low = 1
+    return:
+      type: AudioBand.AudioSource.VolumeState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AudioBand.AudioSource.VolumeState.Mid
+  commentId: F:AudioBand.AudioSource.VolumeState.Mid
+  id: Mid
+  parent: AudioBand.AudioSource.VolumeState
+  langs:
+  - csharp
+  - vb
+  name: Mid
+  nameWithType: VolumeState.Mid
+  fullName: AudioBand.AudioSource.VolumeState.Mid
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/VolumeState.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Mid
+    path: src/AudioBand.AudioSource/VolumeState.cs
+    startLine: 20
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nBetween 33% and 66% volume.\n"
+  example: []
+  syntax:
+    content: Mid = 2
+    return:
+      type: AudioBand.AudioSource.VolumeState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AudioBand.AudioSource.VolumeState.High
+  commentId: F:AudioBand.AudioSource.VolumeState.High
+  id: High
+  parent: AudioBand.AudioSource.VolumeState
+  langs:
+  - csharp
+  - vb
+  name: High
+  nameWithType: VolumeState.High
+  fullName: AudioBand.AudioSource.VolumeState.High
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/VolumeState.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: High
+    path: src/AudioBand.AudioSource/VolumeState.cs
+    startLine: 25
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nMore than 66% volume.\n"
+  example: []
+  syntax:
+    content: High = 3
+    return:
+      type: AudioBand.AudioSource.VolumeState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: AudioBand.AudioSource.VolumeState
+  commentId: T:AudioBand.AudioSource.VolumeState
+  parent: AudioBand.AudioSource
+  name: VolumeState
+  nameWithType: VolumeState
+  fullName: AudioBand.AudioSource.VolumeState

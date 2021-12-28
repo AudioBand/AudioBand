@@ -1,0 +1,1173 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.IAudioSource
+  commentId: T:AudioBand.AudioSource.IAudioSource
+  id: IAudioSource
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.IAudioSource.ActivateAsync
+  - AudioBand.AudioSource.IAudioSource.DeactivateAsync
+  - AudioBand.AudioSource.IAudioSource.Description
+  - AudioBand.AudioSource.IAudioSource.IsPlayingChanged
+  - AudioBand.AudioSource.IAudioSource.Logger
+  - AudioBand.AudioSource.IAudioSource.Name
+  - AudioBand.AudioSource.IAudioSource.NextTrackAsync
+  - AudioBand.AudioSource.IAudioSource.PauseTrackAsync
+  - AudioBand.AudioSource.IAudioSource.PlayTrackAsync
+  - AudioBand.AudioSource.IAudioSource.PreviousTrackAsync
+  - AudioBand.AudioSource.IAudioSource.RepeatModeChanged
+  - AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync(System.TimeSpan)
+  - AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync(AudioBand.AudioSource.RepeatMode)
+  - AudioBand.AudioSource.IAudioSource.SetShuffleAsync(System.Boolean)
+  - AudioBand.AudioSource.IAudioSource.SettingChanged
+  - AudioBand.AudioSource.IAudioSource.SetVolumeAsync(System.Int32)
+  - AudioBand.AudioSource.IAudioSource.ShuffleChanged
+  - AudioBand.AudioSource.IAudioSource.TrackInfoChanged
+  - AudioBand.AudioSource.IAudioSource.TrackProgressChanged
+  - AudioBand.AudioSource.IAudioSource.VolumeChanged
+  - AudioBand.AudioSource.IAudioSource.WindowClassName
+  langs:
+  - csharp
+  - vb
+  name: IAudioSource
+  nameWithType: IAudioSource
+  fullName: AudioBand.AudioSource.IAudioSource
+  type: Interface
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: IAudioSource
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 9
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nProvides information and notifies changes from an audio source and exposes playback controls.\n"
+  example: []
+  syntax:
+    content: >-
+      [InheritedExport(typeof(IAudioSource))]
+
+      public interface IAudioSource
+    content.vb: >-
+      <InheritedExport(GetType(IAudioSource))>
+
+      Public Interface IAudioSource
+  attributes:
+  - type: System.ComponentModel.Composition.InheritedExportAttribute
+    ctor: System.ComponentModel.Composition.InheritedExportAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: AudioBand.AudioSource.IAudioSource
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: AudioBand.AudioSource.IAudioSource.SettingChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.SettingChanged
+  id: SettingChanged
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: SettingChanged
+  nameWithType: IAudioSource.SettingChanged
+  fullName: AudioBand.AudioSource.IAudioSource.SettingChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SettingChanged
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 15
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when a setting has changed internally.\n"
+  example: []
+  syntax:
+    content: event EventHandler<SettingChangedEventArgs> SettingChanged
+    return:
+      type: System.EventHandler{AudioBand.AudioSource.SettingChangedEventArgs}
+    content.vb: Event SettingChanged As EventHandler(Of SettingChangedEventArgs)
+- uid: AudioBand.AudioSource.IAudioSource.TrackInfoChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.TrackInfoChanged
+  id: TrackInfoChanged
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: TrackInfoChanged
+  nameWithType: IAudioSource.TrackInfoChanged
+  fullName: AudioBand.AudioSource.IAudioSource.TrackInfoChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: TrackInfoChanged
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 20
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when track information has changed.\n"
+  example: []
+  syntax:
+    content: event EventHandler<TrackInfoChangedEventArgs> TrackInfoChanged
+    return:
+      type: System.EventHandler{AudioBand.AudioSource.TrackInfoChangedEventArgs}
+    content.vb: Event TrackInfoChanged As EventHandler(Of TrackInfoChangedEventArgs)
+- uid: AudioBand.AudioSource.IAudioSource.IsPlayingChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.IsPlayingChanged
+  id: IsPlayingChanged
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: IsPlayingChanged
+  nameWithType: IAudioSource.IsPlayingChanged
+  fullName: AudioBand.AudioSource.IAudioSource.IsPlayingChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: IsPlayingChanged
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 25
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when the track play state has changed. <xref uid=\"langword_csharp_true\" name=\"true\" href=\"\"></xref> if playing; <xref uid=\"langword_csharp_false\" name=\"false\" href=\"\"></xref> otherwise;\n"
+  example: []
+  syntax:
+    content: event EventHandler<bool> IsPlayingChanged
+    return:
+      type: System.EventHandler{System.Boolean}
+    content.vb: Event IsPlayingChanged As EventHandler(Of Boolean)
+- uid: AudioBand.AudioSource.IAudioSource.TrackProgressChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.TrackProgressChanged
+  id: TrackProgressChanged
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: TrackProgressChanged
+  nameWithType: IAudioSource.TrackProgressChanged
+  fullName: AudioBand.AudioSource.IAudioSource.TrackProgressChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: TrackProgressChanged
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 30
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when the current track progress has changed.\n"
+  example: []
+  syntax:
+    content: event EventHandler<TimeSpan> TrackProgressChanged
+    return:
+      type: System.EventHandler{System.TimeSpan}
+    content.vb: Event TrackProgressChanged As EventHandler(Of TimeSpan)
+- uid: AudioBand.AudioSource.IAudioSource.VolumeChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.VolumeChanged
+  id: VolumeChanged
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: VolumeChanged
+  nameWithType: IAudioSource.VolumeChanged
+  fullName: AudioBand.AudioSource.IAudioSource.VolumeChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: VolumeChanged
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 35
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when the volume of the audio source changes. The range of the volume is between 0 and 100 inclusive.\n"
+  example: []
+  syntax:
+    content: event EventHandler<int> VolumeChanged
+    return:
+      type: System.EventHandler{System.Int32}
+    content.vb: Event VolumeChanged As EventHandler(Of Integer)
+- uid: AudioBand.AudioSource.IAudioSource.ShuffleChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.ShuffleChanged
+  id: ShuffleChanged
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: ShuffleChanged
+  nameWithType: IAudioSource.ShuffleChanged
+  fullName: AudioBand.AudioSource.IAudioSource.ShuffleChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: ShuffleChanged
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 40
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when the shuffle state changes. <xref uid=\"langword_csharp_true\" name=\"true\" href=\"\"></xref> if shuffle is on; <xref uid=\"langword_csharp_false\" name=\"false\" href=\"\"></xref> otherwise;\n"
+  example: []
+  syntax:
+    content: event EventHandler<bool> ShuffleChanged
+    return:
+      type: System.EventHandler{System.Boolean}
+    content.vb: Event ShuffleChanged As EventHandler(Of Boolean)
+- uid: AudioBand.AudioSource.IAudioSource.RepeatModeChanged
+  commentId: E:AudioBand.AudioSource.IAudioSource.RepeatModeChanged
+  id: RepeatModeChanged
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: RepeatModeChanged
+  nameWithType: IAudioSource.RepeatModeChanged
+  fullName: AudioBand.AudioSource.IAudioSource.RepeatModeChanged
+  type: Event
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: RepeatModeChanged
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 45
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOccurs when the repeat mode changes.\n"
+  example: []
+  syntax:
+    content: event EventHandler<RepeatMode> RepeatModeChanged
+    return:
+      type: System.EventHandler{AudioBand.AudioSource.RepeatMode}
+    content.vb: Event RepeatModeChanged As EventHandler(Of RepeatMode)
+- uid: AudioBand.AudioSource.IAudioSource.Name
+  commentId: P:AudioBand.AudioSource.IAudioSource.Name
+  id: Name
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: IAudioSource.Name
+  fullName: AudioBand.AudioSource.IAudioSource.Name
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Name
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 51
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets the name of the audio source.\n"
+  example: []
+  syntax:
+    content: string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the audio source.
+    content.vb: ReadOnly Property Name As String
+  overload: AudioBand.AudioSource.IAudioSource.Name*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: AudioBand.AudioSource.IAudioSource.Description
+  commentId: P:AudioBand.AudioSource.IAudioSource.Description
+  id: Description
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: IAudioSource.Description
+  fullName: AudioBand.AudioSource.IAudioSource.Description
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Description
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 57
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets the Description of this audio source.\n"
+  example: []
+  syntax:
+    content: string Description { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The description of the audio source.
+    content.vb: ReadOnly Property Description As String
+  overload: AudioBand.AudioSource.IAudioSource.Description*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: AudioBand.AudioSource.IAudioSource.WindowClassName
+  commentId: P:AudioBand.AudioSource.IAudioSource.WindowClassName
+  id: WindowClassName
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: WindowClassName
+  nameWithType: IAudioSource.WindowClassName
+  fullName: AudioBand.AudioSource.IAudioSource.WindowClassName
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: WindowClassName
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 63
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets the Window Class Name of the associated player.\n"
+  example: []
+  syntax:
+    content: string WindowClassName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The Class Name of the Window.
+    content.vb: ReadOnly Property WindowClassName As String
+  overload: AudioBand.AudioSource.IAudioSource.WindowClassName*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: AudioBand.AudioSource.IAudioSource.Logger
+  commentId: P:AudioBand.AudioSource.IAudioSource.Logger
+  id: Logger
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: Logger
+  nameWithType: IAudioSource.Logger
+  fullName: AudioBand.AudioSource.IAudioSource.Logger
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Logger
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 69
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the <xref href=\"AudioBand.AudioSource.IAudioSourceLogger\" data-throw-if-not-resolved=\"false\"></xref> used for logging.\n"
+  example: []
+  syntax:
+    content: IAudioSourceLogger Logger { get; set; }
+    parameters: []
+    return:
+      type: AudioBand.AudioSource.IAudioSourceLogger
+      description: Audio source logger that will be injected.
+    content.vb: Property Logger As IAudioSourceLogger
+  overload: AudioBand.AudioSource.IAudioSource.Logger*
+  modifiers.csharp:
+  - get
+  - set
+- uid: AudioBand.AudioSource.IAudioSource.ActivateAsync
+  commentId: M:AudioBand.AudioSource.IAudioSource.ActivateAsync
+  id: ActivateAsync
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: ActivateAsync()
+  nameWithType: IAudioSource.ActivateAsync()
+  fullName: AudioBand.AudioSource.IAudioSource.ActivateAsync()
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: ActivateAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 75
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when the audio source becomes active.\n"
+  example: []
+  syntax:
+    content: Task ActivateAsync()
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous activate operation.
+    content.vb: Function ActivateAsync As Task
+  overload: AudioBand.AudioSource.IAudioSource.ActivateAsync*
+- uid: AudioBand.AudioSource.IAudioSource.DeactivateAsync
+  commentId: M:AudioBand.AudioSource.IAudioSource.DeactivateAsync
+  id: DeactivateAsync
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: DeactivateAsync()
+  nameWithType: IAudioSource.DeactivateAsync()
+  fullName: AudioBand.AudioSource.IAudioSource.DeactivateAsync()
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: DeactivateAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 81
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when the audio source is no longer active.\n"
+  example: []
+  syntax:
+    content: Task DeactivateAsync()
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous deactivate operation.
+    content.vb: Function DeactivateAsync As Task
+  overload: AudioBand.AudioSource.IAudioSource.DeactivateAsync*
+- uid: AudioBand.AudioSource.IAudioSource.PlayTrackAsync
+  commentId: M:AudioBand.AudioSource.IAudioSource.PlayTrackAsync
+  id: PlayTrackAsync
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: PlayTrackAsync()
+  nameWithType: IAudioSource.PlayTrackAsync()
+  fullName: AudioBand.AudioSource.IAudioSource.PlayTrackAsync()
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: PlayTrackAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 87
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to start playback.\n"
+  example: []
+  syntax:
+    content: Task PlayTrackAsync()
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous play operation.
+    content.vb: Function PlayTrackAsync As Task
+  overload: AudioBand.AudioSource.IAudioSource.PlayTrackAsync*
+- uid: AudioBand.AudioSource.IAudioSource.PauseTrackAsync
+  commentId: M:AudioBand.AudioSource.IAudioSource.PauseTrackAsync
+  id: PauseTrackAsync
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: PauseTrackAsync()
+  nameWithType: IAudioSource.PauseTrackAsync()
+  fullName: AudioBand.AudioSource.IAudioSource.PauseTrackAsync()
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: PauseTrackAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 93
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to stop playback.\n"
+  example: []
+  syntax:
+    content: Task PauseTrackAsync()
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous pause operation.
+    content.vb: Function PauseTrackAsync As Task
+  overload: AudioBand.AudioSource.IAudioSource.PauseTrackAsync*
+- uid: AudioBand.AudioSource.IAudioSource.PreviousTrackAsync
+  commentId: M:AudioBand.AudioSource.IAudioSource.PreviousTrackAsync
+  id: PreviousTrackAsync
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: PreviousTrackAsync()
+  nameWithType: IAudioSource.PreviousTrackAsync()
+  fullName: AudioBand.AudioSource.IAudioSource.PreviousTrackAsync()
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: PreviousTrackAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 99
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to skip to the previous track.\n"
+  example: []
+  syntax:
+    content: Task PreviousTrackAsync()
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous skip to previous track operation.
+    content.vb: Function PreviousTrackAsync As Task
+  overload: AudioBand.AudioSource.IAudioSource.PreviousTrackAsync*
+- uid: AudioBand.AudioSource.IAudioSource.NextTrackAsync
+  commentId: M:AudioBand.AudioSource.IAudioSource.NextTrackAsync
+  id: NextTrackAsync
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: NextTrackAsync()
+  nameWithType: IAudioSource.NextTrackAsync()
+  fullName: AudioBand.AudioSource.IAudioSource.NextTrackAsync()
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: NextTrackAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 105
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to skip to the next track.\n"
+  example: []
+  syntax:
+    content: Task NextTrackAsync()
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous skip to next track operation.
+    content.vb: Function NextTrackAsync As Task
+  overload: AudioBand.AudioSource.IAudioSource.NextTrackAsync*
+- uid: AudioBand.AudioSource.IAudioSource.SetVolumeAsync(System.Int32)
+  commentId: M:AudioBand.AudioSource.IAudioSource.SetVolumeAsync(System.Int32)
+  id: SetVolumeAsync(System.Int32)
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: SetVolumeAsync(Int32)
+  nameWithType: IAudioSource.SetVolumeAsync(Int32)
+  fullName: AudioBand.AudioSource.IAudioSource.SetVolumeAsync(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SetVolumeAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 112
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to change the volume.\n"
+  example: []
+  syntax:
+    content: Task SetVolumeAsync(int newVolume)
+    parameters:
+    - id: newVolume
+      type: System.Int32
+      description: The new volume to set. The range is between 0 and 100 inclusive.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous set volume operation.
+    content.vb: Function SetVolumeAsync(newVolume As Integer) As Task
+  overload: AudioBand.AudioSource.IAudioSource.SetVolumeAsync*
+- uid: AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync(System.TimeSpan)
+  commentId: M:AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync(System.TimeSpan)
+  id: SetPlaybackProgressAsync(System.TimeSpan)
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: SetPlaybackProgressAsync(TimeSpan)
+  nameWithType: IAudioSource.SetPlaybackProgressAsync(TimeSpan)
+  fullName: AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync(System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SetPlaybackProgressAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 119
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to change to current playback progress.\n"
+  example: []
+  syntax:
+    content: Task SetPlaybackProgressAsync(TimeSpan newProgress)
+    parameters:
+    - id: newProgress
+      type: System.TimeSpan
+      description: The new time to seek to.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous set playback progress operation.
+    content.vb: Function SetPlaybackProgressAsync(newProgress As TimeSpan) As Task
+  overload: AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync*
+- uid: AudioBand.AudioSource.IAudioSource.SetShuffleAsync(System.Boolean)
+  commentId: M:AudioBand.AudioSource.IAudioSource.SetShuffleAsync(System.Boolean)
+  id: SetShuffleAsync(System.Boolean)
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: SetShuffleAsync(Boolean)
+  nameWithType: IAudioSource.SetShuffleAsync(Boolean)
+  fullName: AudioBand.AudioSource.IAudioSource.SetShuffleAsync(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SetShuffleAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 126
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to change the shuffle state.\n"
+  example: []
+  syntax:
+    content: Task SetShuffleAsync(bool shuffleOn)
+    parameters:
+    - id: shuffleOn
+      type: System.Boolean
+      description: The new shuffle state, <xref uid="langword_csharp_true" name="true" href=""></xref> if shuffle should be on; <xref uid="langword_csharp_false" name="false" href=""></xref> otherwise.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous set shuffle operation.
+    content.vb: Function SetShuffleAsync(shuffleOn As Boolean) As Task
+  overload: AudioBand.AudioSource.IAudioSource.SetShuffleAsync*
+- uid: AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync(AudioBand.AudioSource.RepeatMode)
+  commentId: M:AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync(AudioBand.AudioSource.RepeatMode)
+  id: SetRepeatModeAsync(AudioBand.AudioSource.RepeatMode)
+  parent: AudioBand.AudioSource.IAudioSource
+  langs:
+  - csharp
+  - vb
+  name: SetRepeatModeAsync(RepeatMode)
+  nameWithType: IAudioSource.SetRepeatModeAsync(RepeatMode)
+  fullName: AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync(AudioBand.AudioSource.RepeatMode)
+  type: Method
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/IAudioSource.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: SetRepeatModeAsync
+    path: src/AudioBand.AudioSource/IAudioSource.cs
+    startLine: 133
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nCalled when there is a request to change the repeat mode.\n"
+  example: []
+  syntax:
+    content: Task SetRepeatModeAsync(RepeatMode newRepeatMode)
+    parameters:
+    - id: newRepeatMode
+      type: AudioBand.AudioSource.RepeatMode
+      description: The new <xref href="AudioBand.AudioSource.RepeatMode" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Threading.Tasks.Task
+      description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> representing the asynchronous set repeat mode operation.
+    content.vb: Function SetRepeatModeAsync(newRepeatMode As RepeatMode) As Task
+  overload: AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync*
+references:
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: System.EventHandler{AudioBand.AudioSource.SettingChangedEventArgs}
+  commentId: T:System.EventHandler{AudioBand.AudioSource.SettingChangedEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<SettingChangedEventArgs>
+  nameWithType: EventHandler<SettingChangedEventArgs>
+  fullName: System.EventHandler<AudioBand.AudioSource.SettingChangedEventArgs>
+  nameWithType.vb: EventHandler(Of SettingChangedEventArgs)
+  fullName.vb: System.EventHandler(Of AudioBand.AudioSource.SettingChangedEventArgs)
+  name.vb: EventHandler(Of SettingChangedEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AudioBand.AudioSource.SettingChangedEventArgs
+    name: SettingChangedEventArgs
+    nameWithType: SettingChangedEventArgs
+    fullName: AudioBand.AudioSource.SettingChangedEventArgs
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AudioBand.AudioSource.SettingChangedEventArgs
+    name: SettingChangedEventArgs
+    nameWithType: SettingChangedEventArgs
+    fullName: AudioBand.AudioSource.SettingChangedEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.EventHandler{AudioBand.AudioSource.TrackInfoChangedEventArgs}
+  commentId: T:System.EventHandler{AudioBand.AudioSource.TrackInfoChangedEventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<TrackInfoChangedEventArgs>
+  nameWithType: EventHandler<TrackInfoChangedEventArgs>
+  fullName: System.EventHandler<AudioBand.AudioSource.TrackInfoChangedEventArgs>
+  nameWithType.vb: EventHandler(Of TrackInfoChangedEventArgs)
+  fullName.vb: System.EventHandler(Of AudioBand.AudioSource.TrackInfoChangedEventArgs)
+  name.vb: EventHandler(Of TrackInfoChangedEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AudioBand.AudioSource.TrackInfoChangedEventArgs
+    name: TrackInfoChangedEventArgs
+    nameWithType: TrackInfoChangedEventArgs
+    fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AudioBand.AudioSource.TrackInfoChangedEventArgs
+    name: TrackInfoChangedEventArgs
+    nameWithType: TrackInfoChangedEventArgs
+    fullName: AudioBand.AudioSource.TrackInfoChangedEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler{System.Boolean}
+  commentId: T:System.EventHandler{System.Boolean}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<Boolean>
+  nameWithType: EventHandler<Boolean>
+  fullName: System.EventHandler<System.Boolean>
+  nameWithType.vb: EventHandler(Of Boolean)
+  fullName.vb: System.EventHandler(Of System.Boolean)
+  name.vb: EventHandler(Of Boolean)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler{System.TimeSpan}
+  commentId: T:System.EventHandler{System.TimeSpan}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<TimeSpan>
+  nameWithType: EventHandler<TimeSpan>
+  fullName: System.EventHandler<System.TimeSpan>
+  nameWithType.vb: EventHandler(Of TimeSpan)
+  fullName.vb: System.EventHandler(Of System.TimeSpan)
+  name.vb: EventHandler(Of TimeSpan)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler{System.Int32}
+  commentId: T:System.EventHandler{System.Int32}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<Int32>
+  nameWithType: EventHandler<Int32>
+  fullName: System.EventHandler<System.Int32>
+  nameWithType.vb: EventHandler(Of Int32)
+  fullName.vb: System.EventHandler(Of System.Int32)
+  name.vb: EventHandler(Of Int32)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler{AudioBand.AudioSource.RepeatMode}
+  commentId: T:System.EventHandler{AudioBand.AudioSource.RepeatMode}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<RepeatMode>
+  nameWithType: EventHandler<RepeatMode>
+  fullName: System.EventHandler<AudioBand.AudioSource.RepeatMode>
+  nameWithType.vb: EventHandler(Of RepeatMode)
+  fullName.vb: System.EventHandler(Of AudioBand.AudioSource.RepeatMode)
+  name.vb: EventHandler(Of RepeatMode)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AudioBand.AudioSource.RepeatMode
+    name: RepeatMode
+    nameWithType: RepeatMode
+    fullName: AudioBand.AudioSource.RepeatMode
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AudioBand.AudioSource.RepeatMode
+    name: RepeatMode
+    nameWithType: RepeatMode
+    fullName: AudioBand.AudioSource.RepeatMode
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AudioBand.AudioSource.IAudioSource.Name*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.Name
+  name: Name
+  nameWithType: IAudioSource.Name
+  fullName: AudioBand.AudioSource.IAudioSource.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AudioBand.AudioSource.IAudioSource.Description*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.Description
+  name: Description
+  nameWithType: IAudioSource.Description
+  fullName: AudioBand.AudioSource.IAudioSource.Description
+- uid: AudioBand.AudioSource.IAudioSource.WindowClassName*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.WindowClassName
+  name: WindowClassName
+  nameWithType: IAudioSource.WindowClassName
+  fullName: AudioBand.AudioSource.IAudioSource.WindowClassName
+- uid: AudioBand.AudioSource.IAudioSourceLogger
+  commentId: T:AudioBand.AudioSource.IAudioSourceLogger
+  parent: AudioBand.AudioSource
+  name: IAudioSourceLogger
+  nameWithType: IAudioSourceLogger
+  fullName: AudioBand.AudioSource.IAudioSourceLogger
+- uid: AudioBand.AudioSource.IAudioSource.Logger*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.Logger
+  name: Logger
+  nameWithType: IAudioSource.Logger
+  fullName: AudioBand.AudioSource.IAudioSource.Logger
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: AudioBand.AudioSource.IAudioSource.ActivateAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.ActivateAsync
+  name: ActivateAsync
+  nameWithType: IAudioSource.ActivateAsync
+  fullName: AudioBand.AudioSource.IAudioSource.ActivateAsync
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: AudioBand.AudioSource.IAudioSource.DeactivateAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.DeactivateAsync
+  name: DeactivateAsync
+  nameWithType: IAudioSource.DeactivateAsync
+  fullName: AudioBand.AudioSource.IAudioSource.DeactivateAsync
+- uid: AudioBand.AudioSource.IAudioSource.PlayTrackAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.PlayTrackAsync
+  name: PlayTrackAsync
+  nameWithType: IAudioSource.PlayTrackAsync
+  fullName: AudioBand.AudioSource.IAudioSource.PlayTrackAsync
+- uid: AudioBand.AudioSource.IAudioSource.PauseTrackAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.PauseTrackAsync
+  name: PauseTrackAsync
+  nameWithType: IAudioSource.PauseTrackAsync
+  fullName: AudioBand.AudioSource.IAudioSource.PauseTrackAsync
+- uid: AudioBand.AudioSource.IAudioSource.PreviousTrackAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.PreviousTrackAsync
+  name: PreviousTrackAsync
+  nameWithType: IAudioSource.PreviousTrackAsync
+  fullName: AudioBand.AudioSource.IAudioSource.PreviousTrackAsync
+- uid: AudioBand.AudioSource.IAudioSource.NextTrackAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.NextTrackAsync
+  name: NextTrackAsync
+  nameWithType: IAudioSource.NextTrackAsync
+  fullName: AudioBand.AudioSource.IAudioSource.NextTrackAsync
+- uid: AudioBand.AudioSource.IAudioSource.SetVolumeAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.SetVolumeAsync
+  name: SetVolumeAsync
+  nameWithType: IAudioSource.SetVolumeAsync
+  fullName: AudioBand.AudioSource.IAudioSource.SetVolumeAsync
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync
+  name: SetPlaybackProgressAsync
+  nameWithType: IAudioSource.SetPlaybackProgressAsync
+  fullName: AudioBand.AudioSource.IAudioSource.SetPlaybackProgressAsync
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: AudioBand.AudioSource.IAudioSource.SetShuffleAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.SetShuffleAsync
+  name: SetShuffleAsync
+  nameWithType: IAudioSource.SetShuffleAsync
+  fullName: AudioBand.AudioSource.IAudioSource.SetShuffleAsync
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AudioBand.AudioSource.RepeatMode
+  commentId: T:AudioBand.AudioSource.RepeatMode
+  parent: AudioBand.AudioSource
+  name: RepeatMode
+  nameWithType: RepeatMode
+  fullName: AudioBand.AudioSource.RepeatMode
+- uid: AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync*
+  commentId: Overload:AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync
+  name: SetRepeatModeAsync
+  nameWithType: IAudioSource.SetRepeatModeAsync
+  fullName: AudioBand.AudioSource.IAudioSource.SetRepeatModeAsync

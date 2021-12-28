@@ -1,0 +1,3081 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute
+  commentId: T:AudioBand.AudioSource.AudioSourceSettingAttribute
+  id: AudioSourceSettingAttribute
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.AudioSourceSettingAttribute.#ctor(System.String)
+  - AudioBand.AudioSource.AudioSourceSettingAttribute.Description
+  - AudioBand.AudioSource.AudioSourceSettingAttribute.Name
+  - AudioBand.AudioSource.AudioSourceSettingAttribute.Options
+  - AudioBand.AudioSource.AudioSourceSettingAttribute.Priority
+  langs:
+  - csharp
+  - vb
+  name: AudioSourceSettingAttribute
+  nameWithType: AudioSourceSettingAttribute
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute
+  type: Class
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: AudioSourceSettingAttribute
+    path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+    startLine: 8
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nRepresents a setting that is exposed to the user to modify.\n"
+  example: []
+  syntax:
+    content: >-
+      [AttributeUsage(AttributeTargets.Property)]
+
+      [Serializable]
+
+      public class AudioSourceSettingAttribute : Attribute, _Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Property)>
+
+      <Serializable>
+
+      Public Class AudioSourceSettingAttribute
+          Inherits Attribute
+          Implements _Attribute
+  inheritance:
+  - System.Object
+  - System.Attribute
+  implements:
+  - System.Runtime.InteropServices._Attribute
+  inheritedMembers:
+  - System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)
+  - System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo)
+  - System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Boolean)
+  - System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type)
+  - System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)
+  - System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo)
+  - System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type)
+  - System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Boolean)
+  - System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type)
+  - System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type)
+  - System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Module)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Boolean)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type,System.Boolean)
+  - System.Attribute.IsDefined(System.Reflection.Module,System.Type)
+  - System.Attribute.IsDefined(System.Reflection.Module,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type)
+  - System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Assembly)
+  - System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Boolean)
+  - System.Attribute.IsDefined(System.Reflection.Assembly,System.Type)
+  - System.Attribute.IsDefined(System.Reflection.Assembly,System.Type,System.Boolean)
+  - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
+  - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type,System.Boolean)
+  - System.Attribute.Equals(System.Object)
+  - System.Attribute.GetHashCode
+  - System.Attribute.Match(System.Object)
+  - System.Attribute.IsDefaultAttribute
+  - System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)
+  - System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)
+  - System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)
+  - System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)
+  - System.Attribute.TypeId
+  - System.Object.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 128
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.#ctor(System.String)
+  commentId: M:AudioBand.AudioSource.AudioSourceSettingAttribute.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: AudioBand.AudioSource.AudioSourceSettingAttribute
+  langs:
+  - csharp
+  - vb
+  name: AudioSourceSettingAttribute(String)
+  nameWithType: AudioSourceSettingAttribute.AudioSourceSettingAttribute(String)
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.AudioSourceSettingAttribute(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: .ctor
+    path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+    startLine: 17
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nInitializes a new instance of the <xref href=\"AudioBand.AudioSource.AudioSourceSettingAttribute\" data-throw-if-not-resolved=\"false\"></xref> class\nwith the setting name.\n"
+  example: []
+  syntax:
+    content: public AudioSourceSettingAttribute(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: Name of the setting.
+    content.vb: Public Sub New(name As String)
+  overload: AudioBand.AudioSource.AudioSourceSettingAttribute.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Name
+  commentId: P:AudioBand.AudioSource.AudioSourceSettingAttribute.Name
+  id: Name
+  parent: AudioBand.AudioSource.AudioSourceSettingAttribute
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: AudioSourceSettingAttribute.Name
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Name
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Name
+    path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+    startLine: 26
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the name of the setting.\n"
+  example: []
+  syntax:
+    content: public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the setting.
+    content.vb: Public Property Name As String
+  overload: AudioBand.AudioSource.AudioSourceSettingAttribute.Name*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Options
+  commentId: P:AudioBand.AudioSource.AudioSourceSettingAttribute.Options
+  id: Options
+  parent: AudioBand.AudioSource.AudioSourceSettingAttribute
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: AudioSourceSettingAttribute.Options
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Options
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Options
+    path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+    startLine: 32
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the <xref href=\"AudioBand.AudioSource.SettingOptions\" data-throw-if-not-resolved=\"false\"></xref> flags for the setting.\n"
+  example: []
+  syntax:
+    content: public SettingOptions Options { get; set; }
+    parameters: []
+    return:
+      type: AudioBand.AudioSource.SettingOptions
+      description: The option flags for this setting.
+    content.vb: Public Property Options As SettingOptions
+  overload: AudioBand.AudioSource.AudioSourceSettingAttribute.Options*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Priority
+  commentId: P:AudioBand.AudioSource.AudioSourceSettingAttribute.Priority
+  id: Priority
+  parent: AudioBand.AudioSource.AudioSourceSettingAttribute
+  langs:
+  - csharp
+  - vb
+  name: Priority
+  nameWithType: AudioSourceSettingAttribute.Priority
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Priority
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Priority
+    path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+    startLine: 40
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the priority when changing more that one setting.\n<p></p>\nA higher value is higher priority.\n"
+  example: []
+  syntax:
+    content: public int Priority { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The priority of the setting.
+    content.vb: Public Property Priority As Integer
+  overload: AudioBand.AudioSource.AudioSourceSettingAttribute.Priority*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Description
+  commentId: P:AudioBand.AudioSource.AudioSourceSettingAttribute.Description
+  id: Description
+  parent: AudioBand.AudioSource.AudioSourceSettingAttribute
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: AudioSourceSettingAttribute.Description
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Description
+  type: Property
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Description
+    path: src/AudioBand.AudioSource/AudioSourceSettingAttribute.cs
+    startLine: 46
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nGets or sets the description of the setting.\n"
+  example: []
+  syntax:
+    content: public string Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The description of the setting.
+    content.vb: Public Property Description As String
+  overload: AudioBand.AudioSource.AudioSourceSettingAttribute.Description*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: System.Attribute
+  commentId: T:System.Attribute
+  parent: System
+  isExternal: true
+  name: Attribute
+  nameWithType: Attribute
+  fullName: System.Attribute
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Runtime.InteropServices._Attribute
+  commentId: T:System.Runtime.InteropServices._Attribute
+  parent: System.Runtime.InteropServices
+  isExternal: true
+  name: _Attribute
+  nameWithType: _Attribute
+  fullName: System.Runtime.InteropServices._Attribute
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(MemberInfo, Type)
+  nameWithType: Attribute.GetCustomAttributes(MemberInfo, Type)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(MemberInfo, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(MemberInfo, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(MemberInfo)
+  nameWithType: Attribute.GetCustomAttributes(MemberInfo)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(MemberInfo, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(MemberInfo, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(MemberInfo, Type)
+  nameWithType: Attribute.IsDefined(MemberInfo, Type)
+  fullName: System.Attribute.IsDefined(System.Reflection.MemberInfo, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(MemberInfo, Type, Boolean)
+  nameWithType: Attribute.IsDefined(MemberInfo, Type, Boolean)
+  fullName: System.Attribute.IsDefined(System.Reflection.MemberInfo, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.MemberInfo,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(MemberInfo, Type)
+  nameWithType: Attribute.GetCustomAttribute(MemberInfo, Type)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(MemberInfo, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttribute(MemberInfo, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.MemberInfo
+    name: MemberInfo
+    nameWithType: MemberInfo
+    fullName: System.Reflection.MemberInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(ParameterInfo)
+  nameWithType: Attribute.GetCustomAttributes(ParameterInfo)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(ParameterInfo, Type)
+  nameWithType: Attribute.GetCustomAttributes(ParameterInfo, Type)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(ParameterInfo, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(ParameterInfo, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(ParameterInfo, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(ParameterInfo, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(ParameterInfo, Type)
+  nameWithType: Attribute.IsDefined(ParameterInfo, Type)
+  fullName: System.Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(ParameterInfo, Type, Boolean)
+  nameWithType: Attribute.IsDefined(ParameterInfo, Type, Boolean)
+  fullName: System.Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(ParameterInfo, Type)
+  nameWithType: Attribute.GetCustomAttribute(ParameterInfo, Type)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(ParameterInfo, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttribute(ParameterInfo, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.ParameterInfo
+    name: ParameterInfo
+    nameWithType: ParameterInfo
+    fullName: System.Reflection.ParameterInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Module, Type)
+  nameWithType: Attribute.GetCustomAttributes(Module, Type)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Module, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Module)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Module)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Module)
+  nameWithType: Attribute.GetCustomAttributes(Module)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Module)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Module, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(Module, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Module, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Module, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(Module, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Module, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Module,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.Module,System.Type)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.Module,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(Module, Type)
+  nameWithType: Attribute.IsDefined(Module, Type)
+  fullName: System.Attribute.IsDefined(System.Reflection.Module, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.Module,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.Module,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.Module,System.Type,System.Boolean)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.Module,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(Module, Type, Boolean)
+  nameWithType: Attribute.IsDefined(Module, Type, Boolean)
+  fullName: System.Attribute.IsDefined(System.Reflection.Module, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.Module,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.Module,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(Module, Type)
+  nameWithType: Attribute.GetCustomAttribute(Module, Type)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.Module, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(Module, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttribute(Module, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.Module, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Module,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Module
+    name: Module
+    nameWithType: Module
+    fullName: System.Reflection.Module
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Assembly, Type)
+  nameWithType: Attribute.GetCustomAttributes(Assembly, Type)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Assembly, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(Assembly, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Assembly)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Assembly)
+  nameWithType: Attribute.GetCustomAttributes(Assembly)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Assembly)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttributes(Assembly, Boolean)
+  nameWithType: Attribute.GetCustomAttributes(Assembly, Boolean)
+  fullName: System.Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttributes(System.Reflection.Assembly,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: Attribute.GetCustomAttributes
+    fullName: System.Attribute.GetCustomAttributes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.Assembly,System.Type)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.Assembly,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(Assembly, Type)
+  nameWithType: Attribute.IsDefined(Assembly, Type)
+  fullName: System.Attribute.IsDefined(System.Reflection.Assembly, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.Assembly,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.Assembly,System.Type)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefined(System.Reflection.Assembly,System.Type,System.Boolean)
+  commentId: M:System.Attribute.IsDefined(System.Reflection.Assembly,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefined(Assembly, Type, Boolean)
+  nameWithType: Attribute.IsDefined(Assembly, Type, Boolean)
+  fullName: System.Attribute.IsDefined(System.Reflection.Assembly, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.IsDefined(System.Reflection.Assembly,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefined(System.Reflection.Assembly,System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: Attribute.IsDefined
+    fullName: System.Attribute.IsDefined
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(Assembly, Type)
+  nameWithType: Attribute.GetCustomAttribute(Assembly, Type)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type,System.Boolean)
+  commentId: M:System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type,System.Boolean)
+  parent: System.Attribute
+  isExternal: true
+  name: GetCustomAttribute(Assembly, Type, Boolean)
+  nameWithType: Attribute.GetCustomAttribute(Assembly, Type, Boolean)
+  fullName: System.Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type,System.Boolean)
+    name: GetCustomAttribute
+    nameWithType: Attribute.GetCustomAttribute
+    fullName: System.Attribute.GetCustomAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.Equals(System.Object)
+  commentId: M:System.Attribute.Equals(System.Object)
+  parent: System.Attribute
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Attribute.Equals(Object)
+  fullName: System.Attribute.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Attribute.Equals(System.Object)
+    name: Equals
+    nameWithType: Attribute.Equals
+    fullName: System.Attribute.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.Equals(System.Object)
+    name: Equals
+    nameWithType: Attribute.Equals
+    fullName: System.Attribute.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.GetHashCode
+  commentId: M:System.Attribute.GetHashCode
+  parent: System.Attribute
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Attribute.GetHashCode()
+  fullName: System.Attribute.GetHashCode()
+  spec.csharp:
+  - uid: System.Attribute.GetHashCode
+    name: GetHashCode
+    nameWithType: Attribute.GetHashCode
+    fullName: System.Attribute.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.GetHashCode
+    name: GetHashCode
+    nameWithType: Attribute.GetHashCode
+    fullName: System.Attribute.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.Match(System.Object)
+  commentId: M:System.Attribute.Match(System.Object)
+  parent: System.Attribute
+  isExternal: true
+  name: Match(Object)
+  nameWithType: Attribute.Match(Object)
+  fullName: System.Attribute.Match(System.Object)
+  spec.csharp:
+  - uid: System.Attribute.Match(System.Object)
+    name: Match
+    nameWithType: Attribute.Match
+    fullName: System.Attribute.Match
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.Match(System.Object)
+    name: Match
+    nameWithType: Attribute.Match
+    fullName: System.Attribute.Match
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.IsDefaultAttribute
+  commentId: M:System.Attribute.IsDefaultAttribute
+  parent: System.Attribute
+  isExternal: true
+  name: IsDefaultAttribute()
+  nameWithType: Attribute.IsDefaultAttribute()
+  fullName: System.Attribute.IsDefaultAttribute()
+  spec.csharp:
+  - uid: System.Attribute.IsDefaultAttribute
+    name: IsDefaultAttribute
+    nameWithType: Attribute.IsDefaultAttribute
+    fullName: System.Attribute.IsDefaultAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.IsDefaultAttribute
+    name: IsDefaultAttribute
+    nameWithType: Attribute.IsDefaultAttribute
+    fullName: System.Attribute.IsDefaultAttribute
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)
+  commentId: M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)
+  parent: System.Attribute
+  isExternal: true
+  name: _Attribute.GetTypeInfoCount(UInt32)
+  nameWithType: Attribute._Attribute.GetTypeInfoCount(UInt32)
+  fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfoCount(System.UInt32)
+  nameWithType.vb: Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfoCount(UInt32)
+  name.vb: System.Runtime.InteropServices._Attribute.GetTypeInfoCount(UInt32)
+  spec.csharp:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)
+    name: _Attribute.GetTypeInfoCount
+    nameWithType: Attribute._Attribute.GetTypeInfoCount
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfoCount
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)
+    name: System.Runtime.InteropServices._Attribute.GetTypeInfoCount
+    nameWithType: Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfoCount
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfoCount
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)
+  commentId: M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)
+  parent: System.Attribute
+  isExternal: true
+  name: _Attribute.GetTypeInfo(UInt32, UInt32, IntPtr)
+  nameWithType: Attribute._Attribute.GetTypeInfo(UInt32, UInt32, IntPtr)
+  fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfo(System.UInt32, System.UInt32, System.IntPtr)
+  nameWithType.vb: Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfo(UInt32, UInt32, IntPtr)
+  name.vb: System.Runtime.InteropServices._Attribute.GetTypeInfo(UInt32, UInt32, IntPtr)
+  spec.csharp:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)
+    name: _Attribute.GetTypeInfo
+    nameWithType: Attribute._Attribute.GetTypeInfo
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)
+    name: System.Runtime.InteropServices._Attribute.GetTypeInfo
+    nameWithType: Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfo
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetTypeInfo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)
+  commentId: M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)
+  parent: System.Attribute
+  isExternal: true
+  name: _Attribute.GetIDsOfNames(Guid, IntPtr, UInt32, UInt32, IntPtr)
+  nameWithType: Attribute._Attribute.GetIDsOfNames(Guid, IntPtr, UInt32, UInt32, IntPtr)
+  fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetIDsOfNames(System.Guid, System.IntPtr, System.UInt32, System.UInt32, System.IntPtr)
+  nameWithType.vb: Attribute.System.Runtime.InteropServices._Attribute.GetIDsOfNames(Guid, IntPtr, UInt32, UInt32, IntPtr)
+  name.vb: System.Runtime.InteropServices._Attribute.GetIDsOfNames(Guid, IntPtr, UInt32, UInt32, IntPtr)
+  spec.csharp:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)
+    name: _Attribute.GetIDsOfNames
+    nameWithType: Attribute._Attribute.GetIDsOfNames
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetIDsOfNames
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Guid
+    name: Guid
+    nameWithType: Guid
+    fullName: System.Guid
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)
+    name: System.Runtime.InteropServices._Attribute.GetIDsOfNames
+    nameWithType: Attribute.System.Runtime.InteropServices._Attribute.GetIDsOfNames
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.GetIDsOfNames
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Guid
+    name: Guid
+    nameWithType: Guid
+    fullName: System.Guid
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)
+  commentId: M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)
+  parent: System.Attribute
+  isExternal: true
+  name: _Attribute.Invoke(UInt32, Guid, UInt32, Int16, IntPtr, IntPtr, IntPtr, IntPtr)
+  nameWithType: Attribute._Attribute.Invoke(UInt32, Guid, UInt32, Int16, IntPtr, IntPtr, IntPtr, IntPtr)
+  fullName: System.Attribute.System.Runtime.InteropServices._Attribute.Invoke(System.UInt32, System.Guid, System.UInt32, System.Int16, System.IntPtr, System.IntPtr, System.IntPtr, System.IntPtr)
+  nameWithType.vb: Attribute.System.Runtime.InteropServices._Attribute.Invoke(UInt32, Guid, UInt32, Int16, IntPtr, IntPtr, IntPtr, IntPtr)
+  name.vb: System.Runtime.InteropServices._Attribute.Invoke(UInt32, Guid, UInt32, Int16, IntPtr, IntPtr, IntPtr, IntPtr)
+  spec.csharp:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)
+    name: _Attribute.Invoke
+    nameWithType: Attribute._Attribute.Invoke
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.Invoke
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Guid
+    name: Guid
+    nameWithType: Guid
+    fullName: System.Guid
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int16
+    name: Int16
+    nameWithType: Int16
+    fullName: System.Int16
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)
+    name: System.Runtime.InteropServices._Attribute.Invoke
+    nameWithType: Attribute.System.Runtime.InteropServices._Attribute.Invoke
+    fullName: System.Attribute.System.Runtime.InteropServices._Attribute.Invoke
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Guid
+    name: Guid
+    nameWithType: Guid
+    fullName: System.Guid
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.UInt32
+    name: UInt32
+    nameWithType: UInt32
+    fullName: System.UInt32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int16
+    name: Int16
+    nameWithType: Int16
+    fullName: System.Int16
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IntPtr
+    name: IntPtr
+    nameWithType: IntPtr
+    fullName: System.IntPtr
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Attribute.TypeId
+  commentId: P:System.Attribute.TypeId
+  parent: System.Attribute
+  isExternal: true
+  name: TypeId
+  nameWithType: Attribute.TypeId
+  fullName: System.Attribute.TypeId
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Runtime.InteropServices
+  commentId: N:System.Runtime.InteropServices
+  isExternal: true
+  name: System.Runtime.InteropServices
+  nameWithType: System.Runtime.InteropServices
+  fullName: System.Runtime.InteropServices
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute
+  commentId: T:AudioBand.AudioSource.AudioSourceSettingAttribute
+  name: AudioSourceSettingAttribute
+  nameWithType: AudioSourceSettingAttribute
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.#ctor*
+  commentId: Overload:AudioBand.AudioSource.AudioSourceSettingAttribute.#ctor
+  name: AudioSourceSettingAttribute
+  nameWithType: AudioSourceSettingAttribute.AudioSourceSettingAttribute
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.AudioSourceSettingAttribute
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Name*
+  commentId: Overload:AudioBand.AudioSource.AudioSourceSettingAttribute.Name
+  name: Name
+  nameWithType: AudioSourceSettingAttribute.Name
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Name
+- uid: AudioBand.AudioSource.SettingOptions
+  commentId: T:AudioBand.AudioSource.SettingOptions
+  parent: AudioBand.AudioSource
+  name: SettingOptions
+  nameWithType: SettingOptions
+  fullName: AudioBand.AudioSource.SettingOptions
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Options*
+  commentId: Overload:AudioBand.AudioSource.AudioSourceSettingAttribute.Options
+  name: Options
+  nameWithType: AudioSourceSettingAttribute.Options
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Options
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Priority*
+  commentId: Overload:AudioBand.AudioSource.AudioSourceSettingAttribute.Priority
+  name: Priority
+  nameWithType: AudioSourceSettingAttribute.Priority
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Priority
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AudioBand.AudioSource.AudioSourceSettingAttribute.Description*
+  commentId: Overload:AudioBand.AudioSource.AudioSourceSettingAttribute.Description
+  name: Description
+  nameWithType: AudioSourceSettingAttribute.Description
+  fullName: AudioBand.AudioSource.AudioSourceSettingAttribute.Description

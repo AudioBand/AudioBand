@@ -1,0 +1,153 @@
+### YamlMime:ManagedReference
+items:
+- uid: AudioBand.AudioSource.TrackRating
+  commentId: T:AudioBand.AudioSource.TrackRating
+  id: TrackRating
+  parent: AudioBand.AudioSource
+  children:
+  - AudioBand.AudioSource.TrackRating.Negative
+  - AudioBand.AudioSource.TrackRating.None
+  - AudioBand.AudioSource.TrackRating.Positive
+  langs:
+  - csharp
+  - vb
+  name: TrackRating
+  nameWithType: TrackRating
+  fullName: AudioBand.AudioSource.TrackRating
+  type: Enum
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackRating.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: TrackRating
+    path: src/AudioBand.AudioSource/TrackRating.cs
+    startLine: 5
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nOptions for the rating of a track.\n"
+  example: []
+  syntax:
+    content: public enum TrackRating
+    content.vb: Public Enum TrackRating
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AudioBand.AudioSource.TrackRating.None
+  commentId: F:AudioBand.AudioSource.TrackRating.None
+  id: None
+  parent: AudioBand.AudioSource.TrackRating
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: TrackRating.None
+  fullName: AudioBand.AudioSource.TrackRating.None
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackRating.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: None
+    path: src/AudioBand.AudioSource/TrackRating.cs
+    startLine: 10
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nNo rating.\n"
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: AudioBand.AudioSource.TrackRating
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AudioBand.AudioSource.TrackRating.Positive
+  commentId: F:AudioBand.AudioSource.TrackRating.Positive
+  id: Positive
+  parent: AudioBand.AudioSource.TrackRating
+  langs:
+  - csharp
+  - vb
+  name: Positive
+  nameWithType: TrackRating.Positive
+  fullName: AudioBand.AudioSource.TrackRating.Positive
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackRating.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Positive
+    path: src/AudioBand.AudioSource/TrackRating.cs
+    startLine: 15
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nThe track has a positive rating.\n"
+  example: []
+  syntax:
+    content: Positive = 1
+    return:
+      type: AudioBand.AudioSource.TrackRating
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AudioBand.AudioSource.TrackRating.Negative
+  commentId: F:AudioBand.AudioSource.TrackRating.Negative
+  id: Negative
+  parent: AudioBand.AudioSource.TrackRating
+  langs:
+  - csharp
+  - vb
+  name: Negative
+  nameWithType: TrackRating.Negative
+  fullName: AudioBand.AudioSource.TrackRating.Negative
+  type: Field
+  source:
+    remote:
+      path: src/AudioBand.AudioSource/TrackRating.cs
+      branch: gh-pages
+      repo: https://github.com/AudioBand/audio-band.git
+    id: Negative
+    path: src/AudioBand.AudioSource/TrackRating.cs
+    startLine: 20
+  assemblies:
+  - AudioBand.AudioSource
+  namespace: AudioBand.AudioSource
+  summary: "\nThe song has a negative rating.\n"
+  example: []
+  syntax:
+    content: Negative = 2
+    return:
+      type: AudioBand.AudioSource.TrackRating
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AudioBand.AudioSource
+  commentId: N:AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  nameWithType: AudioBand.AudioSource
+  fullName: AudioBand.AudioSource
+- uid: AudioBand.AudioSource.TrackRating
+  commentId: T:AudioBand.AudioSource.TrackRating
+  parent: AudioBand.AudioSource
+  name: TrackRating
+  nameWithType: TrackRating
+  fullName: AudioBand.AudioSource.TrackRating

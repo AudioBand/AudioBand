@@ -1,0 +1,24 @@
+### YamlMime:TableOfContent
+- uid: AudioBand.AudioSource
+  name: AudioBand.AudioSource
+  items:
+  - uid: AudioBand.AudioSource.AudioSourceSettingAttribute
+    name: AudioSourceSettingAttribute
+  - uid: AudioBand.AudioSource.IAudioSource
+    name: IAudioSource
+  - uid: AudioBand.AudioSource.IAudioSourceLogger
+    name: IAudioSourceLogger
+  - uid: AudioBand.AudioSource.ISupportsRatings
+    name: ISupportsRatings
+  - uid: AudioBand.AudioSource.RepeatMode
+    name: RepeatMode
+  - uid: AudioBand.AudioSource.SettingChangedEventArgs
+    name: SettingChangedEventArgs
+  - uid: AudioBand.AudioSource.SettingOptions
+    name: SettingOptions
+  - uid: AudioBand.AudioSource.TrackInfoChangedEventArgs
+    name: TrackInfoChangedEventArgs
+  - uid: AudioBand.AudioSource.TrackRating
+    name: TrackRating
+  - uid: AudioBand.AudioSource.VolumeState
+    name: VolumeState
