@@ -76,8 +76,8 @@
   },
   "audiosource-api/index.html": {
     "href": "audiosource-api/index.html",
-    "title": "AudioSource api reference",
-    "keywords": "AudioSource api reference"
+    "title": "",
+    "keywords": "# AudioSource api reference"
   },
   "audiosource-docs/index.html": {
     "href": "audiosource-docs/index.html",
