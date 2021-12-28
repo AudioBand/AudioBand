@@ -22,6 +22,7 @@
                 <audioband:SharedDictionary Source="../Resources/ToolbarButtonStyles.xaml" />
                 <audioband:SharedDictionary Source="../Resources/ToolbarProgressBarStyle.xaml" />
                 <audioband:SharedDictionary Source="../Resources/ToolbarContextMenuStyles.xaml" />
+                <audioband:SharedDictionary Source="../Resources/TextStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DrawingImage x:Key="AlbumArtFallback">
                 <DrawingImage.Drawing>
@@ -139,7 +140,7 @@
                 <MenuItem.ItemContainerStyle>
                     <Style BasedOn="{StaticResource ToolbarContextMenuItem}" TargetType="{x:Type MenuItem}">
                         <Setter Property="Command" Value="{Binding PlacementTarget.DataContext.SelectProfileCommand, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" />
-                        <Setter Property="CommandParameter" Value="{Binding}" />
+                        <Setter Property="CommandParameter" Value="{Binding Name}" />
                         <Style.Triggers>
                             <DataTrigger Value="True">
                                 <DataTrigger.Binding>
@@ -160,7 +161,7 @@
             </MenuItem>
         </fluentWpf:AcrylicContextMenu>
     </UserControl.ContextMenu>
-    <Canvas Width="{Binding ViewModels.GeneralSettingsViewModel.Width}" Height="{Binding ViewModels.GeneralSettingsViewModel.Height}">
+    <Canvas Name="Toolbar" Width="{Binding ViewModels.GeneralSettingsViewModel.Width}" Height="{Binding ViewModels.GeneralSettingsViewModel.Height}">
         <Canvas.RenderTransform>
             <RotateTransform CenterX="0" CenterY="0" Angle="{Binding RotationAngle}" />
         </Canvas.RenderTransform>
@@ -246,76 +247,10 @@
                 </ToolTip>
             </Viewbox.ToolTip>
         </Viewbox>
-        <Button x:Name="PlayPauseButton"
-                Width="{Binding Width}"
-                Height="{Binding Height}"
-                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
-                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
-                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                Command="{Binding PlayPauseTrackCommand}"
-                DataContext="{Binding ViewModels.PlayPauseButtonViewModel}"
-                Style="{StaticResource ToolbarPlayPauseButtonStyle}"
-                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
-        <Button x:Name="NextButton"
-                Width="{Binding Width}"
-                Height="{Binding Height}"
-                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
-                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
-                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                Command="{Binding NextTrackCommand}"
-                DataContext="{Binding ViewModels.NextButtonViewModel}"
-                Style="{StaticResource ToolbarNextButtonStyle}"
-                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
-        <Button x:Name="PreviousButton"
-                Width="{Binding Width}"
-                Height="{Binding Height}"
-                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
-                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
-                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                Command="{Binding PreviousTrackCommand}"
-                DataContext="{Binding ViewModels.PreviousButtonViewModel}"
-                Style="{StaticResource ToolbarPreviousButtonStyle}"
-                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
-        <Button x:Name="RepeatModeButton"
-                Width="{Binding Width}"
-                Height="{Binding Height}"
-                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
-                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
-                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                Command="{Binding CycleRepeatModeCommand}"
-                DataContext="{Binding ViewModels.RepeatModeButtonViewModel}"
-                Style="{StaticResource ToolbarRepeatModeButtonStyle}"
-                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
-        <Button x:Name="ShuffleModeButton"
-                Width="{Binding Width}"
-                Height="{Binding Height}"
-                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
-                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
-                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                Command="{Binding ToggleShuffleCommand}"
-                DataContext="{Binding ViewModels.ShuffleModeButtonViewModel}"
-                Style="{StaticResource ToolbarShuffleModeButtonStyle}"
-                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
-        <Slider x:Name="ProgressBar"
-                Width="{Binding Width}"
-                Height="{Binding Height}"
-                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
-                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
-                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                DataContext="{Binding ViewModels.ProgressBarViewModel}"
-                Maximum="{Binding TrackLength, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=OneWay}"
-                Minimum="0"
-                Style="{StaticResource ProgressBarStyle}"
-                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
-            <i:Interaction.Behaviors>
-                <audioband:SliderThrottle FinalValue="{Binding TrackProgress, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=TwoWay}" />
-                <audioband:SliderClickAndDrag />
-            </i:Interaction.Behaviors>
-        </Slider>
         <ItemsControl x:Name="CustomLabels"
                       Width="{Binding ViewModels.GeneralSettingsViewModel.Width}"
                       Height="{Binding ViewModels.GeneralSettingsViewModel.Height}"
-                      ItemsSource="{Binding ViewModels.CustomLabelsViewModel.VisibleCustomLabels}">
+                      ItemsSource="{Binding ViewModels.CustomLabelsViewModel.CustomLabels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas />
@@ -406,5 +341,146 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <Button x:Name="PlayPauseButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding PlayPauseTrackCommand}"
+                DataContext="{Binding ViewModels.PlayPauseButtonViewModel}"
+                Style="{StaticResource ToolbarPlayPauseButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
+        <Button x:Name="NextButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding NextTrackCommand}"
+                DataContext="{Binding ViewModels.NextButtonViewModel}"
+                Style="{StaticResource ToolbarNextButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
+        <Button x:Name="PreviousButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding PreviousTrackCommand}"
+                DataContext="{Binding ViewModels.PreviousButtonViewModel}"
+                Style="{StaticResource ToolbarPreviousButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
+        <Button x:Name="RepeatModeButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding CycleRepeatModeCommand}"
+                DataContext="{Binding ViewModels.RepeatModeButtonViewModel}"
+                Style="{StaticResource ToolbarRepeatModeButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
+        <Button x:Name="ShuffleModeButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding ToggleShuffleCommand}"
+                DataContext="{Binding ViewModels.ShuffleModeButtonViewModel}"
+                Style="{StaticResource ToolbarShuffleModeButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
+        <Button x:Name="VolumeButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding VolumePopupCommand}"
+                DataContext="{Binding ViewModels.VolumeButtonViewModel}"
+                Style="{StaticResource ToolbarVolumeButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
+        </Button>
+        <fluentWpf:AcrylicPopup
+                x:Name="VolumePopup"
+                Placement="Top"
+                Width="{Binding PopupWidth}"
+                Height="{Binding PopupHeight}"
+                IsOpen="{Binding IsVolumePopupOpen}"
+                PlacementTarget="{Binding ElementName=VolumeButton}"
+                DataContext="{Binding ViewModels.VolumeButtonViewModel}"
+                HorizontalOffset="{Binding XPopupOffset}"
+                VerticalOffset="{Binding YPopupOffset}"
+                Style="{StaticResource VolumePopupStyle}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding MouseLeftCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Border Background="{audioband:ThemeResource SystemAccentColor}">
+                <Slider x:Name="VolumeSlider"
+                        HorizontalAlignment="Center"
+                        Orientation="Vertical"
+                        Minimum="0"
+                        Maximum="100"
+                        Padding="5,5,0,0"
+                        TickFrequency="1"
+                        TickPlacement="None"
+                        IsSnapToTickEnabled="True"
+                        Style="{StaticResource VolumeSliderStyle}"
+                        Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
+                    <i:Interaction.Behaviors>
+                        <audioband:SliderThrottle FinalValue="{Binding Volume, Mode=TwoWay}" />
+                        <audioband:SliderClickAndDrag />
+                    </i:Interaction.Behaviors>
+                </Slider>
+            </Border>
+        </fluentWpf:AcrylicPopup>
+        <Slider x:Name="ProgressBar"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                DataContext="{Binding ViewModels.ProgressBarViewModel}"
+                Maximum="{Binding TrackLength, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=OneWay}"
+                Minimum="0"
+                Style="{StaticResource ProgressBarStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
+            <i:Interaction.Behaviors>
+                <audioband:SliderThrottle FinalValue="{Binding TrackProgress, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=TwoWay}" />
+                <audioband:SliderClickAndDrag />
+            </i:Interaction.Behaviors>
+        </Slider>
+        <Popup  x:Name="InformationPopup"
+                Placement="Top"
+                IsOpen="{Binding IsInformationPopupOpen}"
+                PlacementTarget="{Binding ElementName=Toolbar}"
+                DataContext="{Binding ViewModels.PopupViewModel}"
+                PopupAnimation="Fade"
+                AllowsTransparency="True" >
+            <StackPanel Background="{audioband:ThemeResource SystemAccentColor}" Opacity="0.95">
+                <Grid Margin="5" Background="{audioband:ThemeResource SystemAltHighColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Background="{audioband:ThemeResource SystemAccentColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" FontSize="18" Margin="8,3,0,5"
+                                   Style="{StaticResource TitleTextBlock}" />
+                        <Button Grid.Column="1" Command="{Binding CloseCommand}" Width="15" Height="15"
+                                HorizontalAlignment="Right" VerticalAlignment="Top" Padding="0,5,5,0"
+                                Template="{StaticResource ToolbarButtonControlTemplate}" Content="x" />
+                    </Grid>
+                    <TextBlock MaxWidth="300" Grid.Row="1" Margin="5" Style="{StaticResource DescriptionTextBlock}"
+                               Text="{Binding Description}" TextWrapping="Wrap" Foreground="{audioband:ThemeResource SystemBaseHighColor}" />
+                </Grid>
+            </StackPanel>
+        </Popup>
     </Canvas>
 </UserControl>

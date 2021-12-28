@@ -43,9 +43,9 @@ namespace AudioBand
         public Deskband()
         {
             // Fluentwpf requires an application window
-            if (System.Windows.Application.Current == null)
+            if (Application.Current == null)
             {
-                new System.Windows.Application().MainWindow = new Window();
+                new Application().MainWindow = new Window();
             }
 
             var initialSize = new DeskBandSize(50, 30);
@@ -114,11 +114,14 @@ namespace AudioBand
                 _container.Register<IDialogService, DialogService>(Lifestyle.Singleton);
                 _container.Register<IViewModelContainer, ViewModelContainer>(Lifestyle.Singleton);
                 _container.Register<IAudioSession, AudioSession>(Lifestyle.Singleton);
-                _container.Register<IPersistSettings, PersistSettings>(Lifestyle.Singleton);
+                _container.Register<IPersistentSettings, PersistentSettings>(Lifestyle.Singleton);
+                _container.Register<GitHubHelper>(Lifestyle.Singleton);
+                _container.Register<PopupService>(Lifestyle.Singleton);
 
                 _container.Register<AboutDialogViewModel>(Lifestyle.Singleton);
                 _container.Register<AlbumArtViewModel>(Lifestyle.Singleton);
                 _container.Register<AlbumArtPopupViewModel>(Lifestyle.Singleton);
+                _container.Register<GlobalSettingsViewModel>(Lifestyle.Singleton);
                 _container.Register<GeneralSettingsViewModel>(Lifestyle.Singleton);
                 _container.Register<CustomLabelsViewModel>(Lifestyle.Singleton);
                 _container.Register<NextButtonViewModel>(Lifestyle.Singleton);
@@ -129,6 +132,8 @@ namespace AudioBand
                 _container.Register<AudioSourceSettingsViewModel>(Lifestyle.Singleton);
                 _container.Register<RepeatModeButtonViewModel>(Lifestyle.Singleton);
                 _container.Register<ShuffleModeButtonViewModel>(Lifestyle.Singleton);
+                _container.Register<PopupViewModel>(Lifestyle.Singleton);
+                _container.Register<VolumeButtonViewModel>(Lifestyle.Singleton);
 
                 _container.Verify();
             }

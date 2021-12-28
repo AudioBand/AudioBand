@@ -7,7 +7,7 @@ using NLog.LayoutRenderers;
 namespace AudioBand.Logging
 {
     /// <summary>
-    /// Log mangaer for audioband loggers.
+    /// Log manager for audioband loggers.
     /// </summary>
     public static class AudioBandLogManager
     {

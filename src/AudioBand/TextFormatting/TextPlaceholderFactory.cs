@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using AudioBand.AudioSource;
+﻿using AudioBand.AudioSource;
+using System.Collections.Generic;
 
 namespace AudioBand.TextFormatting
 {
@@ -16,6 +16,7 @@ namespace AudioBand.TextFormatting
             { "time", (parameters, session) => new SongProgressPlaceholder(parameters, session) },
             { "length", (parameters, session) => new SongLengthPlaceholder(parameters, session) },
             { "remaining", (parameters, session) => new RemainingTimePlaceholder(parameters, session) },
+            { "volume", (parameters, session) => new VolumePlaceholder(parameters, session) },
         };
 
         private delegate TextPlaceholder PlaceholderFactoryFunc(IEnumerable<TextPlaceholderParameter> parameters, IAudioSession session);

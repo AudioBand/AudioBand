@@ -21,10 +21,11 @@ namespace SpotifyAudioSource
     public class SpotifyAudioSource : IAudioSource
     {
         private readonly SpotifyControls _spotifyControls = new SpotifyControls();
-        private readonly Timer _checkSpotifyTimer = new Timer(1000);
+        private Timer _checkSpotifyTimer = new Timer(1000);
         private SpotifyClientConfig _spotifyConfig;
         private ISpotifyClient _spotifyClient;
         private HttpClient _httpClient = new HttpClient();
+        private EmbedIOAuthServer _server = null;
         private bool _authIsInProcess = false;
         private string _currentItemId;
         private string _currentTrackName;
@@ -44,8 +45,6 @@ namespace SpotifyAudioSource
         private string _proxyUserName;
         private string _proxyPassword;
         private bool _isActive;
-        private int _retryAttempts;
-        private const int _maxRetries = 25;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAudioSource"/> class.
@@ -66,7 +65,7 @@ namespace SpotifyAudioSource
         public event EventHandler<SettingChangedEventArgs> SettingChanged;
 
         /// <inheritdoc />
-        public event EventHandler<float> VolumeChanged;
+        public event EventHandler<int> VolumeChanged;
 
         /// <inheritdoc />
         public event EventHandler<bool> ShuffleChanged;
@@ -79,6 +78,9 @@ namespace SpotifyAudioSource
 
         /// <inheritdoc />
         public string Name => "Spotify";
+
+        /// <inheritdoc />
+        public string Description => "Please note that in order to use the controls, you require Spotify Premium.";
 
         /// <inheritdoc />
         public string WindowClassName => _spotifyControls.GetSpotifyWindowClassName();
@@ -277,13 +279,14 @@ namespace SpotifyAudioSource
         }
 
         /// <inheritdoc />
-        public Task ActivateAsync()
+        public async Task ActivateAsync()
         {
-            _checkSpotifyTimer.Start();
-
             _isActive = true;
+
             Authorize();
-            return Task.CompletedTask;
+            await UpdatePlayer();
+
+            _checkSpotifyTimer.Start();
         }
 
         /// <inheritdoc />
@@ -300,78 +303,109 @@ namespace SpotifyAudioSource
         }
 
         /// <inheritdoc />
-        public Task PlayTrackAsync()
+        public async Task PlayTrackAsync()
         {
             // Play/pause/next/back controls use the desktop, if that fails, use api
             // api does require spotify premium
-            if (!_spotifyControls.TryPlay())
+            try
             {
-                _spotifyClient.Player.ResumePlayback();
+                if (!await _spotifyClient.Player.ResumePlayback())
+                {
+                    _spotifyControls.TryPlay();
+                }
+            }
+            catch (Exception)
+            {
+                // exception is only thrown when user was idle for too long
+                _spotifyControls.TryPlay();
             }
 
-            return Task.CompletedTask;
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
-        public Task PauseTrackAsync()
+        public async Task PauseTrackAsync()
         {
-            if (!_spotifyControls.TryPause())
+            try
             {
-                _spotifyClient.Player.PausePlayback();
+                if (!await _spotifyClient.Player.PausePlayback())
+                {
+                    _spotifyControls.TryPause();
+                }
+            }
+            catch (System.Exception)
+            {
+                _spotifyControls.TryPause();
             }
 
-            return Task.CompletedTask;
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
-        public Task PreviousTrackAsync()
+        public async Task PreviousTrackAsync()
         {
-            if (!_spotifyControls.TryPrevious())
+            try
             {
-                _spotifyClient.Player.SkipPrevious();
+                if (!await _spotifyClient.Player.SkipPrevious())
+                {
+                    _spotifyControls.TryPrevious();
+                }
             }
-
-            return Task.CompletedTask;
+            catch (System.Exception)
+            {
+                _spotifyControls.TryPrevious();
+            }
         }
 
         /// <inheritdoc />
-        public Task NextTrackAsync()
+        public async Task NextTrackAsync()
         {
-            if (!_spotifyControls.TryNext())
+            try
             {
-                _spotifyClient.Player.SkipNext();
+                if (!await _spotifyClient.Player.SkipNext())
+                {
+                    _spotifyControls.TryNext();
+                }
             }
-
-            return Task.CompletedTask;
+            catch (System.Exception)
+            {
+                _spotifyControls.TryNext();
+            }
         }
 
         /// <inheritdoc />
-        public async Task SetVolumeAsync(float newVolume)
+        public async Task SetVolumeAsync(int newVolume)
         {
-            var volume = (int) newVolume * 100;
-            await LogPlayerCommandIfFailed(() 
-                => _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(volume)), "SetVolume");
+            await _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(newVolume));
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
         public async Task SetPlaybackProgressAsync(TimeSpan newProgress)
         {
-            await LogPlayerCommandIfFailed(()
+            await OnPlayerCommandFailed(()
                 => _spotifyClient.Player.SeekTo(new PlayerSeekToRequest((long)newProgress.TotalMilliseconds)), "SetPlaybackProgress");
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
         public async Task SetShuffleAsync(bool shuffleOn)
         {
-            await LogPlayerCommandIfFailed(()
+            await OnPlayerCommandFailed(()
                 => _spotifyClient.Player.SetShuffle(new PlayerShuffleRequest(shuffleOn)), "SetShuffle");
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
         public async Task SetRepeatModeAsync(RepeatMode newRepeatMode)
         {
-            await LogPlayerCommandIfFailed(()
-            => _spotifyClient.Player.SetRepeat(new PlayerSetRepeatRequest(ToRepeatState(newRepeatMode))), "SetRepeatMode");
+            await OnPlayerCommandFailed(()
+                => _spotifyClient.Player.SetRepeat(new PlayerSetRepeatRequest(ToRepeatState(newRepeatMode))), "SetRepeatMode");
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         private RepeatMode ToRepeatMode(State state)
@@ -424,51 +458,33 @@ namespace SpotifyAudioSource
 
         private void Authorize()
         {
-            _authIsInProcess = true;
-
             if (!_isActive)
             {
                 return;
             }
-            else if (string.IsNullOrEmpty(ClientId) || string.IsNullOrEmpty(ClientSecret))
+
+            if (string.IsNullOrEmpty(ClientId) || string.IsNullOrEmpty(ClientSecret))
             {
                 Logger.Error($"Cannot connect to Spotify because either ClientId or ClientSecret is empty.");
                 return;
             }
-            else if (!string.IsNullOrEmpty(RefreshToken))
+
+            if (!string.IsNullOrEmpty(RefreshToken))
             {
                 Logger.Debug("Using RefreshToken from previous auth to connect to Spotify.");
                 RefreshAccessTokenOnClient().GetAwaiter().GetResult();
+                return;
             }
-            else
+
+            try
             {
-                Logger.Debug("Connecting to Spotify through own application.");
-                var address = new Uri($"http://localhost:{LocalPort}");
-
-                var server = new EmbedIOAuthServer(new Uri("http://localhost"), LocalPort);
-                server.Start().GetAwaiter().GetResult();
-
-                server.AuthorizationCodeReceived += async (sender, response) =>
-                {
-                    await server.Stop();
-
-                    var config = SpotifyClientConfig.CreateDefault();
-                    var tokenResponse = await new OAuthClient(config).RequestToken(
-                        new AuthorizationCodeTokenRequest(ClientId, ClientSecret, response.Code, address)
-                    );
-
-                    RefreshToken = tokenResponse.RefreshToken;
-                    _spotifyConfig = SpotifyClientConfig.CreateDefault().WithAuthenticator(new AuthorizationCodeAuthenticator(ClientId, ClientSecret, tokenResponse));
-                    _spotifyClient = new SpotifyClient(_spotifyConfig);
-                    _authIsInProcess = false;
-                };
-
-                var request = new LoginRequest(address, ClientId, LoginRequest.ResponseType.Code)
-                {
-                    Scope = new [] { Scopes.UserReadCurrentlyPlaying, Scopes.UserReadPlaybackState, Scopes.UserReadPlaybackPosition, Scopes.UserModifyPlaybackState }
-                };
-
-                BrowserUtil.Open(request.ToUri());
+                FirstTimeAuth().GetAwaiter().GetResult();
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Error while trying to authenticate, user most likely offline ~ {e.Message}");
+                _authIsInProcess = false;
+                throw;
             }
         }
 
@@ -481,10 +497,10 @@ namespace SpotifyAudioSource
             }
 
             var httpClient = new NetHttpClient(new ProxyConfig(ProxyHost, ProxyPort)
-                {
-                    User = ProxyUserName,
-                    Password = ProxyPassword
-                });
+            {
+                User = ProxyUserName,
+                Password = ProxyPassword
+            });
 
             _spotifyConfig.WithHTTPClient(httpClient);
         }
@@ -503,9 +519,13 @@ namespace SpotifyAudioSource
         {
             try
             {
-                if (_spotifyClient is null && !_authIsInProcess)
+                if (_spotifyClient is null)
                 {
-                    Authorize();
+                    if (!_authIsInProcess)
+                    {
+                        Authorize();
+                    }
+
                     return null;
                 }
 
@@ -513,31 +533,37 @@ namespace SpotifyAudioSource
 
                 return playback;
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
-                // Gets thrown when internet cuts out, will retry every 10 seconds.
-                if (_retryAttempts >= _maxRetries)
-                {
-                    Logger.Info($"Retried {_maxRetries} times, but user still has no internet connection. Disabling Spotify.");
-                    await DeactivateAsync();
-                    return null;
-                }
-
-                Logger.Info("Tried to update Spotify Playback, but user has no internet connection.");
-                await Task.Delay(10000);
-                _retryAttempts++;
-                return await GetPlayback();
+                // Gets thrown when internet cuts out, will retry every 30 seconds.
+                Logger.Info("Tried to update Spotify Playback, but user has no internet connection. Update Interval is 30 seconds.");
+                _checkSpotifyTimer.Interval = 30000;
             }
-            catch (APIUnauthorizedException e)
+            catch (APIUnauthorizedException)
             {
                 Authorize();
-                return await GetPlayback();
+            }
+            catch (APITooManyRequestsException e)
+            {
+                _checkSpotifyTimer.Interval = e.RetryAfter.TotalMilliseconds < 100 ? 100 : e.RetryAfter.TotalMilliseconds;
+            }
+            catch (TaskCanceledException e) { }
+            catch (APIException e)
+            {
+                Logger.Error(e.Response.Body);
             }
             catch (Exception e)
             {
+                if (e.InnerException != null)
+                {
+                    Logger.Error(e.InnerException.Message);
+                }
+
+                Logger.Error(e.Message);
                 Logger.Error(e);
-                return null;
             }
+
+            return null;
         }
 
         private async Task NotifyTrackUpdate(FullTrack track)
@@ -552,7 +578,7 @@ namespace SpotifyAudioSource
             _currentTrackName = track.Name;
 
             string albumArtUrl = track.Album?.Images.FirstOrDefault()?.Url;
-            Image albumArtImage = albumArtUrl is null ? null : await GetAlbumArt(new Uri(albumArtUrl));
+            Image albumArtImage = albumArtUrl is null ? null : await GetAlbumArtAsync(new Uri(albumArtUrl));
 
             string artists = string.Join(", ", track.Artists?.Select(a => a?.Name));
             var trackLength = TimeSpan.FromMilliseconds(track.DurationMs);
@@ -588,10 +614,9 @@ namespace SpotifyAudioSource
             TrackInfoChanged?.Invoke(this, trackUpdateInfo);
         }
 
-        private void NotifyPlayState(CurrentlyPlayingContext context)
+        private void NotifyPlayState(bool isPlaying)
         {
-            bool isPlaying = context.IsPlaying;
-            if (isPlaying == _currentIsPlaying)
+            if (_currentIsPlaying == isPlaying)
             {
                 return;
             }
@@ -602,13 +627,7 @@ namespace SpotifyAudioSource
 
         private void NotifyTrackProgress(CurrentlyPlayingContext context)
         {
-            int progress = context.ProgressMs;
-            if (progress == _currentProgress)
-            {
-                return;
-            }
-
-            _currentProgress = progress;
+            _currentProgress = context.ProgressMs;
             TrackProgressChanged?.Invoke(this, TimeSpan.FromMilliseconds(_currentProgress));
         }
 
@@ -619,41 +638,23 @@ namespace SpotifyAudioSource
                 return;
             }
 
-            int vol = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
-            if (vol == _currentVolumePercent)
-            {
-                return;
-            }
-
-            _currentVolumePercent = vol;
-            VolumeChanged?.Invoke(this, _currentVolumePercent / 100f);
+            _currentVolumePercent = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
+            VolumeChanged?.Invoke(this, _currentVolumePercent);
         }
 
         private void NotifyShuffle(CurrentlyPlayingContext context)
         {
-            bool shuffle = context.ShuffleState;
-            if (shuffle == _currentShuffle)
-            {
-                return;
-            }
-
-            _currentShuffle = shuffle;
+            _currentShuffle = context.ShuffleState;
             ShuffleChanged?.Invoke(this, _currentShuffle);
         }
 
         private void NotifyRepeat(CurrentlyPlayingContext context)
         {
-            string repeat = context.RepeatState;
-            if (repeat == _currentRepeat)
-            {
-                return;
-            }
-
-            _currentRepeat = repeat;
+            _currentRepeat = context.RepeatState;
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_currentRepeat));
         }
 
-        private async Task<Image> GetAlbumArt(Uri albumArtUrl)
+        private async Task<Image> GetAlbumArtAsync(Uri albumArtUrl)
         {
             if (albumArtUrl == null)
             {
@@ -684,7 +685,7 @@ namespace SpotifyAudioSource
             try
             {
                 HttpResponseMessage response;
-                
+
                 if (string.IsNullOrEmpty(imageUrl))
                 {
                     response = await _httpClient.GetAsync("https://i.imgur.com/FZG4OtK.png");
@@ -707,13 +708,21 @@ namespace SpotifyAudioSource
         private async void CheckSpotifyTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
         {
             // Spotify api does not provide a way to get realtime player status updates, so we have to resort to polling.
+            await UpdatePlayer();
+        }
+
+        private async Task UpdatePlayer()
+        {
+            _checkSpotifyTimer.Stop();
+
+            if (!_isActive)
+            {
+                _checkSpotifyTimer.Interval = 2500;
+                return;
+            }
+
             try
             {
-                if (!_isActive)
-                {
-                    return;
-                }
-
                 var currentSpotifyWindowTitle = _spotifyControls.GetSpotifyWindowTitle();
                 if (string.IsNullOrEmpty(currentSpotifyWindowTitle))
                 {
@@ -728,10 +737,11 @@ namespace SpotifyAudioSource
                 var playback = await GetPlayback();
                 if (playback == null)
                 {
+                    NotifyPlayState(false);
                     return;
                 }
 
-                NotifyPlayState(playback);
+                NotifyPlayState(playback.IsPlaying);
                 NotifyTrackProgress(playback);
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
@@ -761,22 +771,35 @@ namespace SpotifyAudioSource
                 // check again in case
                 if (_isActive)
                 {
-                    _checkSpotifyTimer.Enabled = true;
+                    try
+                    {
+                        _checkSpotifyTimer.Interval = _checkSpotifyTimer.Interval < 100
+                                                ? 100 : _checkSpotifyTimer.Interval;
+                        _checkSpotifyTimer.Start();
+                    }
+                    catch
+                    {
+                        // normally this should never fire but its here just in case
+                        _checkSpotifyTimer = new Timer(PollingInterval);
+                    }
                 }
             }
         }
 
         private async Task RefreshAccessTokenOnClient()
         {
-            if (string.IsNullOrEmpty(RefreshToken))
+            AuthorizationCodeRefreshResponse response;
+
+            try
             {
-                Logger.Warn("RefreshToken missing. Please restart and go through the authorization process again.");
-                await DeactivateAsync();
+                var request = new AuthorizationCodeRefreshRequest(ClientId, ClientSecret, RefreshToken);
+                response = await new OAuthClient().RequestToken(request);
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Error while refreshing access token, user most likely offline ~ {e.Message}");
                 return;
             }
-
-            var request = new AuthorizationCodeRefreshRequest(ClientId, ClientSecret, RefreshToken);
-            var response = await new OAuthClient().RequestToken(request);
 
             _spotifyClient = new SpotifyClient(response.AccessToken);
 
@@ -784,12 +807,50 @@ namespace SpotifyAudioSource
             Logger.Debug($"Received new access token. Expires in: {expiresIn} (At {DateTime.Now + expiresIn})");
         }
 
+        private async Task FirstTimeAuth()
+        {
+            _authIsInProcess = true;
+            _server = new EmbedIOAuthServer(new Uri($"http://localhost:{LocalPort}"), LocalPort);
+            await _server.Start();
+
+            _server.AuthorizationCodeReceived += OnAuthorizationCodeReceived;
+            _server.ErrorReceived += OnErrorReceived;
+
+            var request = new LoginRequest(_server.BaseUri, ClientId, LoginRequest.ResponseType.Code)
+            {
+                Scope = new[] { Scopes.UserReadCurrentlyPlaying, Scopes.UserReadPlaybackState, Scopes.UserReadPlaybackPosition, Scopes.UserModifyPlaybackState },
+            };
+
+            BrowserUtil.Open(request.ToUri());
+        }
+
+        private async Task OnAuthorizationCodeReceived(object sender, AuthorizationCodeResponse response)
+        {
+            await _server.Stop();
+            var config = SpotifyClientConfig.CreateDefault();
+            var tokenResponse = await new OAuthClient(config)
+                .RequestToken(new AuthorizationCodeTokenRequest(
+                    ClientId, ClientSecret, response.Code, new Uri($"http://localhost:{LocalPort}")));
+
+            RefreshToken = tokenResponse.RefreshToken;
+            _spotifyConfig = config.WithAuthenticator(new AuthorizationCodeAuthenticator(ClientId, ClientSecret, tokenResponse));
+            _spotifyClient = new SpotifyClient(_spotifyConfig);
+            _authIsInProcess = false;
+        }
+
+        private async Task OnErrorReceived(object sender, string error, string state)
+        {
+            Logger.Error($"Error while authenticating: {error}");
+            await _server.Stop();
+            _authIsInProcess = false;
+        }
+
         private void OnSettingChanged(string settingName)
         {
             SettingChanged?.Invoke(this, new SettingChangedEventArgs(settingName));
         }
 
-        private async Task LogPlayerCommandIfFailed(Func<Task<bool>> command, [CallerMemberName] string caller = null)
+        private async Task OnPlayerCommandFailed(Func<Task<bool>> command, [CallerMemberName] string caller = null)
         {
             var hasError = await command();
             if (hasError)
@@ -797,7 +858,7 @@ namespace SpotifyAudioSource
                 Logger.Warn($"Something went wrong with player command [{caller}].");
             }
         }
-    
+
         private void UpdatePollingInterval()
         {
             _checkSpotifyTimer.Stop();

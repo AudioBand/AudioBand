@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using AudioBand.Models;
+﻿using AudioBand.Models;
 using AutoMapper;
+using System.Collections.Generic;
 using CurrentSettings = AudioBand.Settings.Models.V4.SettingsV4;
 
 namespace AudioBand.Settings.MappingProfiles
@@ -27,7 +27,8 @@ namespace AudioBand.Settings.MappingProfiles
                 .ForMember(dest => dest.PreviousButton, opt => opt.NullSubstitute(new PreviousButton()))
                 .ForMember(dest => dest.ProgressBar, opt => opt.NullSubstitute(new ProgressBar()))
                 .ForMember(dest => dest.RepeatModeButton, opt => opt.NullSubstitute(new RepeatModeButton()))
-                .ForMember(dest => dest.ShuffleModeButton, opt => opt.NullSubstitute(new ShuffleModeButton()));
+                .ForMember(dest => dest.ShuffleModeButton, opt => opt.NullSubstitute(new ShuffleModeButton()))
+                .ForMember(dest => dest.VolumeButton, opt => opt.NullSubstitute(new VolumeButton()));
         }
     }
 }

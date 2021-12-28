@@ -1,11 +1,11 @@
-﻿using System;
+﻿using AudioBand.AudioSource;
+using AudioBand.Logging;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AudioBand.AudioSource;
-using AudioBand.Logging;
-using NLog;
 
 namespace AudioSourceHost
 {
@@ -50,7 +50,7 @@ namespace AudioSourceHost
         /// <summary>
         /// Wrapper for <see cref="IAudioSource.VolumeChanged"/>.
         /// </summary>
-        public event EventHandler<float> VolumeChanged;
+        public event EventHandler<int> VolumeChanged;
 
         /// <summary>
         /// Wrapper for <see cref="IAudioSource.ShuffleChanged"/>.
@@ -66,6 +66,11 @@ namespace AudioSourceHost
         /// Gets the name of the audio source.
         /// </summary>
         public string Name => _audioSource.Name;
+
+        /// <summary>
+        /// Gets the description of the audio source.
+        /// </summary>
+        public string Description => _audioSource.Description;
 
         /// <summary>
         /// Gets the Window Class Name of the audio source.
@@ -136,7 +141,7 @@ namespace AudioSourceHost
         /// </summary>
         /// <param name="newVolume">The new volume.</param>
         /// <param name="tcs">The task completion source.</param>
-        public void SetVolume(float newVolume, MarshaledTaskCompletionSource tcs)
+        public void SetVolume(int newVolume, MarshaledTaskCompletionSource tcs)
         {
             StartTask(_audioSource.SetVolumeAsync, newVolume, tcs);
         }

@@ -6,6 +6,11 @@
     public interface IViewModelContainer
     {
         /// <summary>
+        /// Gets the viewmodel for Global AudioBand settings.
+        /// </summary>
+        GlobalSettingsViewModel GlobalSettingsViewModel { get; }
+
+        /// <summary>
         /// Gets the viewmodel for audioband toolbar.
         /// </summary>
         GeneralSettingsViewModel GeneralSettingsViewModel { get; }
@@ -51,9 +56,19 @@
         ShuffleModeButtonViewModel ShuffleModeButtonViewModel { get; }
 
         /// <summary>
+        /// Gets the view model for the volume button.
+        /// </summary>
+        VolumeButtonViewModel VolumeButtonViewModel { get; }
+
+        /// <summary>
         /// Gets the view model for the progress bar.
         /// </summary>
         ProgressBarViewModel ProgressBarViewModel { get; }
+
+        /// <summary>
+        /// Gets the view model for information popups.
+        /// </summary>
+        PopupViewModel PopupViewModel { get; }
 
         /// <summary>
         /// Gets the collection for view models for the audio source settings.

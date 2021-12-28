@@ -8,6 +8,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelContainer"/> class.
         /// </summary>
+        /// <param name="globalSettingsViewModel">Global Audioband settings view model.</param>
         /// <param name="generalSettingsViewModel">Audioband view model.</param>
         /// <param name="albumArtPopupViewModel">Album art popup view model.</param>
         /// <param name="albumArtViewModel">Album art view model.</param>
@@ -17,9 +18,12 @@
         /// <param name="repeatModeButtonViewModel">Repeat mode button view model.</param>
         /// <param name="shuffleModeButtonViewModel">Shuffle mode button view model.</param>
         /// <param name="previousButtonViewModel">Previous button view model.</param>
+        /// <param name="volumeButtonViewModel">Volume button view model.</param>
         /// <param name="progressBarViewModel">Progress bar view model.</param>
+        /// <param name="popupViewModel">Popup view model.</param>
         /// <param name="audioSourceSettingsViewModel">Audio source settings view model.</param>
         public ViewModelContainer(
+            GlobalSettingsViewModel globalSettingsViewModel,
             GeneralSettingsViewModel generalSettingsViewModel,
             AlbumArtPopupViewModel albumArtPopupViewModel,
             AlbumArtViewModel albumArtViewModel,
@@ -29,9 +33,12 @@
             RepeatModeButtonViewModel repeatModeButtonViewModel,
             ShuffleModeButtonViewModel shuffleModeButtonViewModel,
             PreviousButtonViewModel previousButtonViewModel,
+            VolumeButtonViewModel volumeButtonViewModel,
             ProgressBarViewModel progressBarViewModel,
+            PopupViewModel popupViewModel,
             AudioSourceSettingsViewModel audioSourceSettingsViewModel)
         {
+            GlobalSettingsViewModel = globalSettingsViewModel;
             GeneralSettingsViewModel = generalSettingsViewModel;
             AlbumArtPopupViewModel = albumArtPopupViewModel;
             AlbumArtViewModel = albumArtViewModel;
@@ -41,9 +48,14 @@
             RepeatModeButtonViewModel = repeatModeButtonViewModel;
             ShuffleModeButtonViewModel = shuffleModeButtonViewModel;
             PreviousButtonViewModel = previousButtonViewModel;
+            VolumeButtonViewModel = volumeButtonViewModel;
             ProgressBarViewModel = progressBarViewModel;
+            PopupViewModel = popupViewModel;
             AudioSourceSettingsViewModel = audioSourceSettingsViewModel;
         }
+
+        /// <inheritdoc />
+        public GlobalSettingsViewModel GlobalSettingsViewModel { get; }
 
         /// <inheritdoc />
         public GeneralSettingsViewModel GeneralSettingsViewModel { get; }
@@ -73,7 +85,13 @@
         public ShuffleModeButtonViewModel ShuffleModeButtonViewModel { get; }
 
         /// <inheritdoc />
+        public VolumeButtonViewModel VolumeButtonViewModel { get; }
+
+        /// <inheritdoc />
         public ProgressBarViewModel ProgressBarViewModel { get; }
+
+        /// <inheritdoc />
+        public PopupViewModel PopupViewModel { get; }
 
         /// <inheritdoc />
         public AudioSourceSettingsViewModel AudioSourceSettingsViewModel { get; }

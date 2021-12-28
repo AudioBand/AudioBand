@@ -11,11 +11,24 @@ using Windows.Storage.Streams;
 
 namespace Win10AudioSource
 {
+    /// <summary>
+    /// The Windows 10 API AudioSource.
+    /// </summary>
     public class Win10AudioSource : IAudioSource
     {
         private readonly Timer _checkTimer = new Timer(1000);
         private GlobalSystemMediaTransportControlsSessionManager _mtcManager;
         private GlobalSystemMediaTransportControlsSession _currentSession;
+        private GlobalSystemMediaTransportControlsSessionMediaProperties _lastProperties;
+        private bool _isPlaying = false;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Win10AudioSource"/> class.
+        /// </summary>
+        public Win10AudioSource()
+        {
+            _checkTimer.Elapsed += OnTimerElapsed;
+        }
 
         /// <inheritdoc />
         public event EventHandler<SettingChangedEventArgs> SettingChanged
@@ -34,12 +47,13 @@ namespace Win10AudioSource
         public event EventHandler<TimeSpan> TrackProgressChanged;
 
         /// <inheritdoc />
-        public event EventHandler<float> VolumeChanged
+        public event EventHandler<int> VolumeChanged
         {
             add { }
             remove { }
         }
 
+        /// <inheritdoc />
         public event EventHandler<bool> ShuffleChanged;
 
         /// <inheritdoc />
@@ -49,15 +63,13 @@ namespace Win10AudioSource
         public string Name => "Windows 10";
 
         /// <inheritdoc />
+        public string Description => "";
+
+        /// <inheritdoc />
         public string WindowClassName => null;
 
         /// <inheritdoc />
         public IAudioSourceLogger Logger { get; set; }
-
-        public Win10AudioSource()
-        {
-            _checkTimer.Elapsed += OnTimerElapsed;
-        }
 
         /// <inheritdoc />
         public async Task ActivateAsync()
@@ -128,7 +140,7 @@ namespace Win10AudioSource
         }
 
         /// <inheritdoc />
-        public Task SetVolumeAsync(float newVolume)
+        public Task SetVolumeAsync(int newVolume)
         {
             return Task.CompletedTask;
         }
@@ -141,7 +153,7 @@ namespace Win10AudioSource
                 return;
             }
 
-            if (!await _currentSession.TryChangePlaybackPositionAsync((long)newProgress.TotalSeconds))
+            if (!await _currentSession.TryChangePlaybackPositionAsync((long)newProgress.TotalMilliseconds))
             {
                 Logger.Warn($"Failed to set playback for Win10 Audio Source.");
             }
@@ -234,6 +246,13 @@ namespace Win10AudioSource
             }
 
             var mediaProperties = await _currentSession.TryGetMediaPropertiesAsync();
+
+            if (mediaProperties.Title == _lastProperties?.Title && mediaProperties.Artist == _lastProperties?.Artist)
+            {
+                return;
+            }
+
+            _lastProperties = mediaProperties;
             var albumArt = await GetAlbumArt(mediaProperties.Thumbnail);
 
             TrackInfoChanged?.Invoke(this, new TrackInfoChangedEventArgs
@@ -269,7 +288,12 @@ namespace Win10AudioSource
 
             // We'll just make every other state count as paused.
             var isPlaying = playbackInfo.PlaybackStatus == GlobalSystemMediaTransportControlsSessionPlaybackStatus.Playing;
-            IsPlayingChanged?.Invoke(this, isPlaying);
+
+            if (_isPlaying != isPlaying)
+            {
+                _isPlaying = isPlaying;
+                IsPlayingChanged?.Invoke(this, _isPlaying);
+            }
 
             ShuffleChanged?.Invoke(this, playbackInfo.IsShuffleActive.GetValueOrDefault());
             RepeatModeChanged?.Invoke(this, ToAudioBandRepeatMode(playbackInfo.AutoRepeatMode.GetValueOrDefault()));

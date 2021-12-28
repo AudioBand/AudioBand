@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AudioBand.AudioSource;
+using AudioBand.TextFormatting;
+using Moq;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Media;
-using AudioBand.AudioSource;
-using AudioBand.TextFormatting;
-using Moq;
 using Xunit;
 
 namespace AudioBand.Test
@@ -201,6 +201,19 @@ namespace AudioBand.Test
 
             Assert.Single(segments);
             Assert.Equal("0:20", segments[0].Text);
+        }
+
+        [Fact]
+        public void Parse_VolumePlaceholder_SubstitutesText()
+        {
+            var format = "{volume}";
+            var volume = 60;
+            var mock = new Mock<IAudioSession>();
+            mock.SetupGet(m => m.Volume).Returns(volume);
+            var segments = FormattedTextParser.ParseFormattedString(format, Colors.Black, mock.Object).ToList();
+
+            Assert.Single(segments);
+            Assert.Equal("60", segments[0].Text);
         }
 
         [Fact]

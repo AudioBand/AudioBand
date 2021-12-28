@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using AudioBand.AudioSource;
 using AudioBand.Commands;
 using AudioBand.Messages;
@@ -47,11 +48,6 @@ namespace AudioBand.UI
         /// Gets the collection of custom label viewmodels.
         /// </summary>
         public ObservableCollection<CustomLabelViewModel> CustomLabels { get; } = new ObservableCollection<CustomLabelViewModel>();
-
-        /// <summary>
-        /// Gets the collection of visible custom label viewmodels.
-        /// </summary>
-        public ObservableCollection<CustomLabelViewModel> VisibleCustomLabels => new ObservableCollection<CustomLabelViewModel>(CustomLabels.Where(x => x.IsVisible));
 
         /// <summary>
         /// Gets the command to add a new label.
@@ -137,10 +133,25 @@ namespace AudioBand.UI
 
         private void SetupLabels()
         {
-            CustomLabels.Clear();
-            foreach (var customLabelVm in _appsettings.CurrentProfile.CustomLabels.Select(customLabel => new CustomLabelViewModel(customLabel, _dialogService, _audioSession, MessageBus)))
+            // required to modify collection created on UI thread.
+            Application.Current.Dispatcher.Invoke(delegate
             {
-                CustomLabels.Add(customLabelVm);
+                CustomLabels.Clear();
+            });
+
+            if (_appsettings.CurrentProfile.CustomLabels == null || _appsettings.CurrentProfile.CustomLabels.Count == 0)
+            {
+                return;
+            }
+
+            var customLabels = _appsettings.CurrentProfile.CustomLabels.Select(customLabel => new CustomLabelViewModel(customLabel, _dialogService, _audioSession, MessageBus)).ToArray();
+
+            for (int i = 0; i < customLabels.Length; i++)
+            {
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    CustomLabels.Add(customLabels[i]);
+                });
             }
         }
 

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using AudioBand.Models;
+﻿using AudioBand.Models;
+using System.Collections.Generic;
 
 namespace AudioBand.Settings.Models.V4
 {
@@ -32,5 +32,10 @@ namespace AudioBand.Settings.Models.V4
         /// Gets or sets the audio source settings.
         /// </summary>
         public List<AudioSourceSettings> AudioSourceSettings { get; set; }
+
+        /// <summary>
+        /// Gets or sets the AudioBand settings.
+        /// </summary>
+        public AudioBandSettings AudioBandSettings { get; set; }
     }
 }

@@ -1,12 +1,11 @@
 <div align="center"><img src="logo/logotype_cover.svg"/></div><br/><br/>
 
 # Audio Band
-Audio Band allows you to display song information from various sources in the taskbar.
+Audio Band allows you to display song information from various sources directly in the taskbar.
 
-
-**[Download Now](https://github.com/svr333/audio-band/releases)**  
-**[Documentation Link](https://svr333.github.io/audio-band/audioband/index.html)**  
-**[Discord Invite](https://discord.gg/yWDHdH2za5)**
+[![Extra_Buttons_Github-Download](https://user-images.githubusercontent.com/35664724/142423102-caacd6d8-4674-45eb-a134-c32893c77322.png)](https://audioband.github.io/AudioBand/audioband/index.html)
+[![Extra_Buttons_Github-Documentation](https://user-images.githubusercontent.com/35664724/142423148-d3da6a71-79ba-4a22-aa59-29f97e60782d.png)](https://audioband.github.io/AudioBand/audioband/index.html)
+[![Extra_Buttons_Github-Discord](https://user-images.githubusercontent.com/35664724/142423185-f7b771c7-d404-4206-ba8e-e911d7bc1133.png)](https://discord.gg/yWDHdH2za5)
 
 <img align="right" src="screenshots/demo.gif"/>
 
@@ -20,7 +19,7 @@ Audio Band allows you to display song information from various sources in the ta
 - Spotify
 - iTunes
 - MusicBee
-- Windows 10 (e.g. Groove Music) (Timeline doesn't work yet)
+- Windows 10 (e.g. Groove Music) ([List Of Working Apps](https://github.com/ModernFlyouts-Community/ModernFlyouts/blob/main/docs/GSMTC-Support-And-Popular-Apps.md))
 
 ## Screenshots
 ![Screenshot 1](screenshots/screenshot1.png)
@@ -31,7 +30,7 @@ Audio Band allows you to display song information from various sources in the ta
 
 ## Documentation
 
-The documentation can be found on our github pages, [Click Here](https://svr333.github.io/audio-band/audioband/index.html) to get started.
+The documentation can be found on our github pages, [Click Here](https://audioband.github.io/AudioBand/audioband/index.html) to get started.
 
 It contains info on how to install AudioBand, how to support your preferred Audio Player and how to Develop it locally.
 
@@ -43,14 +42,9 @@ Any form of contribution is appreciated:
 
 You can also join our [Discord Server](https://discord.gg/yWDHdH2za5).
 
-## Donating
-**DISCLAIMER:** You are not donating to the person who started this project, but to the one that continued it.
-
-**[Paypal](https://paypal.me/SenneVR)**
-
 ## License
-[LICENSE](https://github.com/svr333/audio-band/blob/master/LICENSE)
+[LICENSE](https://github.com/AudioBand/AudioBand/blob/master/LICENSE)
 
-[THIRD PARTY](https://github.com/svr333/audio-band/blob/master/LICENSE-3RD-PARTY)
+[THIRD PARTY](https://github.com/AudioBand/AudioBand/blob/master/LICENSE-3RD-PARTY)
 
 Logo originally by @mirzazulfan (edited by @SnakeStorm87)

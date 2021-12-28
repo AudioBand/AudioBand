@@ -59,7 +59,7 @@ namespace AudioBand.AudioSource
         public event EventHandler<TimeSpan> TrackProgressChanged;
 
         /// <inheritdoc/>
-        public event EventHandler<float> VolumeChanged;
+        public event EventHandler<int> VolumeChanged;
 
         /// <inheritdoc/>
         public event EventHandler<bool> ShuffleChanged;
@@ -75,6 +75,22 @@ namespace AudioBand.AudioSource
                 try
                 {
                     return _wrapper.Name;
+                }
+                catch (Exception e)
+                {
+                    _logger.Error(e, "Error trying to get the name");
+                    throw;
+                }
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                try
+                {
+                    return _wrapper.Description;
                 }
                 catch (Exception e)
                 {
@@ -247,7 +263,7 @@ namespace AudioBand.AudioSource
         }
 
         /// <inheritdoc/>
-        public async Task SetVolumeAsync(float newVolume)
+        public async Task SetVolumeAsync(int newVolume)
         {
             if (!IsActivated)
             {
@@ -368,7 +384,7 @@ namespace AudioBand.AudioSource
                 TrackProgressChanged?.Invoke(this, e);
                 CurrentProgress = e;
             }).Handler;
-            _wrapper.VolumeChanged += new MarshaledEventHandler<float>(e => VolumeChanged?.Invoke(this, e)).Handler;
+            _wrapper.VolumeChanged += new MarshaledEventHandler<int>(e => VolumeChanged?.Invoke(this, e)).Handler;
             _wrapper.ShuffleChanged += new MarshaledEventHandler<bool>(e => ShuffleChanged?.Invoke(this, e)).Handler;
             _wrapper.RepeatModeChanged += new MarshaledEventHandler<RepeatMode>(e => RepeatModeChanged?.Invoke(this, e)).Handler;
 

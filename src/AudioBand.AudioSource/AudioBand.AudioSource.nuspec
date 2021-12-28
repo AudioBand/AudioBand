@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
-    <id>AudioBand.AudioSource</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>Brandon Chong</authors>
+    <id>svr333.AudioBand.AudioSource</id>
+    <version>1.1.0</version>
+    <title>AudioBand AudioSource</title>
+    <authors>Brandon Chong, svr333</authors>
     <owners>dsafa</owners>
     <license type="expression">MIT</license>
-    <projectUrl>https://github.com/dsafa/audio-band</projectUrl>
+    <projectUrl>https://github.com/AudioBand/AudioBand</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Library to develop audio sources for AudioBand</description>
-    <copyright>Copyright 2019</copyright>
+    <copyright>Copyright 2022</copyright>
   </metadata>
   <files>
     <file src="content/readme.txt" target=""/>

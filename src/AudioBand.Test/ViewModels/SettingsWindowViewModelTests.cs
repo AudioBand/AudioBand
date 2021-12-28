@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AudioBand.AudioSource;
+﻿using AudioBand.AudioSource;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
 using AudioBand.UI;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace AudioBand.Test
@@ -20,6 +20,12 @@ namespace AudioBand.Test
 
         public SettingsWindowViewModelTests()
         {
+            // Initialize our app (necessary because of Application.Current.Dispatcher in CustomLabelsViewModel#SetupLabels)
+            if (System.Windows.Application.Current == null)
+            {
+                new System.Windows.Application { ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown };
+            }
+
             _appSettings = new Mock<IAppSettings>();
             var profile = new UserProfile()
             {
@@ -129,7 +135,7 @@ namespace AudioBand.Test
         [Fact]
         public void OnlyOneProfile_DeleteProfileCommandCanExecuteIsFalse()
         {
-            _appSettings.SetupGet(m => m.Profiles).Returns(new List<UserProfile>{new UserProfile()});
+            _appSettings.SetupGet(m => m.Profiles).Returns(new List<UserProfile> { new UserProfile() });
             var vm = CreateVm();
 
             Assert.False(vm.DeleteProfileCommand.CanExecute(null));
@@ -256,7 +262,7 @@ namespace AudioBand.Test
         {
             var profile1 = new UserProfile { Name = "profile 1" };
 
-            _appSettings.SetupGet(m => m.Profiles).Returns(new List<UserProfile> { profile1  });
+            _appSettings.SetupGet(m => m.Profiles).Returns(new List<UserProfile> { profile1 });
             _dialog.Setup(m => m.ShowRenameDialog(It.IsAny<string>(), It.IsAny<IEnumerable<string>>()))
                 .Returns((string)null);
             var vm = CreateVm();

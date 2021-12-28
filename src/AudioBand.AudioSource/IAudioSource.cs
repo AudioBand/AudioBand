@@ -31,9 +31,9 @@ namespace AudioBand.AudioSource
         event EventHandler<TimeSpan> TrackProgressChanged;
 
         /// <summary>
-        /// Occurs when the volume of the audio source changes. The range of the volume is between 0.0 and 1.0 inclusive.
+        /// Occurs when the volume of the audio source changes. The range of the volume is between 0 and 100 inclusive.
         /// </summary>
-        event EventHandler<float> VolumeChanged;
+        event EventHandler<int> VolumeChanged;
 
         /// <summary>
         /// Occurs when the shuffle state changes. <see langword="true"/> if shuffle is on; <see langword="false"/> otherwise;
@@ -50,6 +50,12 @@ namespace AudioBand.AudioSource
         /// </summary>
         /// <value>The name of the audio source.</value>
         string Name { get; }
+
+        /// <summary>
+        /// Gets the Description of this audio source.
+        /// </summary>
+        /// <value>The description of the audio source.</value>
+        string Description { get; }
 
         /// <summary>
         /// Gets the Window Class Name of the associated player.
@@ -102,9 +108,9 @@ namespace AudioBand.AudioSource
         /// <summary>
         /// Called when there is a request to change the volume.
         /// </summary>
-        /// <param name="newVolume">The new volume to set. The range is between 0.0 and 1.0 inclusive.</param>
+        /// <param name="newVolume">The new volume to set. The range is between 0 and 100 inclusive.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous set volume operation.</returns>
-        Task SetVolumeAsync(float newVolume);
+        Task SetVolumeAsync(int newVolume);
 
         /// <summary>
         /// Called when there is a request to change to current playback progress.

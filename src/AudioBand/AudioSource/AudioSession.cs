@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Timers;
+using AudioBand.Settings;
 
 namespace AudioBand.AudioSource
 {
@@ -8,7 +10,10 @@ namespace AudioBand.AudioSource
     /// </summary>
     public class AudioSession : ObservableObject, IAudioSession
     {
+        private IAppSettings _appSettings;
         private IInternalAudioSource _currentAudioSource;
+        private Timer _idleProfileTimer = new Timer();
+        private bool _isIdle = true;
         private bool _isPlaying;
         private string _songArtist;
         private string _songName;
@@ -17,7 +22,22 @@ namespace AudioBand.AudioSource
         private TimeSpan _songLength;
         private bool _isShuffleOn;
         private RepeatMode _repeatMode;
+        private int _volume;
         private Image _album;
+        private Image _lastRememberedAlbum;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudioSession"/> class.
+        /// </summary>
+        /// <param name="appSettings">The app settings.</param>
+        public AudioSession(IAppSettings appSettings)
+        {
+            _appSettings = appSettings;
+
+            _idleProfileTimer.AutoReset = false;
+            _idleProfileTimer.Interval = GetInterval();
+            _idleProfileTimer.Elapsed += OnIdleTimerElapsed;
+        }
 
         /// <summary>
         /// Gets or sets the current audio source.
@@ -100,6 +120,13 @@ namespace AudioBand.AudioSource
             set => SetProperty(ref _repeatMode, value);
         }
 
+        /// <inheritdoc />
+        public int Volume
+        {
+            get => _volume;
+            set => SetProperty(ref _volume, value);
+        }
+
         private void AudioSourceChanged()
         {
             if (_currentAudioSource != null)
@@ -110,6 +137,7 @@ namespace AudioBand.AudioSource
                 _currentAudioSource.TrackProgressChanged -= AudioSourceOnTrackProgressChanged;
                 _currentAudioSource.RepeatModeChanged -= AudioSourceOnRepeatModeChanged;
                 _currentAudioSource.ShuffleChanged -= AudioSourceOnShuffleChanged;
+                _currentAudioSource.VolumeChanged -= AudioSourceVolumeChanged;
             }
 
             if (_currentAudioSource == null)
@@ -123,6 +151,7 @@ namespace AudioBand.AudioSource
             _currentAudioSource.TrackProgressChanged += AudioSourceOnTrackProgressChanged;
             _currentAudioSource.RepeatModeChanged += AudioSourceOnRepeatModeChanged;
             _currentAudioSource.ShuffleChanged += AudioSourceOnShuffleChanged;
+            _currentAudioSource.VolumeChanged += AudioSourceVolumeChanged;
         }
 
         private void AudioSourceOnShuffleChanged(object sender, bool e)
@@ -140,9 +169,20 @@ namespace AudioBand.AudioSource
             SongProgress = e;
         }
 
-        private void AudioSourceOnIsPlayingChanged(object sender, bool e)
+        private void AudioSourceOnIsPlayingChanged(object sender, bool isPlaying)
         {
-            IsPlaying = e;
+            if (_appSettings.AudioBandSettings.UseAutomaticIdleProfile)
+            {
+                HandleIdleProfile(isPlaying);
+            }
+
+            IsPlaying = isPlaying;
+        }
+
+        private void AudioSourceVolumeChanged(object sender, int e)
+        {
+            Volume = e;
+            RaisePropertyChanged(nameof(Volume));
         }
 
         private void AudioSourceOnTrackInfoChanged(object sender, TrackInfoChangedEventArgs e)
@@ -162,6 +202,41 @@ namespace AudioBand.AudioSource
             AlbumName = null;
             SongProgress = TimeSpan.Zero;
             SongLength = TimeSpan.Zero;
+            Volume = 0;
+        }
+
+        private void HandleIdleProfile(bool isPlaying)
+        {
+            if (!isPlaying)
+            {
+                _idleProfileTimer.Interval = GetInterval();
+                _idleProfileTimer.Start();
+            }
+            else if (_isIdle)
+            {
+                AlbumArt ??= _lastRememberedAlbum ?? AlbumArt;
+                _appSettings.SelectProfile(_appSettings.AudioBandSettings.LastNonIdleProfileName);
+                _isIdle = false;
+            }
+            else
+            {
+                _idleProfileTimer.Stop();
+            }
+        }
+
+        private void OnIdleTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            _isIdle = true;
+            _appSettings.SelectProfile(_appSettings.AudioBandSettings.IdleProfileName);
+            _lastRememberedAlbum = AlbumArt;
+            AlbumArt = null;
+        }
+
+        private int GetInterval()
+        {
+            return _appSettings.AudioBandSettings.ShouldGoIdleAfterInSeconds == 0
+                ? 250
+                : _appSettings.AudioBandSettings.ShouldGoIdleAfterInSeconds * 1000;
         }
     }
 }

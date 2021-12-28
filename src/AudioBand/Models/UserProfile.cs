@@ -14,6 +14,11 @@ namespace AudioBand.Models
         public const string DefaultProfileName = "Default";
 
         /// <summary>
+        /// The idle profile name.
+        /// </summary>
+        public const string DefaultIdleProfileName = "Idle";
+
+        /// <summary>
         /// Gets or sets the name of the profile.
         /// </summary>
         public string Name { get; set; }
@@ -64,6 +69,11 @@ namespace AudioBand.Models
         public ShuffleModeButton ShuffleModeButton { get; set; }
 
         /// <summary>
+        /// Gets or sets the volume button model.
+        /// </summary>
+        public VolumeButton VolumeButton { get; set; }
+
+        /// <summary>
         /// Gets or sets the saved progress bar model.
         /// </summary>
         public ProgressBar ProgressBar { get; set; }
@@ -86,6 +96,7 @@ namespace AudioBand.Models
                 PreviousButton = new PreviousButton(),
                 RepeatModeButton = new RepeatModeButton(),
                 ShuffleModeButton = new ShuffleModeButton(),
+                VolumeButton = new VolumeButton(),
                 ProgressBar = new ProgressBar(),
                 CustomLabels = new List<CustomLabel>
                 {
@@ -116,7 +127,7 @@ namespace AudioBand.Models
                     new CustomLabel
                     {
                         Name = "Song Name",
-                        Width = 240,
+                        Width = 205,
                         Height = 20,
                         XPosition = 0,
                         YPosition = -2,
@@ -128,7 +139,7 @@ namespace AudioBand.Models
                     new CustomLabel
                     {
                         Name = "Artist",
-                        Width = 240,
+                        Width = 205,
                         Height = 20,
                         XPosition = 0,
                         YPosition = 13,
@@ -142,14 +153,66 @@ namespace AudioBand.Models
         }
 
         /// <summary>
+        /// Creates an idle profile used for when the player is idle. 
+        /// </summary>
+        /// <returns>A default idle profile.</returns>
+        public static UserProfile CreateDefaultIdleProfile()
+        {
+            return new UserProfile()
+            {
+                Name = DefaultIdleProfileName,
+                GeneralSettings = new GeneralSettings()
+                {
+                    Width = 40,
+                    Height = 30
+                },
+                AlbumArt = new AlbumArt()
+                {
+                    XPosition = 0,
+                    YPosition = 0
+                },
+                AlbumArtPopup = new AlbumArtPopup()
+                {
+                    IsVisible = false
+                },
+                PlayPauseButton = new PlayPauseButton()
+                {
+                    IsVisible = false
+                },
+                NextButton = new NextButton()
+                {
+                    IsVisible = false
+                },
+                PreviousButton = new PreviousButton()
+                {
+                    IsVisible = false
+                },
+                RepeatModeButton = new RepeatModeButton()
+                {
+                    IsVisible = false
+                },
+                ShuffleModeButton = new ShuffleModeButton()
+                {
+                    IsVisible = false
+                },
+                ProgressBar = new ProgressBar()
+                {
+                    IsVisible = false
+                },
+                CustomLabels = new List<CustomLabel>()
+            };
+        }
+
+        /// <summary>
         /// Creates an array of UserProfiles to fill up the default settings.
         /// </summary>
         /// <returns>The array of default profiles</returns>
         public static UserProfile[] CreateDefaultProfiles()
         {
-            var profiles = new UserProfile[4];
-            profiles[0] = CreateDefaultProfile(DefaultProfileName);
-            profiles[1] = new UserProfile()
+            var profiles = new UserProfile[5];
+            profiles[0] = CreateDefaultIdleProfile();
+            profiles[1] = CreateDefaultProfile(DefaultProfileName);
+            profiles[2] = new UserProfile()
             {
                 Name = "Default (Compact)",
                 GeneralSettings = new GeneralSettings()
@@ -274,6 +337,10 @@ namespace AudioBand.Models
                         Text = ""
                     }
                 },
+                VolumeButton = new VolumeButton()
+                {
+                    IsVisible = false
+                },
                 ProgressBar = new ProgressBar()
                 {
                     IsVisible = true,
@@ -372,7 +439,7 @@ namespace AudioBand.Models
                 }
             };
 
-            profiles[2] = new UserProfile()
+            profiles[3] = new UserProfile()
             {
                 Name = "Compact",
                 GeneralSettings = new GeneralSettings()
@@ -457,6 +524,10 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
+                VolumeButton = new VolumeButton()
+                {
+                    IsVisible = false
+                },
                 ProgressBar = new ProgressBar()
                 {
                     IsVisible = true,
@@ -492,7 +563,7 @@ namespace AudioBand.Models
                 }
             };
 
-            profiles[3] = new UserProfile()
+            profiles[4] = new UserProfile()
             {
                 Name = "No Controls",
                 GeneralSettings = new GeneralSettings()
@@ -535,6 +606,10 @@ namespace AudioBand.Models
                     IsVisible = false
                 },
                 ShuffleModeButton = new ShuffleModeButton()
+                {
+                    IsVisible = false
+                },
+                VolumeButton = new VolumeButton()
                 {
                     IsVisible = false
                 },
