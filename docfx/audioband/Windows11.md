@@ -1,7 +1,7 @@
 # Windows 11 Installation
 The installation process is very similar to installing on Windows 10, and once installed, everything is the same as on Windows 10.
 
-In order for Audio-Band to run properly, we have to patch the Taskbar using an external tool.
+In order for AudioBand to run properly, we have to patch the Taskbar using an external tool.
 
 ## Step 1: Patching The Taskbar
 There are 2 tools to achieve this, they're both super easy to install but they have some different functionalities.  
@@ -14,7 +14,7 @@ If you just want to patch it, [Download ExplorerPatcher](https://github.com/vali
 
 ## Step 2: Installing AudioBand
 Now you just install AudioBand like you would before.
-Get the [Latest Download](https://github.com/AudioBand/audio-band/releases/latest/download/audioband.msi) and run it, and you're good to go.
+Get the [Latest Download](https://github.com/AudioBand/AudioBand/releases/latest/download/audioband.msi) and run it, and you're good to go.
 
 ## Extra Info: Taskbar Patchers
 If you'd like some more info on the choices of Taskbar Patchers, this is the place.

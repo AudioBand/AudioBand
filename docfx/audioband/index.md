@@ -12,7 +12,7 @@ For a basic installation, see this page.
 - Windows 10
 
 ### Installation
-Download the [Latest Release](https://github.com/AudioBand/audio-band/releases/latest/download/audioband.msi) and run the `.msi`.  
+Download the [Latest Release](https://github.com/AudioBand/AudioBand/releases/latest/download/audioband.msi) and run the `.msi`.  
 Follow the instructions on the screen.
 
 ### Usage

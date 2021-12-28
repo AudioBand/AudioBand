@@ -1,6 +1,6 @@
 ## Setup
-1. Install `Visual Studio 2019`. Make sure to install support for `.Net Framework 4.7` development.
-2. Clone the repo `git clone git@github.com:AudioBand/audio-band.git`
+1. Install `Visual Studio 2019` (2022 is not compatible with .wixproj yet). Make sure to install support for `.Net Framework 4.8` development.
+2. Clone the repo `git clone git@github.com:AudioBand/AudioBand.git`
 3. Open the solution file under `src/AudioBand.sln` in visual studio.
 4. Restore nuget packages before building
 5. The toolbar will have to be installed after being built (see `Running local version` section).
