@@ -614,14 +614,14 @@ namespace SpotifyAudioSource
             TrackInfoChanged?.Invoke(this, trackUpdateInfo);
         }
 
-        private void NotifyPlayState(CurrentlyPlayingContext context)
+        private void NotifyPlayState(bool isPlaying)
         {
-            if (_currentIsPlaying == context.IsPlaying)
+            if (_currentIsPlaying == isPlaying)
             {
                 return;
             }
 
-            _currentIsPlaying = context.IsPlaying;
+            _currentIsPlaying = isPlaying;
             IsPlayingChanged?.Invoke(this, _currentIsPlaying);
         }
 
@@ -737,10 +737,11 @@ namespace SpotifyAudioSource
                 var playback = await GetPlayback();
                 if (playback == null)
                 {
+                    NotifyPlayState(false);
                     return;
                 }
 
-                NotifyPlayState(playback);
+                NotifyPlayState(playback.IsPlaying);
                 NotifyTrackProgress(playback);
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
