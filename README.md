@@ -3,7 +3,7 @@
 # Audio Band
 Audio Band allows you to display song information from various sources directly in the taskbar.
 
-[![Extra_Buttons_Github-Download](https://user-images.githubusercontent.com/35664724/142423102-caacd6d8-4674-45eb-a134-c32893c77322.png)](https://github.com/AudioBand/AudioBand/releases)
+[![Extra_Buttons_Github-Download](https://user-images.githubusercontent.com/35664724/142423102-caacd6d8-4674-45eb-a134-c32893c77322.png)](https://audioband.github.io/AudioBand/audioband/index.html)
 [![Extra_Buttons_Github-Documentation](https://user-images.githubusercontent.com/35664724/142423148-d3da6a71-79ba-4a22-aa59-29f97e60782d.png)](https://audioband.github.io/AudioBand/audioband/index.html)
 [![Extra_Buttons_Github-Discord](https://user-images.githubusercontent.com/35664724/142423185-f7b771c7-d404-4206-ba8e-e911d7bc1133.png)](https://discord.gg/yWDHdH2za5)
 
@@ -19,7 +19,7 @@ Audio Band allows you to display song information from various sources directly 
 - Spotify
 - iTunes
 - MusicBee
-- Windows 10 (e.g. Groove Music) (Timeline doesn't work yet)
+- Windows 10 (e.g. Groove Music) ([List Of Working Apps](https://github.com/ModernFlyouts-Community/ModernFlyouts/blob/main/docs/GSMTC-Support-And-Popular-Apps.md))
 
 ## Screenshots
 ![Screenshot 1](screenshots/screenshot1.png)
