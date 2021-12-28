@@ -96,7 +96,14 @@
 </ol>
 <pre><code>AudioSource = &quot;AudioSource.dll&quot;
 </code></pre>
+<h2 id="developing">Developing</h2>
+<p>In order to get it functional, you have to implement every function of <code>IAudioSource</code>.<br>
+You can find out what they do by hovering over them in your IDE, it will show what the function is used for.<br>
+(You can also reference <a href="https://dsafa.github.io/audio-band/audiosource-api/AudioBand.AudioSource.html">Dsafa's API refence</a> because I don't know how to setup my own.)</p>
+<p>You can also utilize the existing ones in the <a href="https://github.com/AudioBand/AudioBand/tree/master/src">Main AudioBand Repo</a> as a template or guiding line.<br>
+If you have any questions, feel free to contact me on <a href="https://discord.gg/yWDHdH2za5">our Discord Server</a> or on GitHub through an issue.</p>
 <h2 id="deploying-your-new-audio-source">Deploying your new audio source.</h2>
+<p><strong>(Hopefully) coming soon:</strong> An in-app way to download/install/distribute your custom audiosource via <a href="https://github.com/AudioBand/CommunityAudiosources">This GitHub repo</a>.</p>
 <p>For now, AudioBand reads each sub folder under the <code>AudioSources</code> folder. To deploy your new audio source, place your files under a new subfolder in the <code>AudioSources</code> directory. <strong>Ensure that your AudioSource.manifest file is also included. You also do not need to copy the AudioBand.AudioSource library files</strong></p>
 <p>The file structure will look like this:</p>
 <pre><code>Audioband/
