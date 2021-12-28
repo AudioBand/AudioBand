@@ -12,11 +12,11 @@
                 <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32\1.0.0.0" Name="Class" Value="AudioBand.Deskband" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32\1.0.0.0" Name="Assembly" Value="AudioBand, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-                <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///C:/Users/vanro/Documents/Programming/cs/audio-band/src/Audioband/bin/Debug/AudioBand.dll" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil156C3D28E6AA0B19E3597B0E7D9FC3C1]" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32" Name="Class" Value="AudioBand.Deskband" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32" Name="Assembly" Value="AudioBand, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-                <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32" Name="CodeBase" Value="file:///C:/Users/vanro/Documents/Programming/cs/audio-band/src/Audioband/bin/Debug/AudioBand.dll" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{957D8782-5B07-4126-9B24-1E917BAAAD64}\InprocServer32" Name="CodeBase" Value="file:///[#fil156C3D28E6AA0B19E3597B0E7D9FC3C1]" Type="string" Action="write" />
             </Component>
         </DirectoryRef>
     </Fragment>
