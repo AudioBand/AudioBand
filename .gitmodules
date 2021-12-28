@@ -1,4 +1,4 @@
 [submodule "audioband-release"]
 	path = audioband-release
-	url = https://github.com/AudioBand/audio-band.git
+	url = https://github.com/AudioBand/AudioBand.git
 	branch = release
