@@ -4,7 +4,7 @@ This page contains the `AudioBand.AudioSource` api documentation and documentati
 
 ## Building a new audio source project
 1. Create a new class library project
-2. [Install the audio source nuget package](https://www.nuget.org/packages/AudioBand.AudioSource/)
+2. [Install the audio source nuget package](https://www.nuget.org/packages/svr333.AudioBand.AudioSource/)
 3. Create a class to implement `IAudioSource`. Api reference on the right.
 ```cs
 public class AudioSource : IAudioSource
