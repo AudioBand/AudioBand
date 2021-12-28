@@ -29,7 +29,6 @@ namespace AudioBand.UI
         private readonly GitHubHelper _github;
         private IAudioSource _selectedAudioSource;
         private UserProfile _selectedUserProfile;
-        private int _rotationAngle;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioBandToolbarViewModel"/> class.
@@ -125,17 +124,7 @@ namespace AudioBand.UI
         /// <summary>
         /// Gets the RotationAngle of the current profile.
         /// </summary>
-        public int RotationAngle
-        {
-            get => _rotationAngle;
-            set
-            {
-                if (SetProperty(ref _rotationAngle, value))
-                {
-                    SelectedProfile.GeneralSettings.RotationAngle = value;
-                }
-            }
-        }
+        public int RotationAngle => _appSettings.CurrentProfile.GeneralSettings.RotationAngle;
 
         private void ShowSettingsWindowCommandOnExecute()
         {
@@ -287,6 +276,7 @@ namespace AudioBand.UI
 
             _appSettings.SelectProfile(profileName);
             SelectedProfile = _appSettings.CurrentProfile;
+            OnPropertyChanged(nameof(RotationAngle));
         }
     }
 }

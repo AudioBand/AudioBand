@@ -1,8 +1,9 @@
-﻿using AudioBand.Messages;
-using AudioBand.Settings;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows.Media;
+using AudioBand.Messages;
+using AudioBand.Models;
+using AudioBand.Settings;
 
 namespace AudioBand.UI
 {
@@ -11,23 +12,23 @@ namespace AudioBand.UI
     /// </summary>
     public class GeneralSettingsViewModel : ViewModelBase
     {
-        private readonly IAppSettings _appsettings;
-        private readonly Models.GeneralSettings _model = new Models.GeneralSettings();
-        private readonly Models.GeneralSettings _backup = new Models.GeneralSettings();
+        private readonly IAppSettings _appSettings;
+        private readonly GeneralSettings _model = new GeneralSettings();
+        private readonly GeneralSettings _backup = new GeneralSettings();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneralSettingsViewModel"/> class.
         /// </summary>
-        /// <param name="appsettings">The app settings.</param>
+        /// <param name="appSettings">The app settings.</param>
         /// <param name="dialogService">The dialog service.</param>
         /// <param name="messageBus">The message bus.</param>
-        public GeneralSettingsViewModel(IAppSettings appsettings, IDialogService dialogService, IMessageBus messageBus)
+        public GeneralSettingsViewModel(IAppSettings appSettings, IDialogService dialogService, IMessageBus messageBus)
         {
-            MapSelf(appsettings.CurrentProfile.GeneralSettings, _model);
+            MapSelf(appSettings.CurrentProfile.GeneralSettings, _model);
 
             DialogService = dialogService;
-            _appsettings = appsettings;
-            appsettings.ProfileChanged += AppsettingsOnProfileChanged;
+            _appSettings = appSettings;
+            appSettings.ProfileChanged += AppsettingsOnProfileChanged;
             UseMessageBus(messageBus);
         }
 
@@ -101,13 +102,13 @@ namespace AudioBand.UI
         protected override void OnEndEdit()
         {
             base.OnEndEdit();
-            MapSelf(_model, _appsettings.CurrentProfile.GeneralSettings);
+            MapSelf(_model, _appSettings.CurrentProfile.GeneralSettings);
         }
 
         private void AppsettingsOnProfileChanged(object sender, EventArgs e)
         {
             Debug.Assert(IsEditing == false, "Should not be editing");
-            MapSelf(_appsettings.CurrentProfile.GeneralSettings, _model);
+            MapSelf(_appSettings.CurrentProfile.GeneralSettings, _model);
             RaisePropertyChangedAll();
         }
     }

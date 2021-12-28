@@ -19,7 +19,7 @@
             <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource HeightLabelText}" />
             <metro:NumericUpDown audioband:NumericInput.Type="Size" Value="{Binding Height, Mode=TwoWay}" />
             <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource RotationLabelText}" />
-            <metro:NumericUpDown audioband:NumericInput.Type="Size" Value="{Binding RotationAngle, Mode=TwoWay}" />
+            <metro:NumericUpDown audioband:NumericInput.Type="Integer" Value="{Binding RotationAngle, Mode=TwoWay}" />
             <audioband:ColorPicker Title="{StaticResource BackgroundColorDescription}"
                                    DialogService="{Binding DialogService}"
                                    Color="{Binding BackgroundColor}" />
