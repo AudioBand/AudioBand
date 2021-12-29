@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AudioBand.Logging;
+using AudioBand.Models;
 using AudioBand.Settings;
 using NLog;
 using Octokit;
@@ -56,17 +56,10 @@ namespace AudioBand
                     return true;
                 }
 
-                var current = CreateSemanticVersion(currentVersion);
-                var latest = CreateSemanticVersion(latestVersion);
+                var current = new SemanticVersion(currentVersion);
+                var latest = new SemanticVersion(latestVersion);
 
-                if (latest.Major > current.Major
-                || (latest.Major == current.Major && latest.Minor > current.Minor)
-                || (latest.Major == current.Major && latest.Minor == current.Minor && latest.Patch > current.Patch))
-                {
-                    return false;
-                }
-
-                return true;
+                return !latest.IsNewerVersionThan(current);
             }
             catch (Exception)
             {
@@ -93,36 +86,6 @@ namespace AudioBand
                 Logger.Warn("Could not check for updates, request to GitHub failed.");
                 return null;
             }
-        }
-
-        private SemanticVersion CreateSemanticVersion(string version)
-        {
-            var regex = Regex.Match(version, "\\d+\\.\\d+\\.\\d+");
-
-            if (!regex.Success)
-            {
-                return new SemanticVersion(0, 0, 0);
-            }
-
-            version = version.StartsWith("v") ? version.Remove(0, 1) : version;
-            var splits = version.Split('.');
-            return new SemanticVersion(int.Parse(splits[0]), int.Parse(splits[1]), int.Parse(splits[2]));
-        }
-
-        private struct SemanticVersion
-        {
-            public SemanticVersion(int major, int minor, int patch)
-            {
-                Major = major;
-                Minor = minor;
-                Patch = patch;
-            }
-
-            public int Major;
-
-            public int Minor;
-
-            public int Patch;
         }
     }
 }

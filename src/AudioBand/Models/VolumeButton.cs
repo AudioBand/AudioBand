@@ -12,6 +12,7 @@ namespace AudioBand.Models
         /// </summary>
         public VolumeButton()
         {
+            IsVisible = false;
             XPosition = 251;
             YPosition = 6;
 

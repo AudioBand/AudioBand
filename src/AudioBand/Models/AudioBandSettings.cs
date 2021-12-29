@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace AudioBand.Models
 {
     /// <summary>
@@ -23,6 +25,12 @@ namespace AudioBand.Models
                 _lastNonIdleProfileName = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the last known run version by the user.
+        /// This can be used for version specific updates.
+        /// </summary>
+        public string LastKnownVersion { get; set; } = "v0.0.0";
 
         /// <summary>
         /// The profile that should enable when AudioBand goes into idle mode.

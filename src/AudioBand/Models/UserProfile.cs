@@ -96,7 +96,10 @@ namespace AudioBand.Models
                 PreviousButton = new PreviousButton(),
                 RepeatModeButton = new RepeatModeButton(),
                 ShuffleModeButton = new ShuffleModeButton(),
-                VolumeButton = new VolumeButton(),
+                VolumeButton = new VolumeButton()
+                {
+                    IsVisible = true
+                },
                 ProgressBar = new ProgressBar(),
                 CustomLabels = new List<CustomLabel>
                 {
@@ -192,6 +195,10 @@ namespace AudioBand.Models
                     IsVisible = false
                 },
                 ShuffleModeButton = new ShuffleModeButton()
+                {
+                    IsVisible = false
+                },
+                VolumeButton = new VolumeButton()
                 {
                     IsVisible = false
                 },

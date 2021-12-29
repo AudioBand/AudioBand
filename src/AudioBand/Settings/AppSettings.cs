@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using AudioBand.Models;
 using AudioBand.Settings.Persistence;
 
@@ -33,6 +34,8 @@ namespace AudioBand.Settings
             var profileName = AudioBandSettings.UseAutomaticIdleProfile && !string.IsNullOrEmpty(AudioBandSettings.LastNonIdleProfileName)
                             ? AudioBandSettings.LastNonIdleProfileName : settings.CurrentProfileName;
             SelectProfile(profileName);
+
+            AudioBandSettings.LastKnownVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
         }
 
         /// <inheritdoc />
@@ -195,6 +198,15 @@ namespace AudioBand.Settings
                 // if the profile doesn't exist, disable idle profile
                 AudioBandSettings.IdleProfileName = profiles.First().Name;
                 AudioBandSettings.UseAutomaticIdleProfile = false;
+            }
+
+            // Check if we need to adapt DefaultProfile to include volume button.
+            var defaultProfile = profiles.FirstOrDefault(x => x.Name == UserProfile.DefaultProfileName);
+            var isAfterVolume = new SemanticVersion(AudioBandSettings.LastKnownVersion).IsNewerVersionThan(new SemanticVersion(1, 0, 3));
+
+            if (defaultProfile != null && !isAfterVolume)
+            {
+                profiles[Array.IndexOf(profiles, defaultProfile)] = UserProfile.CreateDefaultProfile(UserProfile.DefaultProfileName);
             }
 
             _profiles = profiles.ToDictionary(profile => profile.Name, profile => profile);
