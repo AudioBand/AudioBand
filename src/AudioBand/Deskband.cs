@@ -117,6 +117,7 @@ namespace AudioBand
                 _container.Register<IPersistentSettings, PersistentSettings>(Lifestyle.Singleton);
                 _container.Register<GitHubHelper>(Lifestyle.Singleton);
                 _container.Register<PopupService>(Lifestyle.Singleton);
+                _container.Register<TrayIconService>(Lifestyle.Singleton);
 
                 _container.Register<AboutDialogViewModel>(Lifestyle.Singleton);
                 _container.Register<AlbumArtViewModel>(Lifestyle.Singleton);
