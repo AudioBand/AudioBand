@@ -209,11 +209,20 @@ namespace AudioBand.Settings
                 profiles[Array.IndexOf(profiles, defaultProfile)] = UserProfile.CreateDefaultProfile(UserProfile.DefaultProfileName);
             }
 
+            DoNullChecks(ref profiles);
             _profiles = profiles.ToDictionary(profile => profile.Name, profile => profile);
 
             if (settings.CurrentProfileName == null || !_profiles.ContainsKey(settings.CurrentProfileName))
             {
                 settings.CurrentProfileName = _profiles.First().Key;
+            }
+        }
+
+        private void DoNullChecks(ref UserProfile[] profiles)
+        {
+            for (int i = 0; i < profiles.Length; i++)
+            {
+                profiles[i].VolumeButton ??= new VolumeButton();
             }
         }
     }
