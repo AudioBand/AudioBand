@@ -418,7 +418,7 @@
                     <i:InvokeCommandAction Command="{Binding MouseLeftCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <Border Background="{audioband:ThemeResource SystemAccentColor}">
+            <Border Background="{audioband:ThemeResource SystemBackgroundColor}">
                 <Slider x:Name="VolumeSlider"
                         HorizontalAlignment="Center"
                         Orientation="Vertical"

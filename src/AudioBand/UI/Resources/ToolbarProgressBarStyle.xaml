@@ -147,7 +147,6 @@
     </Style>
     <!-- Volume slider styles / templates -->
     <Style x:Key="VolumePopupStyle" TargetType="fluentWpf:AcrylicPopup">
-        <Setter Property="Background" Value="{audioband:ThemeResource SystemBackgroundColor}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsHorizontal}" Value="True">
                 <Setter Property="fluentWpf:AcrylicPopup.RenderTransform">
