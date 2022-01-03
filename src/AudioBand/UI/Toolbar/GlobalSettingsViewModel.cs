@@ -10,6 +10,7 @@ using AudioBand.Commands;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
+using Microsoft.Deployment.WindowsInstaller;
 
 namespace AudioBand.UI
 {
@@ -223,6 +224,7 @@ namespace AudioBand.UI
             try
             {
                 var fileName = Path.GetTempFileName().Replace(".tmp", ".msi");
+
                 using (var client = new WebClient())
                 {
                     client.DownloadProgressChanged += OnDownloadProgressChanged;
@@ -233,20 +235,15 @@ namespace AudioBand.UI
                 }
 
                 IsDownloading = false;
-                Process.Start(new ProcessStartInfo()
-                {
-                    FileName = "msiexec",
-                    Arguments = $"/i {fileName}",
-                    WorkingDirectory = @"C:\temp\",
-                    Verb = "runas"
-                });
+
+                Installer.SetInternalUI(InstallUIOptions.Silent);
+                Installer.InstallProduct(fileName, "ACTION=INSTALL ALLUSERS=2 MSIINSTALLPERUSER=");
             }
             catch (Exception e)
             {
                 Logger.Info(e.Message);
                 Logger.Error(e);
             }
-            
         }
 
         private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
