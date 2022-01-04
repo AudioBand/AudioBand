@@ -63,7 +63,7 @@ namespace Win10AudioSource
         public string Name => "Windows 10";
 
         /// <inheritdoc />
-        public string Description => "";
+        public string Description => "Visit the documentation to see which apps are compatible.";
 
         /// <inheritdoc />
         public string WindowClassName => null;
