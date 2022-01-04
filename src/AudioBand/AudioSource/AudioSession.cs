@@ -182,7 +182,6 @@ namespace AudioBand.AudioSource
         private void AudioSourceVolumeChanged(object sender, int e)
         {
             Volume = e;
-            RaisePropertyChanged(nameof(Volume));
         }
 
         private void AudioSourceOnTrackInfoChanged(object sender, TrackInfoChangedEventArgs e)
