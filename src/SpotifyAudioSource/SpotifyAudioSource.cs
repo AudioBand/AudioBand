@@ -858,6 +858,12 @@ namespace SpotifyAudioSource
                 .RequestToken(new AuthorizationCodeTokenRequest(
                     ClientId, ClientSecret, response.Code, new Uri($"http://localhost:{LocalPort}")));
 
+            if (string.IsNullOrEmpty(tokenResponse.RefreshToken))
+            {
+                _authIsInProcess = false;
+                return;
+            }
+
             RefreshToken = tokenResponse.RefreshToken;
             _spotifyConfig = config.WithAuthenticator(new AuthorizationCodeAuthenticator(ClientId, ClientSecret, tokenResponse));
             _spotifyClient = new SpotifyClient(_spotifyConfig);
