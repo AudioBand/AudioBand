@@ -418,7 +418,7 @@
                     <i:InvokeCommandAction Command="{Binding MouseLeftCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <Border Background="{Binding PopupBackgroundColor}">
+            <Border Background="{Binding PopupBackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" >
                 <Slider x:Name="VolumeSlider"
                         HorizontalAlignment="Center"
                         Orientation="Vertical"
