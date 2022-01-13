@@ -282,6 +282,7 @@ namespace SpotifyAudioSource
         public async Task ActivateAsync()
         {
             _isActive = true;
+            _authIsInProcess = false;
 
             Authorize();
             await UpdatePlayer();
@@ -293,6 +294,7 @@ namespace SpotifyAudioSource
         public Task DeactivateAsync()
         {
             _isActive = false;
+            _authIsInProcess = false;
 
             _checkSpotifyTimer.Stop();
             _currentItemId = null;
@@ -376,14 +378,25 @@ namespace SpotifyAudioSource
         /// <inheritdoc />
         public async Task SetVolumeAsync(int newVolume)
         {
-            await _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(newVolume));
+            if (_spotifyClient == null)
+            {
+                Authorize();
+                return;
+            }
 
+            await _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(newVolume));
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
         public async Task SetPlaybackProgressAsync(TimeSpan newProgress)
         {
+            if (_spotifyClient == null)
+            {
+                Authorize();
+                return;
+            }
+
             await OnPlayerCommandFailed(()
                 => _spotifyClient.Player.SeekTo(new PlayerSeekToRequest((long)newProgress.TotalMilliseconds)), "SetPlaybackProgress");
 
@@ -393,6 +406,12 @@ namespace SpotifyAudioSource
         /// <inheritdoc />
         public async Task SetShuffleAsync(bool shuffleOn)
         {
+            if (_spotifyClient == null)
+            {
+                Authorize();
+                return;
+            }
+
             await OnPlayerCommandFailed(()
                 => _spotifyClient.Player.SetShuffle(new PlayerShuffleRequest(shuffleOn)), "SetShuffle");
 
@@ -402,6 +421,12 @@ namespace SpotifyAudioSource
         /// <inheritdoc />
         public async Task SetRepeatModeAsync(RepeatMode newRepeatMode)
         {
+            if (_spotifyClient == null)
+            {
+                Authorize();
+                return;
+            }
+
             await OnPlayerCommandFailed(()
                 => _spotifyClient.Player.SetRepeat(new PlayerSetRepeatRequest(ToRepeatState(newRepeatMode))), "SetRepeatMode");
 
