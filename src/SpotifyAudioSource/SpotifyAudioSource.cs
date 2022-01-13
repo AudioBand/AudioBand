@@ -479,6 +479,7 @@ namespace SpotifyAudioSource
             try
             {
                 FirstTimeAuth().GetAwaiter().GetResult();
+                _authIsInProcess = false;
             }
             catch (Exception e)
             {
