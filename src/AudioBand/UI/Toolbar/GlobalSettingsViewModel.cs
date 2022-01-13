@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace AudioBand.UI
         private bool _isDownloading;
         private int _downloadPercentage;
         private string _selectedProfileName;
+        private string _fileName;
         private readonly AudioBandSettings _model = new AudioBandSettings();
         private readonly AudioBandSettings _backup = new AudioBandSettings();
 
@@ -222,29 +224,48 @@ namespace AudioBand.UI
         {
             try
             {
-                var fileName = Path.GetTempFileName().Replace(".tmp", ".msi");
+                _fileName = Path.GetTempFileName().Replace(".tmp", ".msi");
 
                 using (var client = new WebClient())
                 {
                     client.DownloadProgressChanged += OnDownloadProgressChanged;
+                    client.DownloadFileCompleted += OnDownloadCompleted;
 
                     IsDownloading = true;
                     var link = new Uri(await _gitHubHelper.GetLatestDownloadUrlAsync());
-                    client.DownloadFileAsync(link, fileName);
+                    client.DownloadFileAsync(link, _fileName);
                 }
-
-                IsDownloading = false;
-
-                var p = Process.Start(new ProcessStartInfo()
-                {
-                    FileName = "msiexec",
-                    Arguments = $"/i {fileName}",
-                });
             }
             catch (Exception e)
             {
                 Logger.Info(e.Message);
                 Logger.Error(e);
+            }
+        }
+
+        private void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            IsDownloading = false;
+
+            if (e.Cancelled)
+            {
+                return;
+            }
+
+            try
+            {
+                var p = Process.Start(new ProcessStartInfo()
+                {
+                    FileName = "msiexec",
+                    WorkingDirectory = @"C:\temp\",
+                    Arguments = $"/i {_fileName}",
+                    Verb = "Runas",
+                });
+            }
+            catch (Exception exc)
+            {
+                Logger.Info(exc.Message);
+                Logger.Error(exc);
             }
         }
 
