@@ -10,7 +10,6 @@ using AudioBand.Commands;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
-using Microsoft.Deployment.WindowsInstaller;
 
 namespace AudioBand.UI
 {
@@ -236,8 +235,11 @@ namespace AudioBand.UI
 
                 IsDownloading = false;
 
-                Installer.SetInternalUI(InstallUIOptions.Silent);
-                Installer.InstallProduct(fileName, "ACTION=INSTALL ALLUSERS=2 MSIINSTALLPERUSER=");
+                var p = Process.Start(new ProcessStartInfo()
+                {
+                    FileName = "msiexec",
+                    Arguments = $"/i {fileName}",
+                });
             }
             catch (Exception e)
             {

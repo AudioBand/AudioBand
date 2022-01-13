@@ -418,7 +418,7 @@
                     <i:InvokeCommandAction Command="{Binding MouseLeftCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <Border Background="{audioband:ThemeResource SystemBackgroundColor}">
+            <Border Background="{Binding PopupBackgroundColor}">
                 <Slider x:Name="VolumeSlider"
                         HorizontalAlignment="Center"
                         Orientation="Vertical"
@@ -460,7 +460,7 @@
                 DataContext="{Binding ViewModels.PopupViewModel}"
                 PopupAnimation="Fade"
                 AllowsTransparency="True" >
-            <StackPanel Background="{audioband:ThemeResource SystemBackgroundColor}" Opacity="0.95">
+            <StackPanel Background="{audioband:ThemeResource SystemAccentColor}" Opacity="0.95">
                 <Grid Margin="5" Background="{audioband:ThemeResource SystemAltHighColor}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />

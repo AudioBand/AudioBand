@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using AudioBand.AudioSource;
@@ -69,6 +70,16 @@ namespace AudioBand.UI
         {
             get => Model.VolumeBarBackgroundColor;
             set => SetProperty(Model, nameof(Model.VolumeBarBackgroundColor), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Popup's BackgroundColor.
+        /// </summary>
+        [TrackState]
+        public Color PopupBackgroundColor
+        {
+            get => Model.PopupBackgroundColor;
+            set => SetProperty(Model, nameof(Model.PopupBackgroundColor), value);
         }
 
         /// <summary>

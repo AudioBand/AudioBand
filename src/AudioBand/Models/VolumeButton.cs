@@ -92,5 +92,10 @@ namespace AudioBand.Models
         /// Gets or sets the BackgroundColor.
         /// </summary>
         public Color VolumeBarBackgroundColor { get; set; } = Colors.DimGray;
+
+        /// <summary>
+        /// Gets or sets the Popup's BackgroundColor.
+        /// </summary>
+        public Color PopupBackgroundColor { get; set; } = Colors.DarkGray;
     }
 }

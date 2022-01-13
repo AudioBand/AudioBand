@@ -25,6 +25,9 @@
             <ui:ColorPicker Title="{StaticResource VolumeBarBackgroundLabelText}"
                             DialogService="{Binding DialogService}"
                             Color="{Binding VolumeBarBackgroundColor}" />
+            <ui:ColorPicker Title="{StaticResource PopupBackgroundLabelText}"
+                            DialogService="{Binding DialogService}"
+                            Color="{Binding PopupBackgroundColor}" />
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource PopupContentSectionText}"/>
