@@ -45,6 +45,7 @@ namespace SpotifyAudioSource
         private string _proxyUserName;
         private string _proxyPassword;
         private bool _isActive;
+        private DateTime _lastAuthTime = DateTime.MinValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAudioSource"/> class.
@@ -835,6 +836,12 @@ namespace SpotifyAudioSource
 
         private async Task FirstTimeAuth()
         {
+            if (_lastAuthTime.AddSeconds(20) < DateTime.UtcNow)
+            {
+                return;
+            }
+
+            _lastAuthTime = DateTime.UtcNow;
             _authIsInProcess = true;
             _server = new EmbedIOAuthServer(new Uri($"http://localhost:{LocalPort}"), LocalPort);
             await _server.Start();
