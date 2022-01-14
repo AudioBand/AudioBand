@@ -45,7 +45,7 @@ namespace SpotifyAudioSource
         private string _proxyUserName;
         private string _proxyPassword;
         private bool _isActive;
-        private DateTime _lastAuthTime = DateTime.MinValue;
+        private DateTime _lastAuthTime = DateTime.MaxValue;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAudioSource"/> class.
