@@ -50,6 +50,8 @@ namespace AudioBand.UI
             _github = github;
             ViewModels = viewModels;
 
+            _messageBus.Subscribe<ProfilesUpdatedMessage>(OnProfilesUpdated);
+
             ShowSettingsWindowCommand = new RelayCommand(ShowSettingsWindowCommandOnExecute);
             LoadCommand = new AsyncRelayCommand<object>(LoadCommandOnExecute);
             DoubleClickCommand = new RelayCommand<RoutedEventArgs>(OnDoubleClick);
@@ -152,14 +154,7 @@ namespace AudioBand.UI
             Logger.Debug("Audio sources loaded. Loaded {num} sources", AudioSources.Count);
 
             // Initalize Profiles
-            if (_appSettings.AudioBandSettings.HideIdleProfileInQuickMenu)
-            {
-                Profiles = new ObservableCollection<UserProfile>(_appSettings.Profiles.Where(x => x.Name != _appSettings.AudioBandSettings.IdleProfileName));
-            }
-            else
-            {
-                Profiles = new ObservableCollection<UserProfile>(_appSettings.Profiles);
-            }
+            InitializeProfiles();
 
             SelectedProfile = _appSettings.CurrentProfile;
             _appSettings.AudioBandSettings.LastNonIdleProfileName = SelectedProfile.Name;
@@ -176,6 +171,13 @@ namespace AudioBand.UI
             {
                 _popups.ShowPopup("UpdatePopupTitle", "UpdatePopupDescription", TimeSpan.FromSeconds(180));
             }
+        }
+
+        private void InitializeProfiles()
+        {
+            Profiles = _appSettings.AudioBandSettings.HideIdleProfileInQuickMenu
+                ? new ObservableCollection<UserProfile>(_appSettings.Profiles.Where(x => x.Name != _appSettings.AudioBandSettings.IdleProfileName))
+                : new ObservableCollection<UserProfile>(_appSettings.Profiles);
         }
 
         private void OnDoubleClick(RoutedEventArgs e)
@@ -271,6 +273,11 @@ namespace AudioBand.UI
 
             _appSettings.SelectProfile(profileName);
             SelectedProfile = _appSettings.CurrentProfile;
+        }
+
+        private void OnProfilesUpdated(ProfilesUpdatedMessage msg)
+        {
+            InitializeProfiles();
         }
     }
 }

@@ -167,6 +167,7 @@ namespace AudioBand.UI
             _appSettings.SelectProfile(SelectedProfileName);
             SelectedProfileName = ProfileNames[0];
             _appSettings.Save();
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileDeleted);
         }
 
         private bool DeleteProfileCommandCanExecute()
@@ -186,6 +187,7 @@ namespace AudioBand.UI
 
             _appSettings.CreateProfile(newprofile);
             ProfileNames.Add(newprofile);
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
         }
 
         private void RenameProfileCommandOnExecute()
@@ -200,6 +202,7 @@ namespace AudioBand.UI
             var index = ProfileNames.IndexOf(SelectedProfileName);
             ProfileNames[index] = newProfileName;
             SelectedProfileName = newProfileName;
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileRenamed);
         }
 
         private void CloseCommandOnExecute()

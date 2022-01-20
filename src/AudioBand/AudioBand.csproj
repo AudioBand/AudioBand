@@ -150,6 +150,7 @@
     <Compile Include="Messages\FocusChangedMessage.cs" />
     <Compile Include="Messages\IMessageBus.cs" />
     <Compile Include="Messages\MessageBus.cs" />
+    <Compile Include="Messages\ProfilesUpdatedMessage.cs" />
     <Compile Include="Messages\SettingsWindowMessage.cs" />
     <Compile Include="Models\AlbumArt.cs" />
     <Compile Include="Models\AlbumArtPopup.cs" />
