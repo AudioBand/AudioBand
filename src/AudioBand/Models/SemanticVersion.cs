@@ -30,9 +30,7 @@ namespace AudioBand.Models
 
             if (!regex.Success)
             {
-                Major = 0;
-                Minor = 0;
-                Patch = 0;
+                ParseFailed = true;
                 return;
             }
 
@@ -47,17 +45,22 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets the Major version.
         /// </summary>
-        public int Major { get; private set; }
+        public int Major { get; private set; } = 0;
 
         /// <summary>
         /// Gets the Minor version.
         /// </summary>
-        public int Minor { get; private set; }
+        public int Minor { get; private set; } = 0;
 
         /// <summary>
         /// Gets the Patch version.
         /// </summary>
-        public int Patch { get; private set; }
+        public int Patch { get; private set; } = 0;
+
+        /// <summary>
+        /// Gets whether the parsing failed.
+        /// </summary>
+        public bool ParseFailed { get; private set; } = false;
 
         /// <summary>
         /// Compares whether one version is newer than another.

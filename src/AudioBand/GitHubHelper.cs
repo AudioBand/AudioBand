@@ -59,6 +59,11 @@ namespace AudioBand
                 var current = new SemanticVersion(currentVersion);
                 var latest = new SemanticVersion(latestVersion);
 
+                if (current.ParseFailed || latest.ParseFailed)
+                {
+                    return false;
+                }
+
                 return !latest.IsNewerVersionThan(current);
             }
             catch (Exception)
