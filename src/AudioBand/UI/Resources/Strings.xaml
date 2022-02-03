@@ -16,6 +16,7 @@
     <sys:String x:Key="IdleProfileSelectorDescriptionText">Select which profile to use when AudioBand goes idle</sys:String>
     <sys:String x:Key="HideIdleHeaderText">Hide Idle Profile in the Quick Menu (right click on audioband) [requires restart]</sys:String>
     <sys:String x:Key="IdleDelayLabelText">Seconds before AudioBand switches to Idle Mode</sys:String>
+    <sys:String x:Key="ClearSessionOnIdleLabelText">Clear current song information when switching to idle mode</sys:String>
     <!--  Other settings  -->
     <sys:String x:Key="OtherTitle">Other Settings</sys:String>
     <sys:String x:Key="DisableInformationPopupsText">Show helpful information hints</sys:String>

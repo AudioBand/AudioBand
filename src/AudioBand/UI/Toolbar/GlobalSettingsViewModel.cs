@@ -128,6 +128,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets whether to clear the current session information when it goes into idle.
+        /// </summary>
+        [TrackState]
+        public bool ClearSessionOnIdle
+        {
+            get => _model.ClearSessionOnIdle;
+            set => SetProperty(_model, nameof(_model.ClearSessionOnIdle), value);
+        }
+
+        /// <summary>
         /// Gets or sets whether to show information popups to the user.
         /// </summary>
         [TrackState]

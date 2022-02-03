@@ -62,6 +62,8 @@
                 <metro:ToggleSwitch IsChecked="{Binding HideIdleProfileInQuickMenu, Mode=TwoWay}" OnLabel="{StaticResource ToggleSwitchOnText}" OffLabel="{StaticResource ToggleSwitchOffText}" />
                 <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource IdleDelayLabelText}" />
                 <metro:NumericUpDown audioband:NumericInput.Type="WholeNumber" Value="{Binding ShouldGoIdleAfterInSeconds, Mode=TwoWay}" />
+                <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource ClearSessionOnIdleLabelText}" />
+                <metro:ToggleSwitch IsChecked="{Binding ClearSessionOnIdle, Mode=TwoWay}" OnLabel="{StaticResource ToggleSwitchOnText}" OffLabel="{StaticResource ToggleSwitchOffText}" />
             </StackPanel>
             <!--  Other Settings  -->
             <StackPanel>

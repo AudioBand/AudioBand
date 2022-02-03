@@ -53,6 +53,11 @@ namespace AudioBand.Models
         public int ShouldGoIdleAfterInSeconds { get; set; } = 300;
 
         /// <summary>
+        /// Gets or sets whether to clear the current session information when it goes into idle.
+        /// </summary>
+        public bool ClearSessionOnIdle { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets whether to show a popup when an update is available.
         /// </summary>
         public bool ShowPopupOnAvailableUpdate { get; set; } = true;
