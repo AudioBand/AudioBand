@@ -171,7 +171,8 @@ namespace AudioBand.Settings.Persistence
         {
             try
             {
-                File.Delete($"{profileName}.profile.json");
+                var path = Path.Combine(ProfilesDirectory, $"{profileName}.profile.json");
+                File.Delete(path);
             }
             catch (Exception) { }
         }
