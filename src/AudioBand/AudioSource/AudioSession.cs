@@ -188,6 +188,11 @@ namespace AudioBand.AudioSource
 
         private void AudioSourceOnTrackInfoChanged(object sender, TrackInfoChangedEventArgs e)
         {
+            if (e == null)
+            {
+                return;
+            }
+
             SongArtist = e.Artist;
             SongLength = e.TrackLength;
             SongName = e.TrackName;
@@ -202,6 +207,7 @@ namespace AudioBand.AudioSource
             SongArtist = null;
             SongName = null;
             AlbumName = null;
+            AlbumArt = null;
             SongProgress = TimeSpan.Zero;
             SongLength = TimeSpan.Zero;
             Volume = 0;
@@ -216,19 +222,14 @@ namespace AudioBand.AudioSource
                 return;
             }
 
-            if (_isIdle)
+            if (_isIdle && _appSettings.AudioBandSettings.ClearSessionOnIdle)
             {
-                if (_appSettings.AudioBandSettings.ClearSessionOnIdle)
-                {
-                    AudioSourceOnTrackInfoChanged(this, _lastTrackInfo);
-                    AudioSourceVolumeChanged(this, _lastVolume);
-                }
-
-                _appSettings.SelectProfile(_appSettings.AudioBandSettings.LastNonIdleProfileName);
-                _isIdle = false;
-                return;
+                AudioSourceOnTrackInfoChanged(this, _lastTrackInfo);
+                AudioSourceVolumeChanged(this, _lastVolume);
             }
 
+            _isIdle = false;
+            _appSettings.SelectProfile(_appSettings.AudioBandSettings.LastNonIdleProfileName);
             _idleProfileTimer.Stop();
         }
 
