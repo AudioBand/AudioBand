@@ -16,7 +16,7 @@
                   d:DesignWidth="400"
                   fw:PointerTracker.Enabled="True"
                   BorderBrush="{audioband:ThemeResource SystemAccentColor}"
-                  ExtendViewIntoTitleBar="True"
+                  ExtendViewIntoTitleBar="False"
                   FallbackColor="Transparent"
                   Foreground="{audioband:ThemeResource SystemBaseHighColor}"
                   Icon="pack://application:,,,/AudioBand;component/audioband.ico"
