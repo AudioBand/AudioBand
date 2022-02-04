@@ -9,13 +9,20 @@ namespace AudioBand.Messages
         /// Profile was created.
         /// </summary>
         ProfileCreated,
+
         /// <summary>
         /// Profile was deleted.
         /// </summary>
         ProfileDeleted,
+
         /// <summary>
         /// Profile was renamed.
         /// </summary>
-        ProfileRenamed
+        ProfileRenamed,
+
+        /// <summary>
+        /// A new profile was selected.
+        /// </summary>
+        ProfileSelected
     }
 }

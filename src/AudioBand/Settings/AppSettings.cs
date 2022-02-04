@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings.Persistence;
 
@@ -14,15 +15,18 @@ namespace AudioBand.Settings
     public class AppSettings : IAppSettings
     {
         private readonly IPersistentSettings _persistSettings;
+        private readonly IMessageBus _messageBus;
         private Dictionary<string, UserProfile> _profiles = new Dictionary<string, UserProfile>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppSettings"/> class.
         /// </summary>
         /// <param name="persistSettings">The settings persistence object.</param>
-        public AppSettings(IPersistentSettings persistSettings)
+        /// /// <param name="messageBus">The message bus.</param>
+        public AppSettings(IPersistentSettings persistSettings, IMessageBus messageBus)
         {
             _persistSettings = persistSettings;
+            _messageBus = messageBus;
             _persistSettings.CheckAndConvertOldSettings();
             var settings = _persistSettings.ReadSettings();
 
@@ -68,6 +72,7 @@ namespace AudioBand.Settings
 
             CurrentProfile = _profiles[profileName];
             ProfileChanged?.Invoke(this, EventArgs.Empty);
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileSelected);
             Save();
         }
 

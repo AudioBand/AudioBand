@@ -164,7 +164,6 @@ namespace AudioBand.UI
                 SelectProfileCommand.Execute(_appSettings.AudioBandSettings.IdleProfileName);
             }
 
-            RaisePropertyChanged(nameof(Profiles));
             Logger.Debug($"Loaded {Profiles.Count} profiles. (may exclude idle profile)");
 
             if (!await _github.IsOnLatestVersionAsync())
@@ -178,6 +177,8 @@ namespace AudioBand.UI
             Profiles = _appSettings.AudioBandSettings.HideIdleProfileInQuickMenu
                 ? new ObservableCollection<UserProfile>(_appSettings.Profiles.Where(x => x.Name != _appSettings.AudioBandSettings.IdleProfileName))
                 : new ObservableCollection<UserProfile>(_appSettings.Profiles);
+
+            RaisePropertyChanged(nameof(Profiles));
         }
 
         private void OnDoubleClick(RoutedEventArgs e)
@@ -277,6 +278,12 @@ namespace AudioBand.UI
 
         private void OnProfilesUpdated(ProfilesUpdatedMessage msg)
         {
+            if (msg == ProfilesUpdatedMessage.ProfileSelected)
+            {
+                SelectedProfile = _appSettings.CurrentProfile;
+                return;
+            }
+
             InitializeProfiles();
         }
     }
