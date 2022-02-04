@@ -500,7 +500,7 @@
                           CanContentScroll="False"
                           FocusVisualStyle="{x:Null}"
                           VerticalScrollBarVisibility="Auto">
-                <ContentControl Margin="20"
+                <ContentControl Margin="20, 0, 20, 20"
                                 BorderThickness="0"
                                 Content="{Binding SelectedViewModel}"
                                 IsTabStop="False">

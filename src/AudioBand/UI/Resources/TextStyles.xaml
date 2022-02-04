@@ -12,8 +12,9 @@
     <Style x:Key="DescriptionTextBlock"
            BasedOn="{StaticResource {x:Type TextBlock}}"
            TargetType="{x:Type TextBlock}">
-        <Setter Property="Margin" Value="0,8,0,0" />
+        <Setter Property="Margin" Value="0,11,0,0" />
         <Setter Property="FontSize" Value="{StaticResource BodyFontSize}" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
@@ -29,6 +30,7 @@
     <Style x:Key="TitleTextBlock"
            BasedOn="{StaticResource {x:Type TextBlock}}"
            TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="0,21,0,0" />
         <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="LineHeight" Value="28" />
