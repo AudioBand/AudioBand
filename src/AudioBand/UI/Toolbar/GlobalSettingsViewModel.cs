@@ -112,11 +112,7 @@ namespace AudioBand.UI
         public bool HideIdleProfileInQuickMenu
         {
             get => _model.HideIdleProfileInQuickMenu;
-            set
-            {
-                SetProperty(_model, nameof(_model.HideIdleProfileInQuickMenu), value);
-                _messageBus.Publish(ProfilesUpdatedMessage.ShowIdleProfileChanged);
-            }
+            set => SetProperty(_model, nameof(_model.HideIdleProfileInQuickMenu), value);
         }
 
         /// <summary>
@@ -295,11 +291,6 @@ namespace AudioBand.UI
 
         private void OnProfilesUpdated(ProfilesUpdatedMessage msg)
         {
-            if (msg == ProfilesUpdatedMessage.ShowIdleProfileChanged)
-            {
-                return;
-            }
-
             ProfileNames = new ObservableCollection<string>(_appSettings.Profiles.Select(p => p.Name));
             RaisePropertyChanged(nameof(ProfileNames));
         }
