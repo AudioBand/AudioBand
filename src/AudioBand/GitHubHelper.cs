@@ -61,7 +61,7 @@ namespace AudioBand
 
                 if (current.ParseFailed || latest.ParseFailed)
                 {
-                    return false;
+                    return true;
                 }
 
                 return !latest.IsNewerVersionThan(current);
@@ -69,7 +69,7 @@ namespace AudioBand
             catch (Exception)
             {
                 Logger.Warn("Could not check for updates, request to GitHub failed.");
-                return false;
+                return true;
             }
         }
 
