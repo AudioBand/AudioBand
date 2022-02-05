@@ -20,6 +20,7 @@ namespace AudioBand.UI
     public class GlobalSettingsViewModel : ViewModelBase
     {
         private IAppSettings _appSettings;
+        private IMessageBus _messageBus;
         private GitHubHelper _gitHubHelper;
         private bool _updateIsAvailable;
         private bool _noUpdateFound;
@@ -40,7 +41,10 @@ namespace AudioBand.UI
         {
             MapSelf(appSettings.AudioBandSettings, _model);
             _appSettings = appSettings;
+            _messageBus = messageBus;
             _gitHubHelper = gitHubHelper;
+
+            _messageBus.Subscribe<ProfilesUpdatedMessage>(OnProfilesUpdated);
 
             CheckForUpdatesCommand = new AsyncRelayCommand(CheckForUpdatesCommandOnExecute);
             InstallUpdateCommand = new AsyncRelayCommand(InstallUpdateCommandOnExecute);
@@ -98,13 +102,7 @@ namespace AudioBand.UI
         public string SelectedProfileName
         {
             get => _selectedProfileName;
-            set
-            {
-                if (SetProperty(ref _selectedProfileName, value))
-                {
-                    _appSettings.AudioBandSettings.IdleProfileName = value;
-                }
-            }
+            set => SetProperty(_model, nameof(_model.IdleProfileName), value);
         }
 
         /// <summary>
@@ -186,7 +184,7 @@ namespace AudioBand.UI
         /// <summary>
         /// Gets the list of profile names.
         /// </summary>
-        public ObservableCollection<string> ProfileNames { get; }
+        public ObservableCollection<string> ProfileNames { get; private set; }
 
         /// <inheritdoc />
         protected override void OnReset()
@@ -289,6 +287,12 @@ namespace AudioBand.UI
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.AudioBandSettings, _model);
             RaisePropertyChangedAll();
+        }
+
+        private void OnProfilesUpdated(ProfilesUpdatedMessage msg)
+        {
+            ProfileNames = new ObservableCollection<string>(_appSettings.Profiles.Select(p => p.Name));
+            RaisePropertyChanged(nameof(ProfileNames));
         }
     }
 }
