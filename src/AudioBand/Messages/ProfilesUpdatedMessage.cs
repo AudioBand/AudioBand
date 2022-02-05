@@ -23,6 +23,11 @@ namespace AudioBand.Messages
         /// <summary>
         /// A new profile was selected.
         /// </summary>
-        ProfileSelected
+        ProfileSelected,
+
+        /// <summary>
+        /// The option to hide/show the idle profile in the context menu has changed.
+        /// </summary>
+        ShowIdleProfileChanged,
     }
 }
