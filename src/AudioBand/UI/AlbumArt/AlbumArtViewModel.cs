@@ -94,6 +94,7 @@ namespace AudioBand.UI
                 try
                 {
                     AlbumArt = new BitmapImage(new Uri(PlaceholderPath));
+                    AlbumArt.Freeze();
                 }
                 catch
                 {
