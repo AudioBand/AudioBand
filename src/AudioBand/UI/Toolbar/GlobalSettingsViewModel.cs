@@ -101,7 +101,7 @@ namespace AudioBand.UI
         [TrackState]
         public string SelectedProfileName
         {
-            get => _selectedProfileName;
+            get => _model.IdleProfileName;
             set => SetProperty(_model, nameof(_model.IdleProfileName), value);
         }
 
