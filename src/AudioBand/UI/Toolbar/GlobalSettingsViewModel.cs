@@ -26,7 +26,6 @@ namespace AudioBand.UI
         private bool _noUpdateFound;
         private bool _isDownloading;
         private int _downloadPercentage;
-        private string _selectedProfileName;
         private string _fileName;
         private readonly AudioBandSettings _model = new AudioBandSettings();
         private readonly AudioBandSettings _backup = new AudioBandSettings();
