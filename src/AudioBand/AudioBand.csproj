@@ -107,6 +107,8 @@
     <Compile Include="AudioSource\IAudioSession.cs" />
     <Compile Include="AudioSource\IAudioSourceManager.cs" />
     <Compile Include="AudioSource\IInternalAudioSource.cs" />
+    <Compile Include="Models\CommunityAudiosource.cs" />
+    <Compile Include="Models\CommunityProfile.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\SemanticVersion.cs" />
     <Compile Include="Settings\MappingProfiles\SettingsV1ToSettingsV2Profile.cs" />
