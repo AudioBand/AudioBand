@@ -98,8 +98,8 @@ namespace AudioBand
                 var profiles = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, "CustomProfiles");
                 _communityProfiles = profiles.Where(x => x.Type == ContentType.Dir).ToArray();
 
-                var audiosources = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityAudiosourcesRepository, "CustomAudiosources");
-                _communityAudiosources = audiosources.Where(x => x.Type == ContentType.Dir).ToArray();
+                //var audiosources = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityAudiosourcesRepository, "CustomAudiosources");
+                //_communityAudiosources = audiosources.Where(x => x.Type == ContentType.Dir).ToArray();
             }
             catch (Exception e)
             {
@@ -115,7 +115,7 @@ namespace AudioBand
         {
             if (await HasNoInternet())
             {
-                return null;
+                return new CommunityProfile[] { };
             }
 
             List<CommunityProfile> profiles = new List<CommunityProfile>();
@@ -131,11 +131,14 @@ namespace AudioBand
                     var isInstalled = _appSettings.Profiles.FirstOrDefault(x => x.Name == _communityProfiles[i].Name) != null;
 
                     var infoFile = subContents.First(x => x.Path.EndsWith(".json"));
-                    var info = JsonConvert.DeserializeObject<ExtraInfo>(infoFile.Content);
+                    var info = JsonConvert.DeserializeObject<ExtraInfo>(infoFile.EncodedContent);
 
                     profiles.Add(new CommunityProfile(_communityProfiles[i].Name, info.Description, info.Authors, image.DownloadUrl, isInstalled));
                 }
-                catch (Exception) { }
+                catch (Exception e)
+                {
+                    var a = "";
+                }
             }
 
             return profiles.ToArray();

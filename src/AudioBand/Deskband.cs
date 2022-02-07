@@ -42,6 +42,8 @@ namespace AudioBand
         /// </summary>
         public Deskband()
         {
+            System.Diagnostics.Debugger.Launch();
+
             // Fluentwpf requires an application window
             if (Application.Current == null)
             {
@@ -122,6 +124,7 @@ namespace AudioBand
                 _container.Register<AlbumArtViewModel>(Lifestyle.Singleton);
                 _container.Register<AlbumArtPopupViewModel>(Lifestyle.Singleton);
                 _container.Register<GlobalSettingsViewModel>(Lifestyle.Singleton);
+                _container.Register<ProfileRepoViewModel>(Lifestyle.Singleton);
                 _container.Register<GeneralSettingsViewModel>(Lifestyle.Singleton);
                 _container.Register<CustomLabelsViewModel>(Lifestyle.Singleton);
                 _container.Register<NextButtonViewModel>(Lifestyle.Singleton);
