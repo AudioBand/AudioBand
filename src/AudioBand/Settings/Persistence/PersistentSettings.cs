@@ -140,6 +140,7 @@ namespace AudioBand.Settings.Persistence
                 catch (Exception)
                 {
                     // file might not be a userprofile, just skip it
+                    Logger.Info($"{fileNames[i]} was found but could not be parsed into a working profile.");
                     continue;
                 }
             }
