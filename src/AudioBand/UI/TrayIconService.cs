@@ -27,13 +27,15 @@ namespace AudioBand.UI
 
             TaskbarIconToolTip = new ToolTip() { Content = "AudioBand" };
 
+            SetupContextMenu();
+
             TaskbarIcon = new TaskbarIcon()
             {
                 TrayToolTip = TaskbarIconToolTip,
+                ContextMenu = TaskbarIconContextMenu,
                 IconSource = BitmapFrame.Create(new Uri("pack://application:,,,/AudioBand;component/audioband.ico")),
+                DoubleClickCommand = OpenSettingsMenuCommand,
             };
-
-            SetupContextMenu();
         }
 
         /// <summary>
@@ -70,7 +72,6 @@ namespace AudioBand.UI
             {
                 Header = "Settings",
                 ToolTip = "Open Settings Menu",
-                Icon = new Windows.UI.Xaml.Controls.FontIcon() { Glyph = "\uE115" },
                 Command = OpenSettingsMenuCommand,
             };
 
