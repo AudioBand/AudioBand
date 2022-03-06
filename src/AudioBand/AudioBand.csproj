@@ -129,7 +129,7 @@
     <Compile Include="Commands\AsyncRelayCommand.cs" />
     <Compile Include="Settings\Migrations\IdentitySettingsMigrator.cs" />
     <Compile Include="Settings\Persistence\TomlHelper.cs" />
-    <Compile Include="UI\TrayIconService.cs" />
+    <Compile Include="UI\TaskbarIconViewModel.cs" />
     <Compile Include="UI\ValueConverters\ValueConverterHelper.cs" />
     <Compile Include="UI\ViewModel\TrackStateAttribute.cs" />
     <Compile Include="Commands\AsyncRelayCommand{T}.cs" />
@@ -388,6 +388,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Resources\ScrollbarStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Resources\TaskbarIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

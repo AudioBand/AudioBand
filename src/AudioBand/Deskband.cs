@@ -11,6 +11,7 @@ using AudioBand.Settings;
 using AudioBand.Settings.Persistence;
 using AudioBand.UI;
 using CSDeskBand;
+using Hardcodet.Wpf.TaskbarNotification;
 using NLog;
 using SimpleInjector;
 
@@ -32,6 +33,7 @@ namespace AudioBand
             "System.Windows.Interactivity",
         };
 
+        private TaskbarIcon _taskbarIcon;
         private AudioBandToolbar _audioBandToolbar;
         private Container _container;
         private Window _settingsWindow;
@@ -64,6 +66,11 @@ namespace AudioBand
 
             _settingsWindow = _container.GetInstance<SettingsWindow>();
             _audioBandToolbar = _container.GetInstance<AudioBandToolbar>();
+
+            // Initialize TaskbarIcon
+            ResourceDictionary taskbarIcon = new ResourceDictionary() { Source = new Uri("/AudioBand;component/UI/Resources/TaskbarIcon.xaml", UriKind.RelativeOrAbsolute) };
+            _taskbarIcon = (TaskbarIcon)taskbarIcon["TaskbarIcon"];
+            _taskbarIcon.DataContext = _container.GetInstance<TaskbarIconViewModel>();
 
             _container.GetInstance<IMessageBus>().Subscribe<FocusChangedMessage>(FocusCaptured);
         }
@@ -117,7 +124,6 @@ namespace AudioBand
                 _container.Register<IPersistentSettings, PersistentSettings>(Lifestyle.Singleton);
                 _container.Register<GitHubHelper>(Lifestyle.Singleton);
                 _container.Register<PopupService>(Lifestyle.Singleton);
-                _container.Register<TrayIconService>(Lifestyle.Singleton);
 
                 _container.Register<AboutDialogViewModel>(Lifestyle.Singleton);
                 _container.Register<AlbumArtViewModel>(Lifestyle.Singleton);
@@ -135,6 +141,7 @@ namespace AudioBand
                 _container.Register<ShuffleModeButtonViewModel>(Lifestyle.Singleton);
                 _container.Register<PopupViewModel>(Lifestyle.Singleton);
                 _container.Register<VolumeButtonViewModel>(Lifestyle.Singleton);
+                _container.Register<TaskbarIconViewModel>(Lifestyle.Singleton);
 
                 _container.Verify();
             }
