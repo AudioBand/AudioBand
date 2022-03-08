@@ -103,6 +103,11 @@ namespace SpotifyAudioSource
                     return;
                 }
 
+                if (!string.IsNullOrEmpty(_clientId) && !string.IsNullOrEmpty(value))
+                {
+                    RefreshToken = "";
+                }
+
                 _clientId = value;
                 Authorize();
             }
@@ -120,6 +125,11 @@ namespace SpotifyAudioSource
                 if (value == _clientSecret)
                 {
                     return;
+                }
+
+                if (!string.IsNullOrEmpty(_clientSecret) && !string.IsNullOrEmpty(value))
+                {
+                    RefreshToken = "";
                 }
 
                 _clientSecret = value;

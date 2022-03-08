@@ -44,6 +44,7 @@
     <sys:String x:Key="ToggleSwitchOffText">Disabled</sys:String>
     <sys:String x:Key="XPopupOffsetLabelText">X Popup Offset</sys:String>
     <sys:String x:Key="YPopupOffsetLabelText">Y Popup Offset</sys:String>
+    <sys:String x:Key="CornerRadiusDescription">Corner Radius</sys:String>
 
     <!--  Play/pause button settings  -->
     <sys:String x:Key="PlayButtonContentSectionText">Play button content</sys:String>

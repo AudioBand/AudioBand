@@ -29,6 +29,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the button's Corner Radius.
+        /// </summary>
+        [TrackState]
+        public int CornerRadius
+        {
+            get => Model.CornerRadius;
+            set => SetProperty(Model, nameof(Model.CornerRadius), value);
+        }
+
+        /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         [TrackState]

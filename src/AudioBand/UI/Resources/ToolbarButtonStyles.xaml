@@ -210,7 +210,9 @@
     </DataTemplate>
     <ControlTemplate x:Key="ToolbarButtonControlTemplate" TargetType="{x:Type Button}">
         <Grid>
-            <Border x:Name="ButtonBackground" Background="{Binding BackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
+            <Border x:Name="ButtonBackground"
+                    Background="{Binding BackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
+                    CornerRadius="{Binding CornerRadius}" />
             <ContentPresenter x:Name="ButtonContent"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"

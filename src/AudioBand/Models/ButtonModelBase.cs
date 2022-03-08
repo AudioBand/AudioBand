@@ -8,6 +8,11 @@ namespace AudioBand.Models
     public class ButtonModelBase : LayoutModelBase
     {
         /// <summary>
+        /// Gets or sets the Corner Radius.
+        /// </summary>
+        public int CornerRadius { get; set; } = 10;
+
+        /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         public Color BackgroundColor { get; set; } = Colors.Transparent;

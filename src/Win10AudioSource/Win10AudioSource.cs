@@ -153,7 +153,7 @@ namespace Win10AudioSource
                 return;
             }
 
-            if (!await _currentSession.TryChangePlaybackPositionAsync((long)newProgress.TotalMilliseconds))
+            if (!await _currentSession.TryChangePlaybackPositionAsync((long)newProgress.Ticks))
             {
                 Logger.Warn($"Failed to set playback for Win10 Audio Source.");
             }
