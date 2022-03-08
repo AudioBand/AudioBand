@@ -77,10 +77,11 @@ namespace AudioBand.Settings.Persistence
                 return settings;
             }
 
-            var content = File.ReadAllText(SettingsFilePath);
+            string content = "";
 
             try
             {
+                content = File.ReadAllText(SettingsFilePath);
                 return JsonConvert.DeserializeObject<Settings>(content);
             }
             catch (Exception e)
@@ -91,8 +92,7 @@ namespace AudioBand.Settings.Persistence
                 File.WriteAllText(backupPath, content);
 
                 var newSettings = new Settings();
-                var json = JsonConvert.SerializeObject(newSettings);
-                File.WriteAllText(SettingsFilePath, json);
+                WriteSettings(newSettings);
                 return newSettings;
             }
         }
@@ -100,21 +100,29 @@ namespace AudioBand.Settings.Persistence
         /// <inheritdoc />
         public void WriteSettings(Settings settings)
         {
-            var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
-            File.WriteAllText(SettingsFilePath, json);
+            try
+            {
+                var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+                File.WriteAllText(SettingsFilePath, json);
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to write settings.");
+                Logger.Error(e);
+            }
         }
 
         /// <inheritdoc />
         public UserProfile ReadProfile(string path)
         {
-            var json = File.ReadAllText(path);
-
             try
             {
+                var json = File.ReadAllText(path);
                 return JsonConvert.DeserializeObject<UserProfile>(json);
             }
             catch (Exception)
             {
+                Logger.Error($"Failed to load profile from {path}.");
                 return null;
             }
         }
@@ -122,12 +130,14 @@ namespace AudioBand.Settings.Persistence
         /// <inheritdoc />
         public IEnumerable<UserProfile> ReadProfiles()
         {
+            var userProfiles = new List<UserProfile>();
+
             if (!Directory.Exists(ProfilesDirectory))
             {
                 Directory.CreateDirectory(ProfilesDirectory);
+                return userProfiles;
             }
 
-            var userProfiles = new List<UserProfile>();
             var fileNames = GetAllProfileFiles();
 
             for (int i = 0; i < fileNames.Length; i++)
