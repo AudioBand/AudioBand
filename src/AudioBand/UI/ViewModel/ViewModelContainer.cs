@@ -42,6 +42,7 @@
         {
             GlobalSettingsViewModel = globalSettingsViewModel;
             GeneralSettingsViewModel = generalSettingsViewModel;
+            ProfileRepoViewModel = profileRepoViewModel;
             AlbumArtPopupViewModel = albumArtPopupViewModel;
             AlbumArtViewModel = albumArtViewModel;
             CustomLabelsViewModel = customLabelsViewModel;

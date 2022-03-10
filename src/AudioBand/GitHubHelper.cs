@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using AudioBand.Logging;
@@ -38,7 +39,6 @@ namespace AudioBand
             _appSettings = appSettings;
 
             _client.Connection.SetRequestTimeout(TimeSpan.FromSeconds(2));
-            ReloadRepositories().GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -88,60 +88,27 @@ namespace AudioBand
         }
 
         /// <summary>
-        /// Refreshes the repositories.
-        /// </summary>
-        /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-        public async Task ReloadRepositories()
-        {
-            try
-            {
-                var profiles = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, "CustomProfiles");
-                _communityProfiles = profiles.Where(x => x.Type == ContentType.Dir).ToArray();
-
-                //var audiosources = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityAudiosourcesRepository, "CustomAudiosources");
-                //_communityAudiosources = audiosources.Where(x => x.Type == ContentType.Dir).ToArray();
-            }
-            catch (Exception e)
-            {
-                Logger.Warn("Could not update remote repositories, request to GitHub failed.");
-            }
-        }
-
-        /// <summary>
         /// Gets the community profiles found on the repository.
         /// </summary>
         /// <returns>An array of CommunityProfiles.</returns>
         public async Task<CommunityProfile[]> GetCommunityProfiles()
         {
-            if (await HasNoInternet())
+            try
             {
-                return new CommunityProfile[] { };
+                string json = "";
+
+                using (var client = new HttpClient())
+                {
+                    json = await client.GetStringAsync("https://raw.githubusercontent.com/AudioBand/CommunityProfiles/master/ProfilesSummary.json");
+                }
+
+                return JsonConvert.DeserializeObject<CommunityProfile[]>(json);
             }
-
-            List<CommunityProfile> profiles = new List<CommunityProfile>();
-
-            // for each profile
-            for (int i = 0; i < _communityProfiles.Length; i++)
+            catch (Exception e)
             {
-                try
-                {
-                    var path = _communityProfiles[i].Path;
-                    var subContents = _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, path).GetAwaiter().GetResult();
-                    var image = subContents.First(x => x.Path.EndsWith(".png") || x.Path.EndsWith(".jpg"));
-                    var isInstalled = _appSettings.Profiles.FirstOrDefault(x => x.Name == _communityProfiles[i].Name) != null;
-
-                    var infoFile = subContents.First(x => x.Path.EndsWith(".json"));
-                    var info = JsonConvert.DeserializeObject<ExtraInfo>(infoFile.EncodedContent);
-
-                    profiles.Add(new CommunityProfile(_communityProfiles[i].Name, info.Description, info.Authors, image.DownloadUrl, isInstalled));
-                }
-                catch (Exception e)
-                {
-                    var a = "";
-                }
+                Logger.Error($"Failed to get community profiles from the repository. Error message: {e.Message}");
+                return null;
             }
-
-            return profiles.ToArray();
         }
 
         public async Task<CommunityAudiosource[]> GetCommunityAudiosourcesAsync()
@@ -176,24 +143,6 @@ namespace AudioBand
                 Logger.Warn("Could not check for updates, request to GitHub failed.");
                 return null;
             }
-        }
-
-        private async Task<bool> HasNoInternet() => await GetLatestRelease() == null;
-
-        /// <summary>
-        /// Contains the info regarding a profile / audiosource.
-        /// </summary>
-        private class ExtraInfo
-        {
-            /// <summary>
-            /// Gets or sets the description.
-            /// </summary>
-            public string Description { get; set; }
-
-            /// <summary>
-            /// Gets or sets the author(s).
-            /// </summary>
-            public string Authors { get; set; }
         }
     }
 }
