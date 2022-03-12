@@ -12,8 +12,13 @@
             </ResourceDictionary>
         </DataTemplate.Resources>
         <StackPanel Background="Transparent">
-            <ListView x:Name="ProfileList" ItemsSource="{Binding AvailableProfiles}" IsEnabled="True"
-                  HorizontalAlignment="Left" Background="Transparent" Margin="8">
+            <TextBlock FontSize="12" TextWrapping="Wrap" Margin="8">
+                This feature is a work in progress.
+                <LineBreak />
+                Want to upload your own cool profiles? Checkout: https://github.com/AudioBand/CommunityProfiles
+            </TextBlock>
+                <ListView x:Name="ProfileList" ItemsSource="{Binding AvailableProfiles}" IsEnabled="True"
+                          HorizontalAlignment="Left" Background="Transparent" Margin="8">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderThickness="2" BorderBrush="{audioband:ThemeResource SystemAccentColor}"
