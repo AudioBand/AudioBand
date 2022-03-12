@@ -102,7 +102,20 @@ namespace AudioBand
                     json = await client.GetStringAsync("https://raw.githubusercontent.com/AudioBand/CommunityProfiles/master/ProfilesSummary.json");
                 }
 
-                return JsonConvert.DeserializeObject<CommunityProfile[]>(json);
+                var profiles = JsonConvert.DeserializeObject<CommunityProfile[]>(json);
+
+                for (int i = 0; i < profiles?.Length; i++)
+                {
+                    var profileMatch = _appSettings.Profiles.FirstOrDefault(x => x.Name == profiles[i].Name);
+
+                    if (profileMatch != null)
+                    {
+                        profiles[i].IsInstalled = true;
+                        profiles[i].IsLatestVersion = !new SemanticVersion(profiles[i].Version).IsNewerVersionThan(new SemanticVersion(profileMatch.Version));
+                    }
+                }
+
+                return profiles;
             }
             catch (Exception e)
             {

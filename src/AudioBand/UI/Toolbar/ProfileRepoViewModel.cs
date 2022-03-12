@@ -1,6 +1,9 @@
 ﻿using AudioBand.Models;
 using AudioBand.Settings;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using AudioBand.Commands;
 
 namespace AudioBand.UI
 {
@@ -24,13 +27,20 @@ namespace AudioBand.UI
         {
             _appSettings = appSettings;
             _gitHub = gitHub;
+
             AvailableProfiles = new ObservableCollection<CommunityProfile>(_gitHub.GetCommunityProfiles().GetAwaiter().GetResult());
+            InstallButtonCommand = new RelayCommand<string>(OnInstallButtonCommand);
         }
 
         /// <summary>
         /// Gets or sets the list of available profiles.
         /// </summary>
         public ObservableCollection<CommunityProfile> AvailableProfiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets the install button command.
+        /// </summary>
+        public ICommand InstallButtonCommand { get; set; }
 
         /// <inheritdoc />
         protected override void OnReset()
@@ -58,6 +68,16 @@ namespace AudioBand.UI
         {
             base.OnEndEdit();
             MapSelf(_model, _appSettings.AudioBandSettings);
+        }
+
+        private void OnInstallButtonCommand(string name)
+        {
+            AvailableProfiles[1].IsInstalled = false;
+            var profiles = AvailableProfiles.ToArray();
+
+            AvailableProfiles.Clear();
+            AvailableProfiles = new ObservableCollection<CommunityProfile>(profiles);
+            RaisePropertyChangedAll();
         }
     }
 }

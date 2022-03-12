@@ -65,5 +65,11 @@ namespace AudioBand.Models
         /// </summary>
         [JsonIgnore]
         public bool IsInstalled { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether this profile is on its latest version.
+        /// </summary>
+        [JsonIgnore]
+        public bool IsLatestVersion { get; set; }
     }
 }
