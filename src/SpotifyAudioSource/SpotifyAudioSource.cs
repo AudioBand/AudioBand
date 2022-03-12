@@ -523,6 +523,10 @@ namespace SpotifyAudioSource
                 _authIsInProcess = false;
                 throw;
             }
+            finally
+            {
+                _authIsInProcess = false;
+            }
         }
 
         private void UpdateSpotifyHttpClient()
@@ -846,7 +850,7 @@ namespace SpotifyAudioSource
 
         private async Task FirstTimeAuth()
         {
-            if (_lastAuthTime.AddSeconds(20) > DateTime.UtcNow)
+            if (_lastAuthTime.AddSeconds(30) > DateTime.UtcNow)
             {
                 return;
             }
@@ -869,29 +873,38 @@ namespace SpotifyAudioSource
 
         private async Task OnAuthorizationCodeReceived(object sender, AuthorizationCodeResponse response)
         {
-            await _server.Stop();
-            var config = SpotifyClientConfig.CreateDefault();
-            var tokenResponse = await new OAuthClient(config)
-                .RequestToken(new AuthorizationCodeTokenRequest(
-                    ClientId, ClientSecret, response.Code, new Uri($"http://localhost:{LocalPort}")));
+            try
+            {
+                await _server.Stop();
+                var config = SpotifyClientConfig.CreateDefault();
+                var tokenResponse = await new OAuthClient(config)
+                    .RequestToken(new AuthorizationCodeTokenRequest(
+                        ClientId, ClientSecret, response.Code, new Uri($"http://localhost:{LocalPort}")));
 
-            if (string.IsNullOrEmpty(tokenResponse.RefreshToken))
+                if (string.IsNullOrEmpty(tokenResponse.RefreshToken))
+                {
+                    _authIsInProcess = false;
+                    return;
+                }
+
+                RefreshToken = tokenResponse.RefreshToken;
+                _spotifyConfig = config.WithAuthenticator(new AuthorizationCodeAuthenticator(ClientId, ClientSecret, tokenResponse));
+                _spotifyClient = new SpotifyClient(_spotifyConfig);
+                _authIsInProcess = false;
+            }
+            catch (Exception e)
             {
                 _authIsInProcess = false;
-                return;
+                Logger.Error("It appears that the Spotify Services are down. Please try again later.");
+                Logger.Error(e);
             }
-
-            RefreshToken = tokenResponse.RefreshToken;
-            _spotifyConfig = config.WithAuthenticator(new AuthorizationCodeAuthenticator(ClientId, ClientSecret, tokenResponse));
-            _spotifyClient = new SpotifyClient(_spotifyConfig);
-            _authIsInProcess = false;
         }
 
         private async Task OnErrorReceived(object sender, string error, string state)
         {
+            _authIsInProcess = false;
             Logger.Error($"Error while authenticating: {error}");
             await _server.Stop();
-            _authIsInProcess = false;
         }
 
         private void OnSettingChanged(string settingName)

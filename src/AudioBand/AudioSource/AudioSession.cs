@@ -25,7 +25,6 @@ namespace AudioBand.AudioSource
         private int _volume;
         private Image _album;
         private TrackInfoChangedEventArgs _lastTrackInfo;
-        private int _lastVolume;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioSession"/> class.
@@ -183,7 +182,6 @@ namespace AudioBand.AudioSource
         private void AudioSourceVolumeChanged(object sender, int e)
         {
             Volume = e;
-            _lastVolume = e;
         }
 
         private void AudioSourceOnTrackInfoChanged(object sender, TrackInfoChangedEventArgs e)
@@ -225,7 +223,6 @@ namespace AudioBand.AudioSource
             if (_isIdle && _appSettings.AudioBandSettings.ClearSessionOnIdle)
             {
                 AudioSourceOnTrackInfoChanged(this, _lastTrackInfo);
-                AudioSourceVolumeChanged(this, _lastVolume);
             }
 
             _isIdle = false;
