@@ -120,7 +120,7 @@ namespace AudioBand
             catch (Exception e)
             {
                 Logger.Error($"Failed to get community profiles from the repository. Error message: {e.Message}");
-                return null;
+                return new CommunityProfile[] { };
             }
         }
 

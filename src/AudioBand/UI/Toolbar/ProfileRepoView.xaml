@@ -36,6 +36,7 @@
                                     <Button FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Foreground="Red" Focusable="False"
                                             Command="{Binding ElementName=ProfileList, Path=DataContext.DeleteProfileCommand}"
                                             CommandParameter="{Binding Name}"
+                                            ToolTip="{StaticResource DeleteButtonTooltip}"
                                             Visibility="{Binding IsInstalled, Converter={x:Static audioband:Converters.BoolToVisibility}}">
                                         <Button.Resources>
                                             <Style TargetType="Border">
@@ -47,6 +48,7 @@
                                     <Button FontFamily="Segoe MDL2 Assets" Content="&#xE896;" Foreground="Aqua" Margin="6" Focusable="False"
                                             Command="{Binding ElementName=ProfileList, Path=DataContext.UpdateProfileCommand}"
                                             CommandParameter="{Binding Name}"
+                                            ToolTip="{StaticResource UpdateButtonTooltip}"
                                             IsEnabled="{Binding IsLatestVersion, Converter={x:Static audioband:Converters.InverseBool}}"
                                             Visibility="{Binding IsInstalled, Converter={x:Static audioband:Converters.BoolToVisibility}}">
                                         <Button.Resources>
@@ -80,10 +82,10 @@
                                                     <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding IsInstalled}" Value="True">
-                                                                <Setter Property="Text" Value="Installed" />
+                                                                <Setter Property="Text" Value="{StaticResource InstalledButtonText}" />
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding IsInstalled}" Value="False">
-                                                                <Setter Property="Text" Value="Install" />
+                                                                <Setter Property="Text" Value="{StaticResource InstallButtonText}" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
