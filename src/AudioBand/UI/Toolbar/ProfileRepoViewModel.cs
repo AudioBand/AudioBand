@@ -1,9 +1,15 @@
-﻿using AudioBand.Models;
-using AudioBand.Settings;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using AudioBand.Commands;
+using AudioBand.Logging;
+using AudioBand.Models;
+using AudioBand.Settings;
+using Newtonsoft.Json;
+using NLog;
 
 namespace AudioBand.UI
 {
@@ -29,7 +35,7 @@ namespace AudioBand.UI
             _gitHub = gitHub;
 
             AvailableProfiles = new ObservableCollection<CommunityProfile>(_gitHub.GetCommunityProfiles().GetAwaiter().GetResult());
-            InstallButtonCommand = new RelayCommand<string>(OnInstallButtonCommand);
+            InstallButtonCommand = new AsyncRelayCommand<string>(OnInstallButtonExecutedCommand);
         }
 
         /// <summary>
@@ -70,9 +76,41 @@ namespace AudioBand.UI
             MapSelf(_model, _appSettings.AudioBandSettings);
         }
 
-        private void OnInstallButtonCommand(string name)
+        private async Task OnInstallButtonExecutedCommand(string name)
         {
-            AvailableProfiles[1].IsInstalled = false;
+            var communityProfile = AvailableProfiles.FirstOrDefault(x => x.Name == name);
+
+            if (communityProfile == null || communityProfile.IsInstalled)
+            {
+                return;
+            }
+
+            // Install profile
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var json = await client.GetStringAsync(communityProfile.DownloadUrl);
+
+                    var profile = JsonConvert.DeserializeObject<UserProfile>(json);
+                    _appSettings.CreateProfile(profile);
+
+                    communityProfile.IsInstalled = true;
+                    communityProfile.IsLatestVersion = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Tried to download and install using Profile Repo, but failed. User most likely offline or an error in the online profile.");
+                Logger.Error(e);
+                return;
+            }
+
+            ForceUpdateCollection();
+        }
+
+        private void ForceUpdateCollection()
+        {
             var profiles = AvailableProfiles.ToArray();
 
             AvailableProfiles.Clear();

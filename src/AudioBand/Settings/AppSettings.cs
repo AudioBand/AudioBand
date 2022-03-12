@@ -93,6 +93,17 @@ namespace AudioBand.Settings
         }
 
         /// <inheritdoc />
+        public void CreateProfile(UserProfile profile)
+        {
+            if (_profiles.ContainsKey(profile.Name))
+            {
+                throw new ArgumentException("Profile name already exists", nameof(profile.Name));
+            }
+
+            _profiles.Add(profile.Name, profile);
+        }
+
+        /// <inheritdoc />
         public void DeleteProfile(string profileName)
         {
             if (string.IsNullOrEmpty(profileName))
