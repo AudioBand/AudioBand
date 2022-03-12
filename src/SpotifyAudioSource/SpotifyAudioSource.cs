@@ -846,7 +846,7 @@ namespace SpotifyAudioSource
 
         private async Task FirstTimeAuth()
         {
-            if (_lastAuthTime.AddSeconds(20) > DateTime.UtcNow)
+            if (_lastAuthTime.AddSeconds(30) > DateTime.UtcNow)
             {
                 return;
             }
@@ -889,9 +889,9 @@ namespace SpotifyAudioSource
 
         private async Task OnErrorReceived(object sender, string error, string state)
         {
+            _authIsInProcess = false;
             Logger.Error($"Error while authenticating: {error}");
             await _server.Stop();
-            _authIsInProcess = false;
         }
 
         private void OnSettingChanged(string settingName)
