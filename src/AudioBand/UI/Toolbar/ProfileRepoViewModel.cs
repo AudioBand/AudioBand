@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AudioBand.Commands;
 using AudioBand.Logging;
+using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
 using Newtonsoft.Json;
@@ -20,6 +21,7 @@ namespace AudioBand.UI
     {
         private readonly IAppSettings _appSettings;
         private readonly GitHubHelper _gitHub;
+        private readonly IMessageBus _messageBus;
 
         private readonly AudioBandSettings _model = new AudioBandSettings();
         private readonly AudioBandSettings _backup = new AudioBandSettings();
@@ -28,14 +30,18 @@ namespace AudioBand.UI
         /// Initializes a new instance of the <see cref="ProfileRepoViewModel"/> class.
         /// </summary>
         /// <param name="appSettings">The app's settings.</param>
-        /// /// <param name="gitHub">The GitHub communicator.</param>
-        public ProfileRepoViewModel(IAppSettings appSettings, GitHubHelper gitHub)
+        /// <param name="gitHub">The GitHub helper.</param>
+        /// /// <param name="messageBus">The message bus.</param>
+        public ProfileRepoViewModel(IAppSettings appSettings, GitHubHelper gitHub, IMessageBus messageBus)
         {
             _appSettings = appSettings;
             _gitHub = gitHub;
+            _messageBus = messageBus;
 
             AvailableProfiles = new ObservableCollection<CommunityProfile>(_gitHub.GetCommunityProfiles().GetAwaiter().GetResult());
-            InstallButtonCommand = new AsyncRelayCommand<string>(OnInstallButtonExecutedCommand);
+            InstallProfileCommand = new AsyncRelayCommand<string>(OnInstallProfileCommandExecuted);
+            UpdateProfileCommand = new AsyncRelayCommand<string>(OnUpdateProfileCommandExecuted);
+            DeleteProfileCommand = new RelayCommand<string>(OnDeleteProfileCommandExecuted);
         }
 
         /// <summary>
@@ -44,9 +50,19 @@ namespace AudioBand.UI
         public ObservableCollection<CommunityProfile> AvailableProfiles { get; set; }
 
         /// <summary>
-        /// Gets or sets the install button command.
+        /// Gets or sets the Install Profile Command.
         /// </summary>
-        public ICommand InstallButtonCommand { get; set; }
+        public ICommand InstallProfileCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Update Profile Command.
+        /// </summary>
+        public ICommand UpdateProfileCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Delete Profile Command.
+        /// </summary>
+        public ICommand DeleteProfileCommand { get; set; }
 
         /// <inheritdoc />
         protected override void OnReset()
@@ -76,37 +92,69 @@ namespace AudioBand.UI
             MapSelf(_model, _appSettings.AudioBandSettings);
         }
 
-        private async Task OnInstallButtonExecutedCommand(string name)
+        private async Task OnInstallProfileCommandExecuted(string profileName)
         {
-            var communityProfile = AvailableProfiles.FirstOrDefault(x => x.Name == name);
+            var communityProfile = AvailableProfiles.FirstOrDefault(x => x.Name == profileName);
 
             if (communityProfile == null || communityProfile.IsInstalled)
             {
                 return;
             }
 
-            // Install profile
+            await InstallProfileAsync(communityProfile);
+            ForceUpdateCollection();
+        }
+
+        private async Task OnUpdateProfileCommandExecuted(string profileName)
+        {
+            var communityProfile = AvailableProfiles.FirstOrDefault(x => x.Name == profileName);
+
+            if (communityProfile == null || !communityProfile.IsInstalled)
+            {
+                return;
+            }
+
+            _appSettings.DeleteProfile(profileName);
+            await InstallProfileAsync(communityProfile);
+
+            communityProfile.IsLatestVersion = true;
+            ForceUpdateCollection();
+        }
+
+        private void OnDeleteProfileCommandExecuted(string profileName)
+        {
+            var communityProfile = AvailableProfiles.FirstOrDefault(x => x.Name == profileName);
+
+            if (communityProfile == null || !communityProfile.IsInstalled)
+            {
+                return;
+            }
+
+            _appSettings.DeleteProfile(profileName);
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileDeleted);
+
+            communityProfile.IsInstalled = false;
+            ForceUpdateCollection();
+        }
+
+        private async Task InstallProfileAsync(CommunityProfile communityProfile)
+        {
             try
             {
-                using (var client = new HttpClient())
-                {
-                    var json = await client.GetStringAsync(communityProfile.DownloadUrl);
+                using var client = new HttpClient();
+                var json = await client.GetStringAsync(communityProfile.DownloadUrl);
 
-                    var profile = JsonConvert.DeserializeObject<UserProfile>(json);
-                    _appSettings.CreateProfile(profile);
+                var profile = JsonConvert.DeserializeObject<UserProfile>(json);
+                _appSettings.CreateProfile(profile);
 
-                    communityProfile.IsInstalled = true;
-                    communityProfile.IsLatestVersion = true;
-                }
+                communityProfile.IsInstalled = true;
+                _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
             }
             catch (Exception e)
             {
                 Logger.Error($"Tried to download and install using Profile Repo, but failed. User most likely offline or an error in the online profile.");
                 Logger.Error(e);
-                return;
             }
-
-            ForceUpdateCollection();
         }
 
         private void ForceUpdateCollection()

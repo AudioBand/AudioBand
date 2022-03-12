@@ -32,7 +32,10 @@
                                 <!-- Install/Delete/Update buttons -->
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                             Focusable="False" Margin="0, 0, 3, 0">
-                                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Foreground="Red"
+                                    <!-- Delete button -->
+                                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" Foreground="Red" Focusable="False"
+                                            Command="{Binding ElementName=ProfileList, Path=DataContext.DeleteProfileCommand}"
+                                            CommandParameter="{Binding Name}"
                                             Visibility="{Binding IsInstalled, Converter={x:Static audioband:Converters.BoolToVisibility}}">
                                         <Button.Resources>
                                             <Style TargetType="Border">
@@ -40,7 +43,10 @@
                                             </Style>
                                         </Button.Resources>
                                     </Button>
-                                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xE896;" Foreground="Aqua" Margin="6"
+                                    <!-- Update button -->
+                                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xE896;" Foreground="Aqua" Margin="6" Focusable="False"
+                                            Command="{Binding ElementName=ProfileList, Path=DataContext.UpdateProfileCommand}"
+                                            CommandParameter="{Binding Name}"
                                             IsEnabled="{Binding IsLatestVersion, Converter={x:Static audioband:Converters.InverseBool}}"
                                             Visibility="{Binding IsInstalled, Converter={x:Static audioband:Converters.BoolToVisibility}}">
                                         <Button.Resources>
@@ -51,8 +57,9 @@
                                     </Button>
                                     <!-- Install(ed) button -->
                                     <Button Focusable="False" 
-                                            Command="{Binding ElementName=ProfileList, Path=DataContext.InstallButtonCommand}"
-                                            CommandParameter="{Binding Name}">
+                                            Command="{Binding ElementName=ProfileList, Path=DataContext.InstallProfileCommand}"
+                                            CommandParameter="{Binding Name}"
+                                            IsEnabled="{Binding IsInstalled, Converter={x:Static audioband:Converters.InverseBool}}">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock FontFamily="Segoe MDL2 Assets" Padding="0,3,3,0">
                                                 <TextBlock.Style>
