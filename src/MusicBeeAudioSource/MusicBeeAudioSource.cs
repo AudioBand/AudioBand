@@ -11,7 +11,6 @@ namespace MusicBeeAudioSource
 {
     public class AudioSource : IAudioSource
     {
-        private static readonly string[] TimeFormats = new string[] { @"m\:s", @"h\:m\:s" };
         private MusicBeeIPC _ipc;
         private Timer _checkMusicBeeTimer;
         private bool _isPlaying;
@@ -207,13 +206,6 @@ namespace MusicBeeAudioSource
 
             _currentId = id;
 
-            var album = _ipc.GetFileTag(MusicBeeIPC.MetaData.Album);
-
-            if (!TimeSpan.TryParseExact(_ipc.GetFileProperty(MusicBeeIPC.FileProperty.Duration), TimeFormats, null, out var trackLength))
-            {
-                Logger.Warn($"Unable to parse track length: {_ipc.GetFileProperty(MusicBeeIPC.FileProperty.Duration)}");
-            }
-
             Image albumArt = null;
             var bytes = Convert.FromBase64String(_ipc.GetArtwork());
             using (var ms = new MemoryStream(bytes))
@@ -223,10 +215,10 @@ namespace MusicBeeAudioSource
 
             TrackInfoChanged?.Invoke(this, new TrackInfoChangedEventArgs
             {
-                Album = album,
+                Album = _ipc.GetFileTag(MusicBeeIPC.MetaData.Album),
                 Artist = artist,
                 AlbumArt = albumArt,
-                TrackLength = trackLength,
+                TrackLength =  ParseTimeFromIPC(),
                 TrackName = track
             });
         }
@@ -267,6 +259,32 @@ namespace MusicBeeAudioSource
 
             _repeatMode = repeat;
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_repeatMode));
+        }
+
+        private TimeSpan ParseTimeFromIPC()
+        {
+            var timeString = _ipc.GetFileProperty(MusicBeeIPC.FileProperty.Duration);
+
+            var times = timeString.Split(':');
+
+            switch (times.Length)
+            {
+                case 1:
+                    double.TryParse(times[0], out double seconds);
+                    return TimeSpan.FromSeconds(seconds);
+                case 2:
+                    double.TryParse(times[0], out seconds);
+                    double.TryParse(times[1], out double minutes);
+                    return TimeSpan.FromSeconds(minutes * 60 + seconds);
+                case 3:
+                    double.TryParse(times[0], out seconds);
+                    double.TryParse(times[1], out minutes);
+                    double.TryParse(times[2], out double hours);
+                    return TimeSpan.FromSeconds((hours * 60 + minutes) * 60 + seconds);
+                default:
+                    Logger.Warn($"Unable to parse track length: {timeString}");
+                    return TimeSpan.Zero;
+            }
         }
     }
 }
