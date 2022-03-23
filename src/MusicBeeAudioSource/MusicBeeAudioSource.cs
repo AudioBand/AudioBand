@@ -205,13 +205,22 @@ namespace MusicBeeAudioSource
             }
 
             _currentId = id;
-
             Image albumArt = null;
-            var bytes = Convert.FromBase64String(_ipc.GetArtwork());
-            using (var ms = new MemoryStream(bytes))
+
+            try
             {
-                albumArt = new Bitmap(ms);
+                
+                var bytes = Convert.FromBase64String(_ipc.GetArtwork());
+                using (var ms = new MemoryStream(bytes))
+                {
+                    albumArt = new Bitmap(ms);
+                }
             }
+            catch (ArgumentException e)
+            {
+                Logger.Warn($"The AlbumArt cover failed to load. Might be non existing or wrong. - {e.Message}");
+            }
+            
 
             TrackInfoChanged?.Invoke(this, new TrackInfoChangedEventArgs
             {
@@ -264,7 +273,6 @@ namespace MusicBeeAudioSource
         private TimeSpan ParseTimeFromIPC()
         {
             var timeString = _ipc.GetFileProperty(MusicBeeIPC.FileProperty.Duration);
-
             var times = timeString.Split(':');
 
             switch (times.Length)
