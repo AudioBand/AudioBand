@@ -4,9 +4,11 @@
    <Product Id="*" Name="AudioBand" Language="1033" Version="$(var.ProductVersion)"
             Manufacturer="AudioBand" UpgradeCode="F5673DE4-C5B8-403C-B353-773AC427BEC3">
       <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
-               Manufacturer="AudioBand" Description="Mini audio player for your task bar"/>
+               Manufacturer="AudioBand" Description="Mini audio player for your task bar" />
       <Icon Id="AudiobandIcon" SourceFile="audioband.ico" />
       <Property Id="ARPPRODUCTICON" Value="AudiobandIcon" />
+      <Property Id="ARPHELPLINK" Value="https://github.com/AudioBand/AudioBand" />
+      <Property Id="ARPURLINFOABOUT" Value="https://github.com/AudioBand/AudioBand" />
       <WixVariable Id="WixUIBannerBmp" Value="installer_banner.png" />
       <WixVariable Id="WixUIDialogBmp" Value="installer_background.png" />
       <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
