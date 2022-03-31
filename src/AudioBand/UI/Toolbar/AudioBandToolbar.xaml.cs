@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using CSDeskBand;
 
@@ -11,6 +12,7 @@ namespace AudioBand.UI
     /// </summary>
     public partial class AudioBandToolbar : UserControl
     {
+        private readonly AudioBandToolbarViewModel _viewModel;
         private readonly CSDeskBandOptions _options;
 
         /// <summary>
@@ -22,6 +24,7 @@ namespace AudioBand.UI
         {
             _options = options;
             InitializeComponent();
+            _viewModel = viewModel;
             DataContext = viewModel;
             SizeChanged += OnSizeChanged;
         }
@@ -33,6 +36,11 @@ namespace AudioBand.UI
             _options.MinHorizontalSize = deskbandSize;
             _options.HorizontalSize = deskbandSize;
             _options.MaxHorizontalHeight = deskbandSize.Height;
+        }
+
+        private void VolumePopup_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            _viewModel.ViewModels.VolumeButtonViewModel.VolumeMouseScrollCommand.Execute(e);
         }
     }
 }

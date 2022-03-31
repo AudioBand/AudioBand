@@ -39,6 +39,7 @@ namespace AudioBand.UI
 
             VolumePopupCommand = new RelayCommand<object>(OpenVolumePopupCommandOnExecute);
             MouseLeftCommand = new RelayCommand<object>(MouseLeftCommandOnExecute);
+            VolumeMouseScrollCommand = new RelayCommand<MouseWheelEventArgs>(VolumeMouseScrollCommandOnExecute);
 
             InitializeButtonContents();
         }
@@ -154,6 +155,11 @@ namespace AudioBand.UI
         public ICommand MouseLeftCommand { get; }
 
         /// <summary>
+        /// Gets the Volume Mouse Scroll Command.
+        /// </summary>
+        public ICommand VolumeMouseScrollCommand { get; }
+
+        /// <summary>
         /// Gets the current VolumeState.
         /// </summary>
         public VolumeState CurrentVolumeState
@@ -244,6 +250,11 @@ namespace AudioBand.UI
         private void MouseLeftCommandOnExecute(object obj)
         {
             IsVolumePopupOpen = false;
+        }
+
+        private void VolumeMouseScrollCommandOnExecute(MouseWheelEventArgs args)
+        {
+            Volume += args.Delta / 75;
         }
 
         private void InitializeButtonContents()
