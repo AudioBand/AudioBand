@@ -42,5 +42,10 @@ namespace AudioBand.UI
         {
             _viewModel.ViewModels.VolumeButtonViewModel.VolumeMouseScrollCommand.Execute(e);
         }
+
+        private void UserControl_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            _viewModel.ViewModels.MouseBindingsViewModel.MouseWheelCommand.Execute(e);
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,7 +10,6 @@ using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
 using NLog;
-using Windows.UI.Xaml;
 
 namespace AudioBand.UI
 {
@@ -54,7 +52,6 @@ namespace AudioBand.UI
 
             ShowSettingsWindowCommand = new RelayCommand(ShowSettingsWindowCommandOnExecute);
             LoadCommand = new AsyncRelayCommand<object>(LoadCommandOnExecute);
-            DoubleClickCommand = new RelayCommand<RoutedEventArgs>(OnDoubleClick);
             SelectAudioSourceCommand = new AsyncRelayCommand<IInternalAudioSource>(SelectAudioSourceCommandOnExecute);
             SelectProfileCommand = new RelayCommand<string>(SelectProfileCommandOnExecute);
         }
@@ -83,11 +80,6 @@ namespace AudioBand.UI
         /// Gets the command to initialize loading.
         /// </summary>
         public ICommand LoadCommand { get; }
-
-        /// <summary>
-        /// Gets the command to handle double clicks.
-        /// </summary>
-        public ICommand DoubleClickCommand { get; }
 
         /// <summary>
         /// Gets the command to select an audio source.
@@ -179,39 +171,6 @@ namespace AudioBand.UI
                 : new ObservableCollection<UserProfile>(_appSettings.Profiles);
 
             RaisePropertyChanged(nameof(Profiles));
-        }
-
-        private void OnDoubleClick(RoutedEventArgs e)
-        {
-            if (SelectedAudioSource == null)
-            {
-                return;
-            }
-
-            var windowPtr = NativeMethods.FindWindow(SelectedAudioSource.WindowClassName, null);
-
-            // Spotify has some weird shenanigans with their windows, doing it like normal
-            // results in the wrong window handle being returned.
-            if (SelectedAudioSource.Name == "Spotify")
-            {
-                var spotifyProcesses = Process.GetProcessesByName("spotify");
-                var title = spotifyProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
-                windowPtr = NativeMethods.FindWindow(null, title);
-            }
-
-            if (windowPtr == IntPtr.Zero)
-            {
-                Logger.Warn("Could not find the associated window to open with double click.");
-            }
-            else
-            {
-                if (NativeMethods.IsIconic(windowPtr))
-                {
-                    NativeMethods.ShowWindow(windowPtr, 9);
-                }
-
-                NativeMethods.SetForegroundWindow(windowPtr);
-            }
         }
 
         private async Task SelectAudioSourceCommandOnExecute(IInternalAudioSource audioSource)
