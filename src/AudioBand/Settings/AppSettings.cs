@@ -181,7 +181,7 @@ namespace AudioBand.Settings
             /* If there are no profiles, create new ones, they're automatically saved later.
              * Second line of if statement is for people who have reinstalled audioband
              * while their last version was pre-profiles (v0.9.6) update */
-            if (profiles.Length == 0
+            if (profiles == null || profiles.Length == 0
             || (profiles.Length == 1 && profiles[0].Name == "Default Profile"))
             {
                 settings.CurrentProfileName = UserProfile.DefaultProfileName;
