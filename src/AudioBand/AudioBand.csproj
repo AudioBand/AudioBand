@@ -107,7 +107,7 @@
     <Compile Include="AudioSource\IAudioSession.cs" />
     <Compile Include="AudioSource\IAudioSourceManager.cs" />
     <Compile Include="AudioSource\IInternalAudioSource.cs" />
-    <Compile Include="Models\MousBinding.cs" />
+    <Compile Include="Models\MouseBinding.cs" />
     <Compile Include="Models\MouseBindingCommandType.cs" />
     <Compile Include="Models\MouseInputType.cs" />
     <Compile Include="Models\UserProfile.cs" />

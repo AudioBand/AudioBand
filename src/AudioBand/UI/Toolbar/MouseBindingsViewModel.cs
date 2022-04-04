@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -61,33 +62,56 @@ namespace AudioBand.UI
 
         private void LeftClickCommandOnExecute()
         {
-            throw new NotImplementedException();
+            CheckBindingsPerInputType(MouseInputType.LeftClick);
         }
 
         private void DoubleLeftClickCommandOnExecute()
         {
-            throw new NotImplementedException();
+            CheckBindingsPerInputType(MouseInputType.LeftDoubleClick);
         }
 
         private void MiddleClickCommandOnExecute()
         {
-            throw new NotImplementedException();
+            CheckBindingsPerInputType(MouseInputType.MiddleClick);
         }
 
         private void DoubleMiddleClickCommandOnExecute()
         {
-            throw new NotImplementedException();
+            CheckBindingsPerInputType(MouseInputType.MiddleDoubleClick);
         }
 
         private void MouseWheelCommandOnExecute(MouseWheelEventArgs args)
         {
             if (args.Delta > 0)
             {
-                // next
+                CheckBindingsPerInputType(MouseInputType.ScrollUp);
                 return;
             }
 
-            // previous
+            CheckBindingsPerInputType(MouseInputType.ScrollDown);
+        }
+
+        private void CheckBindingsPerInputType(MouseInputType inputType)
+        {
+            var altDown = Keyboard.GetKeyStates(Key.LeftAlt) == KeyStates.Down || Keyboard.GetKeyStates(Key.RightAlt) == KeyStates.Down;
+            var ctrlDown = Keyboard.GetKeyStates(Key.LeftCtrl) == KeyStates.Down || Keyboard.GetKeyStates(Key.RightCtrl) == KeyStates.Down;
+            var shiftDown = Keyboard.GetKeyStates(Key.LeftShift) == KeyStates.Down || Keyboard.GetKeyStates(Key.RightShift) == KeyStates.Down || Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled;
+
+            for (int i = 0; i < _appSettings.AudioBandSettings.MouseBindings.Count; i++)
+            {
+                var mouseBinding = _appSettings.AudioBandSettings.MouseBindings[i];
+
+                // If keys arent down correctly, continue
+                if ((mouseBinding.WithAlt && !altDown) || (mouseBinding.WithCtrl && !ctrlDown) || (mouseBinding.WithShift&& !shiftDown))
+                {
+                    continue;
+                }
+
+                if (mouseBinding.MouseInputType == inputType)
+                {
+                    ExecuteCommandBasedOnInputType(mouseBinding.CommandType);
+                }
+            }
         }
 
         private void ExecuteCommandBasedOnInputType(MouseBindingCommandType inputType)
@@ -123,6 +147,7 @@ namespace AudioBand.UI
                 case MouseBindingCommandType.VolumeLower:
                     break;
                 case MouseBindingCommandType.OpenAssociatedApp:
+                    OpenAssociatedApp();
                     break;
                 default:
                     break;
@@ -131,16 +156,16 @@ namespace AudioBand.UI
 
         private void OpenAssociatedApp()
         {
-            if (SelectedAudioSource == null)
+            if (_audioSession.CurrentAudioSource == null)
             {
                 return;
             }
 
-            var windowPtr = NativeMethods.FindWindow(SelectedAudioSource.WindowClassName, null);
+            var windowPtr = NativeMethods.FindWindow(_audioSession.CurrentAudioSource.WindowClassName, null);
 
             // Spotify has some weird shenanigans with their windows, doing it like normal
             // results in the wrong window handle being returned.
-            if (SelectedAudioSource.Name == "Spotify")
+            if (_audioSession.CurrentAudioSource.Name == "Spotify")
             {
                 var spotifyProcesses = Process.GetProcessesByName("spotify");
                 var title = spotifyProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
@@ -167,14 +192,6 @@ namespace AudioBand.UI
             index = previous ? index - 1 : index + 1;
 
             _appSettings.SelectProfile(_appSettings.Profiles.ElementAt(index).Name);
-        }
-
-        private async Task NextSong()
-        {
-            await _audioSession.CurrentAudioSource?.NextTrackAsync();
-            await _audioSession.CurrentAudioSource?.PreviousTrackAsync();
-            await _audioSession.CurrentAudioSource?.PlayTrackAsync();
-            await _audioSession.CurrentAudioSource?.PauseTrackAsync();
         }
     }
 }

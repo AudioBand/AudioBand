@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a configurable MouseBinding.
     /// </summary>
-    public class MousBinding
+    public class MouseBinding
     {
         /// <summary>
         /// Gets or sets a value indicating whether to use ctrl with this bind.
@@ -29,5 +29,10 @@
         /// Gets or sets the type of mouse behaviour associated with this mouse binding.
         /// </summary>
         public MouseInputType MouseInputType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of command to execute.
+        /// </summary>
+        public MouseBindingCommandType CommandType { get; set; }
     }
 }
