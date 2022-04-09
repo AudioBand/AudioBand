@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using AudioBand.Logging;
 using AudioBand.Models;
 using AudioBand.Settings;
+using Newtonsoft.Json;
 using NLog;
 using Octokit;
 
@@ -15,16 +18,27 @@ namespace AudioBand
     /// </summary>
     public class GitHubHelper
     {
-        private IAppSettings _settings;
+        private const string OrganizationName = "AudioBand";
+        private const string CommunityProfilesRepository = "CommunityProfiles";
+        private const string CommunityAudiosourcesRepository = "CommunityAudiosources";
+
         private static readonly ILogger Logger = AudioBandLogManager.GetLogger<GitHubHelper>();
-        private GitHubClient _client = new GitHubClient(new ProductHeaderValue("AudioBand"));
+
+        private RepositoryContent[] _communityProfiles;
+        private RepositoryContent[] _communityAudiosources;
+
+        private IAppSettings _appSettings;
+        private GitHubClient _client = new GitHubClient(new ProductHeaderValue(OrganizationName));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GitHubHelper"/> class.
         /// </summary>
-        public GitHubHelper(IAppSettings settings)
+        /// <param name="appSettings">The app settings.<param/>
+        public GitHubHelper(IAppSettings appSettings)
         {
-            _settings = settings;
+            _appSettings = appSettings;
+
+            _client.Connection.SetRequestTimeout(TimeSpan.FromSeconds(2));
         }
 
         /// <summary>
@@ -73,18 +87,69 @@ namespace AudioBand
             }
         }
 
+        /// <summary>
+        /// Gets the community profiles found on the repository.
+        /// </summary>
+        /// <returns>An array of CommunityProfiles.</returns>
+        public async Task<CommunityProfile[]> GetCommunityProfiles()
+        {
+            try
+            {
+                string json = "";
+
+                using (var client = new HttpClient())
+                {
+                    json = await client.GetStringAsync("https://raw.githubusercontent.com/AudioBand/CommunityProfiles/master/ProfilesSummary.json");
+                }
+
+                var profiles = JsonConvert.DeserializeObject<CommunityProfile[]>(json);
+
+                for (int i = 0; i < profiles?.Length; i++)
+                {
+                    var profileMatch = _appSettings.Profiles.FirstOrDefault(x => x.Name == profiles[i].Name);
+
+                    if (profileMatch != null)
+                    {
+                        profiles[i].IsInstalled = true;
+                        profiles[i].IsLatestVersion = !new SemanticVersion(profiles[i].Version).IsNewerVersionThan(new SemanticVersion(profileMatch.Version));
+                    }
+                }
+
+                return profiles;
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Failed to get community profiles from the repository. Error message: {e.Message}");
+                return new CommunityProfile[] { };
+            }
+        }
+
+        public async Task<CommunityAudiosource[]> GetCommunityAudiosourcesAsync()
+        {
+            return null;
+            List<CommunityAudiosource> profiles = new List<CommunityAudiosource>();
+
+            // for each profile
+            for (int i = 0; i < _communityProfiles.Length; i++)
+            {
+                var path = _communityProfiles[i].Path;
+                var subContents = await _client.Repository.Content.GetAllContents("AudioBand", CommunityAudiosourcesRepository, path);
+
+                var downloadSize = _communityProfiles[i].Size;
+
+                profiles.Add(new CommunityAudiosource($"Audiosource {i}", "A description.", "someone", false, downloadSize));
+            }
+
+            return profiles.ToArray();
+        }
+
         private async Task<Release> GetLatestRelease()
         {
             try
             {
-                if (_settings.AudioBandSettings.OptInForPreReleases)
-                {
-                    return (await _client.Repository.Release.GetAll("AudioBand", "AudioBand"))[0];
-                }
-                else
-                {
-                    return await _client.Repository.Release.GetLatest("AudioBand", "AudioBand");
-                }
+                return _appSettings.AudioBandSettings.OptInForPreReleases
+                    ? (await _client.Repository.Release.GetAll(OrganizationName, OrganizationName))[0]
+                    : await _client.Repository.Release.GetLatest(OrganizationName, OrganizationName);
             }
             catch (Exception)
             {
