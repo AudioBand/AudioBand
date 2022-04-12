@@ -174,6 +174,7 @@ namespace AudioBand.Settings
             var name = UserProfile.GetUniqueProfileName(_profiles.Keys, profile.Name);
             _profiles[name] = profile;
             _profiles[name].Name = name;
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
         }
 
         private void CheckAndLoadProfiles(Persistence.Settings settings, UserProfile[] profiles)
