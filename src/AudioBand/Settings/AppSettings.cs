@@ -28,7 +28,9 @@ namespace AudioBand.Settings
             _persistSettings = persistSettings;
             _messageBus = messageBus;
             _persistSettings.CheckAndConvertOldSettings();
+
             var settings = _persistSettings.ReadSettings();
+            DoSettingsNullChecks(settings);
 
             AudioSource = settings.CurrentAudioSource;
             AudioSourceSettings = settings.AudioSourceSettings?.ToList() ?? new List<AudioSourceSettings>();
@@ -214,7 +216,7 @@ namespace AudioBand.Settings
                 profiles[Array.IndexOf(profiles, defaultProfile)] = UserProfile.CreateDefaultProfile(UserProfile.DefaultProfileName);
             }
 
-            DoNullChecks(ref profiles);
+            DoProfileNullChecks(ref profiles);
             _profiles = profiles.ToDictionary(profile => profile.Name, profile => profile);
 
             if (settings.CurrentProfileName == null || !_profiles.ContainsKey(settings.CurrentProfileName))
@@ -223,7 +225,32 @@ namespace AudioBand.Settings
             }
         }
 
-        private void DoNullChecks(ref UserProfile[] profiles)
+        private void DoSettingsNullChecks(Persistence.Settings settings)
+        {
+            if (settings.AudioBandSettings.MouseBindings == null || settings.AudioBandSettings.MouseBindings.Count == 0)
+            {
+                settings.AudioBandSettings.MouseBindings = new List<MouseBinding>()
+                {
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.LeftDoubleClick,
+                        CommandType = MouseBindingCommandType.OpenAssociatedApp
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollUp,
+                        CommandType = MouseBindingCommandType.PreviousSong
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollDown,
+                        CommandType = MouseBindingCommandType.NextSong
+                    },
+                };
+            }
+        }
+
+        private void DoProfileNullChecks(ref UserProfile[] profiles)
         {
             for (int i = 0; i < profiles.Length; i++)
             {

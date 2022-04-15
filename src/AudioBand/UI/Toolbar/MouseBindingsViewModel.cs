@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using AudioBand.AudioSource;
 using AudioBand.Commands;
+using AudioBand.Extensions;
+using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
+using MouseBinding = AudioBand.Models.MouseBinding;
 
 namespace AudioBand.UI
 {
@@ -17,23 +21,63 @@ namespace AudioBand.UI
     {
         private IAppSettings _appSettings;
         private IAudioSession _audioSession;
+        private IMessageBus _messageBus;
+
+        private ObservableCollection<MouseBinding> _mouseBindings;
+
+        private List<MouseBinding> _model = new List<MouseBinding>();
+        private List<MouseBinding> _backup = new List<MouseBinding>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseBindingsViewModel"/> class.
         /// </summary>
         /// <param name="appSettings">The app settings.</param>
         /// <param name="audioSession">The audio session.</param>
-        public MouseBindingsViewModel(IAppSettings appSettings, IAudioSession audioSession)
+        /// <param name="messageBus">The message bus.</param>
+        public MouseBindingsViewModel(IAppSettings appSettings, IAudioSession audioSession, IMessageBus messageBus)
         {
+            MapSelf(appSettings.AudioBandSettings.MouseBindings, _model);
+
             _appSettings = appSettings;
             _audioSession = audioSession;
+            _messageBus = messageBus;
+
+            MouseBindings = new ObservableCollection<MouseBinding>(appSettings.AudioBandSettings.MouseBindings);
+            StartEditCommand = new RelayCommand(StartEditCommandOnExecute);
 
             LeftClickCommand = new RelayCommand(LeftClickCommandOnExecute);
             DoubleLeftClickCommand = new RelayCommand(DoubleLeftClickCommandOnExecute);
             MiddleClickCommand = new RelayCommand(MiddleClickCommandOnExecute);
             DoubleMiddleClickCommand = new RelayCommand(DoubleMiddleClickCommandOnExecute);
             MouseWheelCommand = new RelayCommand<MouseWheelEventArgs>(MouseWheelCommandOnExecute);
+
+            UseMessageBus(messageBus);
         }
+
+        /// <summary>
+        /// Gets the Mouse Input Types.
+        /// </summary>
+        public IEnumerable<EnumDescriptor<MouseInputType>> MouseInputTypes { get; } = typeof(MouseInputType).GetEnumDescriptors<MouseInputType>();
+
+        /// <summary>
+        /// Gets the Mouse Binding Command types.
+        /// </summary>
+        public IEnumerable<EnumDescriptor<MouseBindingCommandType>> CommandTypes { get; } = typeof(MouseBindingCommandType).GetEnumDescriptors<MouseBindingCommandType>();
+
+        /// <summary>
+        /// Gets or sets the MouseBindings collection.
+        /// </summary>
+        [TrackState]
+        public ObservableCollection<MouseBinding> MouseBindings
+        {
+            get => _mouseBindings;
+            set => SetProperty(ref _mouseBindings, value);
+        }
+
+        /// <summary>
+        /// Gets the command to start editing.
+        /// </summary>
+        public ICommand StartEditCommand { get; }
 
         /// <summary>
         /// Gets the command to handle left clicks.
@@ -59,6 +103,32 @@ namespace AudioBand.UI
         /// Gets the command to handle mouse scrolling.
         /// </summary>
         public ICommand MouseWheelCommand { get; }
+
+        /// <inheritdoc />
+        protected override void OnBeginEdit()
+        {
+            base.OnBeginEdit();
+            MapSelf(_model, _backup);
+        }
+
+        /// <inheritdoc />
+        protected override void OnCancelEdit()
+        {
+            base.OnCancelEdit();
+            MapSelf(_backup, _model);
+        }
+
+        /// <inheritdoc />
+        protected override void OnEndEdit()
+        {
+            base.OnEndEdit();
+            MapSelf(_model, _appSettings.AudioBandSettings.MouseBindings);
+        }
+
+        private void StartEditCommandOnExecute()
+        {
+            BeginEdit();
+        }
 
         private void LeftClickCommandOnExecute()
         {
@@ -102,7 +172,7 @@ namespace AudioBand.UI
                 var mouseBinding = _appSettings.AudioBandSettings.MouseBindings[i];
 
                 // If keys arent down correctly, continue
-                if ((mouseBinding.WithAlt && !altDown) || (mouseBinding.WithCtrl && !ctrlDown) || (mouseBinding.WithShift&& !shiftDown))
+                if ((mouseBinding.WithAlt && !altDown) || (mouseBinding.WithCtrl && !ctrlDown) || (mouseBinding.WithShift && !shiftDown))
                 {
                     continue;
                 }
