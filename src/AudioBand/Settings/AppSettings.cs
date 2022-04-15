@@ -176,6 +176,7 @@ namespace AudioBand.Settings
             var name = UserProfile.GetUniqueProfileName(_profiles.Keys, profile.Name);
             _profiles[name] = profile;
             _profiles[name].Name = name;
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
         }
 
         private void CheckAndLoadProfiles(Persistence.Settings settings, UserProfile[] profiles)
@@ -183,7 +184,7 @@ namespace AudioBand.Settings
             /* If there are no profiles, create new ones, they're automatically saved later.
              * Second line of if statement is for people who have reinstalled audioband
              * while their last version was pre-profiles (v0.9.6) update */
-            if (profiles.Length == 0
+            if (profiles == null || profiles.Length == 0
             || (profiles.Length == 1 && profiles[0].Name == "Default Profile"))
             {
                 settings.CurrentProfileName = UserProfile.DefaultProfileName;

@@ -18,6 +18,11 @@ namespace AudioBand.UI
         public static ColorToBrushConverter ColorToBrush { get; } = new ColorToBrushConverter();
 
         /// <summary>
+        /// Gets a <see cref="ColorToNonTransparentBrushConverter"/>.
+        /// </summary>
+        public static ColorToNonTransparentBrushConverter ColorToNonTransparentBrush { get; } = new ColorToNonTransparentBrushConverter();
+
+        /// <summary>
         /// Gets a <see cref="BoolToVisibilityConverter"/>.
         /// </summary>
         public static BoolToVisibilityConverter BoolToVisibility { get; } = new BoolToVisibilityConverter();

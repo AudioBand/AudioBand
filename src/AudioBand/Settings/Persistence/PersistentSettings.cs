@@ -1,13 +1,15 @@
-﻿using AudioBand.Logging;
-using AudioBand.Models;
-using AudioBand.Settings.Migrations;
-using Nett;
-using Newtonsoft.Json;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AudioBand.Logging;
+using AudioBand.Models;
+using AudioBand.Settings.Migrations;
+using AudioBand.UI;
+using Nett;
+using Newtonsoft.Json;
+using NLog;
+
 // Alias the current settings version
 using OldTomlSettings = AudioBand.Settings.Models.V4.SettingsV4;
 
@@ -30,6 +32,8 @@ namespace AudioBand.Settings.Persistence
             { "3", typeof(Models.V3.SettingsV3) },
             { "4", typeof(Models.V4.SettingsV4) },
         };
+
+        private PopupService _popups = PopupService.Instance;
 
         /// <inheritdoc />
         public void CheckAndConvertOldSettings()
@@ -82,7 +86,15 @@ namespace AudioBand.Settings.Persistence
             try
             {
                 content = File.ReadAllText(SettingsFilePath);
-                return JsonConvert.DeserializeObject<Settings>(content);
+                var settings = JsonConvert.DeserializeObject<Settings>(content);
+
+                if (settings == null)
+                {
+                    _popups.ShowPopup("FileCorruptedTitle", "FileCorruptedDescription", TimeSpan.FromSeconds(20));
+                    throw new Exception("The setting file was null / corrupted.");
+                }
+
+                return settings;
             }
             catch (Exception e)
             {
@@ -145,7 +157,15 @@ namespace AudioBand.Settings.Persistence
                 try
                 {
                     var json = File.ReadAllText(fileNames[i]);
-                    userProfiles.Add(JsonConvert.DeserializeObject<UserProfile>(json));
+                    var loadedProfile = JsonConvert.DeserializeObject<UserProfile>(json);
+
+                    if (loadedProfile == null)
+                    {
+                        DeleteProfile(fileNames[i]);
+                        continue;
+                    }
+
+                    userProfiles.Add(loadedProfile);
                 }
                 catch (Exception)
                 {

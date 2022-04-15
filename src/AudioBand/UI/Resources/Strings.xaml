@@ -193,6 +193,8 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="UpdatePopupDescription">An update was found for Audio Band, please go to Settings -> AudioBand Settings -> In-App Updates to install it.</sys:String>
     <sys:String x:Key="RequirePremiumTitle">Need Spotify Premium!</sys:String>
     <sys:String x:Key="RequirePremiumDescription">In order to use these buttons you require Spotify Premium, this is a limitation from Spotify that we cannot bypass.</sys:String>
+    <sys:String x:Key="FileCorruptedTitle">Settings corrupted.</sys:String>
+    <sys:String x:Key="FileCorruptedDescription">It appears that your settings file was corrupted, it was backed up and reset. For more info contact us on GitHub or Discord.</sys:String>
 
     <!--  Profiles  -->
     <sys:String x:Key="NewProfileHelpText">New profile</sys:String>

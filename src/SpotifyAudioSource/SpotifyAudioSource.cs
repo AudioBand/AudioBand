@@ -556,7 +556,7 @@ namespace SpotifyAudioSource
             _spotifyClient = new SpotifyClient(_spotifyConfig);
         }
 
-        private async Task<CurrentlyPlayingContext> GetPlayback()
+        private async Task<CurrentlyPlayingContext> GetPlaybackAsync()
         {
             try
             {
@@ -775,7 +775,8 @@ namespace SpotifyAudioSource
                     _checkSpotifyTimer.Interval = PollingInterval;
                 }
 
-                var playback = await GetPlayback();
+                var playback = await GetPlaybackAsync();
+
                 if (playback == null)
                 {
                     NotifyPlayState(false);
