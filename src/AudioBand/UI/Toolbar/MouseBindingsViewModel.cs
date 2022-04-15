@@ -239,6 +239,20 @@ namespace AudioBand.UI
             {
                 var spotifyProcesses = Process.GetProcessesByName("spotify");
                 var title = spotifyProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
+
+                if (string.IsNullOrEmpty(title))
+                {
+                    try
+                    {
+                        var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                        Process.Start($"{path}/Spotify/Spotify.exe");
+                    }
+                    catch (Exception)
+                    {
+                        Logger.Debug("Failed to open Spotify through path.");
+                    }
+                }
+
                 windowPtr = NativeMethods.FindWindow(null, title);
             }
 
