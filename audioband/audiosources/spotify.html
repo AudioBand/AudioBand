@@ -82,16 +82,12 @@
 <h2 id="setup">Setup</h2>
 <ol>
 <li>Login to the <a href="https://developer.spotify.com/dashboard/login">Spotify Dashboard</a> and create a new App. Fill in the details, you can name it whatever you want. This app will be just for AudioBand.</li>
-<li>Go to the app you created and click <code>Edit Settings</code>. Add <code>http://localhost/</code> as a callback url.
+<li>Go to the app you created and click <code>Edit Settings</code>. Add <code>http://localhost/callback</code> as a redirect url (see image below).
 <ol>
-<li>You can use a different port for the local webserver (see next step)</li>
+<li>If you use a different port than 80, you have to change the callback url to <code>http://localhost:PORT/callback</code></li>
 </ol>
 </li>
-<li>Right click anywhere in the toolbar &gt; Audio Band Settings &gt; Audio Source Settings and fill in the fields <code>Spotify Client Id</code> and <code>Spotify Client Secret</code>. You can find them in the same dashboard page for the Spotify app you created.
-<ol>
-<li>You can also change the <code>Callback Port</code> if needed.</li>
-</ol>
-</li>
+<li>Right click anywhere in the toolbar -&gt; Audio Band Settings -&gt; Audio Source Settings and fill in the fields <code>Spotify Client Id</code> and <code>Spotify Client Secret</code>. You can find them in the same dashboard page for the Spotify app you created.</li>
 <li>Your browser should open asking you to login and allow your spotify app to access your currently playing songs.
 <ol>
 <li>If your browser does not open automatically, Right click the toolbar and select Audio Sources &gt; Spotify. It should now open in your default browser.</li>
@@ -101,8 +97,8 @@
 </ol>
 <div class="NOTE">
 <h5>Note</h5>
-<p>Currently you need to have the Spotify desktop application for the playback buttons to work properly.
-The shuffle, repeat-mode and progress bar buttons will only work if you have Spotify Premium.</p>
+<p>If you have premium, all controls will work (except for volume when playing on mobile devices (Spotify limitation)).
+Without premium, only play/pause, next and previous song will work.</p>
 </div>
 <blockquote>
 <p>Dashboard

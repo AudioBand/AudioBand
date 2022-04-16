@@ -2,17 +2,16 @@
 
 ## Setup
 1. Login to the [Spotify Dashboard](https://developer.spotify.com/dashboard/login) and create a new App. Fill in the details, you can name it whatever you want. This app will be just for AudioBand.
-2. Go to the app you created and click `Edit Settings`. Add `http://localhost/` as a callback url.
-    1. You can use a different port for the local webserver (see next step)
-3. Right click anywhere in the toolbar > Audio Band Settings > Audio Source Settings and fill in the fields `Spotify Client Id` and `Spotify Client Secret`. You can find them in the same dashboard page for the Spotify app you created.
-    1. You can also change the `Callback Port` if needed.
+2. Go to the app you created and click `Edit Settings`. Add `http://localhost/callback` as a redirect url (see image below).
+    1. If you use a different port than 80, you have to change the callback url to `http://localhost:PORT/callback`
+3. Right click anywhere in the toolbar -> Audio Band Settings -> Audio Source Settings and fill in the fields `Spotify Client Id` and `Spotify Client Secret`. You can find them in the same dashboard page for the Spotify app you created.
 4. Your browser should open asking you to login and allow your spotify app to access your currently playing songs.
     1. If your browser does not open automatically, Right click the toolbar and select Audio Sources > Spotify. It should now open in your default browser. 
-6. Sign-in and accept and it should now display song information (make sure spotify is selected as the audio source).
+5. Sign-in and accept and it should now display song information (make sure spotify is selected as the audio source).
 
 >[!NOTE]
-> Currently you need to have the Spotify desktop application for the playback buttons to work properly.
-> The shuffle, repeat-mode and progress bar buttons will only work if you have Spotify Premium.
+> If you have premium, all controls will work (except for volume when playing on mobile devices (Spotify limitation)).
+> Without premium, only play/pause, next and previous song will work.
 
 > Dashboard
 ![](~/images/spotify-dashboard.png)
