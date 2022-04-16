@@ -1,0 +1,63 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:audioband="clr-namespace:AudioBand.UI"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate DataType="{x:Type audioband:MouseBindingsViewModel}">
+        <DataTemplate.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <audioband:SharedDictionary Source="../Resources/Shared.xaml" />
+                    <audioband:SharedDictionary Source="../Resources/Strings.xaml" />
+                    <audioband:SharedDictionary Source="../Resources/SettingsWindowStyle.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </DataTemplate.Resources>
+        <StackPanel Style="{StaticResource SettingsStackPanel}">
+            <TextBlock Text="Styling this feature takes a lot of time, and a settings revamp is planned which would cancel out all the work." Margin="0,10,0,0" />
+            <TextBlock Text="That being said, I will keep this (ugly, non themed) editor here until the settings revamp. Sorry." />
+            <TextBlock Margin="0,7,0,0" Text="To delete an item, select a row and press the delete button." />
+            <TextBlock Text="To add an item, double click the most bottom row and start editing it." />
+            <Button Margin="0,20,0,10" Content="Start Edit" Command="{Binding StartEditCommand}" Width="80" HorizontalAlignment="Left"
+                    IsEnabled="{Binding IsEditing, Converter={x:Static audioband:Converters.InverseBool}}" />
+            <DataGrid x:Name="DataGrid" Focusable="False" AutoGenerateColumns="True"
+                      ItemsSource="{Binding Path=MouseBindings, Mode=TwoWay}"
+                      IsReadOnly="{Binding IsEditing, Converter={x:Static audioband:Converters.InverseBool}}" >
+                <!-- This ItemTemplate has no effect, but I keep the original code here in case I need it sometime later -->
+                <DataGrid.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="3" BorderBrush="{audioband:ThemeResource SystemAccentColor}"
+                                Background="Transparent" CornerRadius="5">
+                            <StackPanel Orientation="Horizontal" Margin="5" Style="{StaticResource SettingsStackPanel}">
+                                <ComboBox ItemTemplate="{StaticResource EnumDescriptorItemTemplate}"
+                                          ItemsSource="{Binding ElementName=MouseBindings, Path=DataContext.MouseInputTypes}"
+                                          SelectedItem="{Binding MouseInputType}"
+                                          SelectedValuePath="Value"
+                                          MaxWidth="150" Margin="0,0,10,0" />
+                                <ComboBox ItemTemplate="{StaticResource EnumDescriptorItemTemplate}"
+                                          ItemsSource="{Binding ElementName=MouseBindings, Path=DataContext.CommandTypes}"
+                                          SelectedItem="{Binding MouseInputType}"
+                                          MaxWidth="150" Margin="0" />
+                                <StackPanel Orientation="Vertical" Margin="20, 0, 0, 0">
+                                    <TextBlock Text="Ctrl" Style="{StaticResource DescriptionTextBlock}" Margin="0"/>
+                                    <metro:ToggleSwitch Content="{Binding WithCtrl}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <TextBlock Text="Shift" Style="{StaticResource DescriptionTextBlock}" Margin="0"/>
+                                    <metro:ToggleSwitch Content="{Binding WithShift}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <TextBlock Text="Alt" Style="{StaticResource DescriptionTextBlock}" Margin="0"/>
+                                    <metro:ToggleSwitch Content="{Binding WithAlt}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <TextBlock Text="Windows" Style="{StaticResource DescriptionTextBlock}" Margin="0"/>
+                                    <metro:ToggleSwitch Content="{Binding WithPower}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.ItemTemplate>
+            </DataGrid>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>
