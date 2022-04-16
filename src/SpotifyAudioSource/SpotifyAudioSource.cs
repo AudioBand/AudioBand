@@ -679,7 +679,20 @@ namespace SpotifyAudioSource
                 return;
             }
 
-            _currentVolumePercent = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
+            var newVolume = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
+
+            if (_currentVolumePercent == newVolume)
+            {
+                return;
+            }
+
+            // For some reason, when the audio gets under 15% it gets in an infinite loop and goes all the way to 0, this prevents it
+            if (newVolume < 15 && _currentVolumePercent - 1 == newVolume)
+            {
+                return;
+            }
+
+            _currentVolumePercent = newVolume;
             VolumeChanged?.Invoke(this, _currentVolumePercent);
         }
 

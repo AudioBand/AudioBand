@@ -205,8 +205,7 @@ namespace AudioBand.UI
             {
                 if (SetProperty(ref _volume, value))
                 {
-                    var volume = (int)value;
-                    _audioSession.CurrentAudioSource?.SetVolumeAsync(volume);
+                    _audioSession.CurrentAudioSource?.SetVolumeAsync((int)value);
                 }
             }
         }
