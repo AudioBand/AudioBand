@@ -271,7 +271,13 @@ namespace AudioBand.UI
         private void SwitchProfile(bool previous = false)
         {
             var index = Array.FindIndex(_appSettings.Profiles.ToArray(), x => x.Name == _appSettings.CurrentProfile.Name);
+            var amountOfProfiles = _appSettings.Profiles.Count();
+
             index = previous ? index - 1 : index + 1;
+
+            // check if profile out of bounds, if so loop back to start/end
+            index = index < 0 ? amountOfProfiles - 1 : index;
+            index = index >= amountOfProfiles ? 0 : index;
 
             _appSettings.SelectProfile(_appSettings.Profiles.ElementAt(index).Name);
         }
