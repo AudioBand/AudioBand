@@ -9,6 +9,11 @@ namespace AudioBand.UI
     /// </summary>
     public class PopupService
     {
+        /// <summary>
+        /// The instance of the popupservice.
+        /// </summary>
+        public static PopupService Instance { get; private set; }
+
         private IAppSettings _appSettings;
         private IViewModelContainer _viewModels;
         private ResourceDictionary _textParts = new ResourceDictionary();
@@ -20,6 +25,7 @@ namespace AudioBand.UI
         /// <param name="viewModels">The viewmodels.</param>
         public PopupService(IAppSettings appSettings, IViewModelContainer viewModels)
         {
+            Instance = this;
             _appSettings = appSettings;
             _viewModels = viewModels;
 

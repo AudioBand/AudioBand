@@ -1,13 +1,15 @@
-﻿using AudioBand.Logging;
-using AudioBand.Models;
-using AudioBand.Settings.Migrations;
-using Nett;
-using Newtonsoft.Json;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AudioBand.Logging;
+using AudioBand.Models;
+using AudioBand.Settings.Migrations;
+using AudioBand.UI;
+using Nett;
+using Newtonsoft.Json;
+using NLog;
+
 // Alias the current settings version
 using OldTomlSettings = AudioBand.Settings.Models.V4.SettingsV4;
 
@@ -30,6 +32,8 @@ namespace AudioBand.Settings.Persistence
             { "3", typeof(Models.V3.SettingsV3) },
             { "4", typeof(Models.V4.SettingsV4) },
         };
+
+        private PopupService _popups = PopupService.Instance;
 
         /// <inheritdoc />
         public void CheckAndConvertOldSettings()
@@ -77,11 +81,20 @@ namespace AudioBand.Settings.Persistence
                 return settings;
             }
 
-            var content = File.ReadAllText(SettingsFilePath);
+            string content = "";
 
             try
             {
-                return JsonConvert.DeserializeObject<Settings>(content);
+                content = File.ReadAllText(SettingsFilePath);
+                var settings = JsonConvert.DeserializeObject<Settings>(content);
+
+                if (settings == null)
+                {
+                    _popups.ShowPopup("FileCorruptedTitle", "FileCorruptedDescription", TimeSpan.FromSeconds(20));
+                    throw new Exception("The setting file was null / corrupted.");
+                }
+
+                return settings;
             }
             catch (Exception e)
             {
@@ -91,8 +104,7 @@ namespace AudioBand.Settings.Persistence
                 File.WriteAllText(backupPath, content);
 
                 var newSettings = new Settings();
-                var json = JsonConvert.SerializeObject(newSettings);
-                File.WriteAllText(SettingsFilePath, json);
+                WriteSettings(newSettings);
                 return newSettings;
             }
         }
@@ -100,21 +112,29 @@ namespace AudioBand.Settings.Persistence
         /// <inheritdoc />
         public void WriteSettings(Settings settings)
         {
-            var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
-            File.WriteAllText(SettingsFilePath, json);
+            try
+            {
+                var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+                File.WriteAllText(SettingsFilePath, json);
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to write settings.");
+                Logger.Error(e);
+            }
         }
 
         /// <inheritdoc />
         public UserProfile ReadProfile(string path)
         {
-            var json = File.ReadAllText(path);
-
             try
             {
+                var json = File.ReadAllText(path);
                 return JsonConvert.DeserializeObject<UserProfile>(json);
             }
             catch (Exception)
             {
+                Logger.Error($"Failed to load profile from {path}.");
                 return null;
             }
         }
@@ -122,12 +142,14 @@ namespace AudioBand.Settings.Persistence
         /// <inheritdoc />
         public IEnumerable<UserProfile> ReadProfiles()
         {
+            var userProfiles = new List<UserProfile>();
+
             if (!Directory.Exists(ProfilesDirectory))
             {
                 Directory.CreateDirectory(ProfilesDirectory);
+                return userProfiles;
             }
 
-            var userProfiles = new List<UserProfile>();
             var fileNames = GetAllProfileFiles();
 
             for (int i = 0; i < fileNames.Length; i++)
@@ -135,7 +157,15 @@ namespace AudioBand.Settings.Persistence
                 try
                 {
                     var json = File.ReadAllText(fileNames[i]);
-                    userProfiles.Add(JsonConvert.DeserializeObject<UserProfile>(json));
+                    var loadedProfile = JsonConvert.DeserializeObject<UserProfile>(json);
+
+                    if (loadedProfile == null)
+                    {
+                        DeleteProfile(fileNames[i]);
+                        continue;
+                    }
+
+                    userProfiles.Add(loadedProfile);
                 }
                 catch (Exception)
                 {

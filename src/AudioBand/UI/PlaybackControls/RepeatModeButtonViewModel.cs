@@ -34,31 +34,24 @@ namespace AudioBand.UI
             _audioSession.PropertyChanged += AudioSessionOnPropertyChanged;
             _appSettings.ProfileChanged += AppSettingsOnProfileChanged;
 
-            var resetState = new RepeatModeButton();
-            RepeatOffContent = new ButtonContentViewModel(Model.RepeatOffContent, resetState.RepeatOffContent, dialogService);
-            RepeatContextContent = new ButtonContentViewModel(Model.RepeatContextContent, resetState.RepeatContextContent, dialogService);
-            RepeatTrackContent = new ButtonContentViewModel(Model.RepeatTrackContent, resetState.RepeatTrackContent, dialogService);
             CycleRepeatModeCommand = new AsyncRelayCommand<object>(CycleRepeatModeCommandOnExecute);
-
-            TrackContentViewModel(RepeatOffContent);
-            TrackContentViewModel(RepeatContextContent);
-            TrackContentViewModel(RepeatTrackContent);
+            InitializeButtonContents();
         }
 
         /// <summary>
-        /// Gets the button content when repeat is off.
+        /// Gets or sets the button content when repeat is off.
         /// </summary>
-        public ButtonContentViewModel RepeatOffContent { get; }
+        public ButtonContentViewModel RepeatOffContent { get; set; }
 
         /// <summary>
-        /// Gets the button content when repeat is on.
+        /// Gets or sets the button content when repeat is on.
         /// </summary>
-        public ButtonContentViewModel RepeatContextContent { get; }
+        public ButtonContentViewModel RepeatContextContent { get; set; }
 
         /// <summary>
-        /// Gets the button content when repeat is on for the track.
+        /// Gets or sets the button content when repeat is on for the track.
         /// </summary>
-        public ButtonContentViewModel RepeatTrackContent { get; }
+        public ButtonContentViewModel RepeatTrackContent { get; set; }
 
         /// <summary>
         /// Gets the command to change the repeat mode.
@@ -100,6 +93,8 @@ namespace AudioBand.UI
         {
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.CurrentProfile.RepeatModeButton, Model);
+
+            InitializeButtonContents();
             RaisePropertyChangedAll();
         }
 
@@ -125,6 +120,18 @@ namespace AudioBand.UI
             }
 
             await _audioSession.CurrentAudioSource.SetRepeatModeAsync(nextRepeatMode);
+        }
+
+        private void InitializeButtonContents()
+        {
+            var resetState = new RepeatModeButton();
+            RepeatOffContent = new ButtonContentViewModel(Model.RepeatOffContent, resetState.RepeatOffContent, DialogService);
+            RepeatContextContent = new ButtonContentViewModel(Model.RepeatContextContent, resetState.RepeatContextContent, DialogService);
+            RepeatTrackContent = new ButtonContentViewModel(Model.RepeatTrackContent, resetState.RepeatTrackContent, DialogService);
+
+            TrackContentViewModel(RepeatOffContent);
+            TrackContentViewModel(RepeatContextContent);
+            TrackContentViewModel(RepeatTrackContent);
         }
     }
 }

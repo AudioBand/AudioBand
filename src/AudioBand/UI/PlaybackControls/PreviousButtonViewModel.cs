@@ -30,15 +30,15 @@ namespace AudioBand.UI
             _appSettings = appSettings;
             _audioSession = audioSession;
             _appSettings.ProfileChanged += AppsSettingsOnProfileChanged;
+
             PreviousTrackCommand = new AsyncRelayCommand<object>(PreviousTrackCommandOnExecute);
-            Content = new ButtonContentViewModel(Model.Content, new PreviousButton().Content, dialogService);
-            TrackContentViewModel(Content);
+            InitializeButtonContents();
         }
 
         /// <summary>
-        /// Gets the button content.
+        /// Gets or sets the button content.
         /// </summary>
-        public ButtonContentViewModel Content { get; }
+        public ButtonContentViewModel Content { get; set; }
 
         /// <summary>
         /// Gets the previous track command.
@@ -66,7 +66,15 @@ namespace AudioBand.UI
         {
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.CurrentProfile.PreviousButton, Model);
+
+            InitializeButtonContents();
             RaisePropertyChangedAll();
+        }
+
+        private void InitializeButtonContents()
+        {
+            Content = new ButtonContentViewModel(Model.Content, new PreviousButton().Content, DialogService);
+            TrackContentViewModel(Content);
         }
     }
 }
