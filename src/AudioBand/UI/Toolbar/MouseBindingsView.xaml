@@ -20,7 +20,7 @@
             <Button Margin="0,20,0,10" Content="Start Edit" Command="{Binding StartEditCommand}" Width="80" HorizontalAlignment="Left"
                     IsEnabled="{Binding IsEditing, Converter={x:Static audioband:Converters.InverseBool}}" />
             <DataGrid x:Name="DataGrid" Focusable="False" AutoGenerateColumns="True"
-                      ItemsSource="{Binding Path=MouseBindings, Mode=TwoWay}"
+                      ItemsSource="{Binding Path=MouseBindings, Mode=TwoWay}" CanUserDeleteRows="True" CanUserAddRows="True"
                       IsReadOnly="{Binding IsEditing, Converter={x:Static audioband:Converters.InverseBool}}" >
                 <!-- This ItemTemplate has no effect, but I keep the original code here in case I need it sometime later -->
                 <DataGrid.ItemTemplate>

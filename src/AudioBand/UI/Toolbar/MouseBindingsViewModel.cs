@@ -23,9 +23,7 @@ namespace AudioBand.UI
         private IAudioSession _audioSession;
         private IMessageBus _messageBus;
 
-        private ObservableCollection<MouseBinding> _mouseBindings;
-
-        private List<MouseBinding> _model = new List<MouseBinding>();
+        private ObservableCollection<MouseBinding> _mouseBindings = new ObservableCollection<MouseBinding>();
         private List<MouseBinding> _backup = new List<MouseBinding>();
 
         /// <summary>
@@ -36,7 +34,7 @@ namespace AudioBand.UI
         /// <param name="messageBus">The message bus.</param>
         public MouseBindingsViewModel(IAppSettings appSettings, IAudioSession audioSession, IMessageBus messageBus)
         {
-            MapSelf(appSettings.AudioBandSettings.MouseBindings, _model);
+            MouseBindings = new ObservableCollection<MouseBinding>(appSettings.AudioBandSettings.MouseBindings);
 
             _appSettings = appSettings;
             _audioSession = audioSession;
@@ -108,21 +106,21 @@ namespace AudioBand.UI
         protected override void OnBeginEdit()
         {
             base.OnBeginEdit();
-            MapSelf(_model, _backup);
+            _backup = MouseBindings.ToList();
         }
 
         /// <inheritdoc />
         protected override void OnCancelEdit()
         {
             base.OnCancelEdit();
-            MapSelf(_backup, _model);
+            MouseBindings = new ObservableCollection<MouseBinding>(_backup);
         }
 
         /// <inheritdoc />
         protected override void OnEndEdit()
         {
             base.OnEndEdit();
-            MapSelf(_model, _appSettings.AudioBandSettings.MouseBindings);
+            _appSettings.AudioBandSettings.MouseBindings = MouseBindings.ToList();
         }
 
         private void StartEditCommandOnExecute()
