@@ -210,7 +210,13 @@ namespace MusicBeeAudioSource
 
         private void NotifyState()
         {
-            var isPlaying = _ipc.GetPlayState().HasFlag(MusicBeeIPC.PlayState.Playing);
+            var playState = _ipc.GetPlayState();
+
+            // if IsPlaying and not Stopped and not Undefined, playing is true
+            var isPlaying = playState.HasFlag(MusicBeeIPC.PlayState.Playing)
+                && !playState.HasFlag(MusicBeeIPC.PlayState.Undefined)
+                && !playState.HasFlag(MusicBeeIPC.PlayState.Stopped);
+
             if (isPlaying == _isPlaying)
             {
                 return;
