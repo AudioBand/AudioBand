@@ -252,7 +252,7 @@ namespace MusicBeeAudioSource
                 Album = _ipc.GetFileTag(MusicBeeIPC.MetaData.Album),
                 Artist = artist,
                 AlbumArt = albumArt,
-                TrackLength =  ParseTimeFromIPC(),
+                TrackLength = ParseTimeFromIPC(),
                 TrackName = track
             });
         }
@@ -307,14 +307,14 @@ namespace MusicBeeAudioSource
                     double.TryParse(times[0], out double seconds);
                     return TimeSpan.FromSeconds(seconds);
                 case 2:
-                    double.TryParse(times[0], out seconds);
-                    double.TryParse(times[1], out double minutes);
-                    return TimeSpan.FromSeconds(minutes * 60 + seconds);
+                    double.TryParse(times[0], out double minutes);
+                    double.TryParse(times[1], out seconds);
+                    return TimeSpan.FromSeconds((minutes * 60) + seconds);
                 case 3:
-                    double.TryParse(times[0], out seconds);
+                    double.TryParse(times[0], out double hours);
                     double.TryParse(times[1], out minutes);
-                    double.TryParse(times[2], out double hours);
-                    return TimeSpan.FromSeconds((hours * 60 + minutes) * 60 + seconds);
+                    double.TryParse(times[2], out seconds);
+                    return TimeSpan.FromSeconds((((hours * 60) + minutes) * 60) + seconds);
                 default:
                     Logger.Warn($"Unable to parse track length: {timeString}");
                     return TimeSpan.Zero;
