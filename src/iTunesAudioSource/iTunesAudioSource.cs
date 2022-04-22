@@ -7,7 +7,10 @@ using Timer = System.Timers.Timer;
 
 namespace iTunesAudioSource
 {
-    public class AudioSource : IAudioSource
+    /// <summary>
+    /// AudioSource for iTunes.
+    /// </summary>
+    public class iTunesAudioSource : IAudioSource
     {
         private Timer _checkiTunesTimer;
         private string _currentTrack;
@@ -17,7 +20,10 @@ namespace iTunesAudioSource
         private ITPlaylistRepeatMode _repeat;
         private ITunesControls _itunesControls = new ITunesControls();
 
-        public AudioSource()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="iTunesAudioSource"/> class.
+        /// </summary>
+        public iTunesAudioSource()
         {
             _checkiTunesTimer = new Timer(100)
             {
