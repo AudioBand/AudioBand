@@ -190,17 +190,41 @@ namespace Win10AudioSource
 
         private void CurrentSessionOnTimelinePropertiesChanged(GlobalSystemMediaTransportControlsSession sender, TimelinePropertiesChangedEventArgs args)
         {
-            UpdateTimelineProperties();
+            try
+            {
+                UpdateTimelineProperties();
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to update Win10 timeline properties.");
+                Logger.Error(e);
+            }
         }
 
         private void CurrentSessionOnPlaybackInfoChanged(GlobalSystemMediaTransportControlsSession sender, PlaybackInfoChangedEventArgs args)
         {
-            UpdatePlaybackProperties();
+            try
+            {
+                UpdatePlaybackProperties();
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to update Win10 playback properties.");
+                Logger.Error(e);
+            }
         }
 
         private async void CurrentSessionOnMediaPropertiesChanged(GlobalSystemMediaTransportControlsSession sender, MediaPropertiesChangedEventArgs args)
         {
-            await UpdateMediaProperties();
+            try
+            {
+                await UpdateMediaProperties();
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to update Win10 media properties.");
+                Logger.Error(e);
+            }
         }
 
         private async Task UpdateSession(GlobalSystemMediaTransportControlsSession newSession)
