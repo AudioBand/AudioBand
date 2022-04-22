@@ -251,6 +251,7 @@ namespace iTunesAudioSource
                 return;
             }
 
+            _volume = volume;
             VolumeChanged?.Invoke(this, _volume);
         }
 
