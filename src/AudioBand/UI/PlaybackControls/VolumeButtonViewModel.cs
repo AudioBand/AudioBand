@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows;
+using System.Timers;
 using System.Windows.Input;
 using System.Windows.Media;
 using AudioBand.AudioSource;
@@ -20,7 +20,7 @@ namespace AudioBand.UI
         private readonly IAppSettings _appSettings;
         private readonly IAudioSession _audioSession;
         private bool _isVolumePopupOpen;
-        private double _volume;
+        private int _volume;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VolumeButtonViewModel"/> class.
@@ -198,14 +198,14 @@ namespace AudioBand.UI
         /// Gets or sets the current Volume.
         /// </summary>
         [AlsoNotify(nameof(CurrentVolumeState))]
-        public double Volume
+        public int Volume
         {
             get => _volume;
             set
             {
                 if (SetProperty(ref _volume, value))
                 {
-                    _audioSession.CurrentAudioSource?.SetVolumeAsync((int)value);
+                    _audioSession.CurrentAudioSource?.SetVolumeAsync(value);
                 }
             }
         }
@@ -221,6 +221,8 @@ namespace AudioBand.UI
         {
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.CurrentProfile.VolumeButton, Model);
+
+            OnVolumeChanged(_audioSession.Volume);
 
             InitializeButtonContents();
             RaisePropertyChangedAll();
@@ -238,7 +240,9 @@ namespace AudioBand.UI
 
         private void OnVolumeChanged(int newVolume)
         {
-            Volume = newVolume;
+            _volume = newVolume;
+            RaisePropertyChanged(nameof(Volume));
+            RaisePropertyChanged(nameof(CurrentVolumeState));
         }
 
         private void OpenVolumePopupCommandOnExecute(object arg)

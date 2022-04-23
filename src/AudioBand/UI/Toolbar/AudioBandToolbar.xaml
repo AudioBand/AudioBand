@@ -433,9 +433,9 @@
                         TickPlacement="None"
                         IsSnapToTickEnabled="True"
                         Style="{StaticResource VolumeSliderStyle}"
-                        Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
+                        Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}"
+                        Value="{Binding Volume, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
-                        <audioband:SliderThrottle FinalValue="{Binding Volume, Mode=TwoWay}" />
                         <audioband:SliderClickAndDrag />
                     </i:Interaction.Behaviors>
                 </Slider>

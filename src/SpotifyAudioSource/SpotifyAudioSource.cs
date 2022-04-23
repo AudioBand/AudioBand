@@ -22,6 +22,9 @@ namespace SpotifyAudioSource
     {
         private readonly SpotifyControls _spotifyControls = new SpotifyControls();
         private Timer _checkSpotifyTimer = new Timer(1000);
+        private Timer _volumeUpdateTimer = new Timer(750);
+        private DateTime _lastVolumeUpdate = DateTime.UtcNow;
+
         private SpotifyClientConfig _spotifyConfig;
         private ISpotifyClient _spotifyClient;
         private HttpClient _httpClient = new HttpClient();
@@ -54,6 +57,9 @@ namespace SpotifyAudioSource
         {
             _checkSpotifyTimer.AutoReset = false;
             _checkSpotifyTimer.Elapsed += CheckSpotifyTimerOnElapsed;
+
+            _volumeUpdateTimer.AutoReset = false;
+            _volumeUpdateTimer.Elapsed += OnVolumeUpdaterElapsed;
         }
 
         /// <inheritdoc />
@@ -380,7 +386,7 @@ namespace SpotifyAudioSource
                     _spotifyControls.TryNext();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 _spotifyControls.TryNext();
             }
@@ -389,11 +395,14 @@ namespace SpotifyAudioSource
         /// <inheritdoc />
         public async Task SetVolumeAsync(int newVolume)
         {
-            if (_spotifyClient == null)
+            if (_volumeUpdateTimer.Enabled)
             {
-                Authorize();
+                _currentVolumePercent = newVolume;
                 return;
             }
+
+            _volumeUpdateTimer.Start();
+            _lastVolumeUpdate = DateTime.UtcNow;
 
             await _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(newVolume));
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
@@ -674,7 +683,10 @@ namespace SpotifyAudioSource
 
         private void NotifyVolume(CurrentlyPlayingContext context)
         {
-            if (context.Device == null)
+            // if timer is enabled or last volume update was less than 2 seconds ago, temporarily do not update
+            if (context.Device == null
+            || _volumeUpdateTimer.Enabled
+            || _lastVolumeUpdate.AddSeconds(2) > DateTime.UtcNow)
             {
                 return;
             }
@@ -682,12 +694,6 @@ namespace SpotifyAudioSource
             var newVolume = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
 
             if (_currentVolumePercent == newVolume)
-            {
-                return;
-            }
-
-            // For some reason, when the audio gets under 15% it gets in an infinite loop and goes all the way to 0, this prevents it
-            if (newVolume < 15 && _currentVolumePercent - 1 == newVolume)
             {
                 return;
             }
@@ -763,6 +769,13 @@ namespace SpotifyAudioSource
         {
             // Spotify api does not provide a way to get realtime player status updates, so we have to resort to polling.
             await UpdatePlayer();
+        }
+
+        private void OnVolumeUpdaterElapsed(object sender, ElapsedEventArgs e)
+        {
+            _volumeUpdateTimer.Stop();
+
+            _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(_currentVolumePercent));
         }
 
         private async Task UpdatePlayer()
