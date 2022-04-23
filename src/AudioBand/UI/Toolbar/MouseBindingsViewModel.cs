@@ -205,17 +205,36 @@ namespace AudioBand.UI
                     _audioSession.CurrentAudioSource?.PreviousTrackAsync();
                     break;
                 case MouseBindingCommandType.NextRepeatMode:
+                    var nextRepeatMode = (int)(_audioSession.RepeatMode + 1) % 3;
+                    _audioSession.CurrentAudioSource?.SetRepeatModeAsync((RepeatMode)nextRepeatMode);
                     break;
                 case MouseBindingCommandType.PreviousRepeatMode:
+                    var previousRepeatMode = (int)(_audioSession.RepeatMode - 1);
+                    previousRepeatMode = previousRepeatMode < 0 ? 2 : previousRepeatMode;
+
+                    _audioSession.CurrentAudioSource?.SetRepeatModeAsync((RepeatMode)previousRepeatMode);
                     break;
                 case MouseBindingCommandType.ToggleShuffleMode:
+                    _audioSession.CurrentAudioSource?.SetShuffleAsync(!_audioSession.IsShuffleOn);
                     break;
                 case MouseBindingCommandType.VolumeHigher:
+                    _audioSession.CurrentAudioSource.SetVolumeAsync(_audioSession.Volume + 2);
                     break;
                 case MouseBindingCommandType.VolumeLower:
+                    _audioSession.CurrentAudioSource.SetVolumeAsync(_audioSession.Volume - 2);
                     break;
                 case MouseBindingCommandType.OpenAssociatedApp:
                     OpenAssociatedApp();
+                    break;
+                case MouseBindingCommandType.TogglePlayPause:
+                    if (_audioSession.IsPlaying)
+                    {
+                        _audioSession.CurrentAudioSource?.PauseTrackAsync();
+                    }
+                    else
+                    {
+                        _audioSession.CurrentAudioSource?.PlayTrackAsync();
+                    }
                     break;
                 default:
                     break;
