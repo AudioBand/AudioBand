@@ -222,8 +222,6 @@ namespace AudioBand.UI
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.CurrentProfile.VolumeButton, Model);
 
-            OnVolumeChanged(_audioSession.Volume);
-
             InitializeButtonContents();
             RaisePropertyChangedAll();
         }
