@@ -218,10 +218,10 @@ namespace AudioBand.UI
                     _audioSession.CurrentAudioSource?.SetShuffleAsync(!_audioSession.IsShuffleOn);
                     break;
                 case MouseBindingCommandType.VolumeHigher:
-                    _audioSession.CurrentAudioSource.SetVolumeAsync(_audioSession.Volume + 2);
+                    _audioSession.CurrentAudioSource?.SetVolumeAsync(_audioSession.Volume + 2);
                     break;
                 case MouseBindingCommandType.VolumeLower:
-                    _audioSession.CurrentAudioSource.SetVolumeAsync(_audioSession.Volume - 2);
+                    _audioSession.CurrentAudioSource?.SetVolumeAsync(_audioSession.Volume - 2);
                     break;
                 case MouseBindingCommandType.OpenAssociatedApp:
                     OpenAssociatedApp();
