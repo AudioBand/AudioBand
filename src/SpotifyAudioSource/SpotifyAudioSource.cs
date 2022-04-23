@@ -23,7 +23,7 @@ namespace SpotifyAudioSource
         private readonly SpotifyControls _spotifyControls = new SpotifyControls();
         private Timer _checkSpotifyTimer = new Timer(1000);
         private Timer _volumeUpdateTimer = new Timer(750);
-        private DateTime _lastVolumeUpdate = DateTime.UtcNow;
+        private DateTime _lastVolumeUpdate = DateTime.UtcNow.AddMinutes(-1);
 
         private SpotifyClientConfig _spotifyConfig;
         private ISpotifyClient _spotifyClient;
