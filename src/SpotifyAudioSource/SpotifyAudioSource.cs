@@ -404,6 +404,7 @@ namespace SpotifyAudioSource
             _volumeUpdateTimer.Start();
             _lastVolumeUpdate = DateTime.UtcNow;
 
+            _currentVolumePercent = newVolume;
             await _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(newVolume));
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
