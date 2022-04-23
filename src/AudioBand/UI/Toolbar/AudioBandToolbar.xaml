@@ -407,6 +407,7 @@
         </Button>
         <fluentWpf:AcrylicPopup
                 x:Name="VolumePopup"
+                PopupAnimation="Fade"
                 Placement="Top"
                 Width="{Binding PopupWidth}"
                 Height="{Binding PopupHeight}"
@@ -416,7 +417,8 @@
                 HorizontalOffset="{Binding XPopupOffset}"
                 VerticalOffset="{Binding YPopupOffset}"
                 Style="{StaticResource VolumePopupStyle}"
-                MouseWheel="VolumePopup_MouseWheel">
+                MouseWheel="VolumePopup_MouseWheel"
+                StaysOpen="False">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeave">
                     <i:InvokeCommandAction Command="{Binding MouseLeftCommand}" />
