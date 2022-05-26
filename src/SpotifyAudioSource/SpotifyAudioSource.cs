@@ -810,19 +810,19 @@ namespace SpotifyAudioSource
                     return;
                 }
 
+                if (playback.Item == null || playback.CurrentlyPlayingType == "ad")
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    return;
+                }
+
                 NotifyPlayState(playback.IsPlaying);
                 NotifyTrackProgress(playback);
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
 
-                if (playback.Item == null)
-                {
-                    // Playback can be null if there are no devices playing
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                    return;
-                }
-                else if (playback.Item.Type == ItemType.Track)
+                if (playback.Item.Type == ItemType.Track)
                 {
                     await NotifyTrackUpdate(playback.Item as FullTrack);
                 }
