@@ -250,6 +250,27 @@ namespace AudioBand.UI
 
             var windowPtr = NativeMethods.FindWindow(_audioSession.CurrentAudioSource.WindowClassName, null);
 
+            if (_audioSession.CurrentAudioSource.Name == "Music Bee")
+            {
+                var spotifyProcesses = Process.GetProcessesByName("musicbee");
+                var title = spotifyProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
+
+                if (string.IsNullOrEmpty(title))
+                {
+                    try
+                    {
+                        var path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+                        Process.Start($"{path}/MusicBee/MusicBee.exe");
+                    }
+                    catch (Exception)
+                    {
+                        Logger.Debug("Failed to open MusicBee through path.");
+                    }
+                }
+
+                windowPtr = NativeMethods.FindWindow(null, title);
+            }
+
             // Spotify has some weird shenanigans with their windows, doing it like normal
             // results in the wrong window handle being returned.
             if (_audioSession.CurrentAudioSource.Name == "Spotify")
