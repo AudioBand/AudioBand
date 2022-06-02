@@ -253,7 +253,7 @@ namespace AudioBand.UI
 
             if (_audioSession.CurrentAudioSource.Name == "iTunes")
             {
-                var itunesProcesses = Process.GetProcessesByName("iTunes");
+                var itunesProcesses = Process.GetProcessesByName("itunes");
                 var title = itunesProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
 
                 if (string.IsNullOrEmpty(title))
