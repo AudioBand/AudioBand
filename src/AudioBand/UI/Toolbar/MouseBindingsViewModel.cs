@@ -271,8 +271,7 @@ namespace AudioBand.UI
 
                 windowPtr = NativeMethods.FindWindow(null, title);
             }
-
-            if (_audioSession.CurrentAudioSource.Name == "Music Bee")
+            else if (_audioSession.CurrentAudioSource.Name == "Music Bee")
             {
                 var musicbeeProcesses = Process.GetProcessesByName("musicbee");
                 var title = musicbeeProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
