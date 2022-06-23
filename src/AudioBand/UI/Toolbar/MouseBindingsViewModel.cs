@@ -235,6 +235,7 @@ namespace AudioBand.UI
                     {
                         _audioSession.CurrentAudioSource?.PlayTrackAsync();
                     }
+
                     break;
                 default:
                     break;
@@ -249,6 +250,47 @@ namespace AudioBand.UI
             }
 
             var windowPtr = NativeMethods.FindWindow(_audioSession.CurrentAudioSource.WindowClassName, null);
+
+            if (_audioSession.CurrentAudioSource.Name == "iTunes")
+            {
+                var itunesProcesses = Process.GetProcessesByName("itunes");
+                var title = itunesProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
+
+                if (string.IsNullOrEmpty(title))
+                {
+                    try
+                    {
+                        var path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+                        Process.Start($"{path}/iTunes/iTunes.exe");
+                    }
+                    catch (Exception)
+                    {
+                        Logger.Debug("Failed to open iTunes through path.");
+                    }
+                }
+
+                windowPtr = NativeMethods.FindWindow(null, title);
+            }
+            else if (_audioSession.CurrentAudioSource.Name == "Music Bee")
+            {
+                var musicbeeProcesses = Process.GetProcessesByName("musicbee");
+                var title = musicbeeProcesses.FirstOrDefault(x => !string.IsNullOrEmpty(x.MainWindowTitle))?.MainWindowTitle;
+
+                if (string.IsNullOrEmpty(title))
+                {
+                    try
+                    {
+                        var path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+                        Process.Start($"{path}/MusicBee/MusicBee.exe");
+                    }
+                    catch (Exception)
+                    {
+                        Logger.Debug("Failed to open MusicBee through path.");
+                    }
+                }
+
+                windowPtr = NativeMethods.FindWindow(null, title);
+            }
 
             // Spotify has some weird shenanigans with their windows, doing it like normal
             // results in the wrong window handle being returned.
