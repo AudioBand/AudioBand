@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using AudioBand.AudioSource;
@@ -72,7 +73,17 @@ namespace iTunesAudioSource
         /// <inheritdoc/>
         public Task ActivateAsync()
         {
-            _itunesControls.Start();
+            /* If AudioSource is activated and iTunes isn't open yet,
+             * it will open this manually and this can take a while.
+             * That is why we fire a separate thread for it.
+             */
+            new Thread(() => 
+            {
+                Thread.CurrentThread.IsBackground = true; 
+                _itunesControls.Start();
+            }).Start();
+
+
             _checkiTunesTimer.Start();
             return Task.CompletedTask;
         }
