@@ -24,6 +24,7 @@ namespace AudioBand.Settings.Persistence
         private static readonly string ProfilesDirectory = Path.Combine(MainDirectory, "Profiles");
         private static readonly string SettingsFilePath = Path.Combine(MainDirectory, "settings.json");
         private static readonly ILogger Logger = AudioBandLogManager.GetLogger<PersistentSettings>();
+        private bool _isBusy = false;
 
         private static readonly Dictionary<string, Type> SettingsTypeTable = new Dictionary<string, Type>()
         {
@@ -112,8 +113,14 @@ namespace AudioBand.Settings.Persistence
         /// <inheritdoc />
         public void WriteSettings(Settings settings)
         {
+            if (_isBusy)
+            {
+                return;
+            }
+
             try
             {
+                _isBusy = true;
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
                 File.WriteAllText(SettingsFilePath, json);
             }
@@ -122,6 +129,12 @@ namespace AudioBand.Settings.Persistence
                 Logger.Error("Failed to write settings.");
                 Logger.Error(e);
             }
+            finally
+            {
+                _isBusy = false;
+            }
+
+            _isBusy = false;
         }
 
         /// <inheritdoc />
@@ -181,20 +194,35 @@ namespace AudioBand.Settings.Persistence
         /// <inheritdoc />
         public void WriteProfiles(IEnumerable<UserProfile> userProfiles)
         {
+            if (_isBusy)
+            {
+                return;
+            }
+
             if (!Directory.Exists(ProfilesDirectory))
             {
                 Directory.CreateDirectory(ProfilesDirectory);
             }
 
+            _isBusy = true;
             var profiles = userProfiles.ToArray();
 
             for (int i = 0; i < profiles.Length; i++)
             {
-                var json = JsonConvert.SerializeObject(profiles[i], Formatting.Indented);
-                var path = Path.Combine(ProfilesDirectory, $"{profiles[i].Name}.profile.json");
+                try
+                {
+                    var json = JsonConvert.SerializeObject(profiles[i], Formatting.Indented);
+                    var path = Path.Combine(ProfilesDirectory, $"{profiles[i].Name}.profile.json");
 
-                File.WriteAllText(path, json);
+                    File.WriteAllText(path, json);
+                }
+                catch (Exception e)
+                {
+                    continue;
+                }
             }
+
+            _isBusy = false;
         }
 
         /// <inheritdoc />
