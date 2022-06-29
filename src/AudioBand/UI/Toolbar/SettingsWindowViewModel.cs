@@ -167,8 +167,8 @@ namespace AudioBand.UI
             _appSettings.DeleteProfile(SelectedProfileName);
             ProfileNames.Remove(SelectedProfileName);
 
-            _appSettings.SelectProfile(SelectedProfileName);
             SelectedProfileName = ProfileNames[0];
+            _appSettings.SelectProfile(SelectedProfileName);
             _appSettings.Save();
             _messageBus.Publish(ProfilesUpdatedMessage.ProfileDeleted);
         }
