@@ -21,6 +21,9 @@
             <audioband:ColorPicker Title="{StaticResource ProgressBarForegroundColorDescription}"
                                    DialogService="{Binding DialogService}"
                                    Color="{Binding ForegroundColor}" />
+            <audioband:ColorPicker Title="{StaticResource ProgressBarForegroundGradientColorDescription}"
+                                   DialogService="{Binding DialogService}"
+                                   Color="{Binding ForegroundGradinetColor}" />
             <audioband:ColorPicker Title="{StaticResource ProgressBarBackgroundColorDescription}"
                                    DialogService="{Binding DialogService}"
                                    Color="{Binding BackgroundColor}" />

@@ -48,6 +48,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the foreground gradient color.
+        /// </summary>
+        [TrackState]
+        public Color ForegroundGradientColor
+        {
+            get => Model.ForegroundGradientColor;
+            set => SetProperty(Model, nameof(Model.ForegroundGradientColor), value);
+        }
+
+        /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         [TrackState]

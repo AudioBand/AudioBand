@@ -165,6 +165,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <!--  Progress bar settings text  -->
     <sys:String x:Key="ProgressBarColorsSectionText">Colors</sys:String>
     <sys:String x:Key="ProgressBarForegroundColorDescription">Foreground color</sys:String>
+    <sys:String x:Key="ProgressBarForegroundGradientColorDescription">Right Side Foreground color</sys:String>
     <sys:String x:Key="ProgressBarBackgroundColorDescription">Background color</sys:String>
     <sys:String x:Key="ProgressBarHoverColorDescription">Background color when hovered</sys:String>
     <sys:String x:Key="ProgressBarThumbBorderColorDescription">Thumb's border color</sys:String>

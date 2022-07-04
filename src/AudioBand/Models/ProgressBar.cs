@@ -24,6 +24,11 @@ namespace AudioBand.Models
         public Color ForegroundColor { get; set; } = Colors.DodgerBlue;
 
         /// <summary>
+        /// Gets or sets the right hand side foreground color.
+        /// </summary>
+        public Color ForegroundGradientColor { get; set; } = Colors.Indigo;
+
+        /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         public Color BackgroundColor { get; set; } = Colors.DimGray;
