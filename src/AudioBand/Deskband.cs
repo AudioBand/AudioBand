@@ -42,6 +42,7 @@ namespace AudioBand
         /// </summary>
         public Deskband()
         {
+            System.Diagnostics.Debugger.Launch();
             // Fluentwpf requires an application window
             if (Application.Current == null)
             {

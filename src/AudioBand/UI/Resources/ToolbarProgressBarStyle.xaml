@@ -17,8 +17,8 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="{Binding BackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
-        <Setter Property="Foreground" Value="{Binding ForegroundGradientColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="Foreground" Value="{Binding ForegroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
+        <Setter Property="ForegroundGradient" Value="{Binding ForegroundGradientColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="ClipToBounds" Value="False" />
@@ -172,7 +172,6 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{Binding VolumeBarBackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="Foreground" Value="{Binding VolumeBarForegroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
-        <Setter Property="Foreground" Value="{Binding VolumeBarForegroundGradientColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="ClipToBounds" Value="False" />
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="Height">
