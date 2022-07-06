@@ -443,6 +443,7 @@
                 </Slider>
             </Border>
         </fluentWpf:AcrylicPopup>
+        <!-- Using style here so DataBindings work on the Gradients -->
         <Slider x:Name="ProgressBar"
                 Width="{Binding Width}"
                 Height="{Binding Height}"
@@ -452,12 +453,23 @@
                 DataContext="{Binding ViewModels.ProgressBarViewModel}"
                 Maximum="{Binding TrackLength, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=OneWay}"
                 Minimum="0"
-                Style="{StaticResource ProgressBarStyle}"
                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
             <i:Interaction.Behaviors>
                 <audioband:SliderThrottle FinalValue="{Binding TrackProgress, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=TwoWay}" />
                 <audioband:SliderClickAndDrag />
             </i:Interaction.Behaviors>
+            <Slider.Style>
+                <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource ProgressBarStyle}">
+                    <Setter Property="Foreground">
+                        <Setter.Value>
+                            <LinearGradientBrush>
+                                <GradientStop Color="{Binding ForegroundColor}" Offset="0" />
+                                <GradientStop Color="{Binding ForegroundGradientColor}" Offset="1" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Slider.Style>
         </Slider>
         <Popup  x:Name="InformationPopup"
                 Placement="Top"

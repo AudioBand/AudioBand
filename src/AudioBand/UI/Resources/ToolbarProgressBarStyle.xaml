@@ -18,14 +18,6 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="{Binding BackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="Foreground" Value="{Binding ForegroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <LinearGradientBrush>
-                    <GradientStop Color="{Binding ForegroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" Offset="0"/>
-                    <GradientStop Color="{Binding ForegroundGradientColor, Converter={x:Static audioband:Converters.ColorToBrush}}" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="ClipToBounds" Value="False" />
