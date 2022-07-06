@@ -1,6 +1,6 @@
 ## Setup
-1. Install `Visual Studio 2019` (2022 is not compatible with .wixproj yet). Make sure to install support for `.Net Framework 4.8` development.
-2. Clone the repo `git clone git@github.com:AudioBand/AudioBand.git`
+1. Install `Visual Studio 2022`. Make sure to install support for `.Net Framework 4.8` development.
+2. Clone the repo `https://github.com/AudioBand/AudioBand.git`
 3. Open the solution file under `src/AudioBand.sln` in visual studio.
 4. Restore nuget packages before building
 5. The toolbar will have to be installed after being built (see `Running local version` section).
@@ -9,10 +9,7 @@
 > Explorer does not unload audioband so you will not be able to build if explorer has loaded it. The `debug configuration` will automatically attempt close explorer to build the audioband project and restart it after the build.
 
 ## Running local version
-To test the local version of audioband, it needs to be installed as a toolbar. The easiest way is to copy the install script from `tools/install.cmd` to the build output folder and run it as **admin**.
-
-> [!WARNING]
-> Installing the development version will overwrite any other installations.
+To test the local version of audioband, it needs to be installed as a toolbar. The easiest way is to copy the install script from `tools/install.cmd` to the build output folder (src/AudioBand/bin/Debug/) and run it as **admin**.
 
 ## Debugging
 There are 2 ways you can use a debugger on audioband.

@@ -1,5 +1,7 @@
 - name: Building and running
   href: setup.md
+- name: Adding a new Button
+  href: create-button.md
 - name: Compiling into an .msi
   href: wixproj.md
 - name: Project layout
