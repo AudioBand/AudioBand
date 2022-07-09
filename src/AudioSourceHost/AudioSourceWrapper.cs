@@ -1,11 +1,11 @@
-﻿using AudioBand.AudioSource;
-using AudioBand.Logging;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AudioBand.AudioSource;
+using AudioBand.Logging;
+using NLog;
 
 namespace AudioSourceHost
 {
@@ -191,7 +191,7 @@ namespace AudioSourceHost
         }
 
         /// <summary>
-        /// Gets the Disike state.
+        /// Gets the Dislike state.
         /// </summary>
         /// <param name="tcs">The task completion source.</param>
         public void DislikeTrack(MarshaledTaskCompletionSource tcs)

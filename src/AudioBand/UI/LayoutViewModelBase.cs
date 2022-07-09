@@ -1,5 +1,6 @@
 ﻿using AudioBand.Messages;
 using AudioBand.Models;
+using System.Collections.Generic;
 
 namespace AudioBand.UI
 {
@@ -10,11 +11,15 @@ namespace AudioBand.UI
     public class LayoutViewModelBase<TModel> : ViewModelBase
         where TModel : LayoutModelBase, new()
     {
+        private readonly List<ButtonContentViewModel> _contentViewModels = new List<ButtonContentViewModel>();
+
         private readonly TModel _backup = new TModel();
         private LikeDislikeButton likeDislikeButton;
         private IDialogService dialogService;
         private IMessageBus messageBus;
         private AlbumArt albumArt;
+        private ProgressBar progressBar;
+        private object source;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutViewModelBase{TModel}"/> class
@@ -39,6 +44,23 @@ namespace AudioBand.UI
         {
             this.messageBus = messageBus;
             this.albumArt = albumArt;
+        }
+
+        public LayoutViewModelBase(IMessageBus messageBus, CustomLabel source)
+        {
+            this.messageBus = messageBus;
+        }
+
+        public LayoutViewModelBase(IMessageBus messageBus, ProgressBar progressBar)
+        {
+            this.messageBus = messageBus;
+            this.progressBar = progressBar;
+        }
+
+        public LayoutViewModelBase(IMessageBus messageBus, object source)
+        {
+            this.messageBus = messageBus;
+            this.source = source;
         }
 
         /// <summary>

@@ -187,13 +187,13 @@ namespace Win10AudioSource
         /// <inheritdoc/>
         public Task SetLikeTrackAsync()
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public Task DislikeTrackAsync()
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)

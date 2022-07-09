@@ -308,6 +308,23 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="ToolbarLikeDislikeButtonStyle" TargetType="{x:Type Button}">
+        <d:Style.DataContext>
+            <x:Type Type="audioband:LikeDislikeButtonViewModel" />
+        </d:Style.DataContext>
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template" Value="{StaticResource ToolbarButtonControlTemplate}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsLikeButtonShown}" Value="True">
+                <Setter Property="Content" Value="{Binding LikeContent}" />
+                <Setter Property="audioband:Fallback.FallbackImageSource" Value="{StaticResource LikeButtonDefault}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsDislikeButtonShown}" Value="False">
+                <Setter Property="Content" Value="{Binding DislikeContent}" />
+                <Setter Property="audioband:Fallback.FallbackImageSource" Value="{StaticResource DislikeButtonDefault}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
         <d:Style.DataContext>
             <x:Type Type="audioband:PopupViewModel" />

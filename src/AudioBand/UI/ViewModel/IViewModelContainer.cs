@@ -79,5 +79,10 @@
         /// Gets the collection for view models for the audio source settings.
         /// </summary>
         AudioSourceSettingsViewModel AudioSourceSettingsViewModel { get; }
+
+        /// <summary>
+        /// Gets the view model for the like button.
+        /// </summary>
+        LikeDislikeButtonViewModel LikeDislikeButtonViewModel { get; }
     }
 }

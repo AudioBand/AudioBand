@@ -19,6 +19,8 @@ namespace AudioBand.UI
         private readonly IAppSettings _appSettings;
         private readonly IAudioSession _audioSession;
         private bool _isLiked;
+        private readonly BindingList<ButtonContentViewModel> _contentViewModels = new BindingList<ButtonContentViewModel>();
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LikeDislikeButtonViewModel"/> class.
@@ -125,106 +127,6 @@ namespace AudioBand.UI
 
             TrackContentViewModel(LikeContent);
             TrackContentViewModel(DislikeContent);
-        }
-
-        /// <summary>
-        /// Gets or sets the button's Corner Radius.
-        /// </summary>
-        [TrackState]
-        public int CornerRadius
-        {
-            get => Model.CornerRadius;
-            set => SetProperty(Model, nameof(Model.CornerRadius), value);
-        }
-
-        /// <summary>
-        /// Gets or sets the background color.
-        /// </summary>
-        [TrackState]
-        public Color BackgroundColor
-        {
-            get => Model.BackgroundColor;
-            set => SetProperty(Model, nameof(Model.BackgroundColor), value);
-        }
-
-        /// <summary>
-        /// Gets or sets the background color when hovered.
-        /// </summary>
-        [TrackState]
-        public Color HoveredBackgroundColor
-        {
-            get => Model.HoveredBackgroundColor;
-            set => SetProperty(Model, nameof(Model.HoveredBackgroundColor), value);
-        }
-
-        /// <summary>
-        /// Gets or sets the background color when clicked.
-        /// </summary>
-        [TrackState]
-        public Color ClickedBackgroundColor
-        {
-            get => Model.ClickedBackgroundColor;
-            set => SetProperty(Model, nameof(Model.ClickedBackgroundColor), value);
-        }
-
-        /// <summary>
-        /// Gets the dialog service.
-        /// </summary>
-        public IDialogService DialogService { get; }
-
-        /// <summary>
-        /// Track the button content view models edit state.
-        /// </summary>
-        /// <param name="viewModel">The button content view model.</param>
-        protected void TrackContentViewModel(ButtonContentViewModel viewModel)
-        {
-            Debug.Assert(!_contentViewModels.Contains(viewModel), "Already tracked this view model");
-            _contentViewModels.Add(viewModel);
-            viewModel.PropertyChanged += ButtonContentViewModelOnPropertyChanged;
-        }
-
-        /// <inheritdoc />
-        protected override void OnCancelEdit()
-        {
-            base.OnCancelEdit();
-            foreach (var buttonContentViewModel in _contentViewModels)
-            {
-                buttonContentViewModel.CancelEdit();
-            }
-        }
-
-        /// <inheritdoc />
-        protected override void OnBeginEdit()
-        {
-            base.OnBeginEdit();
-            foreach (var buttonContentViewModel in _contentViewModels)
-            {
-                buttonContentViewModel.BeginEdit();
-            }
-        }
-
-        /// <inheritdoc />
-        protected override void OnReset()
-        {
-            base.OnReset();
-            foreach (var buttonContentViewModel in _contentViewModels)
-            {
-                buttonContentViewModel.Reset();
-            }
-        }
-
-        private void ButtonContentViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != nameof(IsEditing))
-            {
-                return;
-            }
-
-            var vm = (ButtonContentViewModel)sender;
-            if (vm.IsEditing)
-            {
-                BeginEdit();
-            }
         }
     }
 }

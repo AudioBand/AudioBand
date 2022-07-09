@@ -80,12 +80,11 @@ namespace iTunesAudioSource
              * it will open this manually and this can take a while.
              * That is why we fire a separate thread for it.
              */
-            new Thread(() => 
+            new Thread(() =>
             {
-                Thread.CurrentThread.IsBackground = true; 
+                Thread.CurrentThread.IsBackground = true;
                 _itunesControls.Start();
             }).Start();
-
 
             _checkiTunesTimer.Start();
             return Task.CompletedTask;

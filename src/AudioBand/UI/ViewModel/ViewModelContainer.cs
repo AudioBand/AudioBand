@@ -23,6 +23,7 @@
         /// <param name="progressBarViewModel">Progress bar view model.</param>
         /// <param name="popupViewModel">Popup view model.</param>
         /// <param name="audioSourceSettingsViewModel">Audio source settings view model.</param>
+        /// <param name="likeDislikeButtonViewModel">Like button view model.</param>
         public ViewModelContainer(
             GlobalSettingsViewModel globalSettingsViewModel,
             MouseBindingsViewModel mouseBindingsViewModel,
@@ -38,7 +39,8 @@
             VolumeButtonViewModel volumeButtonViewModel,
             ProgressBarViewModel progressBarViewModel,
             PopupViewModel popupViewModel,
-            AudioSourceSettingsViewModel audioSourceSettingsViewModel)
+            AudioSourceSettingsViewModel audioSourceSettingsViewModel,
+            LikeDislikeButtonViewModel likeDislikeButtonViewModel)
         {
             GlobalSettingsViewModel = globalSettingsViewModel;
             MouseBindingsViewModel = mouseBindingsViewModel;
@@ -55,6 +57,7 @@
             ProgressBarViewModel = progressBarViewModel;
             PopupViewModel = popupViewModel;
             AudioSourceSettingsViewModel = audioSourceSettingsViewModel;
+            LikeDislikeButtonViewModel = likeDislikeButtonViewModel;
         }
 
         /// <inheritdoc />
@@ -101,5 +104,8 @@
 
         /// <inheritdoc />
         public AudioSourceSettingsViewModel AudioSourceSettingsViewModel { get; }
+
+        /// <inheritdoc />
+        public LikeDislikeButtonViewModel LikeDislikeButtonViewModel { get; }
     }
 }
