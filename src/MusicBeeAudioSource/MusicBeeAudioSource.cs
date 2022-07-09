@@ -21,6 +21,7 @@ namespace MusicBeeAudioSource
         private int _volume;
         private bool _shuffle;
         private MusicBeeIPC.RepeatMode _repeatMode;
+        private bool _showratinglove;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MusicBeeAudioSource"/> class.
@@ -59,6 +60,9 @@ namespace MusicBeeAudioSource
 
         /// <inheritdoc/>
         public event EventHandler<RepeatMode> RepeatModeChanged;
+
+        /// <inheritdoc/>
+        public event EventHandler<bool> LikeTrackChanged;
 
         /// <inheritdoc/>
         public string Name => "Music Bee";
@@ -142,6 +146,20 @@ namespace MusicBeeAudioSource
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
+        public Task SetLikeTrackAsync()
+        {
+            _ipc.GetShowRatingLove();
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        public Task DislikeTrackAsync()
+        {
+            _ipc.GetShowRatingLove();
+            return Task.CompletedTask;
+        }
+
         private RepeatMode ToRepeatMode(MusicBeeIPC.RepeatMode mode)
         {
             switch (mode)
@@ -194,6 +212,7 @@ namespace MusicBeeAudioSource
                 NotifyVolume();
                 NotifyShuffle();
                 NotifyRepeatMode();
+                NotifyLikeModeChanged();
 
                 var time = TimeSpan.FromMilliseconds(_ipc.GetPosition());
                 TrackProgressChanged?.Invoke(this, time);
@@ -295,6 +314,16 @@ namespace MusicBeeAudioSource
 
             _repeatMode = repeat;
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_repeatMode));
+        }
+
+        private void NotifyLikeModeChanged()
+        {
+            bool like = _ipc.GetShowRatingLove();
+
+            if (like == _showratinglove)
+            {
+                return;
+            }
         }
 
         private TimeSpan ParseTimeFromIPC()

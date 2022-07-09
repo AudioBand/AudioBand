@@ -37,6 +37,7 @@ namespace SpotifyAudioSource
         private int _currentVolumePercent;
         private bool _currentShuffle;
         private string _currentRepeat;
+        private bool _currentFavorite;
         private string _clientSecret;
         private string _clientId;
         private string _refreshToken;
@@ -82,6 +83,9 @@ namespace SpotifyAudioSource
 
         /// <inheritdoc />
         public event EventHandler<bool> IsPlayingChanged;
+
+        /// <inheritdoc />
+        public event EventHandler<bool> LikeTrackChanged;
 
         /// <inheritdoc />
         public string Name => "Spotify";
@@ -502,6 +506,28 @@ namespace SpotifyAudioSource
             }
         }
 
+        /// <inheritdoc/>
+        public async Task SetLikeTrackAsync()
+        {
+            try
+            {
+                if (!await _spotifyClient.Player.SetLike())
+                {
+                    _spotifyControls.TryNext();
+                }
+            }
+            catch (Exception)
+            {
+                _spotifyControls.TryNext();
+            }
+        }
+
+        /// <inheritdoc/>
+        public Task DislikeTrackAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         private void Authorize()
         {
             if (!_isActive)
@@ -715,6 +741,11 @@ namespace SpotifyAudioSource
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_currentRepeat));
         }
 
+        private void NotifyLikeState(CurrentlyPlayingContext playback)
+        {
+            throw new NotImplementedException();
+        }
+
         private async Task<Image> GetAlbumArtAsync(Uri albumArtUrl)
         {
             if (albumArtUrl == null)
@@ -821,6 +852,7 @@ namespace SpotifyAudioSource
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
+                NotifyLikeState(playback);
 
                 if (playback.Item.Type == ItemType.Track)
                 {

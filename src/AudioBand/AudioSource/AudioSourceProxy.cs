@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using AudioBand.Extensions;
 using AudioBand.Logging;
 using AudioSourceHost;
 using NLog;
@@ -68,6 +69,9 @@ namespace AudioBand.AudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc/>
+        public event EventHandler<bool> LikeTrackChanged;
+
+        /// <inheritdoc/>
         public string Name
         {
             get
@@ -84,6 +88,7 @@ namespace AudioBand.AudioSource
             }
         }
 
+        /// <inheritdoc/>
         public string Description
         {
             get
@@ -304,6 +309,28 @@ namespace AudioBand.AudioSource
             }
 
             await CallWrapperAsync(_wrapper.SetRepeatMode, newRepeatMode);
+        }
+
+        /// <inheritdoc/>
+        public async Task SetLikeTrackAsync()
+        {
+            if (!IsActivated)
+            {
+                return;
+            }
+
+            await CallWrapperAsync(_wrapper.LikeTrack);
+        }
+
+        /// <inheritdoc/>
+        public async Task DislikeTrackAsync()
+        {
+            if (!IsActivated)
+            {
+                return;
+            }
+
+            await CallWrapperAsync(_wrapper.DislikeTrack);
         }
 
         /// <inheritdoc/>

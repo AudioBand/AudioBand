@@ -63,6 +63,11 @@ namespace AudioSourceHost
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <summary>
+        /// Wrapper for <see cref="IAudioSource.LikeTrackChanged"/>.
+        /// </summary>
+        public event EventHandler<bool> LikeTrackChanged;
+
+        /// <summary>
         /// Gets the name of the audio source.
         /// </summary>
         public string Name => _audioSource.Name;
@@ -174,6 +179,24 @@ namespace AudioSourceHost
         public void SetRepeatMode(RepeatMode repeatMode, MarshaledTaskCompletionSource tcs)
         {
             StartTask(_audioSource.SetRepeatModeAsync, repeatMode, tcs);
+        }
+
+        /// <summary>
+        /// Gets the Like state.
+        /// </summary>
+        /// <param name="tcs">The task completion source.</param>
+        public void LikeTrack(MarshaledTaskCompletionSource tcs)
+        {
+            StartTask(_audioSource.SetLikeTrackAsync, tcs);
+        }
+
+        /// <summary>
+        /// Gets the Disike state.
+        /// </summary>
+        /// <param name="tcs">The task completion source.</param>
+        public void DislikeTrack(MarshaledTaskCompletionSource tcs)
+        {
+            StartTask(_audioSource.DislikeTrackAsync, tcs);
         }
 
         /// <summary>
