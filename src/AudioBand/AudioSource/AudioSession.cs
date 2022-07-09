@@ -127,6 +127,9 @@ namespace AudioBand.AudioSource
             set => SetProperty(ref _volume, value);
         }
 
+        /// <inheritdoc/>
+        public bool IsLiked => throw new NotImplementedException();
+
         private void AudioSourceChanged()
         {
             if (_currentAudioSource != null)

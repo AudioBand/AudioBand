@@ -11,6 +11,10 @@ namespace AudioBand.UI
         where TModel : LayoutModelBase, new()
     {
         private readonly TModel _backup = new TModel();
+        private LikeDislikeButton likeDislikeButton;
+        private IDialogService dialogService;
+        private IMessageBus messageBus;
+        private AlbumArt albumArt;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutViewModelBase{TModel}"/> class
@@ -18,10 +22,23 @@ namespace AudioBand.UI
         /// </summary>
         /// <param name="source">The initial model data.</param>
         /// <param name="messageBus">The message bus.</param>
-        public LayoutViewModelBase(IMessageBus messageBus, TModel source)
+        public LayoutViewModelBase(LikeDislikeButton likeDislikeButton, IMessageBus messageBus, TModel source)
         {
             MapSelf(source, Model);
             UseMessageBus(messageBus);
+        }
+
+        public LayoutViewModelBase(LikeDislikeButton likeDislikeButton, IDialogService dialogService, IMessageBus messageBus)
+        {
+            this.likeDislikeButton = likeDislikeButton;
+            this.dialogService = dialogService;
+            this.messageBus = messageBus;
+        }
+
+        public LayoutViewModelBase(IMessageBus messageBus, AlbumArt albumArt)
+        {
+            this.messageBus = messageBus;
+            this.albumArt = albumArt;
         }
 
         /// <summary>
@@ -108,6 +125,16 @@ namespace AudioBand.UI
         {
             base.OnCancelEdit();
             MapSelf(_backup, Model);
+        }
+
+        /// <inheritdoc />
+        protected override void OnEndEdit()
+        {
+            base.OnEndEdit();
+            foreach (var buttonContentViewModel in _contentViewModels)
+            {
+                buttonContentViewModel.EndEdit();
+            }
         }
     }
 }

@@ -59,6 +59,9 @@ namespace iTunesAudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc/>
+        public event EventHandler<bool> LikeTrackChanged;
+
+        /// <inheritdoc/>
         public string Name => "iTunes";
 
         /// <inheritdoc/>
@@ -154,6 +157,18 @@ namespace iTunesAudioSource
         {
             _itunesControls.RepeatMode = ToITRepeat(newRepeatMode);
             return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        public Task SetLikeTrackAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public Task DislikeTrackAsync()
+        {
+            throw new NotImplementedException();
         }
 
         /// <inheritdoc/>

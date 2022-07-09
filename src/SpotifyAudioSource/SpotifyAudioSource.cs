@@ -37,7 +37,6 @@ namespace SpotifyAudioSource
         private int _currentVolumePercent;
         private bool _currentShuffle;
         private string _currentRepeat;
-        private bool _currentFavorite;
         private string _clientSecret;
         private string _clientId;
         private string _refreshToken;
@@ -458,6 +457,36 @@ namespace SpotifyAudioSource
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
+        /// <inheritdoc/>
+        public async Task SetLikeTrackAsync()
+        {
+            try
+            {
+                await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new System.Collections.Generic.List<string>() { "TRACK_ID" }));
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Error while trying to like song, user most likely offline ~ {e.Message}");
+                _authIsInProcess = false;
+                throw;
+            }
+        }
+
+        /// <inheritdoc/>
+        public async Task DislikeTrackAsync()
+        {
+            try
+            {
+                await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new System.Collections.Generic.List<string>() { "TRACK_ID" }));
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Error while trying to dislike song, user most likely offline ~ {e.Message}");
+                _authIsInProcess = false;
+                throw;
+            }
+        }
+
         private RepeatMode ToRepeatMode(State state)
         {
             switch (state)
@@ -504,28 +533,6 @@ namespace SpotifyAudioSource
                     Logger.Warn($"No case for {mode}");
                     return State.Off;
             }
-        }
-
-        /// <inheritdoc/>
-        public async Task SetLikeTrackAsync()
-        {
-            try
-            {
-                if (!await _spotifyClient.Player.SetLike())
-                {
-                    _spotifyControls.TryNext();
-                }
-            }
-            catch (Exception)
-            {
-                _spotifyControls.TryNext();
-            }
-        }
-
-        /// <inheritdoc/>
-        public Task DislikeTrackAsync()
-        {
-            throw new NotImplementedException();
         }
 
         private void Authorize()
@@ -741,9 +748,9 @@ namespace SpotifyAudioSource
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_currentRepeat));
         }
 
-        private void NotifyLikeState(CurrentlyPlayingContext playback)
+        private async Task NotifyLikeStateAsync(CurrentlyPlayingContext playback)
         {
-            throw new NotImplementedException();
+            await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new System.Collections.Generic.List<string>() { "TRACK_ID" }));
         }
 
         private async Task<Image> GetAlbumArtAsync(Uri albumArtUrl)
@@ -852,7 +859,6 @@ namespace SpotifyAudioSource
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
-                NotifyLikeState(playback);
 
                 if (playback.Item.Type == ItemType.Track)
                 {

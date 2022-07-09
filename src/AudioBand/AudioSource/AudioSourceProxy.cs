@@ -312,6 +312,12 @@ namespace AudioBand.AudioSource
         }
 
         /// <inheritdoc/>
+        public Task LikeTrackAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
         public async Task SetLikeTrackAsync()
         {
             if (!IsActivated)
