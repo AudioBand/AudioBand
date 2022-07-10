@@ -56,6 +56,7 @@ namespace AudioBand.AudioSource
         /// </summary>
         /// <value>The length of the track.</value>
         public TimeSpan TrackLength { get; set; }
+        public object Like { get; set; }
 
         /// <inheritdoc/>
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)

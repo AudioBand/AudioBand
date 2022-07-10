@@ -19,6 +19,7 @@ namespace iTunesAudioSource
         private int _volume;
         private bool _shuffle;
         private ITPlaylistRepeatMode _repeat;
+        private bool _liked;
         private ITunesControls _itunesControls = new ITunesControls();
 
         /// <summary>
@@ -161,13 +162,15 @@ namespace iTunesAudioSource
         /// <inheritdoc/>
         public Task SetLikeTrackAsync()
         {
-            throw new NotImplementedException();
+            _itunesControls.Like();
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public Task DislikeTrackAsync()
         {
-            throw new NotImplementedException();
+            _itunesControls.Dislike();
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -310,6 +313,18 @@ namespace iTunesAudioSource
 
             _repeat = repeat;
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_repeat));
+        }
+
+        private void SetLikeTrack()
+        {
+            var like = _itunesControls.Like;
+            if (_liked == like)
+            {
+                return;
+            }
+
+            _liked = like;
+            LikeTrackChanged?.Invoke(this, _liked);
         }
     }
 }
