@@ -425,6 +425,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <Border Background="{Binding PopupBackgroundColor, Converter={x:Static audioband:Converters.ColorToNonTransparentBrush}}">
+                <!-- Using style here so DataBindings work on the Gradients -->
                 <Slider x:Name="VolumeSlider"
                         HorizontalAlignment="Center"
                         Orientation="Vertical"
@@ -434,12 +435,23 @@
                         TickFrequency="1"
                         TickPlacement="None"
                         IsSnapToTickEnabled="True"
-                        Style="{StaticResource VolumeSliderStyle}"
                         Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}"
                         Value="{Binding Volume, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
                         <audioband:SliderClickAndDrag />
                     </i:Interaction.Behaviors>
+                    <Slider.Style>
+                        <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource VolumeSliderStyle}">
+                            <Setter Property="Foreground">
+                                <Setter.Value>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="{Binding ForegroundColor}" Offset="0" />
+                                        <GradientStop Color="{Binding VolumeBarForegroundGradientColor}" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Slider.Style>
                 </Slider>
             </Border>
         </fluentWpf:AcrylicPopup>

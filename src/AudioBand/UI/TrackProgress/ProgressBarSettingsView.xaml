@@ -18,12 +18,19 @@
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource ProgressBarColorsSectionText}" />
-            <audioband:ColorPicker Title="{StaticResource ProgressBarForegroundColorDescription}"
-                                   DialogService="{Binding DialogService}"
-                                   Color="{Binding ForegroundColor}" />
-            <audioband:ColorPicker Title="{StaticResource ProgressBarForegroundGradientColorDescription}"
-                                   DialogService="{Binding DialogService}"
-                                   Color="{Binding ForegroundGradientColor}" />
+            <UniformGrid Columns="2"
+                         Rows="1"
+                         Width="500"
+                         Style="{StaticResource ArrangementGridStyle}">
+                <audioband:ColorPicker Margin="0,5,5,0"
+                                       Title="{StaticResource ProgressBarForegroundColorDescription}"
+                                       DialogService="{Binding DialogService}"
+                                       Color="{Binding ForegroundColor}" />
+                <audioband:ColorPicker Margin="5,5,0,0"
+                                       Title="{StaticResource ProgressBarForegroundGradientColorDescription}"
+                                       DialogService="{Binding DialogService}"
+                                       Color="{Binding ForegroundGradientColor}" />
+            </UniformGrid>
             <audioband:ColorPicker Title="{StaticResource ProgressBarBackgroundColorDescription}"
                                    DialogService="{Binding DialogService}"
                                    Color="{Binding BackgroundColor}" />

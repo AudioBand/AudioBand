@@ -19,9 +19,19 @@
                               ContentTemplate="{StaticResource ButtonBaseTemplate}"
                               Focusable="False" />
             <!-- Add Volume Specifics -->
-            <ui:ColorPicker Title="{StaticResource VolumeBarForegroundLabelText}"
-                            DialogService="{Binding DialogService}"
-                            Color="{Binding VolumeBarForegroundColor}" />
+            <UniformGrid Columns="2"
+                         Rows="1"
+                         Width="600"
+                         Style="{StaticResource ArrangementGridStyle}">
+                <ui:ColorPicker Margin="0,5,5,0"
+                                Title="{StaticResource VolumeBarForegroundLabelText}"
+                                DialogService="{Binding DialogService}"
+                                Color="{Binding VolumeBarForegroundColor}" />
+                <ui:ColorPicker Margin="5,5,0,0"
+                                Title="{StaticResource VolumeBarForegroundGradientLabelText}"
+                                DialogService="{Binding DialogService}"
+                                Color="{Binding ForegroundGradientColor}" />
+            </UniformGrid>
             <ui:ColorPicker Title="{StaticResource VolumeBarBackgroundLabelText}"
                             DialogService="{Binding DialogService}"
                             Color="{Binding VolumeBarBackgroundColor}" />
