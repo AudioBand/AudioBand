@@ -55,6 +55,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the right hand side foreground color.
+        /// </summary>
+        [TrackState]
+        public Color ForegroundGradientColor
+        {
+            get => Model.VolumeBarForegroundGradientColor;
+            set => SetProperty(Model, nameof(Model.VolumeBarForegroundGradientColor), value);
+        }
+
+        /// <summary>
         /// Gets or sets the volume bar background color.
         /// </summary>
         [TrackState]

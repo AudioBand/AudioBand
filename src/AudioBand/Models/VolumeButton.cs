@@ -89,6 +89,11 @@ namespace AudioBand.Models
         public Color VolumeBarForegroundColor { get;  set; } = Colors.DodgerBlue;
 
         /// <summary>
+        /// Gets or sets the Right hand side foreground color.
+        /// </summary>
+        public Color VolumeBarForegroundGradientColor { get; set; } = Colors.Indigo;
+
+        /// <summary>
         /// Gets or sets the BackgroundColor.
         /// </summary>
         public Color VolumeBarBackgroundColor { get; set; } = Colors.DimGray;
