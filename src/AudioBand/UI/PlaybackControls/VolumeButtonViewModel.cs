@@ -85,6 +85,26 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the Thumb color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarThumbColor
+        {
+            get => Model.VolumeThumbSliderStyle;
+            set => SetProperty(Model, nameof(Model.VolumeThumbSliderStyle), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Thumb border color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarThumbBorderColor
+        {
+            get => Model.VolumeThumbBorderColor;
+            set => SetProperty(Model, nameof(Model.VolumeThumbBorderColor), value);
+        }
+
+        /// <summary>
         /// Gets or sets the Popup's width.
         /// </summary>
         [TrackState]

@@ -38,6 +38,12 @@
             <ui:ColorPicker Title="{StaticResource PopupBackgroundLabelText}"
                             DialogService="{Binding DialogService}"
                             Color="{Binding PopupBackgroundColor}" />
+            <ui:ColorPicker Title="{StaticResource VolumeBarThumbColorDescription}"
+                            DialogService="{Binding DialogService}"
+                            Color="{Binding VolumeBarThumbColor}" />
+            <ui:ColorPicker Title="{StaticResource VolumeBarThumbBorderColorDescription}"
+                            DialogService="{Binding DialogService}"
+                            Color="{Binding VolumeBarThumbBorderColor}" />
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource PopupContentSectionText}"/>

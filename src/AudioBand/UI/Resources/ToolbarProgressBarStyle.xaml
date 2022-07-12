@@ -336,7 +336,7 @@
                             <Ellipse Width="6"
                                      Height="6"
                                      Fill="{TemplateBinding Background}"
-                                     Stroke="{TemplateBinding Foreground}"
+                                     Stroke="{Binding ThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                      StrokeThickness="2" />
                         </ControlTemplate>
                     </Setter.Value>

@@ -40,7 +40,6 @@
             <audioband:ColorPicker Title="{StaticResource ProgressBarThumbBorderColorDescription}"
                                    DialogService="{Binding DialogService}"
                                    Color="{Binding ThumbBorderColor}" />
-
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource OtherSectionText}" />
