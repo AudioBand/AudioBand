@@ -8,9 +8,9 @@
                     xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
                     mc:Ignorable="d">
     <Style x:Key="ProgressBarStyle" TargetType="{x:Type Slider}">
-        <d:Style.DataTemplate>
+        <d:Style.DataContext>
             <x:Type Type="audioband:ProgressBarViewModel" />
-        </d:Style.DataTemplate>
+        </d:Style.DataContext>
         <Style.Resources>
             <PopupAnimation x:Key="{x:Static SystemParameters.ToolTipPopupAnimationKey}">Fade</PopupAnimation>
         </Style.Resources>
@@ -166,9 +166,9 @@
         </Style.Triggers>
     </Style>
     <Style x:Key="VolumeSliderStyle" TargetType="{x:Type Slider}">
-        <d:Style.DataTemplate>
+        <d:Style.DataContext>
             <x:Type Type="audioband:VolumeButtonViewModel" />
-        </d:Style.DataTemplate>
+        </d:Style.DataContext>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{Binding VolumeBarBackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="Foreground" Value="{Binding VolumeBarForegroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
