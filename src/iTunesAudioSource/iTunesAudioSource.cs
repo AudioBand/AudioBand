@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using AudioBand.AudioSource;
@@ -7,7 +8,10 @@ using Timer = System.Timers.Timer;
 
 namespace iTunesAudioSource
 {
-    public class AudioSource : IAudioSource
+    /// <summary>
+    /// AudioSource for iTunes.
+    /// </summary>
+    public class iTunesAudioSource : IAudioSource
     {
         private Timer _checkiTunesTimer;
         private string _currentTrack;
@@ -17,7 +21,10 @@ namespace iTunesAudioSource
         private ITPlaylistRepeatMode _repeat;
         private ITunesControls _itunesControls = new ITunesControls();
 
-        public AudioSource()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="iTunesAudioSource"/> class.
+        /// </summary>
+        public iTunesAudioSource()
         {
             _checkiTunesTimer = new Timer(100)
             {
@@ -66,7 +73,17 @@ namespace iTunesAudioSource
         /// <inheritdoc/>
         public Task ActivateAsync()
         {
-            _itunesControls.Start();
+            /* If AudioSource is activated and iTunes isn't open yet,
+             * it will open this manually and this can take a while.
+             * That is why we fire a separate thread for it.
+             */
+            new Thread(() => 
+            {
+                Thread.CurrentThread.IsBackground = true; 
+                _itunesControls.Start();
+            }).Start();
+
+
             _checkiTunesTimer.Start();
             return Task.CompletedTask;
         }
@@ -251,6 +268,7 @@ namespace iTunesAudioSource
                 return;
             }
 
+            _volume = volume;
             VolumeChanged?.Invoke(this, _volume);
         }
 

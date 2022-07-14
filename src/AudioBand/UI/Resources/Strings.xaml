@@ -16,6 +16,7 @@
     <sys:String x:Key="IdleProfileSelectorDescriptionText">Select which profile to use when AudioBand goes idle</sys:String>
     <sys:String x:Key="HideIdleHeaderText">Hide Idle Profile in the Quick Menu (right click on audioband) [requires restart]</sys:String>
     <sys:String x:Key="IdleDelayLabelText">Seconds before AudioBand switches to Idle Mode</sys:String>
+    <sys:String x:Key="ClearSessionOnIdleLabelText">Clear current song information when switching to idle mode</sys:String>
     <!--  Other settings  -->
     <sys:String x:Key="OtherTitle">Other Settings</sys:String>
     <sys:String x:Key="DisableInformationPopupsText">Show helpful information hints</sys:String>
@@ -43,6 +44,7 @@
     <sys:String x:Key="ToggleSwitchOffText">Disabled</sys:String>
     <sys:String x:Key="XPopupOffsetLabelText">X Popup Offset</sys:String>
     <sys:String x:Key="YPopupOffsetLabelText">Y Popup Offset</sys:String>
+    <sys:String x:Key="CornerRadiusDescription">Corner Radius</sys:String>
 
     <!--  Play/pause button settings  -->
     <sys:String x:Key="PlayButtonContentSectionText">Play button content</sys:String>
@@ -73,6 +75,7 @@
     <sys:String x:Key="PopupContentSectionText">Popup Content Settings</sys:String>
     <sys:String x:Key="VolumeBarForegroundLabelText">Volume Bar Foreground color</sys:String>
     <sys:String x:Key="VolumeBarBackgroundLabelText">Volume Bar Background color</sys:String>
+    <sys:String x:Key="PopupBackgroundLabelText">Popup Background color</sys:String>
     <sys:String x:Key="PopupHorizontalLabelText">Is Popup Horizontal</sys:String>
     <sys:String x:Key="NoVolumeButtonContentSectionText">No Volume Button content</sys:String>
     <sys:String x:Key="LowVolumeButtonContentSectionText">Low Volume Button content</sys:String>
@@ -117,6 +120,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
 
     <!--  Navigation pane  -->
     <sys:String x:Key="GlobalSettingsTab">AudioBand Settings</sys:String>
+    <sys:String x:Key="MouseBindingsTab">Custom Mouse Bindings</sys:String>
     <sys:String x:Key="UpdaterTab">AudioBand Updates</sys:String>
     <sys:String x:Key="ProfilesTab">Profile Settings</sys:String>
     <sys:String x:Key="GeneralSettingsTab">General</sys:String>
@@ -163,6 +167,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="ProgressBarForegroundColorDescription">Foreground color</sys:String>
     <sys:String x:Key="ProgressBarBackgroundColorDescription">Background color</sys:String>
     <sys:String x:Key="ProgressBarHoverColorDescription">Background color when hovered</sys:String>
+    <sys:String x:Key="ProgressBarThumbBorderColorDescription">Thumb's border color</sys:String>
 
     <!--  Album art settings text  -->
     <sys:String x:Key="AlbumArtPlaceholderSectionText">Image</sys:String>
@@ -189,6 +194,8 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="UpdatePopupDescription">An update was found for Audio Band, please go to Settings -> AudioBand Settings -> In-App Updates to install it.</sys:String>
     <sys:String x:Key="RequirePremiumTitle">Need Spotify Premium!</sys:String>
     <sys:String x:Key="RequirePremiumDescription">In order to use these buttons you require Spotify Premium, this is a limitation from Spotify that we cannot bypass.</sys:String>
+    <sys:String x:Key="FileCorruptedTitle">Settings corrupted.</sys:String>
+    <sys:String x:Key="FileCorruptedDescription">It appears that your settings file was corrupted, it was backed up and reset. For more info contact us on GitHub or Discord.</sys:String>
 
     <!--  Profiles  -->
     <sys:String x:Key="NewProfileHelpText">New profile</sys:String>

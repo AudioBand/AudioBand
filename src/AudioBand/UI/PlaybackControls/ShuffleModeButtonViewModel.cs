@@ -5,6 +5,7 @@ using AudioBand.Models;
 using AudioBand.Settings;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace AudioBand.UI
@@ -34,22 +35,18 @@ namespace AudioBand.UI
             _appSettings.ProfileChanged += AppSettingsOnProfileChanged;
 
             ToggleShuffleCommand = new AsyncRelayCommand<object>(ToggleShuffleCommandOnExecute);
-            var resetBase = new ShuffleModeButton();
-            ShuffleOnContent = new ButtonContentViewModel(Model.ShuffleOnContent, resetBase.ShuffleOnContent, dialogService);
-            ShuffleOffContent = new ButtonContentViewModel(Model.ShuffleOffContent, resetBase.ShuffleOffContent, dialogService);
-            TrackContentViewModel(ShuffleOnContent);
-            TrackContentViewModel(ShuffleOffContent);
+            InitializeButtonContents();
         }
 
         /// <summary>
-        /// Gets the view model for the button content when shuffle is on.
+        /// Gets or sets the view model for the button content when shuffle is on.
         /// </summary>
-        public ButtonContentViewModel ShuffleOnContent { get; }
+        public ButtonContentViewModel ShuffleOnContent { get; set;  }
 
         /// <summary>
-        /// Gets the view model for the button content when shuffle is off.
+        /// Gets or sets the view model for the button content when shuffle is off.
         /// </summary>
-        public ButtonContentViewModel ShuffleOffContent { get; }
+        public ButtonContentViewModel ShuffleOffContent { get; set; }
 
         /// <summary>
         /// Gets the command to toggle the shuffle mode.
@@ -89,7 +86,10 @@ namespace AudioBand.UI
 
         private void AppSettingsOnProfileChanged(object sender, EventArgs e)
         {
+            Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.CurrentProfile.ShuffleModeButton, Model);
+
+            InitializeButtonContents();
             RaisePropertyChangedAll();
         }
 
@@ -101,6 +101,16 @@ namespace AudioBand.UI
             }
 
             await _audioSession.CurrentAudioSource.SetShuffleAsync(!IsShuffleOn);
+        }
+
+        private void InitializeButtonContents()
+        {
+            var resetBase = new ShuffleModeButton();
+            ShuffleOnContent = new ButtonContentViewModel(Model.ShuffleOnContent, resetBase.ShuffleOnContent, DialogService);
+            ShuffleOffContent = new ButtonContentViewModel(Model.ShuffleOffContent, resetBase.ShuffleOffContent, DialogService);
+
+            TrackContentViewModel(ShuffleOnContent);
+            TrackContentViewModel(ShuffleOffContent);
         }
     }
 }

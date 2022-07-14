@@ -63,7 +63,7 @@ namespace Win10AudioSource
         public string Name => "Windows 10";
 
         /// <inheritdoc />
-        public string Description => "";
+        public string Description => "Visit the documentation to see which apps are compatible.";
 
         /// <inheritdoc />
         public string WindowClassName => null;
@@ -153,7 +153,7 @@ namespace Win10AudioSource
                 return;
             }
 
-            if (!await _currentSession.TryChangePlaybackPositionAsync((long)newProgress.TotalMilliseconds))
+            if (!await _currentSession.TryChangePlaybackPositionAsync((long)newProgress.Ticks))
             {
                 Logger.Warn($"Failed to set playback for Win10 Audio Source.");
             }
@@ -190,17 +190,41 @@ namespace Win10AudioSource
 
         private void CurrentSessionOnTimelinePropertiesChanged(GlobalSystemMediaTransportControlsSession sender, TimelinePropertiesChangedEventArgs args)
         {
-            UpdateTimelineProperties();
+            try
+            {
+                UpdateTimelineProperties();
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to update Win10 timeline properties.");
+                Logger.Error(e);
+            }
         }
 
         private void CurrentSessionOnPlaybackInfoChanged(GlobalSystemMediaTransportControlsSession sender, PlaybackInfoChangedEventArgs args)
         {
-            UpdatePlaybackProperties();
+            try
+            {
+                UpdatePlaybackProperties();
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to update Win10 playback properties.");
+                Logger.Error(e);
+            }
         }
 
         private async void CurrentSessionOnMediaPropertiesChanged(GlobalSystemMediaTransportControlsSession sender, MediaPropertiesChangedEventArgs args)
         {
-            await UpdateMediaProperties();
+            try
+            {
+                await UpdateMediaProperties();
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to update Win10 media properties.");
+                Logger.Error(e);
+            }
         }
 
         private async Task UpdateSession(GlobalSystemMediaTransportControlsSession newSession)

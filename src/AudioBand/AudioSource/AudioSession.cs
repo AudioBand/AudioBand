@@ -24,7 +24,7 @@ namespace AudioBand.AudioSource
         private RepeatMode _repeatMode;
         private int _volume;
         private Image _album;
-        private Image _lastRememberedAlbum;
+        private TrackInfoChangedEventArgs _lastTrackInfo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioSession"/> class.
@@ -182,16 +182,21 @@ namespace AudioBand.AudioSource
         private void AudioSourceVolumeChanged(object sender, int e)
         {
             Volume = e;
-            RaisePropertyChanged(nameof(Volume));
         }
 
         private void AudioSourceOnTrackInfoChanged(object sender, TrackInfoChangedEventArgs e)
         {
+            if (e == null)
+            {
+                return;
+            }
+
             SongArtist = e.Artist;
             SongLength = e.TrackLength;
             SongName = e.TrackName;
             AlbumName = e.Album;
             AlbumArt = e.AlbumArt;
+            _lastTrackInfo = e;
         }
 
         private void ClearSession()
@@ -200,9 +205,9 @@ namespace AudioBand.AudioSource
             SongArtist = null;
             SongName = null;
             AlbumName = null;
+            AlbumArt = null;
             SongProgress = TimeSpan.Zero;
             SongLength = TimeSpan.Zero;
-            Volume = 0;
         }
 
         private void HandleIdleProfile(bool isPlaying)
@@ -211,25 +216,28 @@ namespace AudioBand.AudioSource
             {
                 _idleProfileTimer.Interval = GetInterval();
                 _idleProfileTimer.Start();
+                return;
             }
-            else if (_isIdle)
+
+            if (_isIdle && _appSettings.AudioBandSettings.ClearSessionOnIdle)
             {
-                AlbumArt ??= _lastRememberedAlbum ?? AlbumArt;
-                _appSettings.SelectProfile(_appSettings.AudioBandSettings.LastNonIdleProfileName);
-                _isIdle = false;
+                AudioSourceOnTrackInfoChanged(this, _lastTrackInfo);
             }
-            else
-            {
-                _idleProfileTimer.Stop();
-            }
+
+            _isIdle = false;
+            _appSettings.SelectProfile(_appSettings.AudioBandSettings.LastNonIdleProfileName);
+            _idleProfileTimer.Stop();
         }
 
         private void OnIdleTimerElapsed(object sender, ElapsedEventArgs e)
         {
             _isIdle = true;
             _appSettings.SelectProfile(_appSettings.AudioBandSettings.IdleProfileName);
-            _lastRememberedAlbum = AlbumArt;
-            AlbumArt = null;
+
+            if (_appSettings.AudioBandSettings.ClearSessionOnIdle)
+            {
+                ClearSession();
+            }
         }
 
         private int GetInterval()

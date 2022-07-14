@@ -107,7 +107,11 @@
     <Compile Include="AudioSource\IAudioSession.cs" />
     <Compile Include="AudioSource\IAudioSourceManager.cs" />
     <Compile Include="AudioSource\IInternalAudioSource.cs" />
+    <Compile Include="Models\MouseBinding.cs" />
+    <Compile Include="Models\MouseBindingCommandType.cs" />
+    <Compile Include="Models\MouseInputType.cs" />
     <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\SemanticVersion.cs" />
     <Compile Include="Settings\MappingProfiles\SettingsV1ToSettingsV2Profile.cs" />
     <Compile Include="Settings\MappingProfiles\SettingsV2ToSettingsV3Profile.cs" />
     <Compile Include="Settings\MappingProfiles\CurrentSettingsProfile.cs" />
@@ -130,6 +134,8 @@
     <Compile Include="Settings\Migrations\IdentitySettingsMigrator.cs" />
     <Compile Include="Settings\Persistence\TomlHelper.cs" />
     <Compile Include="UI\TaskbarIconViewModel.cs" />
+    <Compile Include="UI\Toolbar\MouseBindingsViewModel.cs" />
+    <Compile Include="UI\ValueConverters\ColorToNonTransparentBrushConverter.cs" />
     <Compile Include="UI\ValueConverters\ValueConverterHelper.cs" />
     <Compile Include="UI\ViewModel\TrackStateAttribute.cs" />
     <Compile Include="Commands\AsyncRelayCommand{T}.cs" />
@@ -150,6 +156,7 @@
     <Compile Include="Messages\FocusChangedMessage.cs" />
     <Compile Include="Messages\IMessageBus.cs" />
     <Compile Include="Messages\MessageBus.cs" />
+    <Compile Include="Messages\ProfilesUpdatedMessage.cs" />
     <Compile Include="Messages\SettingsWindowMessage.cs" />
     <Compile Include="Models\AlbumArt.cs" />
     <Compile Include="Models\AlbumArtPopup.cs" />
@@ -471,6 +478,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Toolbar\MouseBindingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\TrackProgress\ProgressBarSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -565,7 +576,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>if "$(ConfigurationName)" == "Debug" (

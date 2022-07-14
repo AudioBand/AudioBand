@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -19,12 +20,13 @@ namespace AudioBand.UI
     public class GlobalSettingsViewModel : ViewModelBase
     {
         private IAppSettings _appSettings;
+        private IMessageBus _messageBus;
         private GitHubHelper _gitHubHelper;
         private bool _updateIsAvailable;
         private bool _noUpdateFound;
         private bool _isDownloading;
         private int _downloadPercentage;
-        private string _selectedProfileName;
+        private string _fileName;
         private readonly AudioBandSettings _model = new AudioBandSettings();
         private readonly AudioBandSettings _backup = new AudioBandSettings();
 
@@ -38,7 +40,10 @@ namespace AudioBand.UI
         {
             MapSelf(appSettings.AudioBandSettings, _model);
             _appSettings = appSettings;
+            _messageBus = messageBus;
             _gitHubHelper = gitHubHelper;
+
+            _messageBus.Subscribe<ProfilesUpdatedMessage>(OnProfilesUpdated);
 
             CheckForUpdatesCommand = new AsyncRelayCommand(CheckForUpdatesCommandOnExecute);
             InstallUpdateCommand = new AsyncRelayCommand(InstallUpdateCommandOnExecute);
@@ -95,14 +100,8 @@ namespace AudioBand.UI
         [TrackState]
         public string SelectedProfileName
         {
-            get => _selectedProfileName;
-            set
-            {
-                if (SetProperty(ref _selectedProfileName, value))
-                {
-                    _appSettings.AudioBandSettings.IdleProfileName = value;
-                }
-            }
+            get => _model.IdleProfileName;
+            set => SetProperty(_model, nameof(_model.IdleProfileName), value);
         }
 
         /// <summary>
@@ -123,6 +122,16 @@ namespace AudioBand.UI
         {
             get => _model.ShouldGoIdleAfterInSeconds;
             set => SetProperty(_model, nameof(_model.ShouldGoIdleAfterInSeconds), value);
+        }
+
+        /// <summary>
+        /// Gets or sets whether to clear the current session information when it goes into idle.
+        /// </summary>
+        [TrackState]
+        public bool ClearSessionOnIdle
+        {
+            get => _model.ClearSessionOnIdle;
+            set => SetProperty(_model, nameof(_model.ClearSessionOnIdle), value);
         }
 
         /// <summary>
@@ -174,7 +183,7 @@ namespace AudioBand.UI
         /// <summary>
         /// Gets the list of profile names.
         /// </summary>
-        public ObservableCollection<string> ProfileNames { get; }
+        public ObservableCollection<string> ProfileNames { get; private set; }
 
         /// <inheritdoc />
         protected override void OnReset()
@@ -222,31 +231,49 @@ namespace AudioBand.UI
         {
             try
             {
-                var fileName = Path.GetTempFileName().Replace(".tmp", ".msi");
+                _fileName = Path.GetTempFileName().Replace(".tmp", ".msi");
+
                 using (var client = new WebClient())
                 {
                     client.DownloadProgressChanged += OnDownloadProgressChanged;
+                    client.DownloadFileCompleted += OnDownloadCompleted;
 
                     IsDownloading = true;
                     var link = new Uri(await _gitHubHelper.GetLatestDownloadUrlAsync());
-                    client.DownloadFileAsync(link, fileName);
+                    client.DownloadFileAsync(link, _fileName);
                 }
-
-                IsDownloading = false;
-                Process.Start(new ProcessStartInfo()
-                {
-                    FileName = "msiexec",
-                    Arguments = $"/i {fileName}",
-                    WorkingDirectory = @"C:\temp\",
-                    Verb = "runas"
-                });
             }
             catch (Exception e)
             {
                 Logger.Info(e.Message);
                 Logger.Error(e);
             }
-            
+        }
+
+        private void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            IsDownloading = false;
+
+            if (e.Cancelled)
+            {
+                return;
+            }
+
+            try
+            {
+                var p = Process.Start(new ProcessStartInfo()
+                {
+                    FileName = "msiexec",
+                    WorkingDirectory = @"C:\temp\",
+                    Arguments = $"/i {_fileName}",
+                    Verb = "Runas",
+                });
+            }
+            catch (Exception exc)
+            {
+                Logger.Info(exc.Message);
+                Logger.Error(exc);
+            }
         }
 
         private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -259,6 +286,12 @@ namespace AudioBand.UI
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.AudioBandSettings, _model);
             RaisePropertyChangedAll();
+        }
+
+        private void OnProfilesUpdated(ProfilesUpdatedMessage msg)
+        {
+            ProfileNames = new ObservableCollection<string>(_appSettings.Profiles.Select(p => p.Name));
+            RaisePropertyChanged(nameof(ProfileNames));
         }
     }
 }

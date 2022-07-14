@@ -1,11 +1,11 @@
-﻿using AudioBand.Commands;
-using AudioBand.Messages;
-using AudioBand.Settings;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using AudioBand.Commands;
+using AudioBand.Messages;
+using AudioBand.Settings;
 
 namespace AudioBand.UI
 {
@@ -34,8 +34,11 @@ namespace AudioBand.UI
             _appSettings = appSettings;
             _dialogService = dialogService;
             _messageBus = messageBus;
-            messageBus.Subscribe<EditStartMessage>(EditStartMessageOnPublished);
+
+            messageBus.Subscribe<EditStartMessage>(OnEditStartMessage);
             messageBus.Subscribe<EditEndMessage>(FixEditMessage);
+            messageBus.Subscribe<ProfilesUpdatedMessage>(OnProfilesUpdatedMessage);
+
             ViewModels = viewModels;
             SelectedViewModel = viewModels.GlobalSettingsViewModel;
             _selectedProfileName = appSettings.CurrentProfile.Name;
@@ -164,9 +167,10 @@ namespace AudioBand.UI
             _appSettings.DeleteProfile(SelectedProfileName);
             ProfileNames.Remove(SelectedProfileName);
 
-            _appSettings.SelectProfile(SelectedProfileName);
             SelectedProfileName = ProfileNames[0];
+            _appSettings.SelectProfile(SelectedProfileName);
             _appSettings.Save();
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileDeleted);
         }
 
         private bool DeleteProfileCommandCanExecute()
@@ -186,6 +190,7 @@ namespace AudioBand.UI
 
             _appSettings.CreateProfile(newprofile);
             ProfileNames.Add(newprofile);
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
         }
 
         private void RenameProfileCommandOnExecute()
@@ -200,6 +205,7 @@ namespace AudioBand.UI
             var index = ProfileNames.IndexOf(SelectedProfileName);
             ProfileNames[index] = newProfileName;
             SelectedProfileName = newProfileName;
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileRenamed);
         }
 
         private void CloseCommandOnExecute()
@@ -215,14 +221,6 @@ namespace AudioBand.UI
             {
                 CancelEdits();
                 _messageBus.Publish(SettingsWindowMessage.CloseWindow);
-            }
-        }
-
-        private void FixEditMessage(EditEndMessage msg)
-        {
-            if (msg == EditEndMessage.SaveFix)
-            {
-                EndEdits();
             }
         }
 
@@ -249,9 +247,25 @@ namespace AudioBand.UI
             HasUnsavedChanges = false;
         }
 
-        private void EditStartMessageOnPublished(EditStartMessage obj)
+        private void OnEditStartMessage(EditStartMessage msg)
         {
             HasUnsavedChanges = true;
+        }
+
+        private void FixEditMessage(EditEndMessage msg)
+        {
+            if (msg == EditEndMessage.SaveFix)
+            {
+                EndEdits();
+            }
+        }
+
+        private void OnProfilesUpdatedMessage(ProfilesUpdatedMessage msg)
+        {
+            if (msg == ProfilesUpdatedMessage.ProfileSelected)
+            {
+                SelectedProfileName = _appSettings.CurrentProfile.Name;
+            }
         }
 
         private void ExportProfilesCommandOnExecute()

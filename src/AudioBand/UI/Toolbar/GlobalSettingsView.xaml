@@ -15,8 +15,7 @@
         <StackPanel Style="{StaticResource SettingsStackPanel}">
             <!--  Updater Settings & Checker  -->
             <StackPanel>
-                <TextBlock Style="{StaticResource TitleTextBlock}" Text="{StaticResource UpdaterTitle}"
-                        Padding="0,0,0,10" />
+                <TextBlock Style="{StaticResource TitleTextBlock}" Text="{StaticResource UpdaterTitle}" />
                 <StackPanel Visibility="{Binding UpdateIsAvailable, Converter={x:Static audioband:Converters.BoolToVisibility}}" Margin="0,0,0,15">
                     <TextBlock FontSize="18" Text="{StaticResource UpdateIsAvailableDescription}" />
                     <Grid>
@@ -49,9 +48,11 @@
             </StackPanel>
             <!--  Idle Profile Settings  -->
             <StackPanel>
-                <TextBlock Style="{StaticResource TitleTextBlock}" Text="{StaticResource IdleProfileTitle}" Padding="0,10,0,0" />
+                <TextBlock Style="{StaticResource TitleTextBlock}" Text="{StaticResource IdleProfileTitle}"/>
                 <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource UseIdleHeaderText}" />
                 <metro:ToggleSwitch IsChecked="{Binding UseAutomaticIdleProfile, Mode=TwoWay}" OnLabel="{StaticResource ToggleSwitchOnText}" OffLabel="{StaticResource ToggleSwitchOffText}" />
+                <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource ClearSessionOnIdleLabelText}" />
+                <metro:ToggleSwitch IsChecked="{Binding ClearSessionOnIdle, Mode=TwoWay}" OnLabel="{StaticResource ToggleSwitchOnText}" OffLabel="{StaticResource ToggleSwitchOffText}" />
                 <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource IdleProfileSelectorDescriptionText}" />
                 <ComboBox x:Name="IdleProfileSelectorComboBox"
                           HorizontalAlignment="Left"
@@ -65,7 +66,7 @@
             </StackPanel>
             <!--  Other Settings  -->
             <StackPanel>
-                <TextBlock Style="{StaticResource TitleTextBlock}" Text="{StaticResource OtherTitle}" Padding="0,10,0,0" />
+                <TextBlock Style="{StaticResource TitleTextBlock}" Text="{StaticResource OtherTitle}" />
                 <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource DisableInformationPopupsText}" />
                 <metro:ToggleSwitch IsChecked="{Binding ShowInformationPopups, Mode=TwoWay}" OnLabel="{StaticResource ToggleSwitchOnText}" OffLabel="{StaticResource ToggleSwitchOffText}" />
             </StackPanel>

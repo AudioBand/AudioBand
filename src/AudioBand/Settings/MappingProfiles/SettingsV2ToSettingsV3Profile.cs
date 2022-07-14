@@ -29,6 +29,7 @@ namespace AudioBand.Settings.MappingProfiles
                 .ForPath(dest => dest.Content.ImagePath, opt => opt.MapFrom(source => source.ImagePath))
                 .ForPath(dest => dest.Content.HoveredImagePath, opt => opt.MapFrom(source => source.ImagePath))
                 .ForPath(dest => dest.Content.ClickedImagePath, opt => opt.MapFrom(source => source.ImagePath))
+                .ForMember(dest => dest.CornerRadius, opt => opt.Ignore())
                 .ForMember(dest => dest.BackgroundColor, opt => opt.Ignore())
                 .ForMember(dest => dest.HoveredBackgroundColor, opt => opt.Ignore())
                 .ForMember(dest => dest.ClickedBackgroundColor, opt => opt.Ignore())
@@ -44,6 +45,7 @@ namespace AudioBand.Settings.MappingProfiles
                 .ForPath(dest => dest.Content.ImagePath, opt => opt.MapFrom(source => source.ImagePath))
                 .ForPath(dest => dest.Content.HoveredImagePath, opt => opt.MapFrom(source => source.ImagePath))
                 .ForPath(dest => dest.Content.ClickedImagePath, opt => opt.MapFrom(source => source.ImagePath))
+                .ForMember(dest => dest.CornerRadius, opt => opt.Ignore())
                 .ForMember(dest => dest.BackgroundColor, opt => opt.Ignore())
                 .ForMember(dest => dest.HoveredBackgroundColor, opt => opt.Ignore())
                 .ForMember(dest => dest.ClickedBackgroundColor, opt => opt.Ignore())
@@ -55,6 +57,7 @@ namespace AudioBand.Settings.MappingProfiles
                 .ForPath(dest => dest.Content.ClickedTextColor, opt => opt.Ignore());
             CreateMap<Models.V2.PlayPauseButtonSettings, PlayPauseButton>()
                 .ForMember(dest => dest.Anchor, opt => opt.MapFrom(source => PositionAnchor.TopLeft))
+                .ForMember(dest => dest.CornerRadius, opt => opt.Ignore())
                 .ForMember(dest => dest.BackgroundColor, opt => opt.Ignore())
                 .ForMember(dest => dest.HoveredBackgroundColor, opt => opt.Ignore())
                 .ForMember(dest => dest.ClickedBackgroundColor, opt => opt.Ignore())
