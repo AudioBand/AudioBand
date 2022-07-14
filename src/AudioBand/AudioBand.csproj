@@ -133,6 +133,7 @@
     <Compile Include="Commands\AsyncRelayCommand.cs" />
     <Compile Include="Settings\Migrations\IdentitySettingsMigrator.cs" />
     <Compile Include="Settings\Persistence\TomlHelper.cs" />
+    <Compile Include="UI\TaskbarIconViewModel.cs" />
     <Compile Include="UI\Toolbar\MouseBindingsViewModel.cs" />
     <Compile Include="UI\ValueConverters\ColorToNonTransparentBrushConverter.cs" />
     <Compile Include="UI\ValueConverters\ValueConverterHelper.cs" />
@@ -397,6 +398,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Resources\TaskbarIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Resources\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -542,6 +547,9 @@
     </PackageReference>
     <PackageReference Include="FluentWPF">
       <Version>0.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf">
+      <Version>1.1.0</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
