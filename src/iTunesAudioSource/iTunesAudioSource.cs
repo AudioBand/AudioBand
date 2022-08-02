@@ -162,7 +162,6 @@ namespace iTunesAudioSource
         /// <inheritdoc/>
         public Task SetLikeTrackAsync()
         {
-            //_itunesControls.Like();
             return Task.CompletedTask;
         }
 
@@ -306,18 +305,6 @@ namespace iTunesAudioSource
 
             _repeat = repeat;
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_repeat));
-        }
-
-        private void SetLikeTrack()
-        {
-            var like = _itunesControls.Like;
-            //if (_liked == like)
-            {
-                return;
-            }
-
-            //_liked = like;
-            LikeChanged?.Invoke(this, _liked);
         }
     }
 }

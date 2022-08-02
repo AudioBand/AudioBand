@@ -129,7 +129,11 @@ namespace AudioBand.AudioSource
         }
 
         /// <inheritdoc/>
-        public bool IsLiked => throw new NotImplementedException();
+        public bool IsLiked
+        {
+            get => _isLiked;
+            set => SetProperty(ref _isLiked, value);
+        }
 
         private void AudioSourceChanged()
         {
@@ -162,7 +166,7 @@ namespace AudioBand.AudioSource
 
         private void AudioSourceLikeChanged(object sender, bool e)
         {
-            _isLiked = e;
+            IsLiked = e;
         }
 
         private void AudioSourceOnShuffleChanged(object sender, bool e)

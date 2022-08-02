@@ -107,7 +107,7 @@ namespace AudioBand.UI
                 return;
             }
 
-            await _audioSession.CurrentAudioSource.LikeTrackAsync();
+            await _audioSession.CurrentAudioSource.SetLikeTrackAsync();
         }
 
         private void InitializeButtonContents()

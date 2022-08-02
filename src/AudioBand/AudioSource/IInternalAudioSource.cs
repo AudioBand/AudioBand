@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace AudioBand.AudioSource
 {
@@ -27,6 +26,5 @@ namespace AudioBand.AudioSource
         /// <param name="settingName">Name of the setting.</param>
         /// <returns>The type of the setting.</returns>
         Type GetSettingType(string settingName);
-        Task LikeTrackAsync();
     }
 }

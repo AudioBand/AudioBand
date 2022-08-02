@@ -14,7 +14,6 @@ namespace iTunesAudioSource
         private iTunesApp _itunesApp;
         private Timer _checkProcessTimer;
         private bool _itunesOpened;
-        internal object Like;
 
         public ITunesControls()
         {

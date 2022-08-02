@@ -11,14 +11,7 @@ namespace AudioBand.UI
     public class LayoutViewModelBase<TModel> : ViewModelBase
         where TModel : LayoutModelBase, new()
     {
-        private readonly List<ButtonContentViewModel> _contentViewModels = new List<ButtonContentViewModel>();
-
         private readonly TModel _backup = new TModel();
-        private LikeDislikeButton likeDislikeButton;
-        private IDialogService dialogService;
-        private IMessageBus messageBus;
-        private AlbumArt albumArt;
-        private ProgressBar progressBar;
         private object source;
 
         /// <summary>
@@ -27,40 +20,10 @@ namespace AudioBand.UI
         /// </summary>
         /// <param name="source">The initial model data.</param>
         /// <param name="messageBus">The message bus.</param>
-        public LayoutViewModelBase(LikeDislikeButton likeDislikeButton, IMessageBus messageBus, TModel source)
+        public LayoutViewModelBase(IMessageBus messageBus, TModel source)
         {
             MapSelf(source, Model);
             UseMessageBus(messageBus);
-        }
-
-        public LayoutViewModelBase(LikeDislikeButton likeDislikeButton, IDialogService dialogService, IMessageBus messageBus)
-        {
-            this.likeDislikeButton = likeDislikeButton;
-            this.dialogService = dialogService;
-            this.messageBus = messageBus;
-        }
-
-        public LayoutViewModelBase(IMessageBus messageBus, AlbumArt albumArt)
-        {
-            this.messageBus = messageBus;
-            this.albumArt = albumArt;
-        }
-
-        public LayoutViewModelBase(IMessageBus messageBus, CustomLabel source)
-        {
-            this.messageBus = messageBus;
-        }
-
-        public LayoutViewModelBase(IMessageBus messageBus, ProgressBar progressBar)
-        {
-            this.messageBus = messageBus;
-            this.progressBar = progressBar;
-        }
-
-        public LayoutViewModelBase(IMessageBus messageBus, object source)
-        {
-            this.messageBus = messageBus;
-            this.source = source;
         }
 
         /// <summary>
@@ -147,16 +110,6 @@ namespace AudioBand.UI
         {
             base.OnCancelEdit();
             MapSelf(_backup, Model);
-        }
-
-        /// <inheritdoc />
-        protected override void OnEndEdit()
-        {
-            base.OnEndEdit();
-            foreach (var buttonContentViewModel in _contentViewModels)
-            {
-                buttonContentViewModel.EndEdit();
-            }
         }
     }
 }
