@@ -48,7 +48,7 @@
                                     <ControlTemplate TargetType="{x:Type Thumb}">
                                         <Ellipse Width="{TemplateBinding Width}"
                                                  Height="{TemplateBinding Height}"
-                                                 Fill="{TemplateBinding Background}"
+                                                 Fill="{Binding ProgressBarThumbColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                                  Stroke="{Binding ThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                                  StrokeThickness="2" />
                                     </ControlTemplate>

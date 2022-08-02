@@ -91,7 +91,7 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets the right hand side foreground color.
         /// </summary>
-        public Color VolumeBarForegroundGradientColor { get; set; } = Colors.CadetBlue;
+        public Color VolumeBarForegroundGradientColor { get; set; } = Colors.Magenta;
 
         /// <summary>
         /// Gets or sets the BackgroundColor.

@@ -88,6 +88,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the Thumb color.
+        /// </summary>
+        [TrackState]
+        public Color ProgressBarThumbColor
+        {
+            get => Model.ProgressBarThumbColor;
+            set => SetProperty(Model, nameof(Model.ProgressBarThumbColor), value);
+        }
+
+        /// <summary>
         /// Gets or sets the track progress.
         /// </summary>
         public TimeSpan TrackProgress

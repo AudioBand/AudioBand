@@ -39,6 +39,11 @@ namespace AudioBand.Models
         public Color HoverColor { get; set; } = Colors.DeepSkyBlue;
 
         /// <summary>
+        /// Gets or sets the thumb color.
+        /// </summary>
+        public Color ProgressBarThumbColor { get; set; } = Colors.LightSalmon;
+
+        /// <summary>
         /// Gets or sets the thumb's border color.
         /// </summary>
         public Color ThumbBorderColor { get; set; } = Colors.DeepSkyBlue;
