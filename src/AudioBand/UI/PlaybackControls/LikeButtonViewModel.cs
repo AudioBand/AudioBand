@@ -13,7 +13,7 @@ namespace AudioBand.UI
     /// <summary>
     /// View model for the like/dislike button.
     /// </summary>
-    public class LikeDislikeButtonViewModel : ButtonViewModelBase<LikeDislikeButton>
+    public class LikeButtonViewModel : ButtonViewModelBase<LikeButton>
     {
         private readonly IAppSettings _appSettings;
         private readonly IAudioSession _audioSession;
@@ -21,13 +21,13 @@ namespace AudioBand.UI
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LikeDislikeButtonViewModel"/> class.
+        /// Initializes a new instance of the <see cref="LikeButtonViewModel"/> class.
         /// </summary>
         /// <param name="appSettings">App settings.</param>
         /// <param name="dialogService">The dialog service.</param>
         /// <param name="audioSession">The audio session.</param>
         /// <param name="messageBus">The message bus.</param>
-        public LikeDislikeButtonViewModel(IAppSettings appSettings, IDialogService dialogService, IAudioSession audioSession, IMessageBus messageBus)
+        public LikeButtonViewModel(IAppSettings appSettings, IDialogService dialogService, IAudioSession audioSession, IMessageBus messageBus)
             : base(appSettings.CurrentProfile.LikeDislikeButton, dialogService, messageBus)
         {
             _appSettings = appSettings;
@@ -112,7 +112,7 @@ namespace AudioBand.UI
 
         private void InitializeButtonContents()
         {
-            var resetBase = new LikeDislikeButton();
+            var resetBase = new LikeButton();
             LikeContent = new ButtonContentViewModel(Model.LikeContent, resetBase.LikeContent, DialogService);
             DislikeContent = new ButtonContentViewModel(Model.DislikeContent, resetBase.DislikeContent, DialogService);
 

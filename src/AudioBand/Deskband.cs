@@ -135,7 +135,7 @@ namespace AudioBand
                 _container.Register<ShuffleModeButtonViewModel>(Lifestyle.Singleton);
                 _container.Register<PopupViewModel>(Lifestyle.Singleton);
                 _container.Register<VolumeButtonViewModel>(Lifestyle.Singleton);
-                _container.Register<LikeDislikeButtonViewModel>(Lifestyle.Singleton);
+                _container.Register<LikeButtonViewModel>(Lifestyle.Singleton);
 
                 _container.Verify();
             }

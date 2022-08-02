@@ -40,7 +40,7 @@
             ProgressBarViewModel progressBarViewModel,
             PopupViewModel popupViewModel,
             AudioSourceSettingsViewModel audioSourceSettingsViewModel,
-            LikeDislikeButtonViewModel likeDislikeButtonViewModel)
+            LikeButtonViewModel likeDislikeButtonViewModel)
         {
             GlobalSettingsViewModel = globalSettingsViewModel;
             MouseBindingsViewModel = mouseBindingsViewModel;
@@ -106,6 +106,6 @@
         public AudioSourceSettingsViewModel AudioSourceSettingsViewModel { get; }
 
         /// <inheritdoc />
-        public LikeDislikeButtonViewModel LikeDislikeButtonViewModel { get; }
+        public LikeButtonViewModel LikeDislikeButtonViewModel { get; }
     }
 }

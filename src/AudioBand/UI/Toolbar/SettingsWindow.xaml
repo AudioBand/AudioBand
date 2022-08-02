@@ -523,7 +523,7 @@
                             <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:VolumeButtonViewModel}">
                                 <Setter Property="Text" Value="{StaticResource VolumeButtonTab}" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:LikeDislikeButtonViewModel}">
+                            <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:LikeButtonViewModel}">
                                 <Setter Property="Text" Value="{StaticResource LikeButtonTab}" />
                             </DataTrigger>
                         </Style.Triggers>

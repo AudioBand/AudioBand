@@ -3,12 +3,12 @@
     /// <summary>
     /// Model for the like/dislike button.
     /// </summary>
-    public class LikeDislikeButton : ButtonModelBase
+    public class LikeButton : ButtonModelBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LikeDislikeButton"/> class.
+        /// Initializes a new instance of the <see cref="LikeButton"/> class.
         /// </summary>
-        public LikeDislikeButton()
+        public LikeButton()
         {
             IsVisible = false;
             XPosition = 170;

@@ -83,6 +83,6 @@
         /// <summary>
         /// Gets the view model for the like button.
         /// </summary>
-        LikeDislikeButtonViewModel LikeDislikeButtonViewModel { get; }
+        LikeButtonViewModel LikeDislikeButtonViewModel { get; }
     }
 }
