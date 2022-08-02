@@ -225,8 +225,8 @@
                                         <Border CornerRadius="3"
                                                 Width="{TemplateBinding Width}"
                                                 Height="{TemplateBinding Height}"
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding Foreground}"
+                                                Background="{Binding VolumeBarThumbColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
+                                                BorderBrush="{Binding VolumeBarThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                                 BorderThickness="2">
                                         </Border>
                                     </ControlTemplate>
@@ -328,7 +328,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style x:Key="VolumeSliderThumbStyle" TargetType="{x:Type Thumb}">
+            <Style x:Key="VolumeSliderThumbSsityle" TargetType="{x:Type Thumb}">
                 <Setter Property="OverridesDefaultStyle" Value="true" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -336,7 +336,7 @@
                             <Ellipse Width="6"
                                      Height="6"
                                      Fill="{TemplateBinding Background}"
-                                     Stroke="{Binding ThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
+                                     Stroke="{Binding VolumeBarThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                      StrokeThickness="2" />
                         </ControlTemplate>
                     </Setter.Value>

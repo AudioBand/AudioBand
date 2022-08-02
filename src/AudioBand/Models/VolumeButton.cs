@@ -89,7 +89,7 @@ namespace AudioBand.Models
         public Color VolumeBarForegroundColor { get;  set; } = Colors.DodgerBlue;
 
         /// <summary>
-        /// Gets or sets the Right hand side foreground color.
+        /// Gets or sets the right hand side foreground color.
         /// </summary>
         public Color VolumeBarForegroundGradientColor { get; set; } = Colors.CadetBlue;
 
@@ -106,11 +106,11 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets the thumb color.
         /// </summary>
-        public Color VolumeThumbSliderStyle { get; set; } = Colors.DarkMagenta;
+        public Color VolumeBarThumbColor { get; set; } = Colors.DarkMagenta;
 
         /// <summary>
         /// Gets or sets the thumb's border color.
         /// </summary>
-        public Color VolumeThumbBorderColor { get; set; } = Colors.DodgerBlue;
+        public Color VolumeBarThumbBorderColor { get; set; } = Colors.DodgerBlue;
     }
 }

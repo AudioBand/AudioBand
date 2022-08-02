@@ -446,7 +446,7 @@
                                 <Setter.Value>
                                     <LinearGradientBrush>
                                         <GradientStop Color="{Binding VolumeBarForegroundColor}" Offset="0" />
-                                        <GradientStop Color="{Binding ForegroundGradientColor}" Offset="1" />
+                                        <GradientStop Color="{Binding VolumeBarForegroundGradientColor}" Offset="1" />
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
