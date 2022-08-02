@@ -555,7 +555,7 @@
                                 <audioband:SharedDictionary Source="../PlaybackControls/RepeatModeButtonSettingsView.xaml" />
                                 <audioband:SharedDictionary Source="../PlaybackControls/ShuffleModeButtonSettingsView.xaml" />
                                 <audioband:SharedDictionary Source="../PlaybackControls/VolumeButtonSettingsView.xaml" />
-                                <audioband:SharedDictionary Source="../PlaybackControls/LikeDislikeButtonSettingsView.xaml" />
+                                <audioband:SharedDictionary Source="../PlaybackControls/LikeButtonSettingsView.xaml" />
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                     </ContentControl.Resources>
