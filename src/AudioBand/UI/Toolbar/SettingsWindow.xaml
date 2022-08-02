@@ -226,7 +226,7 @@
                                                 </StackPanel>
                                             </RadioButton>
                                             <RadioButton Command="{Binding SelectViewModelCommand}"
-                                                        CommandParameter="{Binding ViewModels.LikeDislikeButtonViewModel}"
+                                                        CommandParameter="{Binding ViewModels.LikeButtonViewModel}"
                                                         GroupName="nav"
                                                         Style="{StaticResource NavigationPaneSubSubRadioButton}">
                                                 <StackPanel Orientation="Horizontal">

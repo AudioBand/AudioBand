@@ -81,7 +81,7 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets the like dislike button model.
         /// </summary>
-        public LikeButton LikeDislikeButton { get; set; }
+        public LikeButton LikeButton { get; set; }
 
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace AudioBand.Models
                     IsVisible = true
                 },
                 ProgressBar = new ProgressBar(),
-                LikeDislikeButton = new LikeButton(),
+                LikeButton = new LikeButton(),
                 CustomLabels = new List<CustomLabel>
                 {
                     new CustomLabel
@@ -213,7 +213,7 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
-                LikeDislikeButton = new LikeButton()
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },
@@ -359,7 +359,7 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
-                LikeDislikeButton = new LikeButton()
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },
@@ -550,7 +550,7 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
-                LikeDislikeButton = new LikeButton()
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },
@@ -643,7 +643,7 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
-                LikeDislikeButton = new LikeButton()
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },

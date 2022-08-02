@@ -400,9 +400,9 @@
                 audioband:CanvasPositioning.Anchor="{Binding Anchor}"
                 audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
                 audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                Command="{Binding LikeDislikeCommand}"
-                DataContext="{Binding ViewModels.LikeDislikeButtonViewModel}"
-                Style="{StaticResource ToolbarLikeDislikeButtonStyle}"
+                Command="{Binding LikeCommand}"
+                DataContext="{Binding ViewModels.LikeButtonViewModel}"
+                Style="{StaticResource ToolbarLikeButtonStyle}"
                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
         <Button x:Name="VolumeButton"
                 Width="{Binding Width}"

@@ -308,9 +308,9 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="ToolbarLikeDislikeButtonStyle" TargetType="{x:Type Button}">
+    <Style x:Key="ToolbarLikeButtonStyle" TargetType="{x:Type Button}">
         <d:Style.DataContext>
-            <x:Type Type="audioband:LikeDislikeButtonViewModel" />
+            <x:Type Type="audioband:LikeButtonViewModel" />
         </d:Style.DataContext>
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template" Value="{StaticResource ToolbarButtonControlTemplate}" />

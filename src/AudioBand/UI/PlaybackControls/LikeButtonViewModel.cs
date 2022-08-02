@@ -28,13 +28,13 @@ namespace AudioBand.UI
         /// <param name="audioSession">The audio session.</param>
         /// <param name="messageBus">The message bus.</param>
         public LikeButtonViewModel(IAppSettings appSettings, IDialogService dialogService, IAudioSession audioSession, IMessageBus messageBus)
-            : base(appSettings.CurrentProfile.LikeDislikeButton, dialogService, messageBus)
+            : base(appSettings.CurrentProfile.LikeButton, dialogService, messageBus)
         {
             _appSettings = appSettings;
             _audioSession = audioSession;
             _audioSession.PropertyChanged += AudioSessionOnPropertyChanged;
             _appSettings.ProfileChanged += AppSettingsOnProfileChanged;
-            LikeDislikeTrackCommand = new AsyncRelayCommand<object>(LikeDislikeTrackCommandOnExecute);
+            LikeTrackCommand = new AsyncRelayCommand<object>(LikeTrackCommandOnExecute);
 
             InitializeButtonContents();
         }
@@ -52,7 +52,7 @@ namespace AudioBand.UI
         /// <summary>
         /// Gets the like dislike command.
         /// </summary>
-        public IAsyncCommand LikeDislikeTrackCommand { get; }
+        public IAsyncCommand LikeTrackCommand { get; }
 
         /// <summary>
         /// Gets a value indicating whether a track is liked.
@@ -73,13 +73,13 @@ namespace AudioBand.UI
         protected override void OnEndEdit()
         {
             base.OnEndEdit();
-            MapSelf(Model, _appSettings.CurrentProfile.LikeDislikeButton);
+            MapSelf(Model, _appSettings.CurrentProfile.LikeButton);
         }
 
         private void AppSettingsOnProfileChanged(object sender, EventArgs e)
         {
             Debug.Assert(IsEditing == false, "Should not be editing");
-            MapSelf(_appSettings.CurrentProfile.LikeDislikeButton, Model);
+            MapSelf(_appSettings.CurrentProfile.LikeButton, Model);
 
             InitializeButtonContents();
             RaisePropertyChangedAll();
@@ -100,7 +100,7 @@ namespace AudioBand.UI
             IsLiked = isLiked;
         }
 
-        private async Task LikeDislikeTrackCommandOnExecute(object arg)
+        private async Task LikeTrackCommandOnExecute(object arg)
         {
             if (_audioSession.CurrentAudioSource == null)
             {
