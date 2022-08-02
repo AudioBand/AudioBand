@@ -400,7 +400,7 @@
                 audioband:CanvasPositioning.Anchor="{Binding Anchor}"
                 audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
                 audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
-                Command="{Binding LikeCommand}"
+                Command="{Binding LikeTrackCommand}"
                 DataContext="{Binding ViewModels.LikeButtonViewModel}"
                 Style="{StaticResource ToolbarLikeButtonStyle}"
                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
