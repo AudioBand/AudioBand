@@ -63,7 +63,7 @@ namespace AudioSourceHost
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <summary>
-        /// Wrapper for <see cref="IAudioSource.LikeTrackChanged"/>.
+        /// Wrapper for <see cref="IAudioSource.LikeChanged"/>.
         /// </summary>
         public event EventHandler<bool> LikeTrackChanged;
 
@@ -188,15 +188,6 @@ namespace AudioSourceHost
         public void LikeTrack(MarshaledTaskCompletionSource tcs)
         {
             StartTask(_audioSource.SetLikeTrackAsync, tcs);
-        }
-
-        /// <summary>
-        /// Gets the Dislike state.
-        /// </summary>
-        /// <param name="tcs">The task completion source.</param>
-        public void DislikeTrack(MarshaledTaskCompletionSource tcs)
-        {
-            StartTask(_audioSource.DislikeTrackAsync, tcs);
         }
 
         /// <summary>

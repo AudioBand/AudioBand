@@ -48,7 +48,7 @@ namespace AudioBand.AudioSource
         /// <summary>
         /// Occurs when the track like state has changed. <see langword="true"/> if liked; <see langword="false"/> otherwise;
         /// </summary>
-        event EventHandler<bool> LikeTrackChanged;
+        event EventHandler<bool> LikeChanged;
 
         /// <summary>
         /// Gets the name of the audio source.
@@ -143,11 +143,5 @@ namespace AudioBand.AudioSource
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous like operation.</returns>
         Task SetLikeTrackAsync();
-
-        /// <summary>
-        /// Called when there is a request to dislike song.
-        /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous dislike operation.</returns>
-        Task DislikeTrackAsync();
     }
 }

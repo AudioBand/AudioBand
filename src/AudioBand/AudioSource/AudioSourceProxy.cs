@@ -69,7 +69,7 @@ namespace AudioBand.AudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc/>
-        public event EventHandler<bool> LikeTrackChanged;
+        public event EventHandler<bool> LikeChanged;
 
         /// <inheritdoc/>
         public string Name
@@ -326,17 +326,6 @@ namespace AudioBand.AudioSource
             }
 
             await CallWrapperAsync(_wrapper.LikeTrack);
-        }
-
-        /// <inheritdoc/>
-        public async Task DislikeTrackAsync()
-        {
-            if (!IsActivated)
-            {
-                return;
-            }
-
-            await CallWrapperAsync(_wrapper.DislikeTrack);
         }
 
         /// <inheritdoc/>

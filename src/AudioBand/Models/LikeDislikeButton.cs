@@ -22,7 +22,7 @@
         /// </summary>
         public ButtonContent LikeContent { get; set; } = new ButtonContent
         {
-            Text = "",
+            Text = "",
         };
 
         /// <summary>
@@ -30,7 +30,7 @@
         /// </summary>
         public ButtonContent DislikeContent { get; set; } = new ButtonContent
         {
-            Text = "",
+            Text = "",
         };
     }
 }

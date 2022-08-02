@@ -367,7 +367,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UI\PlaybackControls\LikeDislikeButtonSettings.xaml">
+    <Page Include="UI\PlaybackControls\LikeDislikeButtonSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -62,7 +62,7 @@ namespace MusicBeeAudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc/>
-        public event EventHandler<bool> LikeTrackChanged;
+        public event EventHandler<bool> LikeChanged;
 
         /// <inheritdoc/>
         public string Name => "Music Bee";
@@ -149,14 +149,12 @@ namespace MusicBeeAudioSource
         /// <inheritdoc/>
         public Task SetLikeTrackAsync()
         {
-            _ipc.GetShowRatingLove();
             return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public Task DislikeTrackAsync()
         {
-            _ipc.GetShowRatingLove();
             return Task.CompletedTask;
         }
 

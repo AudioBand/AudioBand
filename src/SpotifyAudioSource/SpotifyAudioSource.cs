@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
@@ -37,6 +38,7 @@ namespace SpotifyAudioSource
         private int _currentVolumePercent;
         private bool _currentShuffle;
         private string _currentRepeat;
+        private bool _currentLikeState;
         private string _clientSecret;
         private string _clientId;
         private string _refreshToken;
@@ -84,7 +86,7 @@ namespace SpotifyAudioSource
         public event EventHandler<bool> IsPlayingChanged;
 
         /// <inheritdoc />
-        public event EventHandler<bool> LikeTrackChanged;
+        public event EventHandler<bool> LikeChanged;
 
         /// <inheritdoc />
         public string Name => "Spotify";
@@ -460,31 +462,24 @@ namespace SpotifyAudioSource
         /// <inheritdoc/>
         public async Task SetLikeTrackAsync()
         {
-            try
+            if (_spotifyClient == null)
             {
-                await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new System.Collections.Generic.List<string>() { "TRACK_ID" }));
+                Authorize();
+                return;
             }
-            catch (Exception e)
-            {
-                Logger.Error($"Error while trying to like song, user most likely offline ~ {e.Message}");
-                _authIsInProcess = false;
-                throw;
-            }
-        }
 
-        /// <inheritdoc/>
-        public async Task DislikeTrackAsync()
-        {
-            try
+            if ((await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault())
             {
-                await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new System.Collections.Generic.List<string>() { "TRACK_ID" }));
+                await OnPlayerCommandFailed(()
+                    => _spotifyClient.Library.RemoveTracks(new LibraryRemoveTracksRequest(new List<string>() { _currentItemId })), "SetLikeMode");
             }
-            catch (Exception e)
+            else
             {
-                Logger.Error($"Error while trying to dislike song, user most likely offline ~ {e.Message}");
-                _authIsInProcess = false;
-                throw;
+                await OnPlayerCommandFailed(()
+                   => _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId })), "SetLikeMode");
             }
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         private RepeatMode ToRepeatMode(State state)
@@ -750,7 +745,7 @@ namespace SpotifyAudioSource
 
         private async Task NotifyLikeStateAsync(CurrentlyPlayingContext playback)
         {
-            await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new System.Collections.Generic.List<string>() { "TRACK_ID" }));
+            await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId }));
         }
 
         private async Task<Image> GetAlbumArtAsync(Uri albumArtUrl)
@@ -859,6 +854,7 @@ namespace SpotifyAudioSource
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
+                NotifyLike();
 
                 if (playback.Item.Type == ItemType.Track)
                 {
@@ -891,6 +887,19 @@ namespace SpotifyAudioSource
                     }
                 }
             }
+        }
+
+        private async Task NotifyLike()
+        {
+            var isLiked = (await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault();
+
+            if (isLiked == _currentLikeState)
+            {
+                return;
+            }
+
+            _currentLikeState = isLiked;
+            LikeChanged?.Invoke(this, _currentLikeState);
         }
 
         private async Task RefreshAccessTokenOnClient()

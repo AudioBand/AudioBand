@@ -25,6 +25,7 @@ namespace AudioBand.AudioSource
         private int _volume;
         private Image _album;
         private TrackInfoChangedEventArgs _lastTrackInfo;
+        private bool _isLiked;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioSession"/> class.
@@ -141,6 +142,7 @@ namespace AudioBand.AudioSource
                 _currentAudioSource.RepeatModeChanged -= AudioSourceOnRepeatModeChanged;
                 _currentAudioSource.ShuffleChanged -= AudioSourceOnShuffleChanged;
                 _currentAudioSource.VolumeChanged -= AudioSourceVolumeChanged;
+                _currentAudioSource.LikeChanged -= AudioSourceLikeChanged;
             }
 
             if (_currentAudioSource == null)
@@ -155,6 +157,12 @@ namespace AudioBand.AudioSource
             _currentAudioSource.RepeatModeChanged += AudioSourceOnRepeatModeChanged;
             _currentAudioSource.ShuffleChanged += AudioSourceOnShuffleChanged;
             _currentAudioSource.VolumeChanged += AudioSourceVolumeChanged;
+            _currentAudioSource.LikeChanged += AudioSourceLikeChanged;
+        }
+
+        private void AudioSourceLikeChanged(object sender, bool e)
+        {
+            _isLiked = e;
         }
 
         private void AudioSourceOnShuffleChanged(object sender, bool e)

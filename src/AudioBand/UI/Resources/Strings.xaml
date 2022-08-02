@@ -81,6 +81,10 @@
     <sys:String x:Key="LowVolumeButtonContentSectionText">Low Volume Button content</sys:String>
     <sys:String x:Key="MidVolumeButtonContentSectionText">Mid Volume Button content</sys:String>
     <sys:String x:Key="HighVolumeButtonContentSectionText">High Volume Button content</sys:String>
+    
+    <!--  Like button settings  -->
+    <sys:String x:Key="LikeButtonContentSectionText">Like Button content</sys:String>
+    <sys:String x:Key="DislikeButtonContentSectionText">Dislike Button content</sys:String>
 
     <!--  Custom text label settings  -->
     <sys:String x:Key="CustomLabelNameSectionText">Label name</sys:String>
@@ -132,6 +136,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="RepeatModeButtonTab">Repeat Mode Button</sys:String>
     <sys:String x:Key="ShuffleModeButtonTab">Shuffle Mode Button</sys:String>
     <sys:String x:Key="VolumeButtonTab">Volume Button</sys:String>
+    <sys:String x:Key="LikeButtonTab">Like Button</sys:String>
     <sys:String x:Key="ProgressBarTab">Progress Bar</sys:String>
     <sys:String x:Key="CustomLabelsTab">Text Labels</sys:String>
     <sys:String x:Key="AlbumArtTab">Album Art</sys:String>

@@ -261,6 +261,7 @@ namespace AudioBand.Settings
             for (int i = 0; i < profiles.Length; i++)
             {
                 profiles[i].VolumeButton ??= new VolumeButton();
+                profiles[i].LikeDislikeButton ??= new LikeDislikeButton();
             }
         }
     }

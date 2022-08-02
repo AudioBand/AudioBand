@@ -60,7 +60,7 @@ namespace Win10AudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc />
-        public event EventHandler<bool> LikeTrackChanged;
+        public event EventHandler<bool> LikeChanged;
 
         /// <inheritdoc />
         public string Name => "Windows 10";

@@ -60,7 +60,7 @@ namespace iTunesAudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc/>
-        public event EventHandler<bool> LikeTrackChanged;
+        public event EventHandler<bool> LikeChanged;
 
         /// <inheritdoc/>
         public string Name => "iTunes";
@@ -162,14 +162,7 @@ namespace iTunesAudioSource
         /// <inheritdoc/>
         public Task SetLikeTrackAsync()
         {
-            _itunesControls.Like();
-            return Task.CompletedTask;
-        }
-
-        /// <inheritdoc/>
-        public Task DislikeTrackAsync()
-        {
-            _itunesControls.Dislike();
+            //_itunesControls.Like();
             return Task.CompletedTask;
         }
 
@@ -318,13 +311,13 @@ namespace iTunesAudioSource
         private void SetLikeTrack()
         {
             var like = _itunesControls.Like;
-            if (_liked == like)
+            //if (_liked == like)
             {
                 return;
             }
 
-            _liked = like;
-            LikeTrackChanged?.Invoke(this, _liked);
+            //_liked = like;
+            LikeChanged?.Invoke(this, _liked);
         }
     }
 }

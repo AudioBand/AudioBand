@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows.Media;
 using AudioBand.AudioSource;
 using AudioBand.Commands;
 using AudioBand.Messages;
@@ -19,7 +18,6 @@ namespace AudioBand.UI
         private readonly IAppSettings _appSettings;
         private readonly IAudioSession _audioSession;
         private bool _isLiked;
-        private readonly BindingList<ButtonContentViewModel> _contentViewModels = new BindingList<ButtonContentViewModel>();
 
 
         /// <summary>
@@ -109,14 +107,7 @@ namespace AudioBand.UI
                 return;
             }
 
-            if (IsLiked)
-            {
-                await _audioSession.CurrentAudioSource.DislikeTrackAsync();
-            }
-            else
-            {
-                await _audioSession.CurrentAudioSource.LikeTrackAsync();
-            }
+            await _audioSession.CurrentAudioSource.LikeTrackAsync();
         }
 
         private void InitializeButtonContents()

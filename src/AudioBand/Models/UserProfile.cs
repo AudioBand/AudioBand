@@ -213,7 +213,7 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
-                LikeDislikeButton= new LikeDislikeButton()
+                LikeDislikeButton = new LikeDislikeButton()
                 {
                     IsVisible = false
                 },
