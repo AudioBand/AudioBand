@@ -146,7 +146,7 @@ namespace AudioBand.UI
                 var json = await client.GetStringAsync(communityProfile.DownloadUrl);
 
                 // check if profile uses external images
-                if (!string.IsNullOrEmpty(communityProfile.ImagesFolderUrl))
+                if (!string.IsNullOrEmpty(communityProfile.AssetsUrl))
                 {
                     // change out image paths placeholder to relative paths on the user's device
                     json = json.Replace("%AssetsFolder%", _assetsDirectory);

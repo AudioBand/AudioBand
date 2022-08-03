@@ -15,8 +15,7 @@
             <TextBlock FontSize="12" TextWrapping="Wrap" Margin="8">
                 This feature is a work in progress.
                 <LineBreak />
-                Want to upload your own cool profiles? Checkout: 
-                <Hyperlink NavigateUri="https://github.com/AudioBand/CommunityProfiles" Name="CommunityProfiles' GitHub" />
+                Want to upload your own cool profiles? Checkout: https://github.com/AudioBand/CommunityProfiles
             </TextBlock>
                 <ListView x:Name="ProfileList" ItemsSource="{Binding AvailableProfiles}" IsEnabled="True"
                           HorizontalAlignment="Left" Background="Transparent" Margin="8">
