@@ -63,8 +63,8 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets the download url to the images used in the profile.
         /// </summary>
-        [JsonProperty("imagesFolderUrl")]
-        public string ImagesFolderUrl { get; set; }
+        [JsonProperty("assetsUrl")]
+        public string AssetsUrl { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this profile is already installed.
