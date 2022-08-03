@@ -471,12 +471,12 @@ namespace SpotifyAudioSource
             if ((await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault())
             {
                 await OnPlayerCommandFailed(()
-                    => _spotifyClient.Library.RemoveTracks(new LibraryRemoveTracksRequest(new List<string>() { _currentItemId })), "SetLikeMode");
+                    => _spotifyClient.Library.RemoveTracks(new LibraryRemoveTracksRequest(new List<string>() { _currentItemId })), "RemoveLike");
             }
             else
             {
                 await OnPlayerCommandFailed(()
-                   => _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId })), "SetLikeMode");
+                   => _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId })), "AddLike");
             }
 
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
@@ -743,9 +743,17 @@ namespace SpotifyAudioSource
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_currentRepeat));
         }
 
-        private async Task NotifyLikeStateAsync(CurrentlyPlayingContext playback)
+        private async Task NotifyLike()
         {
-            await _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId }));
+            var isLiked = (await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault();
+
+            if (isLiked == _currentLikeState)
+            {
+                return;
+            }
+
+            _currentLikeState = isLiked;
+            LikeChanged?.Invoke(this, _currentLikeState);
         }
 
         private async Task<Image> GetAlbumArtAsync(Uri albumArtUrl)
@@ -854,7 +862,7 @@ namespace SpotifyAudioSource
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
-                NotifyLike();
+                await NotifyLike();
 
                 if (playback.Item.Type == ItemType.Track)
                 {
@@ -887,19 +895,6 @@ namespace SpotifyAudioSource
                     }
                 }
             }
-        }
-
-        private async Task NotifyLike()
-        {
-            var isLiked = (await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault();
-
-            if (isLiked == _currentLikeState)
-            {
-                return;
-            }
-
-            _currentLikeState = isLiked;
-            LikeChanged?.Invoke(this, _currentLikeState);
         }
 
         private async Task RefreshAccessTokenOnClient()
@@ -940,7 +935,7 @@ namespace SpotifyAudioSource
 
             var request = new LoginRequest(_server.BaseUri, ClientId, LoginRequest.ResponseType.Code)
             {
-                Scope = new[] { Scopes.UserReadCurrentlyPlaying, Scopes.UserReadPlaybackState, Scopes.UserReadPlaybackPosition, Scopes.UserModifyPlaybackState },
+                Scope = new[] { Scopes.UserReadCurrentlyPlaying, Scopes.UserReadPlaybackState, Scopes.UserReadPlaybackPosition, Scopes.UserModifyPlaybackState, Scopes.UserLibraryRead, Scopes.UserLibraryModify },
             };
 
             BrowserUtil.Open(request.ToUri());

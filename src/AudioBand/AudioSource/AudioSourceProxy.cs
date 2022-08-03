@@ -403,6 +403,7 @@ namespace AudioBand.AudioSource
             _wrapper.VolumeChanged += new MarshaledEventHandler<int>(e => VolumeChanged?.Invoke(this, e)).Handler;
             _wrapper.ShuffleChanged += new MarshaledEventHandler<bool>(e => ShuffleChanged?.Invoke(this, e)).Handler;
             _wrapper.RepeatModeChanged += new MarshaledEventHandler<RepeatMode>(e => RepeatModeChanged?.Invoke(this, e)).Handler;
+            _wrapper.LikeChanged += new MarshaledEventHandler<bool>(e => LikeChanged?.Invoke(this, e)).Handler;
 
             LoadAudioSourceSettings();
         }

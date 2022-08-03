@@ -319,7 +319,7 @@
                 <Setter Property="Content" Value="{Binding LikeContent}" />
                 <Setter Property="audioband:Fallback.FallbackImageSource" Value="{StaticResource LikeButtonDefault}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding IsDislikeButtonShown}" Value="False">
+            <DataTrigger Binding="{Binding IsLikeButtonShown}" Value="False">
                 <Setter Property="Content" Value="{Binding DislikeContent}" />
                 <Setter Property="audioband:Fallback.FallbackImageSource" Value="{StaticResource DislikeButtonDefault}" />
             </DataTrigger>

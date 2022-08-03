@@ -65,7 +65,7 @@ namespace AudioSourceHost
         /// <summary>
         /// Wrapper for <see cref="IAudioSource.LikeChanged"/>.
         /// </summary>
-        public event EventHandler<bool> LikeTrackChanged;
+        public event EventHandler<bool> LikeChanged;
 
         /// <summary>
         /// Gets the name of the audio source.
@@ -214,6 +214,7 @@ namespace AudioSourceHost
                 _audioSource.VolumeChanged += (o, e) => VolumeChanged?.Invoke(this, e);
                 _audioSource.ShuffleChanged += (o, e) => ShuffleChanged?.Invoke(this, e);
                 _audioSource.RepeatModeChanged += (o, e) => RepeatModeChanged?.Invoke(this, e);
+                _audioSource.LikeChanged += (o, e) => LikeChanged?.Invoke(this, e);
 
                 _audioSourceSettingsList = _audioSource.GetSettings();
                 foreach (AudioSourceSetting setting in _audioSourceSettingsList)
