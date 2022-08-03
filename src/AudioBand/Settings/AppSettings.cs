@@ -108,6 +108,7 @@ namespace AudioBand.Settings
             }
 
             _profiles.Add(profile.Name, profile);
+            SelectProfile(profile.Name);
         }
 
         /// <inheritdoc />
