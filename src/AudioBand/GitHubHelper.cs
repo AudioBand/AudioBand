@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -23,6 +25,7 @@ namespace AudioBand
         private const string CommunityAudiosourcesRepository = "CommunityAudiosources";
 
         private static readonly ILogger Logger = AudioBandLogManager.GetLogger<GitHubHelper>();
+        private readonly string _assetsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AudioBand", "Assets");
 
         private RepositoryContent[] _communityProfiles;
         private RepositoryContent[] _communityAudiosources;
@@ -97,13 +100,16 @@ namespace AudioBand
             {
                 string json = "";
 
+                // get json string
                 using (var client = new HttpClient())
                 {
                     json = await client.GetStringAsync("https://raw.githubusercontent.com/AudioBand/CommunityProfiles/master/ProfilesSummary.json");
                 }
 
+                // no need to replace the %AssetsFolder% placeholder
                 var profiles = JsonConvert.DeserializeObject<CommunityProfile[]>(json);
 
+                // check whether we have this profile installed
                 for (int i = 0; i < profiles?.Length; i++)
                 {
                     var profileMatch = _appSettings.Profiles.FirstOrDefault(x => x.Name == profiles[i].Name);
@@ -124,10 +130,14 @@ namespace AudioBand
             }
         }
 
+        /// <summary>
+        /// Gets the Community Audiosources found on the repository.
+        /// </summary>
+        /// <returns>An array of the Community Audiosources.</returns>
         public async Task<CommunityAudiosource[]> GetCommunityAudiosourcesAsync()
         {
             return null;
-            List<CommunityAudiosource> profiles = new List<CommunityAudiosource>();
+            var profiles = new List<CommunityAudiosource>();
 
             // for each profile
             for (int i = 0; i < _communityProfiles.Length; i++)
@@ -141,6 +151,25 @@ namespace AudioBand
             }
 
             return profiles.ToArray();
+        }
+
+        /// <summary>
+        /// Downloads the Assets associated with a community profile.
+        /// Throws exception when anything goes wrong.
+        /// </summary>
+        /// <returns>Returns a task.</returns>
+        /// <param name="profile">The associated profile.</param>
+        public async Task DownloadProfileAssetsAsync(CommunityProfile profile)
+        {
+            // Dont catch exceptions here, whoever
+            var images = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, $"Profiles/{profile.Name}/Assets");
+
+            using var client = new WebClient();
+
+            for (int i = 0; i < images.Count; i++)
+            {
+                client.DownloadFileAsync(new Uri(images[i].DownloadUrl), Path.Combine(_assetsDirectory, profile.Name, images[i].Name));
+            }
         }
 
         private async Task<Release> GetLatestRelease()

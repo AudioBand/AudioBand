@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AudioBand.Commands;
-using AudioBand.Logging;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
 using Newtonsoft.Json;
-using NLog;
 
 namespace AudioBand.UI
 {
@@ -25,6 +24,8 @@ namespace AudioBand.UI
 
         private readonly AudioBandSettings _model = new AudioBandSettings();
         private readonly AudioBandSettings _backup = new AudioBandSettings();
+
+        private readonly string _assetsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AudioBand", "Assets");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProfileRepoViewModel"/> class.
@@ -143,6 +144,22 @@ namespace AudioBand.UI
             {
                 using var client = new HttpClient();
                 var json = await client.GetStringAsync(communityProfile.DownloadUrl);
+
+                // check if profile uses external images
+                if (!string.IsNullOrEmpty(communityProfile.ImagesFolderUrl))
+                {
+                    // change out image paths placeholder to relative paths on the user's device
+                    json = json.Replace("%AssetsFolder%", _assetsDirectory);
+
+                    // make sure assets folder exists
+                    if (!Directory.Exists(_assetsDirectory))
+                    {
+                        Directory.CreateDirectory(_assetsDirectory);
+                    }
+
+                    // download the associated assets
+                    await _gitHub.DownloadProfileAssetsAsync(communityProfile);
+                }
 
                 var profile = JsonConvert.DeserializeObject<UserProfile>(json);
                 _appSettings.CreateProfile(profile);
