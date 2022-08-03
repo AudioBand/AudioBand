@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows;
+using System.Timers;
 using System.Windows.Input;
 using System.Windows.Media;
 using AudioBand.AudioSource;
@@ -20,7 +20,7 @@ namespace AudioBand.UI
         private readonly IAppSettings _appSettings;
         private readonly IAudioSession _audioSession;
         private bool _isVolumePopupOpen;
-        private double _volume;
+        private int _volume;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VolumeButtonViewModel"/> class.
@@ -39,17 +39,9 @@ namespace AudioBand.UI
 
             VolumePopupCommand = new RelayCommand<object>(OpenVolumePopupCommandOnExecute);
             MouseLeftCommand = new RelayCommand<object>(MouseLeftCommandOnExecute);
+            VolumeMouseScrollCommand = new RelayCommand<MouseWheelEventArgs>(VolumeMouseScrollCommandOnExecute);
 
-            var resetBase = new VolumeButton();
-            NoVolumeContent = new ButtonContentViewModel(Model.NoVolumeContent, resetBase.NoVolumeContent, dialogService);
-            LowVolumeContent = new ButtonContentViewModel(Model.LowVolumeContent, resetBase.LowVolumeContent, dialogService);
-            MidVolumeContent = new ButtonContentViewModel(Model.MidVolumeContent, resetBase.MidVolumeContent, dialogService);
-            HighVolumeContent = new ButtonContentViewModel(Model.HighVolumeContent, resetBase.HighVolumeContent, dialogService);
-
-            TrackContentViewModel(NoVolumeContent);
-            TrackContentViewModel(LowVolumeContent);
-            TrackContentViewModel(MidVolumeContent);
-            TrackContentViewModel(HighVolumeContent);
+            InitializeButtonContents();
         }
 
         /// <summary>
@@ -133,24 +125,24 @@ namespace AudioBand.UI
         }
 
         /// <summary>
-        /// Gets the view model for the button when there is no volume.
+        /// Gets or sets the view model for the button when there is no volume.
         /// </summary>
-        public ButtonContentViewModel NoVolumeContent { get; }
+        public ButtonContentViewModel NoVolumeContent { get; set; }
 
         /// <summary>
-        /// Gets the view model for the button with low volume.
+        /// Gets or sets the view model for the button with low volume.
         /// </summary>
-        public ButtonContentViewModel LowVolumeContent { get; }
+        public ButtonContentViewModel LowVolumeContent { get; set; }
 
         /// <summary>
-        /// Gets the view model for the button with mid volume.
+        /// Gets or sets the view model for the button with mid volume.
         /// </summary>
-        public ButtonContentViewModel MidVolumeContent { get; }
+        public ButtonContentViewModel MidVolumeContent { get; set; }
 
         /// <summary>
-        /// Gets the view model for the button with high volume.
+        /// Gets or sets the view model for the button with high volume.
         /// </summary>
-        public ButtonContentViewModel HighVolumeContent { get; }
+        public ButtonContentViewModel HighVolumeContent { get; set; }
 
         /// <summary>
         /// Gets the VolumePopupCommand.
@@ -161,6 +153,11 @@ namespace AudioBand.UI
         /// Gets the MouseLeftCommand.
         /// </summary>
         public ICommand MouseLeftCommand { get; }
+
+        /// <summary>
+        /// Gets the Volume Mouse Scroll Command.
+        /// </summary>
+        public ICommand VolumeMouseScrollCommand { get; }
 
         /// <summary>
         /// Gets the current VolumeState.
@@ -201,15 +198,14 @@ namespace AudioBand.UI
         /// Gets or sets the current Volume.
         /// </summary>
         [AlsoNotify(nameof(CurrentVolumeState))]
-        public double Volume
+        public int Volume
         {
             get => _volume;
             set
             {
                 if (SetProperty(ref _volume, value))
                 {
-                    var volume = (int)value;
-                    _audioSession.CurrentAudioSource?.SetVolumeAsync(volume);
+                    _audioSession.CurrentAudioSource?.SetVolumeAsync(value);
                 }
             }
         }
@@ -225,6 +221,8 @@ namespace AudioBand.UI
         {
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.CurrentProfile.VolumeButton, Model);
+
+            InitializeButtonContents();
             RaisePropertyChangedAll();
         }
 
@@ -240,7 +238,9 @@ namespace AudioBand.UI
 
         private void OnVolumeChanged(int newVolume)
         {
-            Volume = newVolume;
+            _volume = newVolume;
+            RaisePropertyChanged(nameof(Volume));
+            RaisePropertyChanged(nameof(CurrentVolumeState));
         }
 
         private void OpenVolumePopupCommandOnExecute(object arg)
@@ -251,6 +251,25 @@ namespace AudioBand.UI
         private void MouseLeftCommandOnExecute(object obj)
         {
             IsVolumePopupOpen = false;
+        }
+
+        private void VolumeMouseScrollCommandOnExecute(MouseWheelEventArgs args)
+        {
+            Volume += args.Delta / 75;
+        }
+
+        private void InitializeButtonContents()
+        {
+            var resetBase = new VolumeButton();
+            NoVolumeContent = new ButtonContentViewModel(Model.NoVolumeContent, resetBase.NoVolumeContent, DialogService);
+            LowVolumeContent = new ButtonContentViewModel(Model.LowVolumeContent, resetBase.LowVolumeContent, DialogService);
+            MidVolumeContent = new ButtonContentViewModel(Model.MidVolumeContent, resetBase.MidVolumeContent, DialogService);
+            HighVolumeContent = new ButtonContentViewModel(Model.HighVolumeContent, resetBase.HighVolumeContent, DialogService);
+
+            TrackContentViewModel(NoVolumeContent);
+            TrackContentViewModel(LowVolumeContent);
+            TrackContentViewModel(MidVolumeContent);
+            TrackContentViewModel(HighVolumeContent);
         }
     }
 }

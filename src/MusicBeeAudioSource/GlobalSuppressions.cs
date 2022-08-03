@@ -3,5 +3,5 @@
 // Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter must not span multiple lines", Justification = "Ignore", Scope = "member", Target = "~M:MusicBeeAudioSource.AudioSource.NotifyTrackChange")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter must not span multiple lines", Justification = "Ignore", Scope = "member", Target = "~M:MusicBeeAudioSource.MusicBeeAudioSource.NotifyTrackChange")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1652:Enable XML documentation output", Justification = "Ignore")]

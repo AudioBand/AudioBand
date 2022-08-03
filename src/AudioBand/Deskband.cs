@@ -123,6 +123,7 @@ namespace AudioBand
                 _container.Register<AlbumArtPopupViewModel>(Lifestyle.Singleton);
                 _container.Register<GlobalSettingsViewModel>(Lifestyle.Singleton);
                 _container.Register<ProfileRepoViewModel>(Lifestyle.Singleton);
+                _container.Register<MouseBindingsViewModel>(Lifestyle.Singleton);
                 _container.Register<GeneralSettingsViewModel>(Lifestyle.Singleton);
                 _container.Register<CustomLabelsViewModel>(Lifestyle.Singleton);
                 _container.Register<NextButtonViewModel>(Lifestyle.Singleton);

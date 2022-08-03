@@ -11,9 +11,15 @@
         GlobalSettingsViewModel GlobalSettingsViewModel { get; }
 
         /// <summary>
+<<<<<<< HEAD
         /// Gets the viewmodel for the Profile Repo.
         /// </summary>
         ProfileRepoViewModel ProfileRepoViewModel { get; }
+=======
+        /// Gets the viewmodel for Mouse Bindings.
+        /// </summary>
+        public MouseBindingsViewModel MouseBindingsViewModel { get; }
+>>>>>>> master
 
         /// <summary>
         /// Gets the viewmodel for audioband toolbar.

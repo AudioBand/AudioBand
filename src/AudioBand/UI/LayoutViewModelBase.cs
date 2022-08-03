@@ -85,7 +85,7 @@ namespace AudioBand.UI
         }
 
         /// <summary>
-        /// Gets the instance of a the model for this view model.
+        /// Gets the instance of the model for this view model.
         /// </summary>
         protected TModel Model { get; } = new TModel();
 

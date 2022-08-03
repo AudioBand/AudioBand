@@ -28,7 +28,9 @@ namespace AudioBand.Settings
             _persistSettings = persistSettings;
             _messageBus = messageBus;
             _persistSettings.CheckAndConvertOldSettings();
+
             var settings = _persistSettings.ReadSettings();
+            DoSettingsNullChecks(settings);
 
             AudioSource = settings.CurrentAudioSource;
             AudioSourceSettings = settings.AudioSourceSettings?.ToList() ?? new List<AudioSourceSettings>();
@@ -64,6 +66,11 @@ namespace AudioBand.Settings
         public void SelectProfile(string profileName)
         {
             Debug.Assert(_profiles.ContainsKey(profileName), $"Selecting non existent profile {profileName}.");
+
+            if (CurrentProfile?.Name == profileName)
+            {
+                return;
+            }
 
             if (!string.IsNullOrEmpty(CurrentProfile?.Name))
             {
@@ -185,6 +192,7 @@ namespace AudioBand.Settings
             var name = UserProfile.GetUniqueProfileName(_profiles.Keys, profile.Name);
             _profiles[name] = profile;
             _profiles[name].Name = name;
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
         }
 
         private void CheckAndLoadProfiles(Persistence.Settings settings, UserProfile[] profiles)
@@ -192,7 +200,7 @@ namespace AudioBand.Settings
             /* If there are no profiles, create new ones, they're automatically saved later.
              * Second line of if statement is for people who have reinstalled audioband
              * while their last version was pre-profiles (v0.9.6) update */
-            if (profiles.Length == 0
+            if (profiles == null || profiles.Length == 0
             || (profiles.Length == 1 && profiles[0].Name == "Default Profile"))
             {
                 settings.CurrentProfileName = UserProfile.DefaultProfileName;
@@ -225,7 +233,7 @@ namespace AudioBand.Settings
                 profiles[Array.IndexOf(profiles, defaultProfile)] = UserProfile.CreateDefaultProfile(UserProfile.DefaultProfileName);
             }
 
-            DoNullChecks(ref profiles);
+            DoProfileNullChecks(ref profiles);
             _profiles = profiles.ToDictionary(profile => profile.Name, profile => profile);
 
             if (settings.CurrentProfileName == null || !_profiles.ContainsKey(settings.CurrentProfileName))
@@ -234,7 +242,32 @@ namespace AudioBand.Settings
             }
         }
 
-        private void DoNullChecks(ref UserProfile[] profiles)
+        private void DoSettingsNullChecks(Persistence.Settings settings)
+        {
+            if (settings.AudioBandSettings.MouseBindings == null || settings.AudioBandSettings.MouseBindings.Count == 0)
+            {
+                settings.AudioBandSettings.MouseBindings = new List<MouseBinding>()
+                {
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.LeftDoubleClick,
+                        CommandType = MouseBindingCommandType.OpenAssociatedApp
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollUp,
+                        CommandType = MouseBindingCommandType.PreviousSong
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollDown,
+                        CommandType = MouseBindingCommandType.NextSong
+                    },
+                };
+            }
+        }
+
+        private void DoProfileNullChecks(ref UserProfile[] profiles)
         {
             for (int i = 0; i < profiles.Length; i++)
             {

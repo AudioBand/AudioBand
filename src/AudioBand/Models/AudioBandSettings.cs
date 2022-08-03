@@ -1,4 +1,4 @@
-using System.Reflection;
+using System.Collections.Generic;
 
 namespace AudioBand.Models
 {
@@ -10,7 +10,7 @@ namespace AudioBand.Models
         private string _lastNonIdleProfileName = "";
 
         /// <summary>
-        /// Gets the last active profile name before going into idle.
+        /// Gets or sets the last active profile name before going into idle.
         /// </summary>
         public string LastNonIdleProfileName
         {
@@ -33,17 +33,17 @@ namespace AudioBand.Models
         public string LastKnownVersion { get; set; } = "v0.0.0";
 
         /// <summary>
-        /// The profile that should enable when AudioBand goes into idle mode.
+        /// Gets or sets he profile that should enable when AudioBand goes into idle mode.
         /// </summary>
         public string IdleProfileName { get; set; } = "Idle";
 
         /// <summary>
-        /// Gets or sets whether to use the Idle Profile.
+        /// Gets or sets a value indicating whether to use the Idle Profile.
         /// </summary>
         public bool UseAutomaticIdleProfile { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets whether to hide the Idle profile in the Profiles quick menu.
+        /// Gets or sets a value indicating whether to hide the Idle profile in the Profiles quick menu.
         /// </summary>
         public bool HideIdleProfileInQuickMenu { get; set; } = true;
 
@@ -53,23 +53,28 @@ namespace AudioBand.Models
         public int ShouldGoIdleAfterInSeconds { get; set; } = 300;
 
         /// <summary>
-        /// Gets or sets whether to clear the current session information when it goes into idle.
+        /// Gets or sets a value indicating whether to clear the current session information when it goes into idle.
         /// </summary>
-        public bool ClearSessionOnIdle { get; set; } = true;
+        public bool ClearSessionOnIdle { get; set; }
 
         /// <summary>
-        /// Gets or sets whether to show a popup when an update is available.
+        /// Gets or sets a value indicating whether to show a popup when an update is available.
         /// </summary>
         public bool ShowPopupOnAvailableUpdate { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets whether to show little help popups when something fails.
+        /// Gets or sets a value indicating whether to show little help popups when something fails.
         /// </summary>
         public bool ShowInformationPopups { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets whether to opt-in for pre-releases.
+        /// Gets or sets a value indicating whether to opt-in for pre-releases.
         /// </summary>
         public bool OptInForPreReleases { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mouse bindings.
+        /// </summary>
+        public List<MouseBinding> MouseBindings { get; set; } = new List<MouseBinding>();
     }
 }

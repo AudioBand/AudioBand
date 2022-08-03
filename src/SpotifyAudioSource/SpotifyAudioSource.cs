@@ -22,6 +22,9 @@ namespace SpotifyAudioSource
     {
         private readonly SpotifyControls _spotifyControls = new SpotifyControls();
         private Timer _checkSpotifyTimer = new Timer(1000);
+        private Timer _volumeUpdateTimer = new Timer(750);
+        private DateTime _lastVolumeUpdate = DateTime.UtcNow.AddMinutes(-1);
+
         private SpotifyClientConfig _spotifyConfig;
         private ISpotifyClient _spotifyClient;
         private HttpClient _httpClient = new HttpClient();
@@ -54,6 +57,9 @@ namespace SpotifyAudioSource
         {
             _checkSpotifyTimer.AutoReset = false;
             _checkSpotifyTimer.Elapsed += CheckSpotifyTimerOnElapsed;
+
+            _volumeUpdateTimer.AutoReset = false;
+            _volumeUpdateTimer.Elapsed += OnVolumeUpdaterElapsed;
         }
 
         /// <inheritdoc />
@@ -380,7 +386,7 @@ namespace SpotifyAudioSource
                     _spotifyControls.TryNext();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 _spotifyControls.TryNext();
             }
@@ -389,12 +395,16 @@ namespace SpotifyAudioSource
         /// <inheritdoc />
         public async Task SetVolumeAsync(int newVolume)
         {
-            if (_spotifyClient == null)
+            if (_volumeUpdateTimer.Enabled)
             {
-                Authorize();
+                _currentVolumePercent = newVolume;
                 return;
             }
 
+            _volumeUpdateTimer.Start();
+            _lastVolumeUpdate = DateTime.UtcNow;
+
+            _currentVolumePercent = newVolume;
             await _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(newVolume));
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
@@ -556,7 +566,7 @@ namespace SpotifyAudioSource
             _spotifyClient = new SpotifyClient(_spotifyConfig);
         }
 
-        private async Task<CurrentlyPlayingContext> GetPlayback()
+        private async Task<CurrentlyPlayingContext> GetPlaybackAsync()
         {
             try
             {
@@ -674,12 +684,22 @@ namespace SpotifyAudioSource
 
         private void NotifyVolume(CurrentlyPlayingContext context)
         {
-            if (context.Device == null)
+            // if timer is enabled or last volume update was less than 2 seconds ago, temporarily do not update
+            if (context.Device == null
+            || _volumeUpdateTimer.Enabled
+            || _lastVolumeUpdate.AddSeconds(2) > DateTime.UtcNow)
             {
                 return;
             }
 
-            _currentVolumePercent = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
+            var newVolume = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
+
+            if (_currentVolumePercent == newVolume)
+            {
+                return;
+            }
+
+            _currentVolumePercent = newVolume;
             VolumeChanged?.Invoke(this, _currentVolumePercent);
         }
 
@@ -752,6 +772,13 @@ namespace SpotifyAudioSource
             await UpdatePlayer();
         }
 
+        private void OnVolumeUpdaterElapsed(object sender, ElapsedEventArgs e)
+        {
+            _volumeUpdateTimer.Stop();
+
+            _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(_currentVolumePercent));
+        }
+
         private async Task UpdatePlayer()
         {
             _checkSpotifyTimer.Stop();
@@ -775,10 +802,17 @@ namespace SpotifyAudioSource
                     _checkSpotifyTimer.Interval = PollingInterval;
                 }
 
-                var playback = await GetPlayback();
+                var playback = await GetPlaybackAsync();
+
                 if (playback == null)
                 {
                     NotifyPlayState(false);
+                    return;
+                }
+
+                if (playback.Item == null || playback.CurrentlyPlayingType == "ad")
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
                     return;
                 }
 
@@ -788,13 +822,7 @@ namespace SpotifyAudioSource
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
 
-                if (playback.Item == null)
-                {
-                    // Playback can be null if there are no devices playing
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                    return;
-                }
-                else if (playback.Item.Type == ItemType.Track)
+                if (playback.Item.Type == ItemType.Track)
                 {
                     await NotifyTrackUpdate(playback.Item as FullTrack);
                 }
@@ -857,7 +885,7 @@ namespace SpotifyAudioSource
 
             _lastAuthTime = DateTime.UtcNow;
             _authIsInProcess = true;
-            _server = new EmbedIOAuthServer(new Uri($"http://localhost:{LocalPort}"), LocalPort);
+            _server = new EmbedIOAuthServer(new Uri($"http://localhost:{LocalPort}/callback"), LocalPort);
             await _server.Start();
 
             _server.AuthorizationCodeReceived += OnAuthorizationCodeReceived;
@@ -879,7 +907,7 @@ namespace SpotifyAudioSource
                 var config = SpotifyClientConfig.CreateDefault();
                 var tokenResponse = await new OAuthClient(config)
                     .RequestToken(new AuthorizationCodeTokenRequest(
-                        ClientId, ClientSecret, response.Code, new Uri($"http://localhost:{LocalPort}")));
+                        ClientId, ClientSecret, response.Code, new Uri($"http://localhost:{LocalPort}/callback")));
 
                 if (string.IsNullOrEmpty(tokenResponse.RefreshToken))
                 {

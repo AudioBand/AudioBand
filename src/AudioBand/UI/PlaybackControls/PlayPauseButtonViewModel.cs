@@ -35,22 +35,18 @@ namespace AudioBand.UI
             _appSettings.ProfileChanged += AppSettingsOnProfileChanged;
             PlayPauseTrackCommand = new AsyncRelayCommand<object>(PlayPauseTrackCommandOnExecute);
 
-            var resetBase = new PlayPauseButton();
-            PlayContent = new ButtonContentViewModel(Model.PlayContent, resetBase.PlayContent, dialogService);
-            PauseContent = new ButtonContentViewModel(Model.PauseContent, resetBase.PauseContent, dialogService);
-            TrackContentViewModel(PlayContent);
-            TrackContentViewModel(PauseContent);
+            InitializeButtonContents();
         }
 
         /// <summary>
-        /// Gets the view model for the button in the play state.
+        /// Gets or sets the view model for the button in the play state.
         /// </summary>
-        public ButtonContentViewModel PlayContent { get; }
+        public ButtonContentViewModel PlayContent { get; set; }
 
         /// <summary>
-        /// Gets the view model for the button in the pause state.
+        /// Gets or sets the view model for the button in the pause state.
         /// </summary>
-        public ButtonContentViewModel PauseContent { get; }
+        public ButtonContentViewModel PauseContent { get; set; }
 
         /// <summary>
         /// Gets the play pause command.
@@ -83,6 +79,8 @@ namespace AudioBand.UI
         {
             Debug.Assert(IsEditing == false, "Should not be editing");
             MapSelf(_appSettings.CurrentProfile.PlayPauseButton, Model);
+
+            InitializeButtonContents();
             RaisePropertyChangedAll();
         }
 
@@ -116,6 +114,16 @@ namespace AudioBand.UI
             {
                 await _audioSession.CurrentAudioSource.PlayTrackAsync();
             }
+        }
+
+        private void InitializeButtonContents()
+        {
+            var resetBase = new PlayPauseButton();
+            PlayContent = new ButtonContentViewModel(Model.PlayContent, resetBase.PlayContent, DialogService);
+            PauseContent = new ButtonContentViewModel(Model.PauseContent, resetBase.PauseContent, DialogService);
+
+            TrackContentViewModel(PlayContent);
+            TrackContentViewModel(PauseContent);
         }
     }
 }
