@@ -161,14 +161,19 @@ namespace AudioBand
         /// <param name="profile">The associated profile.</param>
         public async Task DownloadProfileAssetsAsync(CommunityProfile profile)
         {
-            // Dont catch exceptions here, whoever
-            var images = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, $"Profiles/{profile.Name}/Assets");
+            var images = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, profile.AssetsUrl);
+            var assetsFolderPath = Path.Combine(_assetsDirectory, profile.Name);
+
+            if (!Directory.Exists(assetsFolderPath))
+            {
+                Directory.CreateDirectory(assetsFolderPath);
+            }
 
             using var client = new WebClient();
 
             for (int i = 0; i < images.Count; i++)
             {
-                client.DownloadFileAsync(new Uri(images[i].DownloadUrl), Path.Combine(_assetsDirectory, profile.Name, images[i].Name));
+                client.DownloadFileAsync(new Uri(images[i].DownloadUrl), Path.Combine(assetsFolderPath, images[i].Name));
             }
         }
 

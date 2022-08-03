@@ -25,7 +25,7 @@ namespace AudioBand.UI
         private readonly AudioBandSettings _model = new AudioBandSettings();
         private readonly AudioBandSettings _backup = new AudioBandSettings();
 
-        private readonly string _assetsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AudioBand", "Assets");
+        private readonly string _assetsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AudioBand", "Assets").Replace(@"\", @"\\");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProfileRepoViewModel"/> class.
