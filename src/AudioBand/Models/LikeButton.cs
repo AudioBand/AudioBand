@@ -1,4 +1,6 @@
-﻿namespace AudioBand.Models
+﻿using System.Windows.Media;
+
+namespace AudioBand.Models
 {
     /// <summary>
     /// Model for the like/dislike button.
@@ -11,7 +13,7 @@
         public LikeButton()
         {
             IsVisible = false;
-            XPosition = 170;
+            XPosition = 0;
             YPosition = 3;
             Width = 40;
             Height = 15;
@@ -31,6 +33,9 @@
         public ButtonContent DislikeContent { get; set; } = new ButtonContent
         {
             Text = "",
+            TextColor = Color.FromRgb(255, 0, 0),
+            HoveredTextColor = Color.FromRgb(221, 54, 54),
+            ClickedTextColor = Color.FromRgb(165, 25, 25)
         };
     }
 }
