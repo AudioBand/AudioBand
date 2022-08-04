@@ -223,6 +223,7 @@ namespace AudioBand.AudioSource
             AlbumArt = null;
             SongProgress = TimeSpan.Zero;
             SongLength = TimeSpan.Zero;
+            IsLiked = false;
         }
 
         private void HandleIdleProfile(bool isPlaying)
