@@ -162,11 +162,9 @@ namespace iTunesAudioSource
         /// <inheritdoc/>
         public Task SetLikeTrackAsync()
         {
+            // _itunesControls.Like();
             return Task.CompletedTask;
         }
-
-        /// <inheritdoc/>
-        public string GetWindowClassName() => "iTunes";
 
         private RepeatMode ToRepeatMode(ITPlaylistRepeatMode mode)
         {
