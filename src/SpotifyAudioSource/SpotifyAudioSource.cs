@@ -745,6 +745,11 @@ namespace SpotifyAudioSource
 
         private async Task NotifyLike()
         {
+            if (string.IsNullOrEmpty(_currentItemId))
+            {
+                return;
+            }
+
             var isLiked = (await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault();
 
             if (isLiked == _currentLikeState)
