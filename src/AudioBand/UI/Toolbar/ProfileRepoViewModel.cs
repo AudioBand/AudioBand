@@ -115,11 +115,18 @@ namespace AudioBand.UI
                 return;
             }
 
+            var currentSelectedProfile = _appSettings.CurrentProfile.Name;
+
             _appSettings.DeleteProfile(profileName);
             await InstallProfileAsync(communityProfile);
 
             communityProfile.IsLatestVersion = true;
             ForceUpdateCollection();
+
+            if (currentSelectedProfile == profileName)
+            {
+                _appSettings.SelectProfile(profileName);
+            }
         }
 
         private void OnDeleteProfileCommandExecuted(string profileName)
@@ -165,6 +172,7 @@ namespace AudioBand.UI
                 _appSettings.CreateProfile(profile);
 
                 communityProfile.IsInstalled = true;
+                communityProfile.IsLatestVersion = true;
                 _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
             }
             catch (Exception e)
