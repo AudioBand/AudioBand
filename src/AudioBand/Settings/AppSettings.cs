@@ -6,6 +6,7 @@ using System.Reflection;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings.Persistence;
+using AudioBand.UI;
 
 namespace AudioBand.Settings
 {

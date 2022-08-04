@@ -51,6 +51,7 @@ namespace SpotifyAudioSource
         private string _proxyPassword;
         private bool _isActive;
         private DateTime _lastAuthTime = DateTime.MinValue;
+        private bool _forceRefreshAuth;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAudioSource"/> class.
@@ -145,6 +146,28 @@ namespace SpotifyAudioSource
 
                 _clientSecret = value;
                 Authorize();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Force Refresh Authentication Command.
+        /// </summary>
+        [AudioSourceSetting("Force Refresh Authentication")]
+        public bool ForceRefreshAuth
+        {
+            get => _forceRefreshAuth;
+            set
+            {
+                if (!value)
+                {
+                    return;
+                }
+
+                _forceRefreshAuth = false;
+
+                RefreshToken = "";
+                Authorize();
+                OnSettingChanged("Force Refresh Authentication");
             }
         }
 
