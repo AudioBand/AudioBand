@@ -152,12 +152,6 @@ namespace MusicBeeAudioSource
             return Task.CompletedTask;
         }
 
-        /// <inheritdoc/>
-        public Task DislikeTrackAsync()
-        {
-            return Task.CompletedTask;
-        }
-
         private RepeatMode ToRepeatMode(MusicBeeIPC.RepeatMode mode)
         {
             switch (mode)
@@ -322,6 +316,9 @@ namespace MusicBeeAudioSource
             {
                 return;
             }
+
+            _showratinglove = like;
+            LikeChanged?.Invoke(this, like);
         }
 
         private TimeSpan ParseTimeFromIPC()

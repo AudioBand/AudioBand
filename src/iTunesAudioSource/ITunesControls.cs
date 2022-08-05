@@ -131,9 +131,12 @@ namespace iTunesAudioSource
             catch (COMException) { }
         }
 
-        public void Like()
+        public bool GetLike()
         {
             var track = _itunesApp.CurrentTrack as IITFileOrCDTrack;
+
+            return track.ratingKind == ITRatingKind.ITRatingKindUser ? true : false;
+
             // this is how it should be done, but it's readonly
             // track.ratingKind = 1;
 

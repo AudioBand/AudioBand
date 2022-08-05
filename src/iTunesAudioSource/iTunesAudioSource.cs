@@ -249,6 +249,7 @@ namespace iTunesAudioSource
                 NotifyPlayerState();
                 NotifyVolume();
                 NotifyShuffle();
+                NotifyLike();
                 if (IsNewTrack(track))
                 {
                     NotifyTrackChange(track);
@@ -264,6 +265,19 @@ namespace iTunesAudioSource
             {
                 _checkiTunesTimer.Enabled = true;
             }
+        }
+
+        private void NotifyLike()
+        {
+            var newLike = _itunesControls.GetLike();
+
+            if (_liked == newLike)
+            {
+                return;
+            }
+
+            _liked = newLike;
+            LikeChanged?.Invoke(this, newLike);
         }
 
         private void NotifyVolume()
