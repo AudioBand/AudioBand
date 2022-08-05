@@ -19,6 +19,9 @@
                               ContentTemplate="{StaticResource ButtonBaseTemplate}"
                               Focusable="False" />
             <!-- Add Volume Specifics -->
+            <TextBlock Margin="{StaticResource SectionMargin}"
+                       Style="{StaticResource TitleTextBlock}"
+                       Text="{StaticResource PopupColorSectionText}" />
             <UniformGrid Columns="2"
                          Rows="1"
                          Width="600"
