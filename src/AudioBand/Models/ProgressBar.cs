@@ -26,7 +26,7 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets the right hand side foreground color.
         /// </summary>
-        public Color ForegroundGradientColor { get; set; } = Colors.Indigo;
+        public Color ForegroundGradientColor { get; set; } = Color.FromRgb(0, 82, 163);
 
         /// <summary>
         /// Gets or sets the background color.
@@ -41,7 +41,7 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets the thumb color.
         /// </summary>
-        public Color ProgressBarThumbColor { get; set; } = Colors.LightSalmon;
+        public Color ProgressBarThumbColor { get; set; } = Colors.DimGray;
 
         /// <summary>
         /// Gets or sets the thumb's border color.

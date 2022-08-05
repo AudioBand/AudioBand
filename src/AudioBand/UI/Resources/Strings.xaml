@@ -184,6 +184,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="ProgressBarBackgroundColorDescription">Background color</sys:String>
     <sys:String x:Key="ProgressBarHoverColorDescription">Background color when hovered</sys:String>
     <sys:String x:Key="ProgressBarThumbBorderColorDescription">Thumb's border color</sys:String>
+    <sys:String x:Key="ProgressBarThumbColorDescription">Thumb's border color</sys:String>
 
     <!--  Album art settings text  -->
     <sys:String x:Key="AlbumArtPlaceholderSectionText">Image</sys:String>
