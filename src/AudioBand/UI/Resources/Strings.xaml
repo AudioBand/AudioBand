@@ -78,10 +78,14 @@
     <sys:String x:Key="ShuffleModeButtonOnContentSectionText">Shuffle on button content</sys:String>
 
     <!--  Volume button settings  -->
-    <sys:String x:Key="PopupContentSectionText">Popup Content Settings</sys:String>
+    <sys:String x:Key="PopupColorSectionText">Volume Popup Colors</sys:String>
     <sys:String x:Key="VolumeBarForegroundLabelText">Volume Bar Foreground color</sys:String>
+    <sys:String x:Key="VolumeBarForegroundGradientLabelText">Secondary Foreground color</sys:String>
     <sys:String x:Key="VolumeBarBackgroundLabelText">Volume Bar Background color</sys:String>
     <sys:String x:Key="PopupBackgroundLabelText">Popup Background color</sys:String>
+    <sys:String x:Key="VolumeBarThumbColorDescription">Thumb color</sys:String>
+    <sys:String x:Key="VolumeBarThumbBorderColorDescription">Thumb's border color</sys:String>
+    <sys:String x:Key="PopupContentSectionText">Popup Content Settings</sys:String>
     <sys:String x:Key="PopupHorizontalLabelText">Is Popup Horizontal</sys:String>
     <sys:String x:Key="NoVolumeButtonContentSectionText">No Volume Button content</sys:String>
     <sys:String x:Key="LowVolumeButtonContentSectionText">Low Volume Button content</sys:String>
@@ -177,9 +181,11 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <!--  Progress bar settings text  -->
     <sys:String x:Key="ProgressBarColorsSectionText">Colors</sys:String>
     <sys:String x:Key="ProgressBarForegroundColorDescription">Foreground color</sys:String>
+    <sys:String x:Key="ProgressBarForegroundGradientColorDescription">Secondary Foreground color</sys:String>
     <sys:String x:Key="ProgressBarBackgroundColorDescription">Background color</sys:String>
     <sys:String x:Key="ProgressBarHoverColorDescription">Background color when hovered</sys:String>
     <sys:String x:Key="ProgressBarThumbBorderColorDescription">Thumb's border color</sys:String>
+    <sys:String x:Key="ProgressBarThumbColorDescription">Thumb's border color</sys:String>
 
     <!--  Album art settings text  -->
     <sys:String x:Key="AlbumArtPlaceholderSectionText">Image</sys:String>

@@ -48,6 +48,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the foreground gradient color.
+        /// </summary>
+        [TrackState]
+        public Color ForegroundGradientColor
+        {
+            get => Model.ForegroundGradientColor;
+            set => SetProperty(Model, nameof(Model.ForegroundGradientColor), value);
+        }
+
+        /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         [TrackState]
@@ -75,6 +85,16 @@ namespace AudioBand.UI
         {
             get => Model.ThumbBorderColor;
             set => SetProperty(Model, nameof(Model.ThumbBorderColor), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Thumb color.
+        /// </summary>
+        [TrackState]
+        public Color ProgressBarThumbColor
+        {
+            get => Model.ProgressBarThumbColor;
+            set => SetProperty(Model, nameof(Model.ProgressBarThumbColor), value);
         }
 
         /// <summary>

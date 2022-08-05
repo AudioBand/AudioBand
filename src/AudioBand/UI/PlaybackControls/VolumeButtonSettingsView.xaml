@@ -19,15 +19,41 @@
                               ContentTemplate="{StaticResource ButtonBaseTemplate}"
                               Focusable="False" />
             <!-- Add Volume Specifics -->
-            <ui:ColorPicker Title="{StaticResource VolumeBarForegroundLabelText}"
-                            DialogService="{Binding DialogService}"
-                            Color="{Binding VolumeBarForegroundColor}" />
+            <TextBlock Margin="{StaticResource SectionMargin}"
+                       Style="{StaticResource TitleTextBlock}"
+                       Text="{StaticResource PopupColorSectionText}" />
+            <UniformGrid Columns="2"
+                         Rows="1"
+                         Width="600"
+                         Style="{StaticResource ArrangementGridStyle}">
+                <ui:ColorPicker Margin="0,5,5,0"
+                                Title="{StaticResource VolumeBarForegroundLabelText}"
+                                DialogService="{Binding DialogService}"
+                                Color="{Binding VolumeBarForegroundColor}" />
+                <ui:ColorPicker Margin="5,5,0,0"
+                                Title="{StaticResource VolumeBarForegroundGradientLabelText}"
+                                DialogService="{Binding DialogService}"
+                                Color="{Binding VolumeBarForegroundGradientColor}" />
+            </UniformGrid>
             <ui:ColorPicker Title="{StaticResource VolumeBarBackgroundLabelText}"
                             DialogService="{Binding DialogService}"
                             Color="{Binding VolumeBarBackgroundColor}" />
             <ui:ColorPicker Title="{StaticResource PopupBackgroundLabelText}"
                             DialogService="{Binding DialogService}"
                             Color="{Binding PopupBackgroundColor}" />
+            <UniformGrid Columns="2"
+                         Rows="1"
+                         Width="600"
+                         Style="{StaticResource ArrangementGridStyle}">
+                <ui:ColorPicker Margin="0,5,5,0"
+                                Title="{StaticResource VolumeBarThumbColorDescription}"
+                                DialogService="{Binding DialogService}"
+                                Color="{Binding VolumeBarThumbColor}" />
+                <ui:ColorPicker Margin="5,5,0,0"
+                                Title="{StaticResource VolumeBarThumbBorderColorDescription}"
+                                DialogService="{Binding DialogService}"
+                                Color="{Binding VolumeBarThumbBorderColor}" />
+            </UniformGrid>
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource PopupContentSectionText}"/>
