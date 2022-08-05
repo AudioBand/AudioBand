@@ -11,6 +11,11 @@
         GlobalSettingsViewModel GlobalSettingsViewModel { get; }
 
         /// <summary>
+        /// Gets the viewmodel for the Profile Repo.
+        /// </summary>
+        ProfileRepoViewModel ProfileRepoViewModel { get; }
+
+        /// <summary>
         /// Gets the viewmodel for Mouse Bindings.
         /// </summary>
         public MouseBindingsViewModel MouseBindingsViewModel { get; }

@@ -107,7 +107,7 @@ namespace AudioBand.UI
         /// <summary>
         /// Gets the list of profile names.
         /// </summary>
-        public ObservableCollection<string> ProfileNames { get; }
+        public ObservableCollection<string> ProfileNames { get; set; }
 
         /// <summary>
         /// Gets the command to select the view model.
@@ -265,7 +265,11 @@ namespace AudioBand.UI
             if (msg == ProfilesUpdatedMessage.ProfileSelected)
             {
                 SelectedProfileName = _appSettings.CurrentProfile.Name;
+                return;
             }
+
+            ProfileNames = new ObservableCollection<string>(_appSettings.Profiles.Select(p => p.Name));
+            RaisePropertyChanged(nameof(ProfileNames));
         }
 
         private void ExportProfilesCommandOnExecute()

@@ -9,6 +9,7 @@
         /// Initializes a new instance of the <see cref="ViewModelContainer"/> class.
         /// </summary>
         /// <param name="globalSettingsViewModel">Global Audioband settings view model.</param>
+        /// <param name="profileRepoViewModel">Global Audioband settings view model.</param>
         /// <param name="mouseBindingsViewModel">Mouse bindings view model.</param>
         /// <param name="generalSettingsViewModel">Audioband view model.</param>
         /// <param name="albumArtPopupViewModel">Album art popup view model.</param>
@@ -25,6 +26,7 @@
         /// <param name="audioSourceSettingsViewModel">Audio source settings view model.</param>
         public ViewModelContainer(
             GlobalSettingsViewModel globalSettingsViewModel,
+            ProfileRepoViewModel profileRepoViewModel,
             MouseBindingsViewModel mouseBindingsViewModel,
             GeneralSettingsViewModel generalSettingsViewModel,
             AlbumArtPopupViewModel albumArtPopupViewModel,
@@ -41,6 +43,7 @@
             AudioSourceSettingsViewModel audioSourceSettingsViewModel)
         {
             GlobalSettingsViewModel = globalSettingsViewModel;
+            ProfileRepoViewModel = profileRepoViewModel;
             MouseBindingsViewModel = mouseBindingsViewModel;
             GeneralSettingsViewModel = generalSettingsViewModel;
             AlbumArtPopupViewModel = albumArtPopupViewModel;
@@ -59,6 +62,9 @@
 
         /// <inheritdoc />
         public GlobalSettingsViewModel GlobalSettingsViewModel { get; }
+
+        /// <inheritdoc />
+        public ProfileRepoViewModel ProfileRepoViewModel { get; }
 
         /// <inheritdoc />
         public MouseBindingsViewModel MouseBindingsViewModel { get; }

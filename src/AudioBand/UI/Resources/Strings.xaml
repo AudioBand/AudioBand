@@ -21,6 +21,12 @@
     <sys:String x:Key="OtherTitle">Other Settings</sys:String>
     <sys:String x:Key="DisableInformationPopupsText">Show helpful information hints</sys:String>
 
+    <!-- Profile Repo -->
+    <sys:String x:Key="InstallButtonText">Install</sys:String>
+    <sys:String x:Key="InstalledButtonText">Installed</sys:String>
+    <sys:String x:Key="DeleteButtonTooltip">Delete</sys:String>
+    <sys:String x:Key="UpdateButtonTooltip">Update</sys:String>
+
     <!--  Common settings  -->
     <sys:String x:Key="WidthLabelText">Width</sys:String>
     <sys:String x:Key="HeightLabelText">Height</sys:String>
@@ -120,6 +126,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
 
     <!--  Navigation pane  -->
     <sys:String x:Key="GlobalSettingsTab">AudioBand Settings</sys:String>
+    <sys:String x:Key="ProfileRepoTab">Profile Repo</sys:String>
     <sys:String x:Key="MouseBindingsTab">Custom Mouse Bindings</sys:String>
     <sys:String x:Key="UpdaterTab">AudioBand Updates</sys:String>
     <sys:String x:Key="ProfilesTab">Profile Settings</sys:String>
