@@ -12,12 +12,20 @@
             </ResourceDictionary>
         </DataTemplate.Resources>
         <StackPanel Background="Transparent">
-            <TextBlock FontSize="12" TextWrapping="Wrap" Margin="8">
-                This feature is a work in progress.
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="12" TextWrapping="Wrap" Margin="8">
+                    This feature is a work in progress.
                 <LineBreak />
-                Want to upload your own cool profiles? Checkout: https://github.com/AudioBand/CommunityProfiles
-            </TextBlock>
-                <ListView x:Name="ProfileList" ItemsSource="{Binding AvailableProfiles}" IsEnabled="{Binding IsDownloading, Converter={x:Static audioband:Converters.InverseBool}}"
+                    Want to upload your own cool profiles?
+                <LineBreak />
+                    Checkout: https://github.com/AudioBand/CommunityProfiles
+                </TextBlock>
+                <Button Margin="160,0,0,0"
+                        Content="Refresh"
+                        Command="{Binding RefreshProfilesCommand}"
+                        IsEnabled="{Binding IsRefreshDisabled, Converter={x:Static audioband:Converters.InverseBool}}" />
+            </StackPanel>
+            <ListView x:Name="ProfileList" ItemsSource="{Binding AvailableProfiles}" IsEnabled="{Binding IsDownloading, Converter={x:Static audioband:Converters.InverseBool}}"
                           HorizontalAlignment="Left" Background="Transparent" Margin="8">
                 <ListView.ItemTemplate>
                     <DataTemplate>

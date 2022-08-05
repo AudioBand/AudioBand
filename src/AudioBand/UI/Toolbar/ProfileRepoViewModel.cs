@@ -27,6 +27,7 @@ namespace AudioBand.UI
 
         private readonly string _assetsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AudioBand", "Assets").Replace(@"\", @"\\");
         private bool _isDownloading;
+        private bool _refreshDisabled;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProfileRepoViewModel"/> class.
@@ -44,8 +45,10 @@ namespace AudioBand.UI
             InstallProfileCommand = new AsyncRelayCommand<string>(OnInstallProfileCommandExecuted);
             UpdateProfileCommand = new AsyncRelayCommand<string>(OnUpdateProfileCommandExecuted);
             DeleteProfileCommand = new RelayCommand<string>(OnDeleteProfileCommandExecuted);
+            RefreshProfilesCommand = new AsyncRelayCommand(OnRefreshProfilesCommand);
 
             IsDownloading = false;
+            IsRefreshDisabled = false;
         }
 
         /// <summary>
@@ -63,6 +66,15 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets whether Refresh button is still disabled.
+        /// </summary>
+        public bool IsRefreshDisabled
+        {
+            get => _refreshDisabled;
+            private set => SetProperty(ref _refreshDisabled, value);
+        }
+
+        /// <summary>
         /// Gets or sets the Install Profile Command.
         /// </summary>
         public ICommand InstallProfileCommand { get; set; }
@@ -76,6 +88,11 @@ namespace AudioBand.UI
         /// Gets or sets the Delete Profile Command.
         /// </summary>
         public ICommand DeleteProfileCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets Refresh Profiles Command.
+        /// </summary>
+        public ICommand RefreshProfilesCommand { get; set; }
 
         /// <inheritdoc />
         protected override void OnReset()
@@ -157,6 +174,14 @@ namespace AudioBand.UI
 
             communityProfile.IsInstalled = false;
             ForceUpdateCollection();
+        }
+
+        private async Task OnRefreshProfilesCommand()
+        {
+            IsRefreshDisabled = true;
+            AvailableProfiles = new ObservableCollection<CommunityProfile>(await _gitHub.GetCommunityProfiles());
+
+            await Task.Delay(30000).ContinueWith(t => IsRefreshDisabled = false);
         }
 
         private async Task InstallProfileAsync(CommunityProfile communityProfile)
