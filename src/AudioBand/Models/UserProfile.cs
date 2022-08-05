@@ -19,6 +19,11 @@ namespace AudioBand.Models
         public const string DefaultIdleProfileName = "Idle";
 
         /// <summary>
+        /// Gets or sets the version of this profile.
+        /// </summary>
+        public string Version { get; set; } = "v0.0.1";
+
+        /// <summary>
         /// Gets or sets the name of the profile.
         /// </summary>
         public string Name { get; set; }
@@ -79,6 +84,12 @@ namespace AudioBand.Models
         public ProgressBar ProgressBar { get; set; }
 
         /// <summary>
+        /// Gets or sets the like dislike button model.
+        /// </summary>
+        public LikeButton LikeButton { get; set; }
+
+
+        /// <summary>
         /// Creates an initial profile with default values.
         /// </summary>
         /// <param name="name">The name of the new profile.</param>
@@ -101,6 +112,7 @@ namespace AudioBand.Models
                     IsVisible = true
                 },
                 ProgressBar = new ProgressBar(),
+                LikeButton = new LikeButton(),
                 CustomLabels = new List<CustomLabel>
                 {
                     new CustomLabel
@@ -203,6 +215,10 @@ namespace AudioBand.Models
                     IsVisible = false
                 },
                 ProgressBar = new ProgressBar()
+                {
+                    IsVisible = false
+                },
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },
@@ -345,6 +361,10 @@ namespace AudioBand.Models
                     }
                 },
                 VolumeButton = new VolumeButton()
+                {
+                    IsVisible = false
+                },
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },
@@ -535,6 +555,10 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
+                LikeButton = new LikeButton()
+                {
+                    IsVisible = false
+                },
                 ProgressBar = new ProgressBar()
                 {
                     IsVisible = true,
@@ -621,6 +645,10 @@ namespace AudioBand.Models
                     IsVisible = false
                 },
                 ProgressBar = new ProgressBar()
+                {
+                    IsVisible = false
+                },
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },

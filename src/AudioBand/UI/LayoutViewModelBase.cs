@@ -1,5 +1,6 @@
 ﻿using AudioBand.Messages;
 using AudioBand.Models;
+using System.Collections.Generic;
 
 namespace AudioBand.UI
 {
@@ -11,6 +12,7 @@ namespace AudioBand.UI
         where TModel : LayoutModelBase, new()
     {
         private readonly TModel _backup = new TModel();
+        private object source;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutViewModelBase{TModel}"/> class

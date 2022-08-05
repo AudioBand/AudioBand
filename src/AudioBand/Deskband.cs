@@ -122,6 +122,7 @@ namespace AudioBand
                 _container.Register<AlbumArtViewModel>(Lifestyle.Singleton);
                 _container.Register<AlbumArtPopupViewModel>(Lifestyle.Singleton);
                 _container.Register<GlobalSettingsViewModel>(Lifestyle.Singleton);
+                _container.Register<ProfileRepoViewModel>(Lifestyle.Singleton);
                 _container.Register<MouseBindingsViewModel>(Lifestyle.Singleton);
                 _container.Register<GeneralSettingsViewModel>(Lifestyle.Singleton);
                 _container.Register<CustomLabelsViewModel>(Lifestyle.Singleton);
@@ -135,6 +136,7 @@ namespace AudioBand
                 _container.Register<ShuffleModeButtonViewModel>(Lifestyle.Singleton);
                 _container.Register<PopupViewModel>(Lifestyle.Singleton);
                 _container.Register<VolumeButtonViewModel>(Lifestyle.Singleton);
+                _container.Register<LikeButtonViewModel>(Lifestyle.Singleton);
 
                 _container.Verify();
             }

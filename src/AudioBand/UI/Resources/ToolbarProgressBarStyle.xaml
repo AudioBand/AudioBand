@@ -18,6 +18,7 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="{Binding BackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="Foreground" Value="{Binding ForegroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
+        <Setter Property="Foreground" Value="{Binding ForegroundGradientColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="ClipToBounds" Value="False" />
@@ -47,7 +48,7 @@
                                     <ControlTemplate TargetType="{x:Type Thumb}">
                                         <Ellipse Width="{TemplateBinding Width}"
                                                  Height="{TemplateBinding Height}"
-                                                 Fill="{TemplateBinding Background}"
+                                                 Fill="{Binding ProgressBarThumbColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                                  Stroke="{Binding ThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                                  StrokeThickness="2" />
                                     </ControlTemplate>
@@ -171,6 +172,7 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{Binding VolumeBarBackgroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="Foreground" Value="{Binding VolumeBarForegroundColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
+        <Setter Property="Foreground" Value="{Binding VolumeBarForegroundGradientColor, Converter={x:Static audioband:Converters.ColorToBrush}}" />
         <Setter Property="ClipToBounds" Value="False" />
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="Height">
@@ -223,8 +225,8 @@
                                         <Border CornerRadius="3"
                                                 Width="{TemplateBinding Width}"
                                                 Height="{TemplateBinding Height}"
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding Foreground}"
+                                                Background="{Binding VolumeBarThumbColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
+                                                BorderBrush="{Binding VolumeBarThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                                 BorderThickness="2">
                                         </Border>
                                     </ControlTemplate>
@@ -326,7 +328,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style x:Key="VolumeSliderThumbStyle" TargetType="{x:Type Thumb}">
+            <Style x:Key="VolumeSliderThumbSsityle" TargetType="{x:Type Thumb}">
                 <Setter Property="OverridesDefaultStyle" Value="true" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -334,7 +336,7 @@
                             <Ellipse Width="6"
                                      Height="6"
                                      Fill="{TemplateBinding Background}"
-                                     Stroke="{TemplateBinding Foreground}"
+                                     Stroke="{Binding VolumeBarThumbBorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
                                      StrokeThickness="2" />
                         </ControlTemplate>
                     </Setter.Value>

@@ -60,6 +60,9 @@ namespace Win10AudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc />
+        public event EventHandler<bool> LikeChanged;
+
+        /// <inheritdoc />
         public string Name => "Windows 10";
 
         /// <inheritdoc />
@@ -179,6 +182,18 @@ namespace Win10AudioSource
             }
 
             await _currentSession.TryChangeAutoRepeatModeAsync(ToWindowsRepeatMode(newRepeatMode));
+        }
+
+        /// <inheritdoc/>
+        public Task SetLikeTrackAsync()
+        {
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        public Task DislikeTrackAsync()
+        {
+            return Task.CompletedTask;
         }
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)

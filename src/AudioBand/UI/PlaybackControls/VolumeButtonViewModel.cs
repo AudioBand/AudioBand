@@ -55,6 +55,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the right hand side foreground color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarForegroundGradientColor
+        {
+            get => Model.VolumeBarForegroundGradientColor;
+            set => SetProperty(Model, nameof(Model.VolumeBarForegroundGradientColor), value);
+        }
+
+        /// <summary>
         /// Gets or sets the volume bar background color.
         /// </summary>
         [TrackState]
@@ -72,6 +82,26 @@ namespace AudioBand.UI
         {
             get => Model.PopupBackgroundColor;
             set => SetProperty(Model, nameof(Model.PopupBackgroundColor), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Thumb color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarThumbColor
+        {
+            get => Model.VolumeBarThumbColor;
+            set => SetProperty(Model, nameof(Model.VolumeBarThumbColor), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Thumb border color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarThumbBorderColor
+        {
+            get => Model.VolumeBarThumbBorderColor;
+            set => SetProperty(Model, nameof(Model.VolumeBarThumbBorderColor), value);
         }
 
         /// <summary>
