@@ -17,7 +17,7 @@
                 <LineBreak />
                 Want to upload your own cool profiles? Checkout: https://github.com/AudioBand/CommunityProfiles
             </TextBlock>
-                <ListView x:Name="ProfileList" ItemsSource="{Binding AvailableProfiles}" IsEnabled="True"
+                <ListView x:Name="ProfileList" ItemsSource="{Binding AvailableProfiles}" IsEnabled="{Binding IsDownloading, Converter={x:Static audioband:Converters.InverseBool}}"
                           HorizontalAlignment="Left" Background="Transparent" Margin="8">
                 <ListView.ItemTemplate>
                     <DataTemplate>

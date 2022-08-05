@@ -26,6 +26,7 @@ namespace AudioBand.UI
         private readonly AudioBandSettings _backup = new AudioBandSettings();
 
         private readonly string _assetsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AudioBand", "Assets").Replace(@"\", @"\\");
+        private bool _isDownloading;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProfileRepoViewModel"/> class.
@@ -43,12 +44,23 @@ namespace AudioBand.UI
             InstallProfileCommand = new AsyncRelayCommand<string>(OnInstallProfileCommandExecuted);
             UpdateProfileCommand = new AsyncRelayCommand<string>(OnUpdateProfileCommandExecuted);
             DeleteProfileCommand = new RelayCommand<string>(OnDeleteProfileCommandExecuted);
+
+            IsDownloading = false;
         }
 
         /// <summary>
         /// Gets or sets the list of available profiles.
         /// </summary>
         public ObservableCollection<CommunityProfile> AvailableProfiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the user is downloading the latest update.
+        /// </summary>
+        public bool IsDownloading
+        {
+            get => _isDownloading;
+            private set => SetProperty(ref _isDownloading, value);
+        }
 
         /// <summary>
         /// Gets or sets the Install Profile Command.
@@ -95,6 +107,7 @@ namespace AudioBand.UI
 
         private async Task OnInstallProfileCommandExecuted(string profileName)
         {
+            IsDownloading = true;
             var communityProfile = AvailableProfiles.FirstOrDefault(x => x.Name == profileName);
 
             if (communityProfile == null || communityProfile.IsInstalled)
@@ -104,6 +117,7 @@ namespace AudioBand.UI
 
             await InstallProfileAsync(communityProfile);
             ForceUpdateCollection();
+            IsDownloading = false;
         }
 
         private async Task OnUpdateProfileCommandExecuted(string profileName)
