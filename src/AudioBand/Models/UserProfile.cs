@@ -19,6 +19,11 @@ namespace AudioBand.Models
         public const string DefaultIdleProfileName = "Idle";
 
         /// <summary>
+        /// Gets or sets the version of this profile.
+        /// </summary>
+        public string Version { get; set; } = "v0.0.1";
+
+        /// <summary>
         /// Gets or sets the name of the profile.
         /// </summary>
         public string Name { get; set; }
