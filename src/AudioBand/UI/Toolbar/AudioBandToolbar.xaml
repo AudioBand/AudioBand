@@ -394,6 +394,16 @@
                 DataContext="{Binding ViewModels.ShuffleModeButtonViewModel}"
                 Style="{StaticResource ToolbarShuffleModeButtonStyle}"
                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
+        <Button x:Name="LikeButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding LikeTrackCommand}"
+                DataContext="{Binding ViewModels.LikeButtonViewModel}"
+                Style="{StaticResource ToolbarLikeButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
         <Button x:Name="VolumeButton"
                 Width="{Binding Width}"
                 Height="{Binding Height}"

@@ -63,5 +63,10 @@ namespace AudioBand.AudioSource
         /// Gets the current repeat mode.
         /// </summary>
         RepeatMode RepeatMode { get; }
+
+        /// <summary>
+        /// Gets whether the track is favorited or not.
+        /// </summary>
+        bool IsLiked { get; }
     }
 }

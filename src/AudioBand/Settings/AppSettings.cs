@@ -6,6 +6,7 @@ using System.Reflection;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings.Persistence;
+using AudioBand.UI;
 
 namespace AudioBand.Settings
 {
@@ -273,6 +274,7 @@ namespace AudioBand.Settings
             for (int i = 0; i < profiles.Length; i++)
             {
                 profiles[i].VolumeButton ??= new VolumeButton();
+                profiles[i].LikeButton ??= new LikeButton();
             }
         }
     }

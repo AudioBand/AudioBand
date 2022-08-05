@@ -84,6 +84,12 @@ namespace AudioBand.Models
         public ProgressBar ProgressBar { get; set; }
 
         /// <summary>
+        /// Gets or sets the like dislike button model.
+        /// </summary>
+        public LikeButton LikeButton { get; set; }
+
+
+        /// <summary>
         /// Creates an initial profile with default values.
         /// </summary>
         /// <param name="name">The name of the new profile.</param>
@@ -106,6 +112,7 @@ namespace AudioBand.Models
                     IsVisible = true
                 },
                 ProgressBar = new ProgressBar(),
+                LikeButton = new LikeButton(),
                 CustomLabels = new List<CustomLabel>
                 {
                     new CustomLabel
@@ -208,6 +215,10 @@ namespace AudioBand.Models
                     IsVisible = false
                 },
                 ProgressBar = new ProgressBar()
+                {
+                    IsVisible = false
+                },
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },
@@ -350,6 +361,10 @@ namespace AudioBand.Models
                     }
                 },
                 VolumeButton = new VolumeButton()
+                {
+                    IsVisible = false
+                },
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },
@@ -540,6 +555,10 @@ namespace AudioBand.Models
                 {
                     IsVisible = false
                 },
+                LikeButton = new LikeButton()
+                {
+                    IsVisible = false
+                },
                 ProgressBar = new ProgressBar()
                 {
                     IsVisible = true,
@@ -626,6 +645,10 @@ namespace AudioBand.Models
                     IsVisible = false
                 },
                 ProgressBar = new ProgressBar()
+                {
+                    IsVisible = false
+                },
+                LikeButton = new LikeButton()
                 {
                     IsVisible = false
                 },

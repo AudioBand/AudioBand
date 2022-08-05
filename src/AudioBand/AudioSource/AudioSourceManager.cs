@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using NLog;
 using AudioBand.Logging;
+using NLog;
 
 namespace AudioBand.AudioSource
 {

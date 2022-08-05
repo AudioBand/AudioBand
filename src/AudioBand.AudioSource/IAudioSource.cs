@@ -46,6 +46,11 @@ namespace AudioBand.AudioSource
         event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <summary>
+        /// Occurs when the track like state has changed. <see langword="true"/> if liked; <see langword="false"/> otherwise;
+        /// </summary>
+        event EventHandler<bool> LikeChanged;
+
+        /// <summary>
         /// Gets the name of the audio source.
         /// </summary>
         /// <value>The name of the audio source.</value>
@@ -132,5 +137,11 @@ namespace AudioBand.AudioSource
         /// <param name="newRepeatMode">The new <see cref="RepeatMode"/>.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous set repeat mode operation.</returns>
         Task SetRepeatModeAsync(RepeatMode newRepeatMode);
+
+        /// <summary>
+        /// Called when there is a request to like song.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous like operation.</returns>
+        Task SetLikeTrackAsync();
     }
 }

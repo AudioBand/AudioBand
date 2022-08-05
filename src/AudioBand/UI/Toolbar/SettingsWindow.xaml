@@ -241,6 +241,22 @@
                                                 </StackPanel>
                                             </RadioButton>
                                             <RadioButton Command="{Binding SelectViewModelCommand}"
+                                                        CommandParameter="{Binding ViewModels.LikeButtonViewModel}"
+                                                        GroupName="nav"
+                                                        Style="{StaticResource NavigationPaneSubSubRadioButton}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <StackPanel Width="18" Height="18" >
+                                                        <TextBlock HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center"
+                                                                FontFamily="Segoe MDL2 Assets"
+                                                                FontSize="18"
+                                                                Text="&#xEB51;">
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                    <TextBlock Padding="14,0,0,0" Text="{StaticResource LikeButtonTab}" />
+                                                </StackPanel>
+                                            </RadioButton>
+                                            <RadioButton Command="{Binding SelectViewModelCommand}"
                                                         CommandParameter="{Binding ViewModels.ProgressBarViewModel}"
                                                         GroupName="nav"
                                                         Style="{StaticResource NavigationPaneSubSubRadioButton}">
@@ -525,6 +541,9 @@
                             <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:VolumeButtonViewModel}">
                                 <Setter Property="Text" Value="{StaticResource VolumeButtonTab}" />
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:LikeButtonViewModel}">
+                                <Setter Property="Text" Value="{StaticResource LikeButtonTab}" />
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </TextBlock.Style>
@@ -555,6 +574,7 @@
                                 <audioband:SharedDictionary Source="../PlaybackControls/RepeatModeButtonSettingsView.xaml" />
                                 <audioband:SharedDictionary Source="../PlaybackControls/ShuffleModeButtonSettingsView.xaml" />
                                 <audioband:SharedDictionary Source="../PlaybackControls/VolumeButtonSettingsView.xaml" />
+                                <audioband:SharedDictionary Source="../PlaybackControls/LikeButtonSettingsView.xaml" />
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                     </ContentControl.Resources>

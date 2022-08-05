@@ -107,6 +107,7 @@
     <Compile Include="AudioSource\IAudioSession.cs" />
     <Compile Include="AudioSource\IAudioSourceManager.cs" />
     <Compile Include="AudioSource\IInternalAudioSource.cs" />
+    <Compile Include="Models\LikeButton.cs" />
     <Compile Include="Models\CommunityAudiosource.cs" />
     <Compile Include="Models\CommunityProfile.cs" />
     <Compile Include="Models\MouseBinding.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Commands\AsyncRelayCommand.cs" />
     <Compile Include="Settings\Migrations\IdentitySettingsMigrator.cs" />
     <Compile Include="Settings\Persistence\TomlHelper.cs" />
+    <Compile Include="UI\PlaybackControls\LikeButtonViewModel.cs" />
     <Compile Include="UI\Toolbar\ProfileRepoViewModel.cs" />
     <Compile Include="UI\Toolbar\MouseBindingsViewModel.cs" />
     <Compile Include="UI\ValueConverters\ColorToNonTransparentBrushConverter.cs" />
@@ -368,6 +370,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="UI\PlaybackControls\LikeButtonSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Resources\ButtonStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
