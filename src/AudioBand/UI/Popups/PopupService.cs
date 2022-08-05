@@ -1,5 +1,6 @@
 using System;
 using System.Windows;
+using AudioBand.Models;
 using AudioBand.Settings;
 
 namespace AudioBand.UI
@@ -30,6 +31,14 @@ namespace AudioBand.UI
             _viewModels = viewModels;
 
             _textParts.Source = new Uri("/AudioBand;component/UI/Resources/Strings.xaml", UriKind.RelativeOrAbsolute);
+
+            var isBeforeLikeButton = new SemanticVersion(_appSettings.AudioBandSettings.LastKnownVersion).IsNewerVersionThan(new SemanticVersion(1, 0, 4));
+
+            // notify about like button update
+            if (isBeforeLikeButton && _appSettings.AudioSource == "Spotify")
+            {
+                ShowPopup("LikeButtonUpdateTitle", "LikeButtonUpdateDescription", TimeSpan.FromSeconds(45));
+            }
         }
 
         /// <summary>

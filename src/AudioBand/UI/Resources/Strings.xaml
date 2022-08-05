@@ -21,6 +21,12 @@
     <sys:String x:Key="OtherTitle">Other Settings</sys:String>
     <sys:String x:Key="DisableInformationPopupsText">Show helpful information hints</sys:String>
 
+    <!-- Profile Repo -->
+    <sys:String x:Key="InstallButtonText">Install</sys:String>
+    <sys:String x:Key="InstalledButtonText">Installed</sys:String>
+    <sys:String x:Key="DeleteButtonTooltip">Delete</sys:String>
+    <sys:String x:Key="UpdateButtonTooltip">Update</sys:String>
+
     <!--  Common settings  -->
     <sys:String x:Key="WidthLabelText">Width</sys:String>
     <sys:String x:Key="HeightLabelText">Height</sys:String>
@@ -84,6 +90,10 @@
     <sys:String x:Key="LowVolumeButtonContentSectionText">Low Volume Button content</sys:String>
     <sys:String x:Key="MidVolumeButtonContentSectionText">Mid Volume Button content</sys:String>
     <sys:String x:Key="HighVolumeButtonContentSectionText">High Volume Button content</sys:String>
+    
+    <!--  Like button settings  -->
+    <sys:String x:Key="LikeButtonContentSectionText">Like Button content</sys:String>
+    <sys:String x:Key="DislikeButtonContentSectionText">Dislike Button content</sys:String>
 
     <!--  Custom text label settings  -->
     <sys:String x:Key="CustomLabelNameSectionText">Label name</sys:String>
@@ -123,6 +133,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
 
     <!--  Navigation pane  -->
     <sys:String x:Key="GlobalSettingsTab">AudioBand Settings</sys:String>
+    <sys:String x:Key="ProfileRepoTab">Profile Repo</sys:String>
     <sys:String x:Key="MouseBindingsTab">Custom Mouse Bindings</sys:String>
     <sys:String x:Key="UpdaterTab">AudioBand Updates</sys:String>
     <sys:String x:Key="ProfilesTab">Profile Settings</sys:String>
@@ -135,6 +146,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="RepeatModeButtonTab">Repeat Mode Button</sys:String>
     <sys:String x:Key="ShuffleModeButtonTab">Shuffle Mode Button</sys:String>
     <sys:String x:Key="VolumeButtonTab">Volume Button</sys:String>
+    <sys:String x:Key="LikeButtonTab">Like Button</sys:String>
     <sys:String x:Key="ProgressBarTab">Progress Bar</sys:String>
     <sys:String x:Key="CustomLabelsTab">Text Labels</sys:String>
     <sys:String x:Key="AlbumArtTab">Album Art</sys:String>
@@ -200,6 +212,8 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="RequirePremiumDescription">In order to use these buttons you require Spotify Premium, this is a limitation from Spotify that we cannot bypass.</sys:String>
     <sys:String x:Key="FileCorruptedTitle">Settings corrupted.</sys:String>
     <sys:String x:Key="FileCorruptedDescription">It appears that your settings file was corrupted, it was backed up and reset. For more info contact us on GitHub or Discord.</sys:String>
+    <sys:String x:Key="LikeButtonUpdateTitle">❤️ Like button is here!</sys:String>
+    <sys:String x:Key="LikeButtonUpdateDescription">But, you need to redo Spotify Authentication to make it work. Make sure to update the redirect url to http://localhost/callback. Then go to Spotify Settings, enable 'Force Refresh Authentication' and click Apply.</sys:String>
 
     <!--  Profiles  -->
     <sys:String x:Key="NewProfileHelpText">New profile</sys:String>

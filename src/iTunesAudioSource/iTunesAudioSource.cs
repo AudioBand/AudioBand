@@ -19,6 +19,7 @@ namespace iTunesAudioSource
         private int _volume;
         private bool _shuffle;
         private ITPlaylistRepeatMode _repeat;
+        private bool _liked;
         private ITunesControls _itunesControls = new ITunesControls();
 
         /// <summary>
@@ -59,6 +60,9 @@ namespace iTunesAudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc/>
+        public event EventHandler<bool> LikeChanged;
+
+        /// <inheritdoc/>
         public string Name => "iTunes";
 
         /// <inheritdoc/>
@@ -77,12 +81,11 @@ namespace iTunesAudioSource
              * it will open this manually and this can take a while.
              * That is why we fire a separate thread for it.
              */
-            new Thread(() => 
+            new Thread(() =>
             {
-                Thread.CurrentThread.IsBackground = true; 
+                Thread.CurrentThread.IsBackground = true;
                 _itunesControls.Start();
             }).Start();
-
 
             _checkiTunesTimer.Start();
             return Task.CompletedTask;
@@ -157,7 +160,11 @@ namespace iTunesAudioSource
         }
 
         /// <inheritdoc/>
-        public string GetWindowClassName() => "iTunes";
+        public Task SetLikeTrackAsync()
+        {
+            // _itunesControls.Like();
+            return Task.CompletedTask;
+        }
 
         private RepeatMode ToRepeatMode(ITPlaylistRepeatMode mode)
         {
@@ -242,6 +249,7 @@ namespace iTunesAudioSource
                 NotifyPlayerState();
                 NotifyVolume();
                 NotifyShuffle();
+                NotifyLike();
                 if (IsNewTrack(track))
                 {
                     NotifyTrackChange(track);
@@ -257,6 +265,19 @@ namespace iTunesAudioSource
             {
                 _checkiTunesTimer.Enabled = true;
             }
+        }
+
+        private void NotifyLike()
+        {
+            var newLike = _itunesControls.GetLike();
+
+            if (_liked == newLike)
+            {
+                return;
+            }
+
+            _liked = newLike;
+            LikeChanged?.Invoke(this, newLike);
         }
 
         private void NotifyVolume()

@@ -52,6 +52,12 @@ namespace AudioBand.Settings
         void CreateProfile(string profileName);
 
         /// <summary>
+        /// Creates a new profile.
+        /// </summary>
+        /// <param name="profile">The profile to add.</param>
+        void CreateProfile(UserProfile profile);
+
+        /// <summary>
         /// Deletes a profile.
         /// </summary>
         /// <param name="profileName">The name of the profile to delete.</param>

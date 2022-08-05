@@ -6,6 +6,7 @@ using System.Reflection;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings.Persistence;
+using AudioBand.UI;
 
 namespace AudioBand.Settings
 {
@@ -97,6 +98,18 @@ namespace AudioBand.Settings
             }
 
             _profiles.Add(profileName, UserProfile.CreateDefaultProfile(profileName));
+        }
+
+        /// <inheritdoc />
+        public void CreateProfile(UserProfile profile)
+        {
+            if (_profiles.ContainsKey(profile.Name))
+            {
+                throw new ArgumentException("Profile name already exists", nameof(profile.Name));
+            }
+
+            _profiles.Add(profile.Name, profile);
+            SelectProfile(profile.Name);
         }
 
         /// <inheritdoc />
@@ -261,6 +274,7 @@ namespace AudioBand.Settings
             for (int i = 0; i < profiles.Length; i++)
             {
                 profiles[i].VolumeButton ??= new VolumeButton();
+                profiles[i].LikeButton ??= new LikeButton();
             }
         }
     }

@@ -34,7 +34,8 @@ namespace AudioBand.Settings.MappingProfiles
                 .ForMember(dest => dest.ProgressBar, opt => opt.MapFrom(src => src.Value.ProgressBarSettings))
                 .ForMember(dest => dest.RepeatModeButton, opt => opt.MapFrom(src => src.Value.RepeatModeButtonSettings))
                 .ForMember(dest => dest.ShuffleModeButton, opt => opt.MapFrom(src => src.Value.ShuffleModeButtonSettings))
-                .ForMember(dest => dest.VolumeButton, opt => opt.MapFrom(src => new VolumeButton()));
+                .ForMember(dest => dest.VolumeButton, opt => opt.MapFrom(src => new VolumeButton()))
+                .ForMember(dest => dest.LikeButton, opt => opt.MapFrom(src => new LikeButton()));
         }
     }
 }

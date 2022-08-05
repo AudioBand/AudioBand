@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using AudioBand.Extensions;
 using AudioBand.Logging;
 using AudioSourceHost;
 using NLog;
@@ -68,6 +69,9 @@ namespace AudioBand.AudioSource
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
         /// <inheritdoc/>
+        public event EventHandler<bool> LikeChanged;
+
+        /// <inheritdoc/>
         public string Name
         {
             get
@@ -84,6 +88,7 @@ namespace AudioBand.AudioSource
             }
         }
 
+        /// <inheritdoc/>
         public string Description
         {
             get
@@ -307,6 +312,17 @@ namespace AudioBand.AudioSource
         }
 
         /// <inheritdoc/>
+        public async Task SetLikeTrackAsync()
+        {
+            if (!IsActivated)
+            {
+                return;
+            }
+
+            await CallWrapperAsync(_wrapper.LikeTrack);
+        }
+
+        /// <inheritdoc/>
         public Type GetSettingType(string settingName)
         {
             return _wrapper.GetSettingType(settingName);
@@ -387,6 +403,7 @@ namespace AudioBand.AudioSource
             _wrapper.VolumeChanged += new MarshaledEventHandler<int>(e => VolumeChanged?.Invoke(this, e)).Handler;
             _wrapper.ShuffleChanged += new MarshaledEventHandler<bool>(e => ShuffleChanged?.Invoke(this, e)).Handler;
             _wrapper.RepeatModeChanged += new MarshaledEventHandler<RepeatMode>(e => RepeatModeChanged?.Invoke(this, e)).Handler;
+            _wrapper.LikeChanged += new MarshaledEventHandler<bool>(e => LikeChanged?.Invoke(this, e)).Handler;
 
             LoadAudioSourceSettings();
         }
