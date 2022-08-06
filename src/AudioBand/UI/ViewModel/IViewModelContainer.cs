@@ -11,6 +11,11 @@
         GlobalSettingsViewModel GlobalSettingsViewModel { get; }
 
         /// <summary>
+        /// Gets the viewmodel for the Profile Repo.
+        /// </summary>
+        ProfileRepoViewModel ProfileRepoViewModel { get; }
+
+        /// <summary>
         /// Gets the viewmodel for Mouse Bindings.
         /// </summary>
         public MouseBindingsViewModel MouseBindingsViewModel { get; }
@@ -79,5 +84,10 @@
         /// Gets the collection for view models for the audio source settings.
         /// </summary>
         AudioSourceSettingsViewModel AudioSourceSettingsViewModel { get; }
+
+        /// <summary>
+        /// Gets the view model for the like button.
+        /// </summary>
+        LikeButtonViewModel LikeButtonViewModel { get; }
     }
 }

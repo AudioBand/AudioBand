@@ -25,6 +25,7 @@ namespace AudioBand.AudioSource
         private int _volume;
         private Image _album;
         private TrackInfoChangedEventArgs _lastTrackInfo;
+        private bool _isLiked;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioSession"/> class.
@@ -127,6 +128,13 @@ namespace AudioBand.AudioSource
             set => SetProperty(ref _volume, value);
         }
 
+        /// <inheritdoc/>
+        public bool IsLiked
+        {
+            get => _isLiked;
+            set => SetProperty(ref _isLiked, value);
+        }
+
         private void AudioSourceChanged()
         {
             if (_currentAudioSource != null)
@@ -138,6 +146,7 @@ namespace AudioBand.AudioSource
                 _currentAudioSource.RepeatModeChanged -= AudioSourceOnRepeatModeChanged;
                 _currentAudioSource.ShuffleChanged -= AudioSourceOnShuffleChanged;
                 _currentAudioSource.VolumeChanged -= AudioSourceVolumeChanged;
+                _currentAudioSource.LikeChanged -= AudioSourceLikeChanged;
             }
 
             if (_currentAudioSource == null)
@@ -152,6 +161,12 @@ namespace AudioBand.AudioSource
             _currentAudioSource.RepeatModeChanged += AudioSourceOnRepeatModeChanged;
             _currentAudioSource.ShuffleChanged += AudioSourceOnShuffleChanged;
             _currentAudioSource.VolumeChanged += AudioSourceVolumeChanged;
+            _currentAudioSource.LikeChanged += AudioSourceLikeChanged;
+        }
+
+        private void AudioSourceLikeChanged(object sender, bool e)
+        {
+            IsLiked = e;
         }
 
         private void AudioSourceOnShuffleChanged(object sender, bool e)
@@ -208,7 +223,7 @@ namespace AudioBand.AudioSource
             AlbumArt = null;
             SongProgress = TimeSpan.Zero;
             SongLength = TimeSpan.Zero;
-            Volume = 0;
+            IsLiked = false;
         }
 
         private void HandleIdleProfile(bool isPlaying)

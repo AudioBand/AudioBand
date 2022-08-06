@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
@@ -22,6 +23,9 @@ namespace SpotifyAudioSource
     {
         private readonly SpotifyControls _spotifyControls = new SpotifyControls();
         private Timer _checkSpotifyTimer = new Timer(1000);
+        private Timer _volumeUpdateTimer = new Timer(750);
+        private DateTime _lastVolumeUpdate = DateTime.UtcNow.AddMinutes(-1);
+
         private SpotifyClientConfig _spotifyConfig;
         private ISpotifyClient _spotifyClient;
         private HttpClient _httpClient = new HttpClient();
@@ -34,6 +38,7 @@ namespace SpotifyAudioSource
         private int _currentVolumePercent;
         private bool _currentShuffle;
         private string _currentRepeat;
+        private bool _currentLikeState;
         private string _clientSecret;
         private string _clientId;
         private string _refreshToken;
@@ -46,6 +51,7 @@ namespace SpotifyAudioSource
         private string _proxyPassword;
         private bool _isActive;
         private DateTime _lastAuthTime = DateTime.MinValue;
+        private bool _forceRefreshAuth;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAudioSource"/> class.
@@ -54,6 +60,9 @@ namespace SpotifyAudioSource
         {
             _checkSpotifyTimer.AutoReset = false;
             _checkSpotifyTimer.Elapsed += CheckSpotifyTimerOnElapsed;
+
+            _volumeUpdateTimer.AutoReset = false;
+            _volumeUpdateTimer.Elapsed += OnVolumeUpdaterElapsed;
         }
 
         /// <inheritdoc />
@@ -76,6 +85,9 @@ namespace SpotifyAudioSource
 
         /// <inheritdoc />
         public event EventHandler<bool> IsPlayingChanged;
+
+        /// <inheritdoc />
+        public event EventHandler<bool> LikeChanged;
 
         /// <inheritdoc />
         public string Name => "Spotify";
@@ -134,6 +146,28 @@ namespace SpotifyAudioSource
 
                 _clientSecret = value;
                 Authorize();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Force Refresh Authentication Command.
+        /// </summary>
+        [AudioSourceSetting("Force Refresh Authentication")]
+        public bool ForceRefreshAuth
+        {
+            get => _forceRefreshAuth;
+            set
+            {
+                if (!value)
+                {
+                    return;
+                }
+
+                _forceRefreshAuth = false;
+
+                RefreshToken = "";
+                Authorize();
+                OnSettingChanged("Force Refresh Authentication");
             }
         }
 
@@ -380,7 +414,7 @@ namespace SpotifyAudioSource
                     _spotifyControls.TryNext();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 _spotifyControls.TryNext();
             }
@@ -389,12 +423,16 @@ namespace SpotifyAudioSource
         /// <inheritdoc />
         public async Task SetVolumeAsync(int newVolume)
         {
-            if (_spotifyClient == null)
+            if (_volumeUpdateTimer.Enabled)
             {
-                Authorize();
+                _currentVolumePercent = newVolume;
                 return;
             }
 
+            _volumeUpdateTimer.Start();
+            _lastVolumeUpdate = DateTime.UtcNow;
+
+            _currentVolumePercent = newVolume;
             await _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(newVolume));
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
@@ -440,6 +478,29 @@ namespace SpotifyAudioSource
 
             await OnPlayerCommandFailed(()
                 => _spotifyClient.Player.SetRepeat(new PlayerSetRepeatRequest(ToRepeatState(newRepeatMode))), "SetRepeatMode");
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
+        }
+
+        /// <inheritdoc/>
+        public async Task SetLikeTrackAsync()
+        {
+            if (_spotifyClient == null)
+            {
+                Authorize();
+                return;
+            }
+
+            if ((await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault())
+            {
+                await OnPlayerCommandFailed(()
+                    => _spotifyClient.Library.RemoveTracks(new LibraryRemoveTracksRequest(new List<string>() { _currentItemId })), "RemoveLike");
+            }
+            else
+            {
+                await OnPlayerCommandFailed(()
+                   => _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId })), "AddLike");
+            }
 
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
@@ -674,7 +735,10 @@ namespace SpotifyAudioSource
 
         private void NotifyVolume(CurrentlyPlayingContext context)
         {
-            if (context.Device == null)
+            // if timer is enabled or last volume update was less than 2 seconds ago, temporarily do not update
+            if (context.Device == null
+            || _volumeUpdateTimer.Enabled
+            || _lastVolumeUpdate.AddSeconds(2) > DateTime.UtcNow)
             {
                 return;
             }
@@ -682,12 +746,6 @@ namespace SpotifyAudioSource
             var newVolume = context.Device.VolumePercent.HasValue ? context.Device.VolumePercent.Value : 0;
 
             if (_currentVolumePercent == newVolume)
-            {
-                return;
-            }
-
-            // For some reason, when the audio gets under 15% it gets in an infinite loop and goes all the way to 0, this prevents it
-            if (newVolume < 15 && _currentVolumePercent - 1 == newVolume)
             {
                 return;
             }
@@ -706,6 +764,24 @@ namespace SpotifyAudioSource
         {
             _currentRepeat = context.RepeatState;
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_currentRepeat));
+        }
+
+        private async Task NotifyLike()
+        {
+            if (string.IsNullOrEmpty(_currentItemId))
+            {
+                return;
+            }
+
+            var isLiked = (await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault();
+
+            if (isLiked == _currentLikeState)
+            {
+                return;
+            }
+
+            _currentLikeState = isLiked;
+            LikeChanged?.Invoke(this, _currentLikeState);
         }
 
         private async Task<Image> GetAlbumArtAsync(Uri albumArtUrl)
@@ -765,6 +841,13 @@ namespace SpotifyAudioSource
             await UpdatePlayer();
         }
 
+        private void OnVolumeUpdaterElapsed(object sender, ElapsedEventArgs e)
+        {
+            _volumeUpdateTimer.Stop();
+
+            _spotifyClient.Player.SetVolume(new PlayerVolumeRequest(_currentVolumePercent));
+        }
+
         private async Task UpdatePlayer()
         {
             _checkSpotifyTimer.Stop();
@@ -796,19 +879,20 @@ namespace SpotifyAudioSource
                     return;
                 }
 
+                if (playback.Item == null || playback.CurrentlyPlayingType == "ad")
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    return;
+                }
+
                 NotifyPlayState(playback.IsPlaying);
                 NotifyTrackProgress(playback);
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
+                await NotifyLike();
 
-                if (playback.Item == null)
-                {
-                    // Playback can be null if there are no devices playing
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                    return;
-                }
-                else if (playback.Item.Type == ItemType.Track)
+                if (playback.Item.Type == ItemType.Track)
                 {
                     await NotifyTrackUpdate(playback.Item as FullTrack);
                 }
@@ -879,7 +963,7 @@ namespace SpotifyAudioSource
 
             var request = new LoginRequest(_server.BaseUri, ClientId, LoginRequest.ResponseType.Code)
             {
-                Scope = new[] { Scopes.UserReadCurrentlyPlaying, Scopes.UserReadPlaybackState, Scopes.UserReadPlaybackPosition, Scopes.UserModifyPlaybackState },
+                Scope = new[] { Scopes.UserReadCurrentlyPlaying, Scopes.UserReadPlaybackState, Scopes.UserReadPlaybackPosition, Scopes.UserModifyPlaybackState, Scopes.UserLibraryRead, Scopes.UserLibraryModify },
             };
 
             BrowserUtil.Open(request.ToUri());

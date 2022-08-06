@@ -102,6 +102,21 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Command="{Binding SelectViewModelCommand}"
+                        CommandParameter="{Binding ViewModels.ProfileRepoViewModel}"
+                        GroupName="nav"
+                        Style="{StaticResource NavigationPaneRadioButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Width="18" Height="18">
+                                <TextBlock HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="18"
+                                       Text="&#xE771;" />
+                            </StackPanel>
+                            <TextBlock Padding="14,0,0,0" Text="{StaticResource CommunityProfilesTab}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Command="{Binding SelectViewModelCommand}"
                         CommandParameter="{Binding ViewModels.MouseBindingsViewModel}"
                         GroupName="nav"
                         Style="{StaticResource NavigationPaneRadioButton}">
@@ -223,6 +238,22 @@
                                                         DrawingImages to this substitute.
                                                         <Image Source="{StaticResource VolumeIcon}" Style="{StaticResource NavigationPaneIcon}" />-->
                                                     <TextBlock Padding="14,0,0,0" Text="{StaticResource VolumeButtonTab}" />
+                                                </StackPanel>
+                                            </RadioButton>
+                                            <RadioButton Command="{Binding SelectViewModelCommand}"
+                                                        CommandParameter="{Binding ViewModels.LikeButtonViewModel}"
+                                                        GroupName="nav"
+                                                        Style="{StaticResource NavigationPaneSubSubRadioButton}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <StackPanel Width="18" Height="18" >
+                                                        <TextBlock HorizontalAlignment="Left"
+                                                                VerticalAlignment="Center"
+                                                                FontFamily="Segoe MDL2 Assets"
+                                                                FontSize="18"
+                                                                Text="&#xEB51;">
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                    <TextBlock Padding="14,0,0,0" Text="{StaticResource LikeButtonTab}" />
                                                 </StackPanel>
                                             </RadioButton>
                                             <RadioButton Command="{Binding SelectViewModelCommand}"
@@ -468,6 +499,9 @@
                             <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:GlobalSettingsViewModel}">
                                 <Setter Property="Text" Value="{StaticResource GlobalSettingsTab}" />
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:ProfileRepoViewModel}">
+                                <Setter Property="Text" Value="{StaticResource CommunityProfilesTab}" />
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:MouseBindingsViewModel}">
                                 <Setter Property="Text" Value="{StaticResource MouseBindingsTab}" />
                             </DataTrigger>
@@ -507,6 +541,9 @@
                             <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:VolumeButtonViewModel}">
                                 <Setter Property="Text" Value="{StaticResource VolumeButtonTab}" />
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:LikeButtonViewModel}">
+                                <Setter Property="Text" Value="{StaticResource LikeButtonTab}" />
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </TextBlock.Style>
@@ -524,6 +561,7 @@
                         <ResourceDictionary>
                             <ResourceDictionary.MergedDictionaries>
                                 <audioband:SharedDictionary Source="GlobalSettingsView.xaml" />
+                                <audioband:SharedDictionary Source="ProfileRepoView.xaml" />
                                 <audioband:SharedDictionary Source="MouseBindingsView.xaml" />
                                 <audioband:SharedDictionary Source="GeneralSettingsView.xaml" />
                                 <audioband:SharedDictionary Source="../AlbumArt/AlbumArtSettingsView.xaml" />
@@ -536,6 +574,7 @@
                                 <audioband:SharedDictionary Source="../PlaybackControls/RepeatModeButtonSettingsView.xaml" />
                                 <audioband:SharedDictionary Source="../PlaybackControls/ShuffleModeButtonSettingsView.xaml" />
                                 <audioband:SharedDictionary Source="../PlaybackControls/VolumeButtonSettingsView.xaml" />
+                                <audioband:SharedDictionary Source="../PlaybackControls/LikeButtonSettingsView.xaml" />
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                     </ContentControl.Resources>

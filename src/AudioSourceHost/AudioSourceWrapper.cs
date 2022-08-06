@@ -1,11 +1,11 @@
-﻿using AudioBand.AudioSource;
-using AudioBand.Logging;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AudioBand.AudioSource;
+using AudioBand.Logging;
+using NLog;
 
 namespace AudioSourceHost
 {
@@ -61,6 +61,11 @@ namespace AudioSourceHost
         /// Wrapper for <see cref="IAudioSource.RepeatModeChanged"/>.
         /// </summary>
         public event EventHandler<RepeatMode> RepeatModeChanged;
+
+        /// <summary>
+        /// Wrapper for <see cref="IAudioSource.LikeChanged"/>.
+        /// </summary>
+        public event EventHandler<bool> LikeChanged;
 
         /// <summary>
         /// Gets the name of the audio source.
@@ -177,6 +182,15 @@ namespace AudioSourceHost
         }
 
         /// <summary>
+        /// Gets the Like state.
+        /// </summary>
+        /// <param name="tcs">The task completion source.</param>
+        public void LikeTrack(MarshaledTaskCompletionSource tcs)
+        {
+            StartTask(_audioSource.SetLikeTrackAsync, tcs);
+        }
+
+        /// <summary>
         /// Initializes the wrapper.
         /// </summary>
         /// <param name="audioSourceDirectory">The directory of the audio source.</param>
@@ -200,6 +214,7 @@ namespace AudioSourceHost
                 _audioSource.VolumeChanged += (o, e) => VolumeChanged?.Invoke(this, e);
                 _audioSource.ShuffleChanged += (o, e) => ShuffleChanged?.Invoke(this, e);
                 _audioSource.RepeatModeChanged += (o, e) => RepeatModeChanged?.Invoke(this, e);
+                _audioSource.LikeChanged += (o, e) => LikeChanged?.Invoke(this, e);
 
                 _audioSourceSettingsList = _audioSource.GetSettings();
                 foreach (AudioSourceSetting setting in _audioSourceSettingsList)

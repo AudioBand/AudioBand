@@ -297,7 +297,7 @@ namespace AudioBand.UI
         private TimeSpan CalculateTimeToScroll(double scrollDistance)
         {
             // Calculate time to scroll based on the target time to scroll across the panel.
-            if (ScrollDuration.TotalMilliseconds == 0)
+            if (ScrollDuration.TotalMilliseconds == 0 || AssociatedObject.ActualWidth == 0)
             {
                 return TimeSpan.Zero;
             }

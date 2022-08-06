@@ -1,15 +1,18 @@
-﻿using AudioBand.AudioSource;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Timers;
+using AudioBand.AudioSource;
 using Timer = System.Timers.Timer;
 
 namespace MusicBeeAudioSource
 {
-    public class AudioSource : IAudioSource
+    /// <summary>
+    /// AudioSource for MusicBee.
+    /// </summary>
+    public class MusicBeeAudioSource : IAudioSource
     {
         private MusicBeeIPC _ipc;
         private Timer _checkMusicBeeTimer;
@@ -18,8 +21,12 @@ namespace MusicBeeAudioSource
         private int _volume;
         private bool _shuffle;
         private MusicBeeIPC.RepeatMode _repeatMode;
+        private bool _showratinglove;
 
-        public AudioSource()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MusicBeeAudioSource"/> class.
+        /// </summary>
+        public MusicBeeAudioSource()
         {
             _ipc = new MusicBeeIPC();
             _checkMusicBeeTimer = new Timer(100)
@@ -31,87 +38,117 @@ namespace MusicBeeAudioSource
             _checkMusicBeeTimer.Elapsed += CheckMusicBee;
         }
 
+        /// <inheritdoc/>
         public event EventHandler<TrackInfoChangedEventArgs> TrackInfoChanged;
 
+        /// <inheritdoc/>
         public event EventHandler<bool> IsPlayingChanged;
 
+        /// <inheritdoc/>
         public event EventHandler<TimeSpan> TrackProgressChanged;
 
 #pragma warning disable 00067 // The event is never used
+        /// <inheritdoc/>
         public event EventHandler<SettingChangedEventArgs> SettingChanged;
 #pragma warning restore 00067 // The event is never used
 
+        /// <inheritdoc/>
         public event EventHandler<int> VolumeChanged;
 
+        /// <inheritdoc/>
         public event EventHandler<bool> ShuffleChanged;
 
+        /// <inheritdoc/>
         public event EventHandler<RepeatMode> RepeatModeChanged;
 
+        /// <inheritdoc/>
+        public event EventHandler<bool> LikeChanged;
+
+        /// <inheritdoc/>
         public string Name => "Music Bee";
 
+        /// <inheritdoc/>
         public string Description => "";
 
+        /// <inheritdoc/>
         public string WindowClassName => "WindowsForms10.Window.8.app.0.2bf8098_r7_ad1";
 
+        /// <inheritdoc/>
         public IAudioSourceLogger Logger { get; set; }
 
+        /// <inheritdoc/>
         public Task ActivateAsync()
         {
             _checkMusicBeeTimer.Start();
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task DeactivateAsync()
         {
             _checkMusicBeeTimer.Stop();
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task NextTrackAsync()
         {
             _ipc.NextTrack();
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task PauseTrackAsync()
         {
             _ipc.Pause();
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task PlayTrackAsync()
         {
             _ipc.Play();
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task PreviousTrackAsync()
         {
             _ipc.PreviousTrack();
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task SetVolumeAsync(int newVolume)
         {
             _ipc.SetVolume(newVolume);
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task SetPlaybackProgressAsync(TimeSpan newProgress)
         {
             _ipc.SetPosition((int)newProgress.TotalMilliseconds);
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task SetShuffleAsync(bool shuffleOn)
         {
             _ipc.SetShuffle(shuffleOn);
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc/>
         public Task SetRepeatModeAsync(RepeatMode newRepeatMode)
         {
             _ipc.SetRepeat(ToIpcRepeat(newRepeatMode));
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        public Task SetLikeTrackAsync()
+        {
             return Task.CompletedTask;
         }
 
@@ -167,6 +204,7 @@ namespace MusicBeeAudioSource
                 NotifyVolume();
                 NotifyShuffle();
                 NotifyRepeatMode();
+                NotifyLikeModeChanged();
 
                 var time = TimeSpan.FromMilliseconds(_ipc.GetPosition());
                 TrackProgressChanged?.Invoke(this, time);
@@ -183,7 +221,8 @@ namespace MusicBeeAudioSource
 
         private void NotifyState()
         {
-            var isPlaying = _ipc.GetPlayState().HasFlag(MusicBeeIPC.PlayState.Playing);
+            var isPlaying = _ipc.GetPlayState() == MusicBeeIPC.PlayState.Playing;
+
             if (isPlaying == _isPlaying)
             {
                 return;
@@ -209,7 +248,6 @@ namespace MusicBeeAudioSource
 
             try
             {
-                
                 var bytes = Convert.FromBase64String(_ipc.GetArtwork());
                 using (var ms = new MemoryStream(bytes))
                 {
@@ -220,14 +258,13 @@ namespace MusicBeeAudioSource
             {
                 Logger.Warn($"The AlbumArt cover failed to load. Might be non existing or wrong. - {e.Message}");
             }
-            
 
             TrackInfoChanged?.Invoke(this, new TrackInfoChangedEventArgs
             {
                 Album = _ipc.GetFileTag(MusicBeeIPC.MetaData.Album),
                 Artist = artist,
                 AlbumArt = albumArt,
-                TrackLength =  ParseTimeFromIPC(),
+                TrackLength = ParseTimeFromIPC(),
                 TrackName = track
             });
         }
@@ -241,6 +278,7 @@ namespace MusicBeeAudioSource
                 return;
             }
 
+            _volume = volume;
             VolumeChanged?.Invoke(this, _volume);
         }
 
@@ -270,6 +308,19 @@ namespace MusicBeeAudioSource
             RepeatModeChanged?.Invoke(this, ToRepeatMode(_repeatMode));
         }
 
+        private void NotifyLikeModeChanged()
+        {
+            bool like = _ipc.GetShowRatingLove();
+
+            if (like == _showratinglove)
+            {
+                return;
+            }
+
+            _showratinglove = like;
+            LikeChanged?.Invoke(this, like);
+        }
+
         private TimeSpan ParseTimeFromIPC()
         {
             var timeString = _ipc.GetFileProperty(MusicBeeIPC.FileProperty.Duration);
@@ -281,14 +332,14 @@ namespace MusicBeeAudioSource
                     double.TryParse(times[0], out double seconds);
                     return TimeSpan.FromSeconds(seconds);
                 case 2:
-                    double.TryParse(times[0], out seconds);
-                    double.TryParse(times[1], out double minutes);
-                    return TimeSpan.FromSeconds(minutes * 60 + seconds);
+                    double.TryParse(times[0], out double minutes);
+                    double.TryParse(times[1], out seconds);
+                    return TimeSpan.FromSeconds((minutes * 60) + seconds);
                 case 3:
-                    double.TryParse(times[0], out seconds);
+                    double.TryParse(times[0], out double hours);
                     double.TryParse(times[1], out minutes);
-                    double.TryParse(times[2], out double hours);
-                    return TimeSpan.FromSeconds((hours * 60 + minutes) * 60 + seconds);
+                    double.TryParse(times[2], out seconds);
+                    return TimeSpan.FromSeconds((((hours * 60) + minutes) * 60) + seconds);
                 default:
                     Logger.Warn($"Unable to parse track length: {timeString}");
                     return TimeSpan.Zero;

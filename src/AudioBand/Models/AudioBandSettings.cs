@@ -55,7 +55,7 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets a value indicating whether to clear the current session information when it goes into idle.
         /// </summary>
-        public bool ClearSessionOnIdle { get; set; } = true;
+        public bool ClearSessionOnIdle { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to show a popup when an update is available.

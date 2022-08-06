@@ -63,6 +63,11 @@
         /// <summary>
         /// Opens the associated music app if possible.
         /// </summary>
-        OpenAssociatedApp = 11
+        OpenAssociatedApp = 11,
+
+        /// <summary>
+        /// Toggles the players play/pause.
+        /// </summary>
+        TogglePlayPause = 12,
     }
 }

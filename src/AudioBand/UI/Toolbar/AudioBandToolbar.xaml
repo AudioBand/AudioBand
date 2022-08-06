@@ -394,6 +394,16 @@
                 DataContext="{Binding ViewModels.ShuffleModeButtonViewModel}"
                 Style="{StaticResource ToolbarShuffleModeButtonStyle}"
                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
+        <Button x:Name="LikeButton"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                audioband:CanvasPositioning.Anchor="{Binding Anchor}"
+                audioband:CanvasPositioning.AnchorXDistance="{Binding XPosition}"
+                audioband:CanvasPositioning.AnchorYDistance="{Binding YPosition}"
+                Command="{Binding LikeTrackCommand}"
+                DataContext="{Binding ViewModels.LikeButtonViewModel}"
+                Style="{StaticResource ToolbarLikeButtonStyle}"
+                Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
         <Button x:Name="VolumeButton"
                 Width="{Binding Width}"
                 Height="{Binding Height}"
@@ -407,6 +417,7 @@
         </Button>
         <fluentWpf:AcrylicPopup
                 x:Name="VolumePopup"
+                PopupAnimation="Fade"
                 Placement="Top"
                 Width="{Binding PopupWidth}"
                 Height="{Binding PopupHeight}"
@@ -416,13 +427,15 @@
                 HorizontalOffset="{Binding XPopupOffset}"
                 VerticalOffset="{Binding YPopupOffset}"
                 Style="{StaticResource VolumePopupStyle}"
-                MouseWheel="VolumePopup_MouseWheel">
+                MouseWheel="VolumePopup_MouseWheel"
+                StaysOpen="False">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeave">
                     <i:InvokeCommandAction Command="{Binding MouseLeftCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <Border Background="{Binding PopupBackgroundColor, Converter={x:Static audioband:Converters.ColorToNonTransparentBrush}}">
+                <!-- Using style here so DataBindings work on the Gradients -->
                 <Slider x:Name="VolumeSlider"
                         HorizontalAlignment="Center"
                         Orientation="Vertical"
@@ -432,15 +445,27 @@
                         TickFrequency="1"
                         TickPlacement="None"
                         IsSnapToTickEnabled="True"
-                        Style="{StaticResource VolumeSliderStyle}"
-                        Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
+                        Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}"
+                        Value="{Binding Volume, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
-                        <audioband:SliderThrottle FinalValue="{Binding Volume, Mode=TwoWay}" />
                         <audioband:SliderClickAndDrag />
                     </i:Interaction.Behaviors>
+                    <Slider.Style>
+                        <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource VolumeSliderStyle}">
+                            <Setter Property="Foreground">
+                                <Setter.Value>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="{Binding VolumeBarForegroundColor}" Offset="0" />
+                                        <GradientStop Color="{Binding VolumeBarForegroundGradientColor}" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Slider.Style>
                 </Slider>
             </Border>
         </fluentWpf:AcrylicPopup>
+        <!-- Using style here so DataBindings work on the Gradients -->
         <Slider x:Name="ProgressBar"
                 Width="{Binding Width}"
                 Height="{Binding Height}"
@@ -450,12 +475,23 @@
                 DataContext="{Binding ViewModels.ProgressBarViewModel}"
                 Maximum="{Binding TrackLength, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=OneWay}"
                 Minimum="0"
-                Style="{StaticResource ProgressBarStyle}"
                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
             <i:Interaction.Behaviors>
                 <audioband:SliderThrottle FinalValue="{Binding TrackProgress, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=TwoWay}" />
                 <audioband:SliderClickAndDrag />
             </i:Interaction.Behaviors>
+            <Slider.Style>
+                <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource ProgressBarStyle}">
+                    <Setter Property="Foreground">
+                        <Setter.Value>
+                            <LinearGradientBrush>
+                                <GradientStop Color="{Binding ForegroundColor}" Offset="0" />
+                                <GradientStop Color="{Binding ForegroundGradientColor}" Offset="1" />
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Slider.Style>
         </Slider>
         <Popup  x:Name="InformationPopup"
                 Placement="Top"

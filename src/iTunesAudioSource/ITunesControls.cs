@@ -131,6 +131,26 @@ namespace iTunesAudioSource
             catch (COMException) { }
         }
 
+        public bool GetLike()
+        {
+            var track = _itunesApp.CurrentTrack as IITFileOrCDTrack;
+
+            return track.ratingKind == ITRatingKind.ITRatingKindUser ? true : false;
+
+            // this is how it should be done, but it's readonly
+            // track.ratingKind = 1;
+
+            // below is code to give it 5 stars or none, which isn't really equivalent to the like button
+            if (_itunesApp.CurrentTrack.Rating == 100)
+            {
+                _itunesApp.CurrentTrack.Rating = 0;
+            }
+            else
+            {
+                _itunesApp.CurrentTrack.Rating = 100;
+            }
+        }
+
         private Track GetTrack()
         {
             if (!ITunesIsRunning())

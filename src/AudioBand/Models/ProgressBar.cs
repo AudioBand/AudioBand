@@ -24,6 +24,11 @@ namespace AudioBand.Models
         public Color ForegroundColor { get; set; } = Colors.DodgerBlue;
 
         /// <summary>
+        /// Gets or sets the right hand side foreground color.
+        /// </summary>
+        public Color ForegroundGradientColor { get; set; } = Color.FromRgb(0, 82, 163);
+
+        /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         public Color BackgroundColor { get; set; } = Colors.DimGray;
@@ -32,5 +37,15 @@ namespace AudioBand.Models
         /// Gets or sets the hover color.
         /// </summary>
         public Color HoverColor { get; set; } = Colors.DeepSkyBlue;
+
+        /// <summary>
+        /// Gets or sets the thumb color.
+        /// </summary>
+        public Color ProgressBarThumbColor { get; set; } = Colors.DimGray;
+
+        /// <summary>
+        /// Gets or sets the thumb's border color.
+        /// </summary>
+        public Color ThumbBorderColor { get; set; } = Colors.DeepSkyBlue;
     }
 }

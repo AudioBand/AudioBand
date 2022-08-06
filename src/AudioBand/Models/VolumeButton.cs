@@ -89,6 +89,11 @@ namespace AudioBand.Models
         public Color VolumeBarForegroundColor { get;  set; } = Colors.DodgerBlue;
 
         /// <summary>
+        /// Gets or sets the right hand side foreground color.
+        /// </summary>
+        public Color VolumeBarForegroundGradientColor { get; set; } = Color.FromRgb(0, 82, 163);
+
+        /// <summary>
         /// Gets or sets the BackgroundColor.
         /// </summary>
         public Color VolumeBarBackgroundColor { get; set; } = Colors.DimGray;
@@ -97,5 +102,15 @@ namespace AudioBand.Models
         /// Gets or sets the Popup's BackgroundColor.
         /// </summary>
         public Color PopupBackgroundColor { get; set; } = Colors.DarkGray;
+
+        /// <summary>
+        /// Gets or sets the thumb color.
+        /// </summary>
+        public Color VolumeBarThumbColor { get; set; } = Colors.DimGray;
+
+        /// <summary>
+        /// Gets or sets the thumb's border color.
+        /// </summary>
+        public Color VolumeBarThumbBorderColor { get; set; } = Colors.DodgerBlue;
     }
 }

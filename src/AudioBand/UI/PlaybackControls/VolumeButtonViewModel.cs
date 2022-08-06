@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows;
+using System.Timers;
 using System.Windows.Input;
 using System.Windows.Media;
 using AudioBand.AudioSource;
@@ -20,7 +20,7 @@ namespace AudioBand.UI
         private readonly IAppSettings _appSettings;
         private readonly IAudioSession _audioSession;
         private bool _isVolumePopupOpen;
-        private double _volume;
+        private int _volume;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VolumeButtonViewModel"/> class.
@@ -55,6 +55,16 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the right hand side foreground color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarForegroundGradientColor
+        {
+            get => Model.VolumeBarForegroundGradientColor;
+            set => SetProperty(Model, nameof(Model.VolumeBarForegroundGradientColor), value);
+        }
+
+        /// <summary>
         /// Gets or sets the volume bar background color.
         /// </summary>
         [TrackState]
@@ -72,6 +82,26 @@ namespace AudioBand.UI
         {
             get => Model.PopupBackgroundColor;
             set => SetProperty(Model, nameof(Model.PopupBackgroundColor), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Thumb color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarThumbColor
+        {
+            get => Model.VolumeBarThumbColor;
+            set => SetProperty(Model, nameof(Model.VolumeBarThumbColor), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Thumb border color.
+        /// </summary>
+        [TrackState]
+        public Color VolumeBarThumbBorderColor
+        {
+            get => Model.VolumeBarThumbBorderColor;
+            set => SetProperty(Model, nameof(Model.VolumeBarThumbBorderColor), value);
         }
 
         /// <summary>
@@ -198,14 +228,14 @@ namespace AudioBand.UI
         /// Gets or sets the current Volume.
         /// </summary>
         [AlsoNotify(nameof(CurrentVolumeState))]
-        public double Volume
+        public int Volume
         {
             get => _volume;
             set
             {
                 if (SetProperty(ref _volume, value))
                 {
-                    _audioSession.CurrentAudioSource?.SetVolumeAsync((int)value);
+                    _audioSession.CurrentAudioSource?.SetVolumeAsync(value);
                 }
             }
         }
@@ -238,7 +268,9 @@ namespace AudioBand.UI
 
         private void OnVolumeChanged(int newVolume)
         {
-            Volume = newVolume;
+            _volume = newVolume;
+            RaisePropertyChanged(nameof(Volume));
+            RaisePropertyChanged(nameof(CurrentVolumeState));
         }
 
         private void OpenVolumePopupCommandOnExecute(object arg)
