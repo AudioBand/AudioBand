@@ -180,6 +180,7 @@ namespace AudioBand.UI
         {
             IsRefreshDisabled = true;
             AvailableProfiles = new ObservableCollection<CommunityProfile>(await _gitHub.GetCommunityProfiles());
+            ForceUpdateCollection();
 
             await Task.Delay(30000).ContinueWith(t => IsRefreshDisabled = false);
         }
