@@ -32,10 +32,10 @@ namespace AudioBand.UI
 
             _textParts.Source = new Uri("/AudioBand;component/UI/Resources/Strings.xaml", UriKind.RelativeOrAbsolute);
 
-            var isBeforeLikeButton = new SemanticVersion(_appSettings.AudioBandSettings.LastKnownVersion).IsNewerVersionThan(new SemanticVersion(1, 0, 4));
+            var isBeforeLikeButton = new SemanticVersion(_appSettings.AudioBandSettings.LastKnownVersion).IsNewerVersionThan(new SemanticVersion(1, 1, 5));
 
             // notify about like button update
-            if (isBeforeLikeButton && _appSettings.AudioSource == "Spotify")
+            if (!isBeforeLikeButton && _appSettings.AudioSource == "Spotify")
             {
                 ShowPopup("LikeButtonUpdateTitle", "LikeButtonUpdateDescription", TimeSpan.FromSeconds(45));
             }
