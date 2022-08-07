@@ -73,13 +73,14 @@ namespace AudioBand.Settings
                 return;
             }
 
+            CurrentProfile = _profiles[profileName];
+            ProfileChanged?.Invoke(this, EventArgs.Empty);
+
             if (!string.IsNullOrEmpty(CurrentProfile?.Name))
             {
                 AudioBandSettings.LastNonIdleProfileName = CurrentProfile.Name;
             }
 
-            CurrentProfile = _profiles[profileName];
-            ProfileChanged?.Invoke(this, EventArgs.Empty);
             _messageBus.Publish(ProfilesUpdatedMessage.ProfileSelected);
             Save();
         }
