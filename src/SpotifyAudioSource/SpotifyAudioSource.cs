@@ -890,7 +890,6 @@ namespace SpotifyAudioSource
                 NotifyVolume(playback);
                 NotifyShuffle(playback);
                 NotifyRepeat(playback);
-                await NotifyLike();
 
                 if (playback.Item.Type == ItemType.Track)
                 {
@@ -900,6 +899,9 @@ namespace SpotifyAudioSource
                 {
                     await NotifyEpisodeUpdate(playback.Item as FullEpisode);
                 }
+
+                // put last in case someone hasn't updated auth yet
+                await NotifyLike();
             }
             catch (Exception e)
             {
