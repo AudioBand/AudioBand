@@ -169,7 +169,16 @@ namespace AudioBand.UI
                 return;
             }
 
-            _appSettings.DeleteProfile(profileName);
+            try
+            {
+                // can throw if only 1 profile left
+                _appSettings.DeleteProfile(profileName);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+            }
+
             _messageBus.Publish(ProfilesUpdatedMessage.ProfileDeleted);
 
             communityProfile.IsInstalled = false;

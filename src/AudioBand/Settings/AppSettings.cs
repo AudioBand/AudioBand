@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings.Persistence;
-using AudioBand.UI;
 
 namespace AudioBand.Settings
 {
@@ -66,9 +64,7 @@ namespace AudioBand.Settings
         /// <inheritdoc />
         public void SelectProfile(string profileName)
         {
-            Debug.Assert(_profiles.ContainsKey(profileName), $"Selecting non existent profile {profileName}.");
-
-            if (CurrentProfile?.Name == profileName)
+            if (CurrentProfile?.Name == profileName || !_profiles.ContainsKey(profileName))
             {
                 return;
             }
