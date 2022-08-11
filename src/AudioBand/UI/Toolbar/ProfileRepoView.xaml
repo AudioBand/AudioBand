@@ -18,7 +18,12 @@
                 <LineBreak />
                     Want to upload your own cool profiles?
                 <LineBreak />
-                    Checkout: https://github.com/AudioBand/CommunityProfiles
+                    Checkout:
+                    <Hyperlink Command="{Binding OpenLinkCommand}"
+                               CommandParameter="{Binding CommunityProfileProjectLink}"
+                               NavigateUri="{Binding CommunityProfileProjectLink}">
+                        <Run Text="{StaticResource CommunityProfileProjectLink}" />
+                    </Hyperlink>
                 </TextBlock>
                 <Button Margin="160,0,0,0"
                         Content="Refresh"

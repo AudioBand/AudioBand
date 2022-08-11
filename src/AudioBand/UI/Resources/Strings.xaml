@@ -26,7 +26,8 @@
     <sys:String x:Key="InstalledButtonText">Installed</sys:String>
     <sys:String x:Key="DeleteButtonTooltip">Delete</sys:String>
     <sys:String x:Key="UpdateButtonTooltip">Update</sys:String>
-
+    <sys:String x:Key="CommunityProfileProjectLink">https://github.com/AudioBand/CommunityProfiles</sys:String>
+    
     <!--  Common settings  -->
     <sys:String x:Key="WidthLabelText">Width</sys:String>
     <sys:String x:Key="HeightLabelText">Height</sys:String>
