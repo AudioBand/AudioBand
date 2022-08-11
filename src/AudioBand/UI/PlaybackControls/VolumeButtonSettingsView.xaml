@@ -24,7 +24,7 @@
                        Text="{StaticResource PopupColorSectionText}" />
             <UniformGrid Columns="2"
                          Rows="1"
-                         Width="600"
+                         Width="510"
                          Style="{StaticResource ArrangementGridStyle}">
                 <ui:ColorPicker Margin="0,5,5,0"
                                 Title="{StaticResource VolumeBarForegroundLabelText}"
@@ -43,7 +43,7 @@
                             Color="{Binding PopupBackgroundColor}" />
             <UniformGrid Columns="2"
                          Rows="1"
-                         Width="600"
+                         Width="510"
                          Style="{StaticResource ArrangementGridStyle}">
                 <ui:ColorPicker Margin="0,5,5,0"
                                 Title="{StaticResource VolumeBarThumbColorDescription}"

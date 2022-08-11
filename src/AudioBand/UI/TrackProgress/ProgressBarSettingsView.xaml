@@ -20,7 +20,7 @@
                        Text="{StaticResource ProgressBarColorsSectionText}" />
             <UniformGrid Columns="2"
                          Rows="1"
-                         Width="610"
+                         Width="510"
                          Style="{StaticResource ArrangementGridStyle}">
                 <audioband:ColorPicker Margin="0,5,5,0"
                                        Title="{StaticResource ProgressBarForegroundColorDescription}"
@@ -39,13 +39,13 @@
                                    Color="{Binding HoverColor}" />
             <UniformGrid Columns="2"
                          Rows="1"
-                         Width="610"
+                         Width="510"
                          Style="{StaticResource ArrangementGridStyle}">
                 <audioband:ColorPicker Margin="0,5,5,0"
                                 Title="{StaticResource ProgressBarThumbColorDescription}"
                                 DialogService="{Binding DialogService}"
                                 Color="{Binding ProgressBarThumbColor}" />
-                <audioband:ColorPicker Margin="0,5,5,0"
+                <audioband:ColorPicker Margin="5,5,0,0"
                                 Title="{StaticResource ProgressBarThumbBorderColorDescription}"
                                 DialogService="{Binding DialogService}"
                                 Color="{Binding ThumbBorderColor}" />
