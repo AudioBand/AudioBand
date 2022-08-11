@@ -42,13 +42,13 @@
                          Width="610"
                          Style="{StaticResource ArrangementGridStyle}">
                 <audioband:ColorPicker Margin="0,5,5,0"
-                                Title="{StaticResource ProgressBarThumbBorderColorDescription}"
-                                DialogService="{Binding DialogService}"
-                                Color="{Binding ThumbBorderColor}" />
-                <audioband:ColorPicker Margin="0,5,5,0"
                                 Title="{StaticResource ProgressBarThumbColorDescription}"
                                 DialogService="{Binding DialogService}"
                                 Color="{Binding ProgressBarThumbColor}" />
+                <audioband:ColorPicker Margin="0,5,5,0"
+                                Title="{StaticResource ProgressBarThumbBorderColorDescription}"
+                                DialogService="{Binding DialogService}"
+                                Color="{Binding ThumbBorderColor}" />
             </UniformGrid>
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
