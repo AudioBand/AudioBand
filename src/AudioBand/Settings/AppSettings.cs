@@ -157,11 +157,18 @@ namespace AudioBand.Settings
 
             if (_profiles.ContainsKey(newProfileName))
             {
-                throw new ArgumentException("Profile already exists", nameof(newProfileName));
+                // dont throw, so app doesn't crash
+                // TODO: open a little popup to say there is already a profile with this name
+                return;
             }
 
+            var currentProfile = CurrentProfile;
+
             _persistSettings.DeleteProfile(CurrentProfile.Name);
-            CurrentProfile.Name = newProfileName;
+            _profiles.Remove(CurrentProfile.Name);
+
+            currentProfile.Name = newProfileName;
+            CreateProfile(newProfileName);
             Save();
         }
 
