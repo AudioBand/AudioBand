@@ -12,6 +12,3 @@ A clear and concise description of what feature(s) you would like to see in audi
 
 ## Alternative Solutions
 A clear and concise description of any alternative solutions or features you've considered.
-
-## Extra (if applicable)
-Add any other info or screenshots regarding the requested feature here.
