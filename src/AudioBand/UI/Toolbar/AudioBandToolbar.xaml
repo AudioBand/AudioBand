@@ -479,6 +479,7 @@
             <i:Interaction.Behaviors>
                 <audioband:SliderThrottle FinalValue="{Binding TrackProgress, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=TwoWay}" />
                 <audioband:SliderClickAndDrag />
+                <audioband:ShowTimeBehavior Prefix=""/>
             </i:Interaction.Behaviors>
             <Slider.Style>
                 <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource ProgressBarStyle}">

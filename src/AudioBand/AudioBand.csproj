@@ -131,6 +131,7 @@
     <Compile Include="UI\Behaviors\CanvasPositioning.cs" />
     <Compile Include="UI\Behaviors\Fallback.cs" />
     <Compile Include="UI\Behaviors\RedirectScrolling.cs" />
+    <Compile Include="UI\Behaviors\ShowTimeBehavior.cs" />
     <Compile Include="UI\Behaviors\SliderClickAndDrag.cs" />
     <Compile Include="UI\Behaviors\TrackOffsetFix.cs" />
     <Compile Include="Commands\AsyncRelayCommand.cs" />
