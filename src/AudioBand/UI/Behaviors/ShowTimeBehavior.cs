@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AudioBand.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -15,27 +16,31 @@ namespace AudioBand.UI
         /// <summary>
         /// Dependency property for <see cref="PrefixProperty"/>.
         /// </summary>
-        public static readonly DependencyProperty PrefixProperty = DependencyProperty.Register(
-            "Prefix",
-            typeof(string),
-            typeof(ShowTimeBehavior),
-            new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty PrefixProperty = DependencyProperty.Register("Prefix", typeof(string), typeof(ShowTimeBehavior), new PropertyMetadata(default(string)));
+
+        /// <summary>
+        /// Dependency property for <see cref="TypeProperty"/>
+        /// </summary>
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register("Type", typeof(SliderToolTipType), typeof(ShowTimeBehavior), new PropertyMetadata(SliderToolTipType.ProgressBar));
 
         private Track _track;
 
         /// <summary>
-        /// Gets or sets the prefix
+        /// Gets or sets the prefix.
         /// </summary>
         public string Prefix
         {
-            get
-            {
-                return (string)GetValue(PrefixProperty);
-            }
-            set
-            {
-                SetValue(PrefixProperty, value);
-            }
+            get => (string)GetValue(PrefixProperty);
+            set => SetValue(PrefixProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Type.
+        /// </summary>
+        public SliderToolTipType Type
+        {
+            get => (SliderToolTipType)GetValue(TypeProperty);
+            set => SetValue(TypeProperty, value);
         }
 
         /// <inheritdoc />
@@ -66,15 +71,31 @@ namespace AudioBand.UI
             var valueFromPoint = _track.ValueFromPoint(position);
             var floorOfValueFromPoint = (int)Math.Floor(valueFromPoint);
 
-            var time = TimeSpan.FromMilliseconds(floorOfValueFromPoint);
-            var formattedTime = time.ToString("mm\\:ss");
+            var displayText = $"{Prefix}{floorOfValueFromPoint}";
 
-            if (time >= TimeSpan.FromHours(1))
+            switch (Type)
             {
-                formattedTime = time.ToString("hh\\:mm\\:ss");
+                case SliderToolTipType.ProgressBar:
+                    {
+                        var time = TimeSpan.FromMilliseconds(floorOfValueFromPoint);
+                        displayText = time.ToString("mm\\:ss");
+
+                        if (time >= TimeSpan.FromHours(1))
+                        {
+                            displayText = time.ToString("hh\\:mm\\:ss");
+                        }
+
+                        break;
+                    }
+                case SliderToolTipType.Volume:
+                    {
+                        break;
+                    }
+                default:
+                    break;
             }
 
-            var toolTip = $"{Prefix}{formattedTime}";
+            var toolTip = $"{Prefix}{displayText}";
             ToolTipService.SetToolTip(_track, toolTip);
             ToolTipService.SetShowDuration(_track, 100000);
         }
