@@ -11,17 +11,17 @@ namespace AudioBand.UI
     /// <summary>
     /// Show time tooltip behavior for a slider.
     /// </summary>
-    internal class SliderTooltipBehavior : Behavior<Slider>
+    internal class SliderToolTipBehavior : Behavior<Slider>
     {
         /// <summary>
         /// Dependency property for <see cref="PrefixProperty"/>.
         /// </summary>
-        public static readonly DependencyProperty PrefixProperty = DependencyProperty.Register("Prefix", typeof(string), typeof(SliderTooltipBehavior), new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty PrefixProperty = DependencyProperty.Register("Prefix", typeof(string), typeof(SliderToolTipBehavior), new PropertyMetadata(default(string)));
 
         /// <summary>
         /// Dependency property for <see cref="TypeProperty"/>
         /// </summary>
-        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register("Type", typeof(SliderToolTipType), typeof(SliderTooltipBehavior), new PropertyMetadata(SliderToolTipType.ProgressBar));
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register("Type", typeof(SliderToolTipType), typeof(SliderToolTipBehavior), new PropertyMetadata(SliderToolTipType.ProgressBar));
 
         private Track _track;
 

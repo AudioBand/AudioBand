@@ -449,7 +449,7 @@
                         Value="{Binding Volume, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
                         <audioband:SliderClickAndDrag />
-                        <audioband:SliderTooltipBehavior Prefix="" Type="Volume" />
+                        <audioband:SliderToolTipBehavior Prefix="" Type="Volume" />
                     </i:Interaction.Behaviors>
                     <Slider.Style>
                         <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource VolumeSliderStyle}">
@@ -480,7 +480,7 @@
             <i:Interaction.Behaviors>
                 <audioband:SliderThrottle FinalValue="{Binding TrackProgress, Converter={x:Static audioband:Converters.TimeSpanToMs}, Mode=TwoWay}" />
                 <audioband:SliderClickAndDrag />
-                <audioband:SliderTooltipBehavior Prefix="" Type="ProgressBar" />
+                <audioband:SliderToolTipBehavior Prefix="" Type="ProgressBar" />
             </i:Interaction.Behaviors>
             <Slider.Style>
                 <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource ProgressBarStyle}">
