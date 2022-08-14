@@ -113,6 +113,7 @@
     <Compile Include="Models\MouseBinding.cs" />
     <Compile Include="Models\MouseBindingCommandType.cs" />
     <Compile Include="Models\MouseInputType.cs" />
+    <Compile Include="Models\SliderToolTipType.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\SemanticVersion.cs" />
     <Compile Include="Settings\MappingProfiles\SettingsV1ToSettingsV2Profile.cs" />
