@@ -113,7 +113,7 @@
                                        FontSize="18"
                                        Text="&#xE771;" />
                             </StackPanel>
-                            <TextBlock Padding="14,0,0,0" Text="{StaticResource ProfileRepoTab}" />
+                            <TextBlock Padding="14,0,0,0" Text="{StaticResource CommunityProfilesTab}" />
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Command="{Binding SelectViewModelCommand}"
@@ -500,7 +500,7 @@
                                 <Setter Property="Text" Value="{StaticResource GlobalSettingsTab}" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:ProfileRepoViewModel}">
-                                <Setter Property="Text" Value="{StaticResource ProfileRepoTab}" />
+                                <Setter Property="Text" Value="{StaticResource CommunityProfilesTab}" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding SelectedViewModel, Converter={x:Static audioband:Converters.ObjectToType}}" Value="{x:Type audioband:MouseBindingsViewModel}">
                                 <Setter Property="Text" Value="{StaticResource MouseBindingsTab}" />
