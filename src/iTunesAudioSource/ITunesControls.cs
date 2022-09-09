@@ -133,7 +133,12 @@ namespace iTunesAudioSource
 
         public bool GetLike()
         {
-            var track = _itunesApp.CurrentTrack as IITFileOrCDTrack;
+            var track = (IITFileOrCDTrack)_itunesApp.CurrentTrack;
+
+            if (track == null)
+            {
+                return false;
+            }
 
             return track.ratingKind == ITRatingKind.ITRatingKindUser ? true : false;
 
