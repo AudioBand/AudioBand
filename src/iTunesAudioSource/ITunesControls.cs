@@ -133,7 +133,7 @@ namespace iTunesAudioSource
 
         public bool GetLike()
         {
-            var track = (IITFileOrCDTrack)_itunesApp.CurrentTrack;
+            var track = _itunesApp.CurrentTrack as IITFileOrCDTrack;
 
             if (track == null)
             {
