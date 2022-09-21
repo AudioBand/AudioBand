@@ -77,25 +77,42 @@ namespace iTunesAudioSource
         /// <inheritdoc/>
         public Task ActivateAsync()
         {
-            /* If AudioSource is activated and iTunes isn't open yet,
-             * it will open this manually and this can take a while.
-             * That is why we fire a separate thread for it.
-             */
-            new Thread(() =>
+            try
             {
-                Thread.CurrentThread.IsBackground = true;
-                _itunesControls.Start();
-            }).Start();
+                /* If AudioSource is activated and iTunes isn't open yet,
+                 * it will open this manually and this can take a while.
+                 * That is why we fire a separate thread for it.
+                 */
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    _itunesControls.Start();
+                }).Start();
 
-            _checkiTunesTimer.Start();
+                _checkiTunesTimer.Start();
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                Logger.Error("Tried to activate the iTunes AudioSource but iTunes is not installed!");
+                DeactivateAsync();
+            }
+
             return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public Task DeactivateAsync()
         {
-            _checkiTunesTimer.Stop();
-            _itunesControls.Stop();
+            try
+            {
+                _checkiTunesTimer.Stop();
+                _itunesControls.Stop();
+            }
+            catch (Exception)
+            {
+                // iTunes not installed, ignore
+            }
 
             _isPlaying = false;
             _currentTrack = null;

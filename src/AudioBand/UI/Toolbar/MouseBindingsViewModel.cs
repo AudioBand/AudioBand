@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using AudioBand.AudioSource;
@@ -304,11 +305,12 @@ namespace AudioBand.UI
                     try
                     {
                         var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                        Process.Start($"{path}/Spotify/Spotify.exe");
+                        var exe = $"{path}/Spotify/Spotify.exe";
+                        Process.Start(File.Exists(exe) ? exe : "spotify://");
                     }
                     catch (Exception)
                     {
-                        Logger.Debug("Failed to open Spotify through path.");
+                        Logger.Debug("Failed to open Spotify through path or protocol.");
                     }
                 }
 

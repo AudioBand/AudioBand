@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -94,6 +95,16 @@ namespace AudioBand.UI
         /// </summary>
         public ICommand RefreshProfilesCommand { get; set; }
 
+        /// <summary>
+        /// Gets the command to open the link to the project.
+        /// </summary>
+        public ICommand OpenLinkCommand { get; } = new RelayCommand<string>(OpenLinkCommandOnExecute);
+
+        /// <summary>
+        /// Gets the Community Profiles link.
+        /// </summary>
+        public string CommunityProfileProjectLink => "https://github.com/AudioBand/CommunityProfiles";
+
         /// <inheritdoc />
         protected override void OnReset()
         {
@@ -169,7 +180,16 @@ namespace AudioBand.UI
                 return;
             }
 
-            _appSettings.DeleteProfile(profileName);
+            try
+            {
+                // can throw if only 1 profile left
+                _appSettings.DeleteProfile(profileName);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+            }
+
             _messageBus.Publish(ProfilesUpdatedMessage.ProfileDeleted);
 
             communityProfile.IsInstalled = false;
@@ -229,6 +249,10 @@ namespace AudioBand.UI
             AvailableProfiles.Clear();
             AvailableProfiles = new ObservableCollection<CommunityProfile>(profiles);
             RaisePropertyChangedAll();
+        }
+        private static void OpenLinkCommandOnExecute(string link)
+        {
+            Process.Start(link);
         }
     }
 }

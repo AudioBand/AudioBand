@@ -26,7 +26,8 @@
     <sys:String x:Key="InstalledButtonText">Installed</sys:String>
     <sys:String x:Key="DeleteButtonTooltip">Delete</sys:String>
     <sys:String x:Key="UpdateButtonTooltip">Update</sys:String>
-
+    <sys:String x:Key="CommunityProfileProjectLink">https://github.com/AudioBand/CommunityProfiles</sys:String>
+    
     <!--  Common settings  -->
     <sys:String x:Key="WidthLabelText">Width</sys:String>
     <sys:String x:Key="HeightLabelText">Height</sys:String>
@@ -185,7 +186,7 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="ProgressBarBackgroundColorDescription">Background color</sys:String>
     <sys:String x:Key="ProgressBarHoverColorDescription">Background color when hovered</sys:String>
     <sys:String x:Key="ProgressBarThumbBorderColorDescription">Thumb's border color</sys:String>
-    <sys:String x:Key="ProgressBarThumbColorDescription">Thumb's border color</sys:String>
+    <sys:String x:Key="ProgressBarThumbColorDescription">Thumb color</sys:String>
 
     <!--  Album art settings text  -->
     <sys:String x:Key="AlbumArtPlaceholderSectionText">Image</sys:String>
