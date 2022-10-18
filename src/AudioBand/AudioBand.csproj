@@ -107,6 +107,7 @@
     <Compile Include="AudioSource\IAudioSession.cs" />
     <Compile Include="AudioSource\IAudioSourceManager.cs" />
     <Compile Include="AudioSource\IInternalAudioSource.cs" />
+    <Compile Include="Messages\AudioSourceUpdatedMessage.cs" />
     <Compile Include="Models\LikeButton.cs" />
     <Compile Include="Models\CommunityAudiosource.cs" />
     <Compile Include="Models\CommunityProfile.cs" />
