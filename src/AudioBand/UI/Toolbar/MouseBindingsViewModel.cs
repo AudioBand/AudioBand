@@ -192,6 +192,12 @@ namespace AudioBand.UI
                 case MouseBindingCommandType.PreviousProfile:
                     SwitchProfile(true);
                     break;
+                case MouseBindingCommandType.NextAudioSource:
+                    SwitchAudioSource();
+                    break;
+                case MouseBindingCommandType.PreviousAudioSource:
+                    SwitchAudioSource(true);
+                    break;
                 case MouseBindingCommandType.Play:
                     _audioSession.CurrentAudioSource?.PlayTrackAsync();
                     break;
@@ -341,6 +347,20 @@ namespace AudioBand.UI
             index = index >= amountOfProfiles ? 0 : index;
 
             _appSettings.SelectProfile(_appSettings.Profiles.ElementAt(index).Name);
+        }
+
+        private void SwitchAudioSource(bool previous = false)
+        {
+            var index = Array.FindIndex(_appSettings.AudioSources.ToArray(), x => x.Name == _appSettings.CurrentAudioSource.Name);
+            var amountOfAudioSources = _appSettings.AudioSources.Count();
+
+            index = previous ? index - 1 : index + 1;
+
+            // check if AudioSource out of bounds, if so loop back to start/end
+            index = index < 0 ? amountOfAudioSources - 1 : index;
+            index = index >= amountOfAudioSources ? 0 : index;
+
+            _appSettings.SelectAudioSource(_appSettings.AudioSources.ElementAt(index).Name);
         }
     }
 }

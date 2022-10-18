@@ -69,5 +69,15 @@
         /// Toggles the players play/pause.
         /// </summary>
         TogglePlayPause = 12,
+
+        /// <summary>
+        /// Switches to the next AudioSource.
+        /// </summary>
+        NextAudioSource = 13,
+
+        /// <summary>
+        /// Switches to the previous AudioSource.
+        /// </summary>
+        PreviousAudioSource = 14,
     }
 }

@@ -61,6 +61,12 @@ namespace AudioBand.Settings
         /// <inheritdoc />
         public IEnumerable<UserProfile> Profiles => _profiles.Values;
 
+        /// <inheritdoc/>
+        public AudioSourceSettings CurrentAudioSource => AudioSource { get; }
+
+        /// <inheritdoc/>
+        public IEnumerable<AudioSourceSettings> AudioSources => throw new NotImplementedException();
+
         /// <inheritdoc />
         public void SelectProfile(string profileName)
         {
@@ -273,6 +279,11 @@ namespace AudioBand.Settings
                 profiles[i].VolumeButton ??= new VolumeButton();
                 profiles[i].LikeButton ??= new LikeButton();
             }
+        }
+
+        public void SelectAudioSource(string audioSourceName)
+        {
+            throw new NotImplementedException();
         }
     }
 }
