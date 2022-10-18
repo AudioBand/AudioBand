@@ -1,4 +1,5 @@
 ﻿using AudioBand.AudioSource;
+using System.Collections.Generic;
 
 namespace AudioBand.Models
 {
@@ -7,6 +8,8 @@ namespace AudioBand.Models
     /// </summary>
     public class AudioSourceSetting
     {
+        public static IEnumerable<AudioSourceSettings> Values { get; internal set; }
+
         /// <summary>
         /// Gets or sets the name of the setting provided by the <see cref="IAudioSource"/>.
         /// </summary>
