@@ -351,8 +351,8 @@ namespace AudioBand.UI
 
         private void SwitchAudioSource(bool previous = false)
         {
-            var index = Array.FindIndex(_appSettings.AudioSources.ToArray(), x => x.Name == _appSettings.CurrentAudioSource.Name);
-            var amountOfAudioSources = _appSettings.AudioSources.Count();
+            var index = Array.FindIndex(_appSettings.AudioSourceSettings.ToArray(), x => x.Name == _appSettings.AudioSourceSettings?.Name);
+            var amountOfAudioSources = _appSettings.AudioSource.Count();
 
             index = previous ? index - 1 : index + 1;
 
@@ -360,7 +360,7 @@ namespace AudioBand.UI
             index = index < 0 ? amountOfAudioSources - 1 : index;
             index = index >= amountOfAudioSources ? 0 : index;
 
-            _appSettings.SelectAudioSource(_appSettings.AudioSources.ElementAt(index).Name);
+            _messageBus.Publish(AudioSourceUpdatedMessage.AudioSourceSelected);
         }
     }
 }

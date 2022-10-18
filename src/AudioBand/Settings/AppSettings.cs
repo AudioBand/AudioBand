@@ -61,12 +61,6 @@ namespace AudioBand.Settings
         /// <inheritdoc />
         public IEnumerable<UserProfile> Profiles => _profiles.Values;
 
-        /// <inheritdoc/>
-        public AudioSourceSettings CurrentAudioSource => throw new NotImplementedException();
-
-        /// <inheritdoc/>
-        public IEnumerable<AudioSourceSettings> AudioSources => AudioSourceSetting.Values;
-
         /// <inheritdoc />
         public void SelectProfile(string profileName)
         {

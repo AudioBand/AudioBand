@@ -115,7 +115,10 @@ namespace AudioBand.UI
             get => _selectedUserProfile;
             set => SetProperty(ref _selectedUserProfile, value);
         }
-        public Action<AudioSourceUpdatedMessage> OnAudioSourceUpdated { get; private set; }
+
+        private void OnAudioSourceUpdated(AudioSourceUpdatedMessage msg)
+        {
+        }
 
         private void ShowSettingsWindowCommandOnExecute()
         {

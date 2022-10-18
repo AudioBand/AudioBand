@@ -70,22 +70,6 @@ namespace AudioBand.Settings
         void RenameCurrentProfile(string newProfileName);
 
         /// <summary>
-        /// Gets the current AudioSource.
-        /// </summary>
-        AudioSourceSettings CurrentAudioSource { get; }
-
-        /// <summary>
-        /// Gets the list of AudioSources.
-        /// </summary>
-        IEnumerable<AudioSourceSettings> AudioSources { get; }
-
-        /// <summary>
-        /// Selects a new AudioSource.
-        /// </summary>
-        /// <param name="audioSourceName">The name of the AudioSource to switch to.</param>
-        void SelectAudioSource(string audioSourceName);
-
-        /// <summary>
         /// Save the settings.
         /// </summary>
         void Save();
