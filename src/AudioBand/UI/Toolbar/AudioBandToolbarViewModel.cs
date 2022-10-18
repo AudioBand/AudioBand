@@ -49,6 +49,7 @@ namespace AudioBand.UI
             ViewModels = viewModels;
 
             _messageBus.Subscribe<ProfilesUpdatedMessage>(OnProfilesUpdated);
+            _messageBus.Subscribe<AudioSourceUpdatedMessage>(OnAudioSourceUpdated);
 
             ShowSettingsWindowCommand = new RelayCommand(ShowSettingsWindowCommandOnExecute);
             LoadCommand = new AsyncRelayCommand<object>(LoadCommandOnExecute);
@@ -114,6 +115,7 @@ namespace AudioBand.UI
             get => _selectedUserProfile;
             set => SetProperty(ref _selectedUserProfile, value);
         }
+        public Action<AudioSourceUpdatedMessage> OnAudioSourceUpdated { get; private set; }
 
         private void ShowSettingsWindowCommandOnExecute()
         {

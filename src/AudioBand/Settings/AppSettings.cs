@@ -280,10 +280,5 @@ namespace AudioBand.Settings
                 profiles[i].LikeButton ??= new LikeButton();
             }
         }
-
-        public void SelectAudioSource(string audioSourceName)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
