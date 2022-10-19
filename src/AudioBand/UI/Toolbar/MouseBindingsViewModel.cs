@@ -351,7 +351,7 @@ namespace AudioBand.UI
 
         private void SwitchAudioSource(bool previous = false)
         {
-            var index = Array.FindIndex(_appSettings.AudioSourceSettings.ToArray(), x => x.Name == _appSettings.AudioSourceSettings?.Name);
+            var index = Array.FindIndex(_appSettings.AudioSourceSettings.ToArray(), x => x.Name == _appSettings.AudioSource?.Name);
             var amountOfAudioSources = _appSettings.AudioSource.Count();
 
             index = previous ? index - 1 : index + 1;
