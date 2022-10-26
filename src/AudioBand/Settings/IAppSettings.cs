@@ -25,6 +25,11 @@ namespace AudioBand.Settings
         AudioBandSettings AudioBandSettings { get; }
 
         /// <summary>
+        /// Gets the current audio source.
+        /// </summary>
+        AudioSourceSetting AudioSourceSetting { get; }
+
+        /// <summary>
         /// Gets the saved audio source settings.
         /// </summary>
         List<AudioSourceSettings> AudioSourceSettings { get; }

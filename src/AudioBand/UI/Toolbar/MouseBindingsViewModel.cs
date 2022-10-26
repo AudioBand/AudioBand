@@ -19,23 +19,27 @@ namespace AudioBand.UI
     /// </summary>
     public class MouseBindingsViewModel : ViewModelBase
     {
+        private readonly IAudioSourceManager _audioSourceManager;
         private IAppSettings _appSettings;
         private IAudioSession _audioSession;
         private IMessageBus _messageBus;
 
+        public ObservableCollection<IInternalAudioSource> _audioSources { get; private set; }
         private ObservableCollection<MouseBinding> _mouseBindings = new ObservableCollection<MouseBinding>();
         private List<MouseBinding> _backup = new List<MouseBinding>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseBindingsViewModel"/> class.
         /// </summary>
+        /// <param name="audioSourceManager">The audio source mananger.</param>
         /// <param name="appSettings">The app settings.</param>
         /// <param name="audioSession">The audio session.</param>
         /// <param name="messageBus">The message bus.</param>
-        public MouseBindingsViewModel(IAppSettings appSettings, IAudioSession audioSession, IMessageBus messageBus)
+        public MouseBindingsViewModel(IAppSettings appSettings, IAudioSourceManager audioSourceManager, IAudioSession audioSession, IMessageBus messageBus)
         {
             MouseBindings = new ObservableCollection<MouseBinding>(appSettings.AudioBandSettings.MouseBindings);
 
+            _audioSourceManager = audioSourceManager;
             _appSettings = appSettings;
             _audioSession = audioSession;
             _messageBus = messageBus;
@@ -71,6 +75,11 @@ namespace AudioBand.UI
             get => _mouseBindings;
             set => SetProperty(ref _mouseBindings, value);
         }
+
+        /// <summary>
+        /// Gets a collection of all available AudioSources.
+        /// </summary>
+        public ObservableCollection<IInternalAudioSource> AudioSources { get; private set; }
 
         /// <summary>
         /// Gets the command to start editing.
@@ -351,8 +360,8 @@ namespace AudioBand.UI
 
         private void SwitchAudioSource(bool previous = false)
         {
-            var index = Array.FindIndex(_appSettings.AudioSourceSettings.ToArray(), x => x.Name == _appSettings.AudioSource?.Name);
-            var amountOfAudioSources = _appSettings.AudioSource.Count();
+            var index = Array.FindIndex(_appSettings.AudioSourceSettings.ToArray(), x => x.AudioSourceName == _appSettings.AudioBandSettings?.LastAudioSourceName);
+            var amountOfAudioSources = AudioSources.Count();
 
             index = previous ? index - 1 : index + 1;
 

@@ -16,10 +16,5 @@ namespace AudioBand.Models
         /// Gets or sets the list of settings that the audio source exposes.
         /// </summary>
         public List<AudioSourceSetting> Settings { get; set; } = new List<AudioSourceSetting>();
-
-        /// <summary>
-        /// Gets or sets the name of the profile.
-        /// </summary>
-        public string Name { get; set; }
     }
 }

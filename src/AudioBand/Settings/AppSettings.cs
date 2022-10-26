@@ -50,6 +50,9 @@ namespace AudioBand.Settings
         public string AudioSource { get; set; }
 
         /// <inheritdoc />
+        public AudioSourceSetting AudioSourceSetting { get; }
+
+        /// <inheritdoc />
         public List<AudioSourceSettings> AudioSourceSettings { get; }
 
         /// <inheritdoc />
@@ -261,6 +264,16 @@ namespace AudioBand.Settings
                     {
                         MouseInputType = MouseInputType.ScrollDown,
                         CommandType = MouseBindingCommandType.NextSong
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollUp,
+                        CommandType = MouseBindingCommandType.PreviousAudioSource
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollDown,
+                        CommandType = MouseBindingCommandType.NextAudioSource
                     },
                 };
             }
