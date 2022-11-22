@@ -138,7 +138,7 @@
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
                         <Setter Property="MaxWidth" Value="280" />
-                        <Setter Property="MaxHeight" Value="320" />
+                        <Setter Property="Height" Value="Auto" />
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="Margin" Value="5"/>
                         <!-- Prevent selection & hovering visual effects -->
