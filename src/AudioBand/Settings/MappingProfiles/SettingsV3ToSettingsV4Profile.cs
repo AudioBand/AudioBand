@@ -23,6 +23,7 @@ namespace AudioBand.Settings.MappingProfiles
                 .ForMember(dest => dest.AudioBandSettings, opt => opt.MapFrom(src => new AudioBandSettings()))
                 .ForMember(dest => dest.Profiles, opt => opt.MapFrom(src => src.Profiles));
             CreateMap<KeyValuePair<string, ProfileV3>, UserProfile>()
+                .ForMember(dest => dest.Version, opt => opt.MapFrom("v0.0.1"))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Key))
                 .ForMember(dest => dest.AlbumArtPopup, opt => opt.MapFrom(src => src.Value.AlbumArtPopupSettings))
                 .ForMember(dest => dest.AlbumArt, opt => opt.MapFrom(src => src.Value.AlbumArtSettings))

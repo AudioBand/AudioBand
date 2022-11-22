@@ -135,6 +135,11 @@ namespace iTunesAudioSource
         {
             var track = _itunesApp.CurrentTrack as IITFileOrCDTrack;
 
+            if (track == null)
+            {
+                return false;
+            }
+
             return track.ratingKind == ITRatingKind.ITRatingKindUser ? true : false;
 
             // this is how it should be done, but it's readonly
