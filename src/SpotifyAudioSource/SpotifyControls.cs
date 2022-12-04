@@ -18,8 +18,10 @@ namespace SpotifyAudioSource
         {
             // find spotify window by class name since the title changes depending on if a song is playing
             var hwnd = NativeMethods.FindWindowEx(IntPtr.Zero, IntPtr.Zero, SpotifyWindowClassName, null);
+
             if (hwnd == IntPtr.Zero)
             {
+                _spotifyHwnd = IntPtr.Zero;
                 return null;
             }
 
