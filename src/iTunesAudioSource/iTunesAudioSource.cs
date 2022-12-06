@@ -257,7 +257,7 @@ namespace iTunesAudioSource
         {
             try
             {
-                var track = _itunesControls.CurrentTrack;
+                var track = _itunesControls.GetTrack();
                 if (track == null)
                 {
                     return;
