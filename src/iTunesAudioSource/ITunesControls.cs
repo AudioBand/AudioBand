@@ -84,8 +84,15 @@ namespace iTunesAudioSource
 
         public void Start()
         {
-            _itunesApp = new iTunesApp();
-            _checkProcessTimer.Start();
+            try
+            {
+                _itunesApp = new iTunesApp();
+                _checkProcessTimer.Start();
+            }
+            catch (Exception)
+            {
+                // iTunes isnt installed, just ignore
+            }
         }
 
         public void Stop()
