@@ -168,9 +168,12 @@ namespace AudioBand.Settings
                 throw new ArgumentException("Profile already exists", nameof(newProfileName));
             }
 
-            _persistSettings.DeleteProfile(CurrentProfile.Name);
-            CurrentProfile.Name = newProfileName;
-            Save();
+            _profiles.TryGetValue(CurrentProfile.Name, out UserProfile profile);
+            _profiles.Remove(CurrentProfile.Name);
+
+            profile.Name = newProfileName;
+            _profiles.Add(newProfileName, profile);
+            SelectProfile(newProfileName);
         }
 
         /// <inheritdoc />
