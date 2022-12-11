@@ -380,7 +380,7 @@ namespace SpotifyAudioSource
                     _spotifyControls.TryPause();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 _spotifyControls.TryPause();
             }
@@ -398,7 +398,7 @@ namespace SpotifyAudioSource
                     _spotifyControls.TryPrevious();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 _spotifyControls.TryPrevious();
             }

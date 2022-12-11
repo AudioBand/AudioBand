@@ -26,7 +26,15 @@ namespace AudioBand.Settings
         {
             _persistSettings = persistSettings;
             _messageBus = messageBus;
-            _persistSettings.CheckAndConvertOldSettings();
+
+            try
+            {
+                _persistSettings.CheckAndConvertOldSettings();
+            }
+            catch (Exception)
+            {
+                // log? - something went wrong, ignore
+            }
 
             var settings = _persistSettings.ReadSettings();
             DoSettingsNullChecks(settings);
