@@ -43,6 +43,21 @@ namespace AudioBand.Settings.Models.V3
         /// Gets or sets the progressbar settings.
         /// </summary>
         public ProgressBar ProgressBarSettings { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the Foreground Gradient Color settings.
+        /// </summary>
+        public ProgressBar ForegroundGradientColorSettings { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ProgressBar Thumb Color settings.
+        /// </summary>
+        public ProgressBar ProgressBarThumbColorSettings { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ThumbBorder Color settings.
+        /// </summary>
+        public ProgressBar ThumbBorderColorSettings { get; set; }
 
         /// <summary>
         /// Gets or sets the album art settings.
