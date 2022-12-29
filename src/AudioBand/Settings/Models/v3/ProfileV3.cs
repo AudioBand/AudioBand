@@ -43,7 +43,7 @@ namespace AudioBand.Settings.Models.V3
         /// Gets or sets the progressbar settings.
         /// </summary>
         public ProgressBar ProgressBarSettings { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the Foreground Gradient Color settings.
         /// </summary>

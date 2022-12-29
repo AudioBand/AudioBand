@@ -84,10 +84,24 @@ namespace AudioBand.Models
         public ProgressBar ProgressBar { get; set; }
 
         /// <summary>
+        /// Gets the Foreground Gradient Color.
+        /// </summary>
+        public object ForegroundGradientColor { get; internal set; }
+
+        /// <summary>
+        /// Gets the ProgressBar Thumb Color Color.
+        /// </summary>
+        public object ProgressBarThumbColor { get; internal set; }
+
+        /// <summary>
+        /// Gets the Thumb Border Color Color.
+        /// </summary>
+        public object ThumbBorderColor { get; internal set; }
+
+        /// <summary>
         /// Gets or sets the like dislike button model.
         /// </summary>
         public LikeButton LikeButton { get; set; }
-
 
         /// <summary>
         /// Creates an initial profile with default values.
