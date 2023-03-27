@@ -254,6 +254,9 @@ namespace AudioBand.Settings
 
         private void DoSettingsNullChecks(Persistence.Settings settings)
         {
+            settings.AudioBandSettings ??= new AudioBandSettings();
+            settings.AudioSourceSettings ??= new List<AudioSourceSettings>();
+
             if (settings.AudioBandSettings.MouseBindings == null || settings.AudioBandSettings.MouseBindings.Count == 0)
             {
                 settings.AudioBandSettings.MouseBindings = new List<MouseBinding>()
