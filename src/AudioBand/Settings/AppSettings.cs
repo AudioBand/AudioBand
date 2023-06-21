@@ -194,6 +194,7 @@ namespace AudioBand.Settings
         public void ImportProfileFromPath(string path)
         {
             var profile = _persistSettings.ReadProfile(path);
+
             if (profile is null)
             {
                 return;
@@ -257,7 +258,7 @@ namespace AudioBand.Settings
             settings.AudioBandSettings ??= new AudioBandSettings();
             settings.AudioSourceSettings ??= new List<AudioSourceSettings>();
 
-            if (settings.AudioBandSettings.MouseBindings == null || settings.AudioBandSettings.MouseBindings.Count == 0)
+            if (settings.AudioBandSettings.MouseBindings == null)
             {
                 settings.AudioBandSettings.MouseBindings = new List<MouseBinding>()
                 {
