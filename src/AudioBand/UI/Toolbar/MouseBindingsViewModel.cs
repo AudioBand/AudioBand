@@ -239,6 +239,12 @@ namespace AudioBand.UI
                     }
 
                     break;
+                case MouseBindingCommandType.Skip15Seconds:
+                    _audioSession.CurrentAudioSource?.SetPlaybackProgressAsync(_audioSession.SongProgress.Add(TimeSpan.FromSeconds(15)));
+                    break;
+                case MouseBindingCommandType.Rewind15Seconds:
+                    _audioSession.CurrentAudioSource?.SetPlaybackProgressAsync(_audioSession.SongProgress.Add(TimeSpan.FromSeconds(-15)));
+                    break;
                 default:
                     break;
             }
