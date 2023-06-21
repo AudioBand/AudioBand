@@ -168,6 +168,12 @@ namespace AudioBand.Settings
                 throw new ArgumentException("Profile already exists", nameof(newProfileName));
             }
 
+            if (AudioBandSettings.IdleProfileName == CurrentProfile.Name)
+            {
+                AudioBandSettings.IdleProfileName = newProfileName;
+            }
+
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileRenamed);
             _profiles.TryGetValue(CurrentProfile.Name, out UserProfile profile);
             _profiles.Remove(CurrentProfile.Name);
 

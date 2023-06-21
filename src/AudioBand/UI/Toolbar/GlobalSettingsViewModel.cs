@@ -292,6 +292,12 @@ namespace AudioBand.UI
         {
             ProfileNames = new ObservableCollection<string>(_appSettings.Profiles.Select(p => p.Name));
             RaisePropertyChanged(nameof(ProfileNames));
+
+            // if idle profile was renamed, update it to the new one
+            if (_appSettings.AudioBandSettings.IdleProfileName != SelectedProfileName)
+            {
+                SelectedProfileName = _appSettings.AudioBandSettings.IdleProfileName;
+            }
         }
     }
 }
