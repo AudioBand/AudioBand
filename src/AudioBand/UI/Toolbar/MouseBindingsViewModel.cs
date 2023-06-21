@@ -178,6 +178,7 @@ namespace AudioBand.UI
 
                 if (mouseBinding.MouseInputType == inputType)
                 {
+                    Logger.Info($"MouseBinding triggered! InputType: {inputType} ActionType: {mouseBinding.CommandType}");
                     ExecuteCommandBasedOnInputType(mouseBinding.CommandType);
                 }
             }
