@@ -246,6 +246,7 @@ namespace AudioBand.Models
                 AlbumArt = new AlbumArt()
                 {
                     PlaceholderPath = "",
+                    CornerRadius = 4,
                     IsVisible = true,
                     Width = 30.0,
                     Height = 30.0,
@@ -477,6 +478,7 @@ namespace AudioBand.Models
                 AlbumArt = new AlbumArt()
                 {
                     PlaceholderPath = "",
+                    CornerRadius = 4,
                     IsVisible = true,
                     Width = 25.0,
                     Height = 25.0,
@@ -606,6 +608,7 @@ namespace AudioBand.Models
                 {
                     PlaceholderPath = "",
                     IsVisible = true,
+                    CornerRadius = 4,
                     Width = 30.0,
                     Height = 30.0,
                     XPosition = 205.0,

@@ -176,7 +176,6 @@
             <audioband:BindingProxy x:Key="DataContextProxy" Value="{Binding .}" />
         </Canvas.Resources>
         <Border x:Name="AlbumArt"
-                CornerRadius="{Binding CornerRadius}"
                  Width="{Binding Width}"
                  Height="{Binding Height}"
                  audioband:CanvasPositioning.Anchor="{Binding Anchor}"
@@ -187,7 +186,8 @@
                  ToolTipService.HasDropShadow="True"
                  ToolTipService.InitialShowDelay="500"
                  ToolTipService.ShowDuration="999999"
-                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
+                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}"
+                 CornerRadius="{Binding CornerRadius}">
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="Background">
