@@ -197,6 +197,7 @@ namespace AudioBand.UI
         private void RenameProfileCommandOnExecute()
         {
             string newProfileName = _dialogService.ShowRenameDialog(SelectedProfileName, ProfileNames.ToList());
+
             if (newProfileName == null || newProfileName == SelectedProfileName)
             {
                 return;
