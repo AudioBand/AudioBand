@@ -20,5 +20,10 @@
         /// Gets or sets the path of the placeholder image.
         /// </summary>
         public string PlaceholderPath { get; set; } = "";
+
+        /// <summary>
+        /// Gets or sets the Corner Radius.
+        /// </summary>
+        public int CornerRadius { get; set; } = 4;
     }
 }

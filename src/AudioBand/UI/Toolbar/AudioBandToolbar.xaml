@@ -175,7 +175,7 @@
         <Canvas.Resources>
             <audioband:BindingProxy x:Key="DataContextProxy" Value="{Binding .}" />
         </Canvas.Resources>
-        <Viewbox x:Name="AlbumArt"
+        <Border x:Name="AlbumArt"
                  Width="{Binding Width}"
                  Height="{Binding Height}"
                  audioband:CanvasPositioning.Anchor="{Binding Anchor}"
@@ -186,20 +186,27 @@
                  ToolTipService.HasDropShadow="True"
                  ToolTipService.InitialShowDelay="500"
                  ToolTipService.ShowDuration="999999"
-                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
-            <Image>
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="{Binding AlbumArt, FallbackValue={StaticResource AlbumArtFallback}}" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding AlbumArt}" Value="{x:Null}">
-                                <Setter Property="Source" Value="{Binding PlaceholderPath, Converter={x:Static audioband:Converters.PathToImageSource}, TargetNullValue={StaticResource AlbumArtFallback}, FallbackValue={StaticResource AlbumArtFallback}}" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-            <Viewbox.ToolTip>
+                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}"
+                 CornerRadius="{Binding CornerRadius}">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="{Binding AlbumArt, FallbackValue={StaticResource AlbumArtFallback}}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AlbumArt}" Value="{x:Null}">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{Binding PlaceholderPath, Converter={x:Static audioband:Converters.PathToImageSource}, TargetNullValue={StaticResource AlbumArtFallback}, FallbackValue={StaticResource AlbumArtFallback}}" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Border.ToolTip>
                 <ToolTip x:Name="AlbumArtTooltip"
                          Padding="0"
                          Background="Black"
@@ -248,8 +255,8 @@
                         </Style>
                     </ToolTip.Style>
                 </ToolTip>
-            </Viewbox.ToolTip>
-        </Viewbox>
+            </Border.ToolTip>
+        </Border>
         <ItemsControl x:Name="CustomLabels"
                       Width="{Binding ViewModels.GeneralSettingsViewModel.Width}"
                       Height="{Binding ViewModels.GeneralSettingsViewModel.Height}"

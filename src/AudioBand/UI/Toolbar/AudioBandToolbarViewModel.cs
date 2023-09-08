@@ -244,6 +244,8 @@ namespace AudioBand.UI
         {
             if (msg == ProfilesUpdatedMessage.ProfileSelected)
             {
+                Logger.Info($"Switching from profile \"{SelectedProfile}\" to \"{_appSettings.CurrentProfile}\"");
+
                 SelectedProfile = _appSettings.CurrentProfile;
                 return;
             }

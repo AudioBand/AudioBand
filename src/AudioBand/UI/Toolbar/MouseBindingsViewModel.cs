@@ -187,6 +187,7 @@ namespace AudioBand.UI
 
                 if (mouseBinding.MouseInputType == inputType)
                 {
+                    Logger.Info($"MouseBinding triggered! InputType: {inputType} ActionType: {mouseBinding.CommandType}");
                     ExecuteCommandBasedOnInputType(mouseBinding.CommandType);
                 }
             }
@@ -252,6 +253,12 @@ namespace AudioBand.UI
                         _audioSession.CurrentAudioSource?.PlayTrackAsync();
                     }
 
+                    break;
+                case MouseBindingCommandType.Skip15Seconds:
+                    _audioSession.CurrentAudioSource?.SetPlaybackProgressAsync(_audioSession.SongProgress.Add(TimeSpan.FromSeconds(15)));
+                    break;
+                case MouseBindingCommandType.Rewind15Seconds:
+                    _audioSession.CurrentAudioSource?.SetPlaybackProgressAsync(_audioSession.SongProgress.Add(TimeSpan.FromSeconds(-15)));
                     break;
                 default:
                     break;
