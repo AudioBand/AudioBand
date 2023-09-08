@@ -105,7 +105,7 @@ namespace AudioBand.UI
         }
 
         /// <summary>
-        /// Gets the list of profile names.
+        /// Gets or sets the list of profile names.
         /// </summary>
         public ObservableCollection<string> ProfileNames { get; set; }
 
@@ -204,7 +204,11 @@ namespace AudioBand.UI
             }
 
             _appSettings.RenameCurrentProfile(newProfileName);
+            var index = ProfileNames.IndexOf(SelectedProfileName);
+
+            ProfileNames[index] = newProfileName;
             SelectedProfileName = newProfileName;
+
             _messageBus.Publish(ProfilesUpdatedMessage.ProfileRenamed);
         }
 
