@@ -203,12 +203,6 @@ namespace AudioBand.UI
                 case MouseBindingCommandType.PreviousProfile:
                     SwitchProfile(true);
                     break;
-                case MouseBindingCommandType.NextAudioSource:
-                    SwitchAudioSource();
-                    break;
-                case MouseBindingCommandType.PreviousAudioSource:
-                    SwitchAudioSource(true);
-                    break;
                 case MouseBindingCommandType.Play:
                     _audioSession.CurrentAudioSource?.PlayTrackAsync();
                     break;
@@ -259,6 +253,12 @@ namespace AudioBand.UI
                     break;
                 case MouseBindingCommandType.Rewind15Seconds:
                     _audioSession.CurrentAudioSource?.SetPlaybackProgressAsync(_audioSession.SongProgress.Add(TimeSpan.FromSeconds(-15)));
+                    break;
+                case MouseBindingCommandType.NextAudioSource:
+                    SwitchAudioSource();
+                    break;
+                case MouseBindingCommandType.PreviousAudioSource:
+                    SwitchAudioSource(true);
                     break;
                 default:
                     break;
@@ -378,7 +378,7 @@ namespace AudioBand.UI
             index = index < 0 ? amountOfAudioSources - 1 : index;
             index = index >= amountOfAudioSources ? 0 : index;
 
-            _messageBus.Publish(AudioSourceUpdatedMessage.AudioSourceSelected);
+            _appSettings.SelectAudiosource(_appSettings.AudioSourceSettings.ElementAt(index).AudioSourceName);
         }
     }
 }

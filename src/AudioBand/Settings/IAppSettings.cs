@@ -45,6 +45,12 @@ namespace AudioBand.Settings
         IEnumerable<UserProfile> Profiles { get; }
 
         /// <summary>
+        /// Selects an audiosource.
+        /// </summary>
+        /// <param name="audiosource">The name of the audiosource.</param>
+        void SelectAudiosource(string audiosource);
+
+        /// <summary>
         /// Selects a new profile.
         /// </summary>
         /// <param name="profileName">The name of the profile to switch to.</param>

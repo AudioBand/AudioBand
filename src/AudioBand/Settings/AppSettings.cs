@@ -73,6 +73,18 @@ namespace AudioBand.Settings
         public IEnumerable<UserProfile> Profiles => _profiles.Values;
 
         /// <inheritdoc />
+        public void SelectAudiosource(string audiosource)
+        {
+            if (AudioSource == audiosource)
+            {
+                return;
+            }
+
+            AudioSource = audiosource;
+            _messageBus.Publish(AudioSourceUpdatedMessage.AudioSourceSelected);
+        }
+
+        /// <inheritdoc />
         public void SelectProfile(string profileName)
         {
             if (CurrentProfile?.Name == profileName || !_profiles.ContainsKey(profileName))
