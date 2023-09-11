@@ -98,13 +98,7 @@ namespace AudioBand.UI
         public IAudioSource SelectedAudioSource
         {
             get => _selectedAudioSource;
-            set
-            {
-                if (SetProperty(ref _selectedAudioSource, value))
-                {
-                    _appSettings.AudioSource = value?.Name;
-                }
-            }
+            set => SetProperty(ref _selectedAudioSource, value);
         }
 
         /// <summary>
@@ -150,6 +144,9 @@ namespace AudioBand.UI
             // Raise property changed after everything is set up so audio source settings can't be changed by the user in the middle.
             RaisePropertyChanged(nameof(AudioSources));
             Logger.Debug("Audio sources loaded. Loaded {num} sources", AudioSources.Count);
+
+            // call once at the start
+            OnAudioSourceUpdated(AudioSourceUpdatedMessage.AudioSourceSelected);
 
             // Initalize Profiles
             InitializeProfiles();

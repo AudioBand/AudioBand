@@ -20,7 +20,6 @@ namespace AudioBand.UI
     /// </summary>
     public class MouseBindingsViewModel : ViewModelBase
     {
-        private readonly IAudioSourceManager _audioSourceManager;
         private IAppSettings _appSettings;
         private IAudioSession _audioSession;
         private IMessageBus _messageBus;
@@ -40,7 +39,7 @@ namespace AudioBand.UI
         {
             MouseBindings = new ObservableCollection<MouseBinding>(appSettings.AudioBandSettings.MouseBindings);
 
-            _audioSourceManager = audioSourceManager;
+            AudioSources = new ObservableCollection<IInternalAudioSource>(audioSourceManager.LoadAudioSourcesAsync().Result);
             _appSettings = appSettings;
             _audioSession = audioSession;
             _messageBus = messageBus;
@@ -369,7 +368,7 @@ namespace AudioBand.UI
 
         private void SwitchAudioSource(bool previous = false)
         {
-            var index = Array.FindIndex(_appSettings.AudioSourceSettings.ToArray(), x => x.AudioSourceName == _appSettings.AudioBandSettings?.LastAudioSourceName);
+            var index = Array.FindIndex(AudioSources.ToArray(), x => x.Name == _appSettings.AudioSource);
             var amountOfAudioSources = AudioSources.Count();
 
             index = previous ? index - 1 : index + 1;
@@ -378,7 +377,7 @@ namespace AudioBand.UI
             index = index < 0 ? amountOfAudioSources - 1 : index;
             index = index >= amountOfAudioSources ? 0 : index;
 
-            _appSettings.SelectAudiosource(_appSettings.AudioSourceSettings.ElementAt(index).AudioSourceName);
+            _appSettings.SelectAudiosource(AudioSources.ElementAt(index).Name);
         }
     }
 }

@@ -76,10 +76,5 @@ namespace AudioBand.Models
         /// Gets or sets the mouse bindings.
         /// </summary>
         public List<MouseBinding> MouseBindings { get; set; }
-      
-        /// <summary>
-        /// Gets or sets last active audiosource.
-        /// </summary>
-        public string LastAudioSourceName { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace AudioBand.Settings
             var settings = _persistSettings.ReadSettings();
             DoSettingsNullChecks(settings);
 
-            AudioSource = settings.CurrentAudioSource;
+            SelectAudiosource(settings.CurrentAudioSource);
             AudioSourceSettings = settings.AudioSourceSettings?.ToList() ?? new List<AudioSourceSettings>();
             AudioBandSettings = settings.AudioBandSettings ?? new AudioBandSettings();
 
