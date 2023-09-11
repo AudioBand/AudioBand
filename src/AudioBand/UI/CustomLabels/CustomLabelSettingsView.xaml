@@ -93,7 +93,7 @@
                     </TextBlock>
                 </Border>
             </Popup>
-
+            <!-- Font Settings -->
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource CustomLabelFontSectionText}" />
@@ -113,7 +113,7 @@
             <audioband:ColorPicker Title="{StaticResource CustomLabelFontColorDescription}"
                                    DialogService="{Binding Path=DialogService}"
                                    Color="{Binding Path=Color}" />
-
+            <!-- Overflow Settings -->
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource CustomLabelOverflowSectionText}" />
@@ -142,7 +142,7 @@
                 <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource CustomLabelScrollSpeedDescription}" />
                 <metro:NumericUpDown audioband:NumericInput.Type="WholeNumber" Value="{Binding ScrollSpeed, Mode=TwoWay, Converter={x:Static audioband:Converters.TimeSpanToMs}, Delay=700}" />
             </ItemsControl>
-
+            <!-- Effects Settings -->
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource CustomLabelEffectsSectionText}" />
@@ -166,7 +166,18 @@
                                TickFrequency="0.1"
                                TickPlacement="BottomRight"
                                UpperValue="{Binding RightFadeOffset}" />
-
+            <!-- Border Settings -->
+            <TextBlock Margin="{StaticResource SectionMargin}"
+                       Style="{StaticResource TitleTextBlock}"
+                       Text="{StaticResource CustomLabelBorderSectionText}" />
+            <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource CustomLabelBorderThicknessDescription}" />
+            <metro:NumericUpDown audioband:NumericInput.Type="WholeNumber" Value="{Binding BorderThickness, Mode=TwoWay}" />
+            <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="{StaticResource CustomLabelBorderCornerRadiusDescription}" />
+            <metro:NumericUpDown audioband:NumericInput.Type="WholeNumber" Value="{Binding BorderCornerRadius, Mode=TwoWay}" />
+            <audioband:ColorPicker Title="{StaticResource CustomLabelBorderColorDescription}"
+                                   DialogService="{Binding Path=DialogService}"
+                                   Color="{Binding Path=BorderColor}" />
+            <!-- Other Settings -->
             <TextBlock Margin="{StaticResource SectionMargin}"
                        Style="{StaticResource TitleTextBlock}"
                        Text="{StaticResource OtherSectionText}" />

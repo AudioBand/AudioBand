@@ -69,5 +69,15 @@
         /// Toggles the players play/pause.
         /// </summary>
         TogglePlayPause = 12,
+
+        /// <summary>
+        /// Skips 15 seconds in the player.
+        /// </summary>
+        Skip15Seconds = 13,
+
+        /// <summary>
+        /// Rewinds 15 seconds in the player.
+        /// </summary>
+        Rewind15Seconds = 14,
     }
 }

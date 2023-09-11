@@ -47,6 +47,7 @@ namespace AudioBand.UI
             UpdateProfileCommand = new AsyncRelayCommand<string>(OnUpdateProfileCommandExecuted);
             DeleteProfileCommand = new RelayCommand<string>(OnDeleteProfileCommandExecuted);
             RefreshProfilesCommand = new AsyncRelayCommand(OnRefreshProfilesCommand);
+            OpenLinkCommand = new RelayCommand<string>(OpenLinkCommandOnExecute);
 
             IsDownloading = false;
             IsRefreshDisabled = false;
@@ -98,7 +99,7 @@ namespace AudioBand.UI
         /// <summary>
         /// Gets the command to open the link to the project.
         /// </summary>
-        public ICommand OpenLinkCommand { get; } = new RelayCommand<string>(OpenLinkCommandOnExecute);
+        public ICommand OpenLinkCommand { get; }
 
         /// <summary>
         /// Gets the Community Profiles link.
@@ -250,7 +251,8 @@ namespace AudioBand.UI
             AvailableProfiles = new ObservableCollection<CommunityProfile>(profiles);
             RaisePropertyChangedAll();
         }
-        private static void OpenLinkCommandOnExecute(string link)
+
+        private void OpenLinkCommandOnExecute(string link)
         {
             Process.Start(link);
         }

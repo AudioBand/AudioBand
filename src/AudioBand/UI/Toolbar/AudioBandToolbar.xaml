@@ -175,7 +175,7 @@
         <Canvas.Resources>
             <audioband:BindingProxy x:Key="DataContextProxy" Value="{Binding .}" />
         </Canvas.Resources>
-        <Viewbox x:Name="AlbumArt"
+        <Border x:Name="AlbumArt"
                  Width="{Binding Width}"
                  Height="{Binding Height}"
                  audioband:CanvasPositioning.Anchor="{Binding Anchor}"
@@ -186,20 +186,27 @@
                  ToolTipService.HasDropShadow="True"
                  ToolTipService.InitialShowDelay="500"
                  ToolTipService.ShowDuration="999999"
-                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}">
-            <Image>
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="{Binding AlbumArt, FallbackValue={StaticResource AlbumArtFallback}}" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding AlbumArt}" Value="{x:Null}">
-                                <Setter Property="Source" Value="{Binding PlaceholderPath, Converter={x:Static audioband:Converters.PathToImageSource}, TargetNullValue={StaticResource AlbumArtFallback}, FallbackValue={StaticResource AlbumArtFallback}}" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-            <Viewbox.ToolTip>
+                 Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}"
+                 CornerRadius="{Binding CornerRadius}">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="{Binding AlbumArt, FallbackValue={StaticResource AlbumArtFallback}}" />
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AlbumArt}" Value="{x:Null}">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{Binding PlaceholderPath, Converter={x:Static audioband:Converters.PathToImageSource}, TargetNullValue={StaticResource AlbumArtFallback}, FallbackValue={StaticResource AlbumArtFallback}}" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Border.ToolTip>
                 <ToolTip x:Name="AlbumArtTooltip"
                          Padding="0"
                          Background="Black"
@@ -248,8 +255,8 @@
                         </Style>
                     </ToolTip.Style>
                 </ToolTip>
-            </Viewbox.ToolTip>
-        </Viewbox>
+            </Border.ToolTip>
+        </Border>
         <ItemsControl x:Name="CustomLabels"
                       Width="{Binding ViewModels.GeneralSettingsViewModel.Width}"
                       Height="{Binding ViewModels.GeneralSettingsViewModel.Height}"
@@ -272,15 +279,20 @@
                             Height="{Binding Height}"
                             Background="Transparent"
                             ClipToBounds="True">
-                        <i:Interaction.Behaviors>
-                            <audioband:MarqueeContainer IsPlaying="{Binding IsPlaying}"
+                            <i:Interaction.Behaviors>
+                                <audioband:MarqueeContainer IsPlaying="{Binding IsPlaying}"
                                                         ScrollBehavior="{Binding ScrollBehavior}"
                                                         ScrollDuration="{Binding ScrollSpeed}"
                                                         TargetChild="{Binding ElementName=TextBlock1}"
                                                         TargetCopy="{Binding ElementName=TextBlockCopy}"
                                                         TextOverflow="{Binding TextOverflow}" />
-                        </i:Interaction.Behaviors>
-                        <TextBlock x:Name="TextBlock1"
+                            </i:Interaction.Behaviors>
+                            <Border Width="{Binding Width}" Height="{Binding Height}"
+                                BorderBrush="{Binding BorderColor, Converter={x:Static audioband:Converters.ColorToBrush}}"
+                                BorderThickness="{Binding BorderThickness}"
+                                CornerRadius="{Binding BorderCornerRadius}">
+                            </Border>
+                            <TextBlock x:Name="TextBlock1"
                                    MinWidth="{Binding Width}"
                                    MinHeight="{Binding Height}"
                                    VerticalAlignment="Center"
@@ -292,7 +304,7 @@
                                    TextTrimming="None"
                                    TextWrapping="NoWrap"
                                    Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
-                        <TextBlock x:Name="TextBlockCopy"
+                            <TextBlock x:Name="TextBlockCopy"
                                    MinWidth="{Binding Width}"
                                    MinHeight="{Binding Height}"
                                    VerticalAlignment="Center"
@@ -305,42 +317,42 @@
                                    TextTrimming="None"
                                    TextWrapping="NoWrap"
                                    Visibility="{Binding IsVisible, Converter={x:Static audioband:Converters.BoolToVisibility}}" />
-                        <Canvas.Style>
-                            <Style TargetType="{x:Type Canvas}">
-                                <Style.Resources>
-                                    <LinearGradientBrush x:Key="Mask" MappingMode="Absolute" StartPoint="0,0">
-                                        <!--  Use mapping mode absolute because relative mode is relative to the child text instead of the canvas  -->
-                                        <LinearGradientBrush.EndPoint>
-                                            <MultiBinding Converter="{x:Static audioband:MultiConverters.Point}">
-                                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type Canvas}}" />
-                                                <Binding>
-                                                    <Binding.Source>0.0</Binding.Source>
-                                                </Binding>
-                                            </MultiBinding>
-                                        </LinearGradientBrush.EndPoint>
-                                        <LinearGradientBrush.GradientStops>
-                                            <GradientStop Offset="0" Color="Transparent" />
-                                            <GradientStop Offset="{Binding LeftFadeOffset}" Color="Black" />
-                                            <GradientStop Offset="{Binding RightFadeOffset}" Color="Black" />
-                                            <GradientStop Offset="1" Color="Transparent" />
-                                        </LinearGradientBrush.GradientStops>
-                                    </LinearGradientBrush>
-                                </Style.Resources>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding FadeEffect}" Value="{x:Static models:TextFadeEffect.Always}">
-                                        <Setter Property="OpacityMask" Value="{StaticResource Mask}" />
-                                    </DataTrigger>
-                                    <MultiDataTrigger>
-                                        <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding FadeEffect}" Value="{x:Static models:TextFadeEffect.OnlyWhenScrolling}" />
-                                            <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=(audioband:MarqueeContainer.IsScrolling)}" Value="True" />
-                                        </MultiDataTrigger.Conditions>
-                                        <Setter Property="OpacityMask" Value="{StaticResource Mask}" />
-                                    </MultiDataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Canvas.Style>
-                    </Canvas>
+                            <Canvas.Style>
+                                <Style TargetType="{x:Type Canvas}">
+                                    <Style.Resources>
+                                        <LinearGradientBrush x:Key="Mask" MappingMode="Absolute" StartPoint="0,0">
+                                            <!--  Use mapping mode absolute because relative mode is relative to the child text instead of the canvas  -->
+                                            <LinearGradientBrush.EndPoint>
+                                                <MultiBinding Converter="{x:Static audioband:MultiConverters.Point}">
+                                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type Canvas}}" />
+                                                    <Binding>
+                                                        <Binding.Source>0.0</Binding.Source>
+                                                    </Binding>
+                                                </MultiBinding>
+                                            </LinearGradientBrush.EndPoint>
+                                            <LinearGradientBrush.GradientStops>
+                                                <GradientStop Offset="0" Color="Transparent" />
+                                                <GradientStop Offset="{Binding LeftFadeOffset}" Color="Black" />
+                                                <GradientStop Offset="{Binding RightFadeOffset}" Color="Black" />
+                                                <GradientStop Offset="1" Color="Transparent" />
+                                            </LinearGradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding FadeEffect}" Value="{x:Static models:TextFadeEffect.Always}">
+                                            <Setter Property="OpacityMask" Value="{StaticResource Mask}" />
+                                        </DataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding FadeEffect}" Value="{x:Static models:TextFadeEffect.OnlyWhenScrolling}" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=(audioband:MarqueeContainer.IsScrolling)}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="OpacityMask" Value="{StaticResource Mask}" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Canvas.Style>
+                        </Canvas>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

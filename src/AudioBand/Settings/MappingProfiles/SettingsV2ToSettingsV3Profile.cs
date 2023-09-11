@@ -21,7 +21,10 @@ namespace AudioBand.Settings.MappingProfiles
                     .ForMember(dest => dest.TextOverflow, opt => opt.Ignore())
                     .ForMember(dest => dest.LeftFadeOffset, opt => opt.Ignore())
                     .ForMember(dest => dest.RightFadeOffset, opt => opt.Ignore())
-                    .ForMember(dest => dest.FadeEffect, opt => opt.Ignore());
+                    .ForMember(dest => dest.FadeEffect, opt => opt.Ignore())
+                    .ForMember(dest => dest.BorderColor, opt => opt.Ignore())
+                    .ForMember(dest => dest.BorderThickness, opt => opt.Ignore())
+                    .ForMember(dest => dest.BorderCornerRadius, opt => opt.Ignore());
             CreateMap<Models.V2.AudioSourceSettings, AudioSourceSettings>();
             CreateMap<Models.V2.NextButtonSettings, NextButton>()
                 .ForMember(dest => dest.Anchor, opt => opt.MapFrom(source => PositionAnchor.TopLeft))
@@ -83,11 +86,15 @@ namespace AudioBand.Settings.MappingProfiles
                 .ForPath(dest => dest.PauseContent.ClickedTextColor, opt => opt.Ignore());
             CreateMap<Models.V2.ProgressBarSettings, ProgressBar>()
                 .ForMember(dest => dest.Anchor, opt => opt.MapFrom(source => PositionAnchor.TopLeft))
-                .ForMember(dest => dest.HoverColor, opt => opt.Ignore());
+                .ForMember(dest => dest.HoverColor, opt => opt.Ignore())
+                .ForMember(dest => dest.ForegroundGradientColor, opt => opt.Ignore())
+                .ForMember(dest => dest.ProgressBarThumbColor, opt => opt.Ignore())
+                .ForMember(dest => dest.ThumbBorderColor, opt => opt.Ignore());
             CreateMap<Models.V2.AudioBandSettings, AudioBand.Models.GeneralSettings>()
                 .ForMember(dest => dest.BackgroundColor, opt => opt.Ignore());
             CreateMap<Models.V2.AlbumArtSettings, AlbumArt>()
-                .ForMember(dest => dest.Anchor, opt => opt.MapFrom(source => PositionAnchor.TopLeft));
+                .ForMember(dest => dest.Anchor, opt => opt.MapFrom(source => PositionAnchor.TopLeft))
+                .ForMember(dest => dest.CornerRadius, opt => opt.Ignore());
             CreateMap<Models.V2.AlbumArtPopupSettings, AlbumArtPopup>();
             CreateMap<Models.V2.SettingsV2, ProfileV3>()
                 .ForMember(dest => dest.AlbumArtPopupSettings, opt => opt.MapFrom(source => source.AlbumArtPopupSettings))

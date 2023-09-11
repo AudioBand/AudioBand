@@ -23,6 +23,7 @@ namespace SpotifyAudioSource
     {
         private readonly SpotifyControls _spotifyControls = new SpotifyControls();
         private Timer _checkSpotifyTimer = new Timer(1000);
+        private int _checkForLikeCounter = 0;
         private Timer _volumeUpdateTimer = new Timer(750);
         private DateTime _lastVolumeUpdate = DateTime.UtcNow.AddMinutes(-1);
 
@@ -380,7 +381,7 @@ namespace SpotifyAudioSource
                     _spotifyControls.TryPause();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 _spotifyControls.TryPause();
             }
@@ -398,7 +399,7 @@ namespace SpotifyAudioSource
                     _spotifyControls.TryPrevious();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 _spotifyControls.TryPrevious();
             }
@@ -502,6 +503,7 @@ namespace SpotifyAudioSource
                    => _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId })), "AddLike");
             }
 
+            _checkForLikeCounter = 0;
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
@@ -773,6 +775,13 @@ namespace SpotifyAudioSource
                 return;
             }
 
+            // this is a heavy api call, limit it to once every 10 cycles
+            if (_checkForLikeCounter < 10)
+            {
+                return;
+            }
+
+            _checkForLikeCounter = 0;
             var isLiked = (await _spotifyClient.Library.CheckTracks(new LibraryCheckTracksRequest(new List<string>() { _currentItemId }))).FirstOrDefault();
 
             if (isLiked == _currentLikeState)

@@ -27,8 +27,6 @@ namespace iTunesAudioSource
 
         public bool IsPlaying => GetIsPlaying();
 
-        public Track CurrentTrack => GetTrack();
-
         public TimeSpan Progress
         {
             get
@@ -86,8 +84,15 @@ namespace iTunesAudioSource
 
         public void Start()
         {
-            _itunesApp = new iTunesApp();
-            _checkProcessTimer.Start();
+            try
+            {
+                _itunesApp = new iTunesApp();
+                _checkProcessTimer.Start();
+            }
+            catch (Exception)
+            {
+                // iTunes isnt installed, just ignore
+            }
         }
 
         public void Stop()
@@ -156,7 +161,7 @@ namespace iTunesAudioSource
             }
         }
 
-        private Track GetTrack()
+        public Track GetTrack()
         {
             if (!ITunesIsRunning())
             {
@@ -165,19 +170,18 @@ namespace iTunesAudioSource
 
             try
             {
-                var track = _itunesApp.CurrentTrack as IITTrack;
-                if (track == null)
+                if (_itunesApp.CurrentTrack == null)
                 {
                     return null;
                 }
 
                 return new Track
                 {
-                    Album = track.Album,
-                    Artist = track.Artist,
-                    Length = TimeSpan.FromSeconds(track.Duration),
-                    Name = track.Name,
-                    Artwork = GetArtwork(track.Artwork)
+                    Album = _itunesApp.CurrentTrack.Album,
+                    Artist = _itunesApp.CurrentTrack.Artist,
+                    Length = TimeSpan.FromSeconds(_itunesApp.CurrentTrack.Duration),
+                    Name = _itunesApp.CurrentTrack.Name,
+                    Artwork = GetArtwork(_itunesApp.CurrentTrack.Artwork)
                 };
             }
             catch (COMException)

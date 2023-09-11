@@ -98,5 +98,20 @@ namespace AudioBand.Models
         /// Gets or sets the fade offset for the right side.
         /// </summary>
         public double RightFadeOffset { get; set; } = 0.9;
+
+        /// <summary>
+        /// Gets or sets the Border Color.
+        /// </summary>
+        public Color BorderColor { get; set; } = Colors.White;
+
+        /// <summary>
+        /// Gets or sets the Border' Thickness.
+        /// </summary>
+        public int BorderThickness { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets the Corner Radius of the Border.
+        /// </summary>
+        public int BorderCornerRadius { get; set; } = 0;
     }
 }

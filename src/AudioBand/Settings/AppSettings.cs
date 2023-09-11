@@ -26,7 +26,15 @@ namespace AudioBand.Settings
         {
             _persistSettings = persistSettings;
             _messageBus = messageBus;
-            _persistSettings.CheckAndConvertOldSettings();
+
+            try
+            {
+                _persistSettings.CheckAndConvertOldSettings();
+            }
+            catch (Exception)
+            {
+                // log? - something went wrong, ignore
+            }
 
             var settings = _persistSettings.ReadSettings();
             DoSettingsNullChecks(settings);
@@ -160,9 +168,18 @@ namespace AudioBand.Settings
                 throw new ArgumentException("Profile already exists", nameof(newProfileName));
             }
 
-            _persistSettings.DeleteProfile(CurrentProfile.Name);
-            CurrentProfile.Name = newProfileName;
-            Save();
+            if (AudioBandSettings.IdleProfileName == CurrentProfile.Name)
+            {
+                AudioBandSettings.IdleProfileName = newProfileName;
+            }
+
+            _messageBus.Publish(ProfilesUpdatedMessage.ProfileRenamed);
+            _profiles.TryGetValue(CurrentProfile.Name, out UserProfile profile);
+            _profiles.Remove(CurrentProfile.Name);
+
+            profile.Name = newProfileName;
+            _profiles.Add(newProfileName, profile);
+            SelectProfile(newProfileName);
         }
 
         /// <inheritdoc />
@@ -183,6 +200,7 @@ namespace AudioBand.Settings
         public void ImportProfileFromPath(string path)
         {
             var profile = _persistSettings.ReadProfile(path);
+
             if (profile is null)
             {
                 return;
@@ -243,7 +261,10 @@ namespace AudioBand.Settings
 
         private void DoSettingsNullChecks(Persistence.Settings settings)
         {
-            if (settings.AudioBandSettings.MouseBindings == null || settings.AudioBandSettings.MouseBindings.Count == 0)
+            settings.AudioBandSettings ??= new AudioBandSettings();
+            settings.AudioSourceSettings ??= new List<AudioSourceSettings>();
+
+            if (settings.AudioBandSettings.MouseBindings == null)
             {
                 settings.AudioBandSettings.MouseBindings = new List<MouseBinding>()
                 {

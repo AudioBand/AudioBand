@@ -75,6 +75,6 @@ namespace AudioBand.Models
         /// <summary>
         /// Gets or sets the mouse bindings.
         /// </summary>
-        public List<MouseBinding> MouseBindings { get; set; } = new List<MouseBinding>();
+        public List<MouseBinding> MouseBindings { get; set; }
     }
 }

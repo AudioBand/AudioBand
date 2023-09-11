@@ -105,7 +105,7 @@ namespace AudioBand.UI
         }
 
         /// <summary>
-        /// Gets the list of profile names.
+        /// Gets or sets the list of profile names.
         /// </summary>
         public ObservableCollection<string> ProfileNames { get; set; }
 
@@ -191,11 +191,13 @@ namespace AudioBand.UI
             _appSettings.CreateProfile(newprofile);
             ProfileNames.Add(newprofile);
             _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
+            SelectedProfileName = newprofile;
         }
 
         private void RenameProfileCommandOnExecute()
         {
             string newProfileName = _dialogService.ShowRenameDialog(SelectedProfileName, ProfileNames.ToList());
+
             if (newProfileName == null || newProfileName == SelectedProfileName)
             {
                 return;
@@ -203,8 +205,10 @@ namespace AudioBand.UI
 
             _appSettings.RenameCurrentProfile(newProfileName);
             var index = ProfileNames.IndexOf(SelectedProfileName);
+
             ProfileNames[index] = newProfileName;
             SelectedProfileName = newProfileName;
+
             _messageBus.Publish(ProfilesUpdatedMessage.ProfileRenamed);
         }
 

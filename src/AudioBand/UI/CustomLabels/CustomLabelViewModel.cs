@@ -163,6 +163,36 @@ namespace AudioBand.UI
         }
 
         /// <summary>
+        /// Gets or sets the Border Color.
+        /// </summary>
+        [TrackState]
+        public Color BorderColor
+        {
+            get => Model.BorderColor;
+            set => SetProperty(Model, nameof(Model.BorderColor), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Border' Thickness.
+        /// </summary>
+        [TrackState]
+        public int BorderThickness
+        {
+            get => Model.BorderThickness;
+            set => SetProperty(Model, nameof(Model.BorderThickness), value);
+        }
+
+        /// <summary>
+        /// Gets or sets the Corner Radius of the Border.
+        /// </summary>
+        [TrackState]
+        public int BorderCornerRadius
+        {
+            get => Model.BorderCornerRadius;
+            set => SetProperty(Model, nameof(Model.BorderCornerRadius), value);
+        }
+
+        /// <summary>
         /// Gets the text segments.
         /// </summary>
         public IEnumerable<TextSegment> TextSegments
