@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -64,6 +65,10 @@ namespace SpotifyAudioSource
 
             _volumeUpdateTimer.AutoReset = false;
             _volumeUpdateTimer.Elapsed += OnVolumeUpdaterElapsed;
+
+            // required for requesting album art through httprequests
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 |
+                                                    SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
         }
 
         /// <inheritdoc />
@@ -503,7 +508,7 @@ namespace SpotifyAudioSource
                    => _spotifyClient.Library.SaveTracks(new LibrarySaveTracksRequest(new List<string>() { _currentItemId })), "AddLike");
             }
 
-            _checkForLikeCounter = 0;
+            _checkForLikeCounter = 500;
             await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
@@ -770,13 +775,15 @@ namespace SpotifyAudioSource
 
         private async Task NotifyLike()
         {
+            _checkForLikeCounter++;
+
             if (string.IsNullOrEmpty(_currentItemId))
             {
                 return;
             }
 
-            // this is a heavy api call, limit it to once every 10 cycles
-            if (_checkForLikeCounter < 10)
+            // this is a heavy api call, limit it to once every 3 cycles
+            if (_checkForLikeCounter < 3)
             {
                 return;
             }
