@@ -258,8 +258,8 @@ namespace AudioBand.AudioSource
 
         private int GetInterval()
         {
-            return _appSettings.AudioBandSettings.ShouldGoIdleAfterInSeconds == 0
-                ? 250
+            return _appSettings.AudioBandSettings.ShouldGoIdleAfterInSeconds <= 0
+                ? 150
                 : _appSettings.AudioBandSettings.ShouldGoIdleAfterInSeconds * 1000;
         }
     }
