@@ -24,19 +24,22 @@ namespace AudioBand.UI
         private IAudioSession _audioSession;
         private IMessageBus _messageBus;
 
+        public ObservableCollection<IInternalAudioSource> _audioSources { get; private set; }
         private ObservableCollection<MouseBinding> _mouseBindings = new ObservableCollection<MouseBinding>();
         private List<MouseBinding> _backup = new List<MouseBinding>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseBindingsViewModel"/> class.
         /// </summary>
+        /// <param name="audioSourceManager">The audio source mananger.</param>
         /// <param name="appSettings">The app settings.</param>
         /// <param name="audioSession">The audio session.</param>
         /// <param name="messageBus">The message bus.</param>
-        public MouseBindingsViewModel(IAppSettings appSettings, IAudioSession audioSession, IMessageBus messageBus)
+        public MouseBindingsViewModel(IAppSettings appSettings, IAudioSourceManager audioSourceManager, IAudioSession audioSession, IMessageBus messageBus)
         {
             MouseBindings = new ObservableCollection<MouseBinding>(appSettings.AudioBandSettings.MouseBindings);
 
+            AudioSources = new ObservableCollection<IInternalAudioSource>(audioSourceManager.LoadAudioSourcesAsync().Result);
             _appSettings = appSettings;
             _audioSession = audioSession;
             _messageBus = messageBus;
@@ -72,6 +75,11 @@ namespace AudioBand.UI
             get => _mouseBindings;
             set => SetProperty(ref _mouseBindings, value);
         }
+
+        /// <summary>
+        /// Gets a collection of all available AudioSources.
+        /// </summary>
+        public ObservableCollection<IInternalAudioSource> AudioSources { get; private set; }
 
         /// <summary>
         /// Gets the command to start editing.
@@ -245,6 +253,12 @@ namespace AudioBand.UI
                 case MouseBindingCommandType.Rewind15Seconds:
                     _audioSession.CurrentAudioSource?.SetPlaybackProgressAsync(_audioSession.SongProgress.Add(TimeSpan.FromSeconds(-15)));
                     break;
+                case MouseBindingCommandType.NextAudioSource:
+                    SwitchAudioSource();
+                    break;
+                case MouseBindingCommandType.PreviousAudioSource:
+                    SwitchAudioSource(true);
+                    break;
                 default:
                     break;
             }
@@ -350,6 +364,20 @@ namespace AudioBand.UI
             index = index >= amountOfProfiles ? 0 : index;
 
             _appSettings.SelectProfile(_appSettings.Profiles.ElementAt(index).Name);
+        }
+
+        private void SwitchAudioSource(bool previous = false)
+        {
+            var index = Array.FindIndex(AudioSources.ToArray(), x => x.Name == _appSettings.AudioSource);
+            var amountOfAudioSources = AudioSources.Count();
+
+            index = previous ? index - 1 : index + 1;
+
+            // check if AudioSource out of bounds, if so loop back to start/end
+            index = index < 0 ? amountOfAudioSources - 1 : index;
+            index = index >= amountOfAudioSources ? 0 : index;
+
+            _appSettings.SelectAudiosource(AudioSources.ElementAt(index).Name);
         }
     }
 }

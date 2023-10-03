@@ -25,6 +25,11 @@ namespace AudioBand.Settings
         AudioBandSettings AudioBandSettings { get; }
 
         /// <summary>
+        /// Gets the current audio source.
+        /// </summary>
+        AudioSourceSetting AudioSourceSetting { get; }
+
+        /// <summary>
         /// Gets the saved audio source settings.
         /// </summary>
         List<AudioSourceSettings> AudioSourceSettings { get; }
@@ -38,6 +43,12 @@ namespace AudioBand.Settings
         /// Gets the list of profiles.
         /// </summary>
         IEnumerable<UserProfile> Profiles { get; }
+
+        /// <summary>
+        /// Selects an audiosource.
+        /// </summary>
+        /// <param name="audiosource">The name of the audiosource.</param>
+        void SelectAudiosource(string audiosource);
 
         /// <summary>
         /// Selects a new profile.

@@ -70,7 +70,6 @@
         /// </summary>
         TogglePlayPause = 12,
 
-        /// <summary>
         /// Skips 15 seconds in the player.
         /// </summary>
         Skip15Seconds = 13,
@@ -79,5 +78,15 @@
         /// Rewinds 15 seconds in the player.
         /// </summary>
         Rewind15Seconds = 14,
+        
+        /// <summary>
+        /// Switches to the next AudioSource.
+        /// </summary>
+        NextAudioSource = 15,
+
+        /// <summary>
+        /// Switches to the previous AudioSource.
+        /// </summary>
+        PreviousAudioSource = 16,
     }
 }

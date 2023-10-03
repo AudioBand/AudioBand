@@ -39,7 +39,7 @@ namespace AudioBand.Settings
             var settings = _persistSettings.ReadSettings();
             DoSettingsNullChecks(settings);
 
-            AudioSource = settings.CurrentAudioSource;
+            SelectAudiosource(settings.CurrentAudioSource);
             AudioSourceSettings = settings.AudioSourceSettings?.ToList() ?? new List<AudioSourceSettings>();
             AudioBandSettings = settings.AudioBandSettings ?? new AudioBandSettings();
 
@@ -58,6 +58,9 @@ namespace AudioBand.Settings
         public string AudioSource { get; set; }
 
         /// <inheritdoc />
+        public AudioSourceSetting AudioSourceSetting { get; }
+
+        /// <inheritdoc />
         public List<AudioSourceSettings> AudioSourceSettings { get; }
 
         /// <inheritdoc />
@@ -68,6 +71,18 @@ namespace AudioBand.Settings
 
         /// <inheritdoc />
         public IEnumerable<UserProfile> Profiles => _profiles.Values;
+
+        /// <inheritdoc />
+        public void SelectAudiosource(string audiosource)
+        {
+            if (AudioSource == audiosource)
+            {
+                return;
+            }
+
+            AudioSource = audiosource;
+            _messageBus.Publish(AudioSourceUpdatedMessage.AudioSourceSelected);
+        }
 
         /// <inheritdoc />
         public void SelectProfile(string profileName)
@@ -282,6 +297,16 @@ namespace AudioBand.Settings
                     {
                         MouseInputType = MouseInputType.ScrollDown,
                         CommandType = MouseBindingCommandType.NextSong
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollUp,
+                        CommandType = MouseBindingCommandType.PreviousAudioSource
+                    },
+                    new MouseBinding()
+                    {
+                        MouseInputType = MouseInputType.ScrollDown,
+                        CommandType = MouseBindingCommandType.NextAudioSource
                     },
                 };
             }
