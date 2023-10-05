@@ -223,6 +223,8 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="LikeButtonUpdateDescription">But, you need to redo Spotify Authentication to make it work. Make sure to update the redirect url to http://localhost/callback. Then go to Spotify Settings, enable 'Force Refresh Authentication' and click Apply.</sys:String>
     <sys:String x:Key="GitHubApiLimitTitle">Download limit Reached!</sys:String>
     <sys:String x:Key="GitHubApiLimitDescription">GitHub only allows so many file downloads per hour. Please try again later!</sys:String>
+    <sys:String x:Key="ProfileAlreadyExistsTitle">Download limit Reached!</sys:String>
+    <sys:String x:Key="ProfileAlreadyExistsDescription"> later!</sys:String>
 
     <!--  Profiles  -->
     <sys:String x:Key="NewProfileHelpText">New profile</sys:String>
