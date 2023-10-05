@@ -172,8 +172,6 @@ namespace AudioBand
 
         private async Task DownloadDirectoryAssetsAsync(IReadOnlyList<RepositoryContent> files, string assetsFolderPath, string assetsUrl)
         {
-            using var client = new WebClient();
-
             if (!Directory.Exists(assetsFolderPath))
             {
                 Directory.CreateDirectory(assetsFolderPath);
@@ -183,7 +181,9 @@ namespace AudioBand
             {
                 if (files[i].Type == ContentType.File)
                 {
-                    client.DownloadFile(new Uri(files[i].DownloadUrl), Path.Combine(assetsFolderPath, files[i].Name));
+                    using var client = new WebClient();
+
+                    client.DownloadFileAsync(new Uri(files[i].DownloadUrl), Path.Combine(assetsFolderPath, files[i].Name));
                 }
                 else if (files[i].Type == ContentType.Dir)
                 {

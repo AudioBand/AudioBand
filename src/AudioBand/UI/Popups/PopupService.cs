@@ -46,7 +46,7 @@ namespace AudioBand.UI
         /// </summary>
         /// <param name="title">The title string key of the popup.</param>
         /// <param name="description">The text to show to the user.</param>
-        /// <param name="duration">The duration to show the popup for (max 60 seconds).</param>
+        /// <param name="duration">The duration to show the popup for (max 180 seconds).</param>
         public void ShowPopup(string title, string description, TimeSpan duration)
         {
             // First one is an edge-case, handled in here separately.
