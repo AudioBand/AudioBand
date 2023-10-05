@@ -1,24 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AudioBand.Logging;
 using AudioBand.Models;
 using AudioBand.Settings;
 using AudioBand.UI;
-using AutoMapper;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 using NLog;
 using Octokit;
-using Windows.Media.Protection.PlayReady;
 
 namespace AudioBand
 {
