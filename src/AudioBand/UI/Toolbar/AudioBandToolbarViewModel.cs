@@ -216,6 +216,7 @@ namespace AudioBand.UI
             catch (Exception e)
             {
                 Logger.Error(e, "Error activating audio source");
+                PopupService.Instance.ShowPopup("ErrorActivatingAudiosourceTitle", "ErrorActivatingAudiosourceDescription");
                 SelectedAudioSource = null;
             }
             finally
@@ -239,7 +240,7 @@ namespace AudioBand.UI
         {
             if (msg == ProfilesUpdatedMessage.ProfileSelected)
             {
-                Logger.Info($"Switching from profile \"{SelectedProfile}\" to \"{_appSettings.CurrentProfile}\"");
+                Logger.Info($"Switching from profile \"{SelectedProfile.Name}\" to \"{_appSettings.CurrentProfile.Name}\"");
 
                 SelectedProfile = _appSettings.CurrentProfile;
                 return;
