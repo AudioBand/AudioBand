@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,11 +10,10 @@ using System.Threading.Tasks;
 using AudioBand.Logging;
 using AudioBand.Models;
 using AudioBand.Settings;
-using AutoMapper;
+using AudioBand.UI;
 using Newtonsoft.Json;
 using NLog;
 using Octokit;
-using Windows.Media.Protection.PlayReady;
 
 namespace AudioBand
 {
@@ -182,8 +182,19 @@ namespace AudioBand
                 if (files[i].Type == ContentType.File)
                 {
                     using var client = new WebClient();
+                    var downloadPath = Path.Combine(assetsFolderPath, files[i].Name);
 
-                    client.DownloadFileAsync(new Uri(files[i].DownloadUrl), Path.Combine(assetsFolderPath, files[i].Name));
+                    // install any font files
+                    if (downloadPath.EndsWith(".ttf"))
+                    {
+                        client.DownloadFile(new Uri(files[i].DownloadUrl), downloadPath);
+                        PopupService.Instance.ShowPopup("InstallFontTitle", "InstallFontDescription");
+
+                        await Task.Delay(500).ContinueWith(x => Process.Start(downloadPath));
+                        continue;
+                    }
+
+                    client.DownloadFileAsync(new Uri(files[i].DownloadUrl), downloadPath);
                 }
                 else if (files[i].Type == ContentType.Dir)
                 {
