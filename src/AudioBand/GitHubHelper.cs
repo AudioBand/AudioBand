@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 using AudioBand.Logging;
 using AudioBand.Models;
 using AudioBand.Settings;
+using AutoMapper;
 using Newtonsoft.Json;
 using NLog;
 using Octokit;
+using Windows.Media.Protection.PlayReady;
 
 namespace AudioBand
 {
@@ -162,19 +164,35 @@ namespace AudioBand
         /// <param name="profile">The associated profile.</param>
         public async Task DownloadProfileAssetsAsync(CommunityProfile profile)
         {
-            var images = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, profile.AssetsUrl);
+            var files = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, profile.AssetsUrl);
             var assetsFolderPath = Path.Combine(_assetsDirectory, profile.Name);
+
+            await DownloadDirectoryAssetsAsync(files, assetsFolderPath, profile.AssetsUrl);
+        }
+
+        private async Task DownloadDirectoryAssetsAsync(IReadOnlyList<RepositoryContent> files, string assetsFolderPath, string assetsUrl)
+        {
+            using var client = new WebClient();
 
             if (!Directory.Exists(assetsFolderPath))
             {
                 Directory.CreateDirectory(assetsFolderPath);
             }
 
-            using var client = new WebClient();
-
-            for (int i = 0; i < images.Count; i++)
+            for (int i = 0; i < files.Count; i++)
             {
-                client.DownloadFileAsync(new Uri(images[i].DownloadUrl), Path.Combine(assetsFolderPath, images[i].Name));
+                if (files[i].Type == ContentType.File)
+                {
+                    client.DownloadFile(new Uri(files[i].DownloadUrl), Path.Combine(assetsFolderPath, files[i].Name));
+                }
+                else if (files[i].Type == ContentType.Dir)
+                {
+                    var newAssetsUrl = Path.Combine(assetsUrl, files[i].Name);
+                    var subFolder = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, newAssetsUrl);
+                    var directory = Path.Combine(assetsFolderPath, files[i].Name);
+
+                    await DownloadDirectoryAssetsAsync(subFolder, directory, newAssetsUrl);
+                }
             }
         }
 
