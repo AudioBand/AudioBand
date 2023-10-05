@@ -216,7 +216,7 @@ namespace AudioBand.UI
             catch (Exception e)
             {
                 Logger.Error(e, "Error activating audio source");
-                PopupService.Instance.ShowPopup("", "");
+                PopupService.Instance.ShowPopup("ErrorActivatingAudiosourceTitle", "ErrorActivatingAudiosourceDescription");
                 SelectedAudioSource = null;
             }
             finally
