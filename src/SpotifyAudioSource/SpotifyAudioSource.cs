@@ -408,6 +408,8 @@ namespace SpotifyAudioSource
             {
                 _spotifyControls.TryPrevious();
             }
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
@@ -424,6 +426,8 @@ namespace SpotifyAudioSource
             {
                 _spotifyControls.TryNext();
             }
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
