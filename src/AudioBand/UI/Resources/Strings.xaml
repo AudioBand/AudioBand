@@ -227,6 +227,8 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="ProfileAlreadyExistsDescription">A profile with this name is already in use, please choose a different one!</sys:String>
     <sys:String x:Key="InstallFontTitle">Install The Font(s)!</sys:String>
     <sys:String x:Key="InstallFontDescription">Please install the fonts that opened, this profile makes use of them!</sys:String>
+    <sys:String x:Key="ErrorActivatingAudiosourceTitle">Error activating Audiosource</sys:String>
+    <sys:String x:Key="ErrorActivatingAudiosourceDescription">There was an error activating this Audiosource. Please check the log file and/or ask for help on GitHub or in our Discord server!</sys:String>
 
     <!--  Profiles  -->
     <sys:String x:Key="NewProfileHelpText">New profile</sys:String>
