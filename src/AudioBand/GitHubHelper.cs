@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using AudioBand.Logging;
 using AudioBand.Models;
 using AudioBand.Settings;
+using AudioBand.UI;
 using Newtonsoft.Json;
 using NLog;
 using Octokit;
@@ -162,19 +164,46 @@ namespace AudioBand
         /// <param name="profile">The associated profile.</param>
         public async Task DownloadProfileAssetsAsync(CommunityProfile profile)
         {
-            var images = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, profile.AssetsUrl);
+            var files = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, profile.AssetsUrl);
             var assetsFolderPath = Path.Combine(_assetsDirectory, profile.Name);
 
+            await DownloadDirectoryAssetsAsync(files, assetsFolderPath, profile.AssetsUrl);
+        }
+
+        private async Task DownloadDirectoryAssetsAsync(IReadOnlyList<RepositoryContent> files, string assetsFolderPath, string assetsUrl)
+        {
             if (!Directory.Exists(assetsFolderPath))
             {
                 Directory.CreateDirectory(assetsFolderPath);
             }
 
-            using var client = new WebClient();
-
-            for (int i = 0; i < images.Count; i++)
+            for (int i = 0; i < files.Count; i++)
             {
-                client.DownloadFileAsync(new Uri(images[i].DownloadUrl), Path.Combine(assetsFolderPath, images[i].Name));
+                if (files[i].Type == ContentType.File)
+                {
+                    using var client = new WebClient();
+                    var downloadPath = Path.Combine(assetsFolderPath, files[i].Name);
+
+                    // install any font files
+                    if (downloadPath.EndsWith(".ttf"))
+                    {
+                        client.DownloadFile(new Uri(files[i].DownloadUrl), downloadPath);
+                        PopupService.Instance.ShowPopup("InstallFontTitle", "InstallFontDescription");
+
+                        await Task.Delay(500).ContinueWith(x => Process.Start(downloadPath));
+                        continue;
+                    }
+
+                    client.DownloadFileAsync(new Uri(files[i].DownloadUrl), downloadPath);
+                }
+                else if (files[i].Type == ContentType.Dir)
+                {
+                    var newAssetsUrl = Path.Combine(assetsUrl, files[i].Name);
+                    var subFolder = await _client.Repository.Content.GetAllContents(OrganizationName, CommunityProfilesRepository, newAssetsUrl);
+                    var directory = Path.Combine(assetsFolderPath, files[i].Name);
+
+                    await DownloadDirectoryAssetsAsync(subFolder, directory, newAssetsUrl);
+                }
             }
         }
 

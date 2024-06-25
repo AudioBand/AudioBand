@@ -221,6 +221,14 @@ Using style and color : {*artist:#a9a9a9}</sys:String>
     <sys:String x:Key="FileCorruptedDescription">It appears that your settings file was corrupted, it was backed up and reset. For more info contact us on GitHub or Discord.</sys:String>
     <sys:String x:Key="LikeButtonUpdateTitle">❤️ Like button is here!</sys:String>
     <sys:String x:Key="LikeButtonUpdateDescription">But, you need to redo Spotify Authentication to make it work. Make sure to update the redirect url to http://localhost/callback. Then go to Spotify Settings, enable 'Force Refresh Authentication' and click Apply.</sys:String>
+    <sys:String x:Key="GitHubApiLimitTitle">Download limit Reached!</sys:String>
+    <sys:String x:Key="GitHubApiLimitDescription">GitHub only allows so many file downloads per hour. Please try again later!</sys:String>
+    <sys:String x:Key="ProfileAlreadyExistsTitle">Profile Name In Use</sys:String>
+    <sys:String x:Key="ProfileAlreadyExistsDescription">A profile with this name is already in use, please choose a different one!</sys:String>
+    <sys:String x:Key="InstallFontTitle">Install The Font(s)!</sys:String>
+    <sys:String x:Key="InstallFontDescription">Please install the fonts that opened, this profile makes use of them!</sys:String>
+    <sys:String x:Key="ErrorActivatingAudiosourceTitle">Error activating Audiosource</sys:String>
+    <sys:String x:Key="ErrorActivatingAudiosourceDescription">There was an error activating this Audiosource. Please check the log file and/or ask for help on GitHub or in our Discord server!</sys:String>
 
     <!--  Profiles  -->
     <sys:String x:Key="NewProfileHelpText">New profile</sys:String>

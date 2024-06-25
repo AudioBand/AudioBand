@@ -11,6 +11,7 @@ using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings;
 using Newtonsoft.Json;
+using Octokit;
 
 namespace AudioBand.UI
 {
@@ -235,6 +236,11 @@ namespace AudioBand.UI
                 communityProfile.IsInstalled = true;
                 communityProfile.IsLatestVersion = true;
                 _messageBus.Publish(ProfilesUpdatedMessage.ProfileCreated);
+            }
+            catch (RateLimitExceededException e)
+            {
+                Logger.Warn("GitHub RateLimit exceeded! Cannot download more profiles for a while");
+                PopupService.Instance.ShowPopup("GitHubApiLimitTitle", "GitHubApiLimitDescription", TimeSpan.FromSeconds(60));
             }
             catch (Exception e)
             {

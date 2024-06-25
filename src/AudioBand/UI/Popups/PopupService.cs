@@ -31,14 +31,6 @@ namespace AudioBand.UI
             _viewModels = viewModels;
 
             _textParts.Source = new Uri("/AudioBand;component/UI/Resources/Strings.xaml", UriKind.RelativeOrAbsolute);
-
-            var isBeforeLikeButton = new SemanticVersion(_appSettings.AudioBandSettings.LastKnownVersion).IsNewerVersionThan(new SemanticVersion(1, 1, 5));
-
-            // notify about like button update
-            if (!isBeforeLikeButton && _appSettings.AudioSource == "Spotify")
-            {
-                ShowPopup("LikeButtonUpdateTitle", "LikeButtonUpdateDescription", TimeSpan.FromSeconds(45));
-            }
         }
 
         /// <summary>
@@ -46,7 +38,7 @@ namespace AudioBand.UI
         /// </summary>
         /// <param name="title">The title string key of the popup.</param>
         /// <param name="description">The text to show to the user.</param>
-        /// <param name="duration">The duration to show the popup for (max 60 seconds).</param>
+        /// <param name="duration">The duration to show the popup for (max 180 seconds).</param>
         public void ShowPopup(string title, string description, TimeSpan duration)
         {
             // First one is an edge-case, handled in here separately.

@@ -408,6 +408,8 @@ namespace SpotifyAudioSource
             {
                 _spotifyControls.TryPrevious();
             }
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
@@ -424,6 +426,8 @@ namespace SpotifyAudioSource
             {
                 _spotifyControls.TryNext();
             }
+
+            await Task.Delay(110).ContinueWith(async t => await UpdatePlayer());
         }
 
         /// <inheritdoc />
@@ -876,16 +880,7 @@ namespace SpotifyAudioSource
 
             try
             {
-                var currentSpotifyWindowTitle = _spotifyControls.GetSpotifyWindowTitle();
-                if (string.IsNullOrEmpty(currentSpotifyWindowTitle))
-                {
-                    // reduce number of calls when paused since we have to poll for track changes.
-                    _checkSpotifyTimer.Interval = 3000;
-                }
-                else
-                {
-                    _checkSpotifyTimer.Interval = PollingInterval;
-                }
+                _checkSpotifyTimer.Interval = PollingInterval;
 
                 var playback = await GetPlaybackAsync();
 

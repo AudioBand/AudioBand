@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Controls.Primitives;
 using AudioBand.Messages;
 using AudioBand.Models;
 using AudioBand.Settings.Persistence;
+using AudioBand.UI;
 
 namespace AudioBand.Settings
 {
@@ -165,7 +167,8 @@ namespace AudioBand.Settings
 
             if (_profiles.ContainsKey(newProfileName))
             {
-                throw new ArgumentException("Profile already exists", nameof(newProfileName));
+                PopupService.Instance.ShowPopup("ProfileAlreadyExistsTitle", "ProfileAlreadyExistsDescription");
+                return;
             }
 
             if (AudioBandSettings.IdleProfileName == CurrentProfile.Name)
