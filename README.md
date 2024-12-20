@@ -1,5 +1,9 @@
 <div align="center"><img src="logo/logotype_cover.svg"/></div><br/><br/>
 
+> [!WARNING]  
+> This project is no longer being actively maintained, but pull requests are always welcome.
+If you wish to know more, [read more here](https://github.com/AudioBand/AudioBand/issues/152)
+
 # Audio Band
 Audio Band allows you to display song information from various sources directly in the taskbar.
 
