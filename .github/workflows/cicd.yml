@@ -28,7 +28,7 @@ jobs:
       run: msbuild src/AudioBand.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: audioband
         path: src/AudioBandInstaller/bin/Release/AudioBand.msi
