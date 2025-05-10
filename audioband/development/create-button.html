@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Development Guide: Creating a Button </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Development Guide: Creating a Button ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="development-guide-creating-a-button">Development Guide: Creating a Button</h1>
+
+<p>This guide will show you how to create a button for AudioBand, while this may not always be what you want to do, it's a good all-round example to see what AudioBand's structure looks like.</p>
+<h2 id="topic-overview">Topic overview:</h2>
+<h3 id="creating-the-button">Creating the button</h3>
+<ol>
+<li>Updating the AudioSource functionality</li>
+<li>Creating the Button Model</li>
+<li>Adding the Button Model to the UserProfile (also update MigrationMappings)</li>
+<li>Adding the button visually inside of the Toolbar</li>
+<li>Creating and registering the Button's ViewModel</li>
+</ol>
+<h3 id="allowing-customization-of-the-button">Allowing customization of the button</h3>
+<ol>
+<li>Creating the SettingsView inside of UI/PlaybackControls</li>
+<li>Adding the button to the SettingsWindow.xaml</li>
+</ol>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>When the settings will be revamped, doing the settings will change heavily.</p>
+</div>
+<h2 id="creating-the-button-1">Creating the button</h2>
+<h3 id="1-updating-the-audiosource-functionality">1. Updating the AudioSource functionality</h3>
+<p>Every AudioSource, whether it's shipped with AudioBand or installed from a third party, adheres to the IAudioSource interface.<br>
+This interface contains method signatures on how any AudioSource should implement anything from the Play Button to controlling the Volume.</p>
+<p>When you want to add a new button, you also have to create a new signature on how the feature of that button should behave.<br>
+For a volume button, you need to set a signature like so: <code>Task SetVolumeAsync(int newVolume);</code>, so each AudioSource knows we handle volume as an integer from 0-100, and not a float from 0-1.<br>
+It is good practise to update all existing AudioSources when you create such a new signature. If an AudioSource doesn't have a feature, just return empty.</p>
+<h3 id="2-creating-the-button-model">2. Creating the Button Model</h3>
+<p>The first step to creating a Button is to create a class inside of <code>src/AudioBand/Models</code> that inherits from the <code>ButtonModelBase</code> class. Take a look at <code>PlayPauseButton</code> / <code>NextButton</code> to see what exactly is needed inside of that class.<br>
+You want to set <code>IsVisible</code> to false on these buttons, as it would otherwise mess up every existing profile there is (believe me I've made that mistake with an early release VolumeButton build).<br>
+For each state of the button you want to add a ButtonContent property. This is by far the easiest way to handle it, as a lot will be handled for you automatically.</p>
+<p>In case you want to add extra properties, you can take a look at the <code>VolumeButton</code> Model, it added a whole customizable popup.</p>
+<h3 id="3-adding-the-button-model-to-the-userprofile-also-update-migrationmappings">3. Adding the Button Model to the UserProfile (also update MigrationMappings)</h3>
+<p>This part is very small, but quite important.<br>
+The <code>UserProfile</code> class is the class that gets stored inside of the <code>profile.json</code> files. This is what will later allow it to be customizable. We need to add the new Button Model in there so people can customize it.</p>
+<p>People who update from a really old AudioBand build, can have an older version of settings (using TOML instead of JSON). To make sure they can still convert their old profiles into new ones, we also have to update the migrations that are in place.<br>
+This is pretty easy to do, in <code>src/AudioBand/Settings/MappingProfiles/SettingsV3ToSettingsV4Profile</code>, copy <code>VolumeButton</code>'s line, but replace it with your Button Model.</p>
+<h3 id="4-creating-and-registering-the-buttons-viewmodel">4. Creating and registering the Button's ViewModel</h3>
+<p>This part requires a bit of copying, and then a bit of logic to actually implement the button. Depending on what kind of button is, this can get complex.<br>
+The ViewModels are saved inside of the <code>src/AudioBand/UI/PlaybackControls</code> folder and need to inherit from the <code>ButtonViewModelBase&lt;MODELBUTTON&gt;</code> class. MODELBUTTON being your model made in step 2.</p>
+<p>Once you've made a ViewModel for your Button, copy the parameters from eg. <code>VolumeButtonViewModel</code> and create a private field for the IAppSettings and IAudioSession just like that class.</p>
+<p>You also need to copy over the <code>OnEndEdit</code> and the <code>AppSettingsOnProfileChanged</code> methods.<br>
+Next up is the ButtonContentViewModels, for each <code>ButtonContent</code> you added inside of your Button Model earlier, you need to create a corresponding <code>ButtonContentViewModel</code>. You also need to initalize this/these just like in one of the other ViewModels.</p>
+<p>Last part of the creation part is to add a Command. I would like to explain what a command is but it's late at the time of writing, so I'm going to skip over the detailed explanation. But in short, a command is used to link a button click in the UI with logic in the backend.<br>
+Take a look at the Command in the <code>NextButtonViewModel</code> and implement a similar Command in your ViewModel.<br>
+The implementation of that command heavily depends on what your button is supposed to do, but usually it's a simple call to _audioSession.CurrentAudioSource.NewMethodFromStepOne();</p>
+<hr>
+<p>Now for registering, you have to add it in <code>src/AudioBand/Deskband.cs</code> inside of the container.<br>
+And then also add it to the <code>(I)ViewModelContainer</code> found in <code>src/AudioBand/UI/ViewModel/</code></p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/AudioBand/AudioBand/blob/gh-pages/docfx/audioband/development/create-button.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
