@@ -968,7 +968,7 @@ namespace SpotifyAudioSource
 
             _lastAuthTime = DateTime.UtcNow;
             _authIsInProcess = true;
-            _server = new EmbedIOAuthServer(new Uri($"http://localhost:{LocalPort}/callback"), LocalPort);
+            _server = new EmbedIOAuthServer(new Uri($"http://127.0.0.1:{LocalPort}/callback"), LocalPort);
             await _server.Start();
 
             _server.AuthorizationCodeReceived += OnAuthorizationCodeReceived;
@@ -990,7 +990,7 @@ namespace SpotifyAudioSource
                 var config = SpotifyClientConfig.CreateDefault();
                 var tokenResponse = await new OAuthClient(config)
                     .RequestToken(new AuthorizationCodeTokenRequest(
-                        ClientId, ClientSecret, response.Code, new Uri($"http://localhost:{LocalPort}/callback")));
+                        ClientId, ClientSecret, response.Code, new Uri($"http://127.0.0.1:{LocalPort}/callback")));
 
                 if (string.IsNullOrEmpty(tokenResponse.RefreshToken))
                 {
