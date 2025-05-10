@@ -1,6 +1,5 @@
 {
-  "homepages": [],
-  "source_base_path": "C:/Users/vanro/Documents/Programming/cs/audio-band/docfx",
+  "source_base_path": "C:/Users/vanro/Documents/Programming/AudioBand/AudioBand/docfx",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,19 +8,16 @@
         "resource": {
           "relative_path": "index.json"
         }
-      },
-      "is_incremental": false
+      }
     },
     {
       "type": "Conceptual",
       "source_relative_path": "audioband/Windows11.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/Windows11.html",
-          "hash": "UaBcDVdzwRBrg9NakKrNLqsXKhK40iuYSWWX64RAkQQ="
+          "relative_path": "audioband/Windows11.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -29,11 +25,9 @@
       "source_relative_path": "audioband/audiosources/index.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/audiosources/index.html",
-          "hash": "WtmgSJEFFvhgyHCccrCsAJsIfn8WwQd2GjQE8id091s="
+          "relative_path": "audioband/audiosources/index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -41,11 +35,9 @@
       "source_relative_path": "audioband/audiosources/itunes.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/audiosources/itunes.html",
-          "hash": "J8uY0aMG0tNWc/WkO4ozn+1Z+d+0d3TCRalpbco3Kt8="
+          "relative_path": "audioband/audiosources/itunes.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -53,11 +45,9 @@
       "source_relative_path": "audioband/audiosources/musicbee.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/audiosources/musicbee.html",
-          "hash": "iWzYsjOK3A68kRTftVXKbJLA9dUdcvtf0abHK5Q6S6g="
+          "relative_path": "audioband/audiosources/musicbee.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -65,11 +55,22 @@
       "source_relative_path": "audioband/audiosources/spotify.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/audiosources/spotify.html",
-          "hash": "FbP1vvMbly6hNcVwvdTFBw6qYeON7RDwWKLoekrHxzg="
+          "relative_path": "audioband/audiosources/spotify.html"
         }
       },
-      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "audioband/audiosources/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/audiosources/toc.html"
+        },
+        ".json": {
+          "relative_path": "audioband/audiosources/toc.json"
+        }
+      },
       "version": ""
     },
     {
@@ -77,11 +78,9 @@
       "source_relative_path": "audioband/audiosources/windows10.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/audiosources/windows10.html",
-          "hash": "sXYDmo432FGoiRBrAIG9f5lKX1yUp9PkmTGXSywlo68="
+          "relative_path": "audioband/audiosources/windows10.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -89,11 +88,9 @@
       "source_relative_path": "audioband/customization/albumartpopup.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/customization/albumartpopup.html",
-          "hash": "A75fHSCcBFHQcflBwYjmdPV8zw8imW1XWjR4Lmc5Agw="
+          "relative_path": "audioband/customization/albumartpopup.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -101,11 +98,9 @@
       "source_relative_path": "audioband/customization/general.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/customization/general.html",
-          "hash": "erHUWn2yU6e++4nFUPuacZRAgrLLzNmm3bB4WJYC0mg="
+          "relative_path": "audioband/customization/general.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -113,11 +108,9 @@
       "source_relative_path": "audioband/customization/index.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/customization/index.html",
-          "hash": "K8K2nPBmxNrwoaCxaBWhkSxpaz+PgvIlg6wJkHexEXE="
+          "relative_path": "audioband/customization/index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -125,11 +118,32 @@
       "source_relative_path": "audioband/customization/textlabels.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/customization/textlabels.html",
-          "hash": "byHY81L91eRiDobhg3La0KW2xqF6oL3E3ZqZQBrcXF8="
+          "relative_path": "audioband/customization/textlabels.html"
         }
       },
-      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "audioband/customization/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/customization/toc.html"
+        },
+        ".json": {
+          "relative_path": "audioband/customization/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "audioband/development/create-button.md",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/development/create-button.html"
+        }
+      },
       "version": ""
     },
     {
@@ -137,11 +151,9 @@
       "source_relative_path": "audioband/development/project-layout.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/development/project-layout.html",
-          "hash": "8LHjD2Felvtg4Rpy96iTU9j936l14iraOxiEqvuKLuU="
+          "relative_path": "audioband/development/project-layout.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -149,11 +161,22 @@
       "source_relative_path": "audioband/development/setup.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/development/setup.html",
-          "hash": "zfJSLSxzdPsVPuKvSi9sRloy9uIJcHCCJBtMBjMpQHo="
+          "relative_path": "audioband/development/setup.html"
         }
       },
-      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "audioband/development/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "audioband/development/toc.html"
+        },
+        ".json": {
+          "relative_path": "audioband/development/toc.json"
+        }
+      },
       "version": ""
     },
     {
@@ -161,11 +184,9 @@
       "source_relative_path": "audioband/development/wixproj.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/development/wixproj.html",
-          "hash": "heVDqoitIXT96yg0isW9DpiZwHL3yKzE32erDyDXy9k="
+          "relative_path": "audioband/development/wixproj.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -173,11 +194,9 @@
       "source_relative_path": "audioband/faq.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/faq.html",
-          "hash": "egU/jV3MKapO4gIPWzIMm0Y0brN/tf+aKEGcTl9NMtw="
+          "relative_path": "audioband/faq.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -185,11 +204,9 @@
       "source_relative_path": "audioband/index.md",
       "output": {
         ".html": {
-          "relative_path": "audioband/index.html",
-          "hash": "91rgoIfq2x9DPuwJIx2QlAQK5hIJJZdXLxpbLmz6J8I="
+          "relative_path": "audioband/index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -197,11 +214,12 @@
       "source_relative_path": "audioband/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "audioband/toc.html",
-          "hash": "y8SImUPxaJQ79xlLG1iVrfc3XfSg85SpT90b76DB7yE="
+          "relative_path": "audioband/toc.html"
+        },
+        ".json": {
+          "relative_path": "audioband/toc.json"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -209,11 +227,9 @@
       "source_relative_path": "audiosource-api/index.md",
       "output": {
         ".html": {
-          "relative_path": "audiosource-api/index.html",
-          "hash": "+sArSEmwKXXzsEZDwlDxIiVtN4sqq79ZweJ+vlKkRzw="
+          "relative_path": "audiosource-api/index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -221,26 +237,22 @@
       "source_relative_path": "audiosource-docs/index.md",
       "output": {
         ".html": {
-          "relative_path": "audiosource-docs/index.html",
-          "hash": "2hwE7I6kBndYiUL4dPEynkCE8Fm9PXhRLhFa+j7NbNE="
+          "relative_path": "audiosource-docs/index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidTocInclude"
-      ],
       "type": "Toc",
       "source_relative_path": "audiosource-docs/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "audiosource-docs/toc.html",
-          "hash": "s893OxqVWUbh8uEwov6g8w7inhANkIERQkozIN6V9PA="
+          "relative_path": "audiosource-docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "audiosource-docs/toc.json"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -251,7 +263,6 @@
           "relative_path": "images/click-audiosource.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -262,7 +273,6 @@
           "relative_path": "images/hover-over.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -273,7 +283,6 @@
           "relative_path": "images/spotify-app-settings-callback.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -284,7 +293,6 @@
           "relative_path": "images/spotify-dashboard.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -292,11 +300,9 @@
       "source_relative_path": "index.md",
       "output": {
         ".html": {
-          "relative_path": "index.html",
-          "hash": "XV195n0fB8qxnhSwdjtl4LiJaFUcy+2OwGG3msjFFAQ="
+          "relative_path": "index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -304,57 +310,15 @@
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
-          "relative_path": "toc.html",
-          "hash": "EkfH0S98GHecBgKHBtoR/d957ar7R7Ug35pCFw875YQ="
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
-      "is_incremental": false,
       "version": ""
     }
   ],
-  "incremental_info": [
-    {
-      "status": {
-        "can_incremental": true,
-        "incrementalPhase": "build",
-        "total_file_count": 0,
-        "skipped_file_count": 0
-      },
-      "processors": {
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build",
-          "total_file_count": 18,
-          "skipped_file_count": 17
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        }
-      }
-    },
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
-        "incrementalPhase": "postProcessing",
-        "total_file_count": 0,
-        "skipped_file_count": 0
-      },
-      "processors": {}
-    }
-  ],
-  "version_info": {},
   "groups": [
     {
       "xrefmap": "xrefmap.yml"
