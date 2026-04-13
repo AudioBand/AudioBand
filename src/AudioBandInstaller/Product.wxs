@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<?define ProductVersion = '1.2.5'?>
+<?define ProductVersion = '1.2.6'?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
    <Product Id="*" Name="AudioBand" Language="1033" Version="$(var.ProductVersion)"
             Manufacturer="AudioBand" UpgradeCode="F5673DE4-C5B8-403C-B353-773AC427BEC3">
@@ -28,6 +28,9 @@
             </Feature>
             <Feature Id="Win10AudioSource" Title="Win10" Description="Install support for Win10" Level="1" InstallDefault="local" AllowAdvertise="yes">
                <ComponentGroupRef Id="Win10Files" />
+            </Feature>
+            <Feature Id="JellyfinAudioSource" Title="Jellyfin" Description="Install support for Jellyfin" Level="1" InstallDefault="local" AllowAdvertise="yes">
+               <ComponentGroupRef Id="JellyfinFiles" />
             </Feature>
             <Component Id="stub_" Directory="AUDIOSOURCESFOLDER" Guid="{A5165469-44B0-4E76-839F-E1AA9B6E978A}" KeyPath="yes" />
             <!-- Empty component so that the feature tree works properly-->
