@@ -9,6 +9,7 @@ using AudioBand.AudioSource;
 using Jellyfin.Sdk;
 using Jellyfin.Sdk.Generated.Models;
 using Microsoft.Kiota.Http.HttpClientLibrary;
+using Timer = System.Timers.Timer;
 
 namespace JellyfinAudioSource
 {
@@ -17,10 +18,10 @@ namespace JellyfinAudioSource
     /// </summary>
     public class JellyfinAudioSource : IAudioSource
     {
+        private Timer _checkJellyfinTimer;
         private string _serverUrl = "http://localhost:8096";
         private string _apiKey = "";
         private string _username = "";
-        private int _pollIntervalSeconds = 3;
 
         private HttpClient _httpClient;
         private JellyfinApiClient _jellyfinClient;
@@ -32,6 +33,17 @@ namespace JellyfinAudioSource
         private bool _lastIsPlaying;
         private TimeSpan _lastProgress;
         private string _activeSessionId;
+
+        public JellyfinAudioSource()
+        {
+            _checkJellyfinTimer = new Timer(100)
+            {
+                Enabled = false,
+                AutoReset = false
+            };
+
+            _checkJellyfinTimer.Elapsed += CheckJellyfin;
+        }
 
         /// <inheritdoc/>
         public event EventHandler<SettingChangedEventArgs> SettingChanged;
@@ -45,6 +57,7 @@ namespace JellyfinAudioSource
         /// <inheritdoc/>
         public event EventHandler<TimeSpan> TrackProgressChanged;
 
+#pragma warning disable 00067 // Event is not used
         /// <inheritdoc/>
         public event EventHandler<bool> ShuffleChanged;
 
@@ -56,6 +69,7 @@ namespace JellyfinAudioSource
 
         /// <inheritdoc/>
         public event EventHandler<bool> LikeChanged;
+#pragma warning restore 00067 // Event is not used
 
         /// <inheritdoc />
         public string Name => "Jellyfin";
@@ -94,39 +108,26 @@ namespace JellyfinAudioSource
             set { _username = value; RaiseSetting(nameof(Username)); }
         }
 
-        /// <summary>
-        /// How often (in seconds) the plugin polls the /Sessions endpoint.
-        /// </summary>
-        [AudioSourceSetting("Jellyfin Polling Interval")]
-        public int PollIntervalSeconds
-        {
-            get => _pollIntervalSeconds;
-            set { _pollIntervalSeconds = Math.Max(1, value); RaiseSetting(nameof(PollIntervalSeconds)); }
-        }
-
         public Task ActivateAsync()
         {
             BuildSdkClient();
 
-            _cts = new CancellationTokenSource();
-            _pollTask = PollLoopAsync(_cts.Token);
+            _checkJellyfinTimer.Start();
+
             return Task.CompletedTask;
         }
 
-        public async Task DeactivateAsync()
+        public Task DeactivateAsync()
         {
-            _cts?.Cancel();
-            if (_pollTask != null)
-            {
-                try { await _pollTask.ConfigureAwait(false); }
-                catch (OperationCanceledException) { }
-            }
+            _checkJellyfinTimer.Stop();
 
             _jellyfinClient?.Dispose();
             _httpClient?.Dispose();
             _jellyfinClient = null;
             _httpClient = null;
+
             ResetState();
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc />
@@ -189,32 +190,26 @@ namespace JellyfinAudioSource
             return Task.CompletedTask;
         }
 
-        private async Task PollLoopAsync(CancellationToken ct)
+        private async void CheckJellyfin(object sender, System.Timers.ElapsedEventArgs e)
         {
-            while (!ct.IsCancellationRequested)
+            // Exceptions in async void can crash the whole app
+            try
             {
-                try { await PollOnceAsync(ct).ConfigureAwait(false); }
-                catch (OperationCanceledException) { break; }
-                catch (Exception ex)
-                {
-                    // Swallow — server may be temporarily unreachable
-                    System.Diagnostics.Debug.WriteLine($"[JellyfinAudioSource] Poll error: {ex.Message}");
-                }
+                await PollOnceAsync();
+            }
+            catch (Exception)
+            {
 
-                try { await Task.Delay(TimeSpan.FromSeconds(_pollIntervalSeconds), ct).ConfigureAwait(false); }
-                catch (OperationCanceledException) { break; }
+                throw;
             }
         }
 
-        private async Task PollOnceAsync(CancellationToken ct)
+        private async Task PollOnceAsync()
         {
             if (_jellyfinClient == null || string.IsNullOrWhiteSpace(_apiKey))
                 return;
 
-            // GET /Sessions — returns IList<SessionInfo> via the SDK
-            var sessions = await _jellyfinClient.Sessions
-                                                .GetAsync(cancellationToken: ct)
-                                                .ConfigureAwait(false);
+            var sessions = await _jellyfinClient.Sessions.GetAsync().ConfigureAwait(false);
 
             if (sessions == null || sessions.Count == 0)
             {
@@ -232,6 +227,7 @@ namespace JellyfinAudioSource
                 if (session.NowPlayingItem.MediaType != BaseItemDto_MediaType.Audio)
                     continue;
 
+                // Check if username matches
                 if (!string.IsNullOrWhiteSpace(_username) &&
                     !string.Equals(session.UserName, _username, StringComparison.OrdinalIgnoreCase))
                     continue;
@@ -270,7 +266,7 @@ namespace JellyfinAudioSource
                     artist = item.Artists[0] ?? string.Empty;
 
                 Image art = null;
-                try { art = await FetchAlbumArtAsync(itemId, ct).ConfigureAwait(false); }
+                try { art = await FetchAlbumArtAsync(itemId).ConfigureAwait(false); }
                 catch { /* album art is non-critical */ }
 
                 TrackInfoChanged?.Invoke(this, new TrackInfoChangedEventArgs
@@ -330,15 +326,12 @@ namespace JellyfinAudioSource
         /// Uses the SDK's <see cref="JellyfinApiClient.BuildUri"/> helper so we never
         /// hand-craft URL strings.
         /// </summary>
-        private async Task<Image> FetchAlbumArtAsync(string itemId, CancellationToken ct)
+        private async Task<Image> FetchAlbumArtAsync(string itemId)
         {
             if (string.IsNullOrEmpty(itemId) || _jellyfinClient == null)
                 return null;
 
-            // Build a strongly-typed URI for GET /Items/{itemId}/Images/Primary
-            var requestInfo = _jellyfinClient.Items[Guid.Parse(itemId)]
-                                             .Images["Primary"]
-                                             .ToGetRequestInformation();
+            var requestInfo = _jellyfinClient.Items[Guid.Parse(itemId)].Images["Primary"].ToGetRequestInformation();
 
             // Append size/quality parameters
             requestInfo.QueryParameters["fillWidth"] = "200";
@@ -347,52 +340,43 @@ namespace JellyfinAudioSource
 
             var uri = _jellyfinClient.BuildUri(requestInfo);
 
-            var response = await _httpClient.GetAsync(uri, ct).ConfigureAwait(false);
+            var response = await _httpClient.GetAsync(uri).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
                 return null;
 
             var bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
-            // Wrap in a second MemoryStream so Image holds its own copy of the buffer
             return Image.FromStream(new MemoryStream(bytes));
         }
 
         /// <summary>
         /// Sends a remote playstate command to the active Jellyfin session.
-        /// The SDK path is: <c>client.Sessions[sessionId].Playing[command].PostAsync()</c>
         /// </summary>
         private async Task SendCommandAsync(string command)
         {
             if (string.IsNullOrEmpty(_activeSessionId) || _jellyfinClient == null)
+            {
                 return;
+            }
 
             try
             {
-                await _jellyfinClient.Sessions[_activeSessionId]
-                                     .Playing[command]
-                                     .PostAsync(cancellationToken: CancellationToken.None)
-                                     .ConfigureAwait(false);
+                await _jellyfinClient.Sessions[_activeSessionId].Playing[command].PostAsync().ConfigureAwait(false);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(
-                    $"[JellyfinAudioSource] Command '{command}' failed: {ex.Message}");
+                Logger.Debug($"[JellyfinAudioSource] Command '{command}' failed: {ex.Message}");
             }
         }
 
         private void HandleNoActiveSession()
         {
             if (_lastItemId == null)
+            {
                 return;
+            }
 
             ResetState();
-            TrackInfoChanged?.Invoke(this, new TrackInfoChangedEventArgs
-            {
-                TrackName = string.Empty,
-                Artist = string.Empty,
-                Album = string.Empty,
-                TrackLength = TimeSpan.Zero,
-                AlbumArt = null,
-            });
+
             IsPlayingChanged?.Invoke(this, false);
             TrackProgressChanged?.Invoke(this, TimeSpan.Zero);
         }

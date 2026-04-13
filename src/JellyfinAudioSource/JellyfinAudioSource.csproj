@@ -109,7 +109,6 @@
     <None Include="AudioSource.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AudioBand.AudioSource\AudioBand.AudioSource.csproj">
