@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JellyfinAudioSource", "JellyfinAudioSource\JellyfinAudioSource.csproj", "{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,6 +162,18 @@ Global
 		{A709B842-7F5A-4C81-8A2E-80396996EF79}.Test|Any CPU.Build.0 = Release|Any CPU
 		{A709B842-7F5A-4C81-8A2E-80396996EF79}.Test|x64.ActiveCfg = Release|Any CPU
 		{A709B842-7F5A-4C81-8A2E-80396996EF79}.Test|x64.Build.0 = Release|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Debug|x64.Build.0 = Debug|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Release|x64.ActiveCfg = Release|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Release|x64.Build.0 = Release|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Test|x64.ActiveCfg = Debug|Any CPU
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}.Test|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +188,7 @@ Global
 		{D3F92C3E-E546-4A6B-ADA2-FACD95E229F7} = {AD1A45A7-F5E2-4657-BA09-99F8A5421FF0}
 		{D8E1D3E5-D0AB-43C4-8AF6-60C14C5C6843} = {AD1A45A7-F5E2-4657-BA09-99F8A5421FF0}
 		{A709B842-7F5A-4C81-8A2E-80396996EF79} = {31BA7036-81E7-4D02-90CA-753832D950C5}
+		{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA} = {31BA7036-81E7-4D02-90CA-753832D950C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C4FC539-D568-422E-8445-A0313878CB1F}
