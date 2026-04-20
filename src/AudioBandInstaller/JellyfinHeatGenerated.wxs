@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="AUDIOSOURCESFOLDER">
+            <Directory Id="dirA22E08D0FF37249E820BB4C9F8F389E9" Name="Jellyfin">
+                <Component Id="cmp68D87C54441436B814760A5A881D8FFF" Guid="*">
+                    <File Id="fil13219C76E2D3E2FC8E90746D871CB5F9" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\AudioSource.manifest" />
+                </Component>
+                <Component Id="cmpF1EDE145C5082F5F5A88ED51DD8FCB4B" Guid="*">
+                    <File Id="fil73032DC5FC0176D53B97268A38459E96" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Jellyfin.Sdk.dll" />
+                </Component>
+                <Component Id="cmpBE9125F5E2B39503B5A30BA99847B2AC" Guid="*">
+                    <File Id="fil3C93746FDB6814ED02E4D3F012B3242C" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Jellyfin.Sdk.xml" />
+                </Component>
+                <Component Id="cmpE15484AA4EC71F52A92BA0142A1EEF26" Guid="*">
+                    <File Id="filD54A6EFE0C7030026AFF5C75DDCDFB99" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\JellyfinAudioSource.dll" />
+                </Component>
+                <Component Id="cmp056C213D843F07144CD93EAD781ABA24" Guid="*">
+                    <File Id="fil5277538EA240830BDA374EA992AB0618" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\JellyfinAudioSource.dll.config" />
+                </Component>
+                <Component Id="cmpBB23967827D431923E86D2145D6352DE" Guid="*">
+                    <File Id="filB6FF90BF9B8647E5713B27359C6AF6A5" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\JellyfinAudioSource.pdb" />
+                </Component>
+                <Component Id="cmp43E683B2B1904FDF5B5CC9FA6DDA1C99" Guid="*">
+                    <File Id="filAA917B7850FBE5EDCDEE4CB622D6973B" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Bcl.AsyncInterfaces.dll" />
+                </Component>
+                <Component Id="cmpC7B9776297FC53D60E4E7A282F40350D" Guid="*">
+                    <File Id="fil58A0DA7400FF8036BFD057A7168B2640" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Bcl.AsyncInterfaces.xml" />
+                </Component>
+                <Component Id="cmpE0B42BA677FD8E8D5D16229C72EC3929" Guid="*">
+                    <File Id="fil58CB03588020193096710103664CD89A" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Abstractions.dll" />
+                </Component>
+                <Component Id="cmpC8993FD26C3EE609E4D346BAB1BF7B03" Guid="*">
+                    <File Id="fil493E89FBB80F65CD4326EF2A35E1921A" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Abstractions.xml" />
+                </Component>
+                <Component Id="cmpD0C6DD45DA6CF0CD7D013F1D0E15AAEC" Guid="*">
+                    <File Id="fil41123903AE18D759B75693F8391D58D3" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Http.HttpClientLibrary.dll" />
+                </Component>
+                <Component Id="cmpAFD4BA3F7EBA2E55D348491D00F3B7B5" Guid="*">
+                    <File Id="fil8BD4C49A0E719BA119917FFFD310FC68" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Http.HttpClientLibrary.xml" />
+                </Component>
+                <Component Id="cmpB67BA5EE85E571926EB8274520742D8D" Guid="*">
+                    <File Id="filA1930080BA919ABA04D4F15D314B74D8" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Form.dll" />
+                </Component>
+                <Component Id="cmpCA85F774C93015E7AE83DCE6E572D93A" Guid="*">
+                    <File Id="fil044D5696E332F5556E16401D7CF5AF98" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Form.xml" />
+                </Component>
+                <Component Id="cmp2E03DDE870AFF7E5A46D1A3C4BB94BAE" Guid="*">
+                    <File Id="filF508ECE3B0B1F4882A35982F987A1A31" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Json.dll" />
+                </Component>
+                <Component Id="cmpCBD05B9B253CF18118630C7462B2CD90" Guid="*">
+                    <File Id="fil5C0013E37BADFE3A5CFD1C7E4B768A40" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Json.xml" />
+                </Component>
+                <Component Id="cmp4AAD94D4356FF8ABED674351DA2236F6" Guid="*">
+                    <File Id="filC0904E9C2E21CAE72BD42D12B15C80FB" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Multipart.dll" />
+                </Component>
+                <Component Id="cmpFD9CF049384BA348A368FBD88996D391" Guid="*">
+                    <File Id="fil0643A8A3173E9804263987A8F9BA427D" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Multipart.xml" />
+                </Component>
+                <Component Id="cmp5A62C3FB153A513D0F9FF408C8105332" Guid="*">
+                    <File Id="filC8CB725D4DFBEDED73F94BD83D000FAF" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Text.dll" />
+                </Component>
+                <Component Id="cmp9694B413E616395770E44979A4DFBE3C" Guid="*">
+                    <File Id="fil5E7E37A3B014B0D97B92BE47789ACC76" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Microsoft.Kiota.Serialization.Text.xml" />
+                </Component>
+                <Component Id="cmp908A66ED5982E6DE7C212C8D82DDA17C" Guid="*">
+                    <File Id="fil686735BB991443AD18475624849F3D36" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\Std.UriTemplate.dll" />
+                </Component>
+                <Component Id="cmp479896D80029E975404AD29E12FFEC8E" Guid="*">
+                    <File Id="fil66BA7072BE6793D4B900A006226476D9" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Buffers.dll" />
+                </Component>
+                <Component Id="cmp96D6BAF779DA11ECC3F1CF69FBD5BA4B" Guid="*">
+                    <File Id="fil4A792C6A1E9EB53D93E6DE2BD4CBD5D5" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Buffers.xml" />
+                </Component>
+                <Component Id="cmp5BDD666219C2CAD10F10DF3D232F9453" Guid="*">
+                    <File Id="fil42B8635502D725FA96552FFD051C90F3" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Diagnostics.DiagnosticSource.dll" />
+                </Component>
+                <Component Id="cmpBB3C6C03891ECB2F2D9C2FA622529B09" Guid="*">
+                    <File Id="fil03DF86B39459E12F5AE090C9A6AF6890" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Diagnostics.DiagnosticSource.xml" />
+                </Component>
+                <Component Id="cmpE891F58AFFDB51E319E2FEA5C91B1F77" Guid="*">
+                    <File Id="fil808FB4BF53D122B995ADDF349234D76E" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Memory.dll" />
+                </Component>
+                <Component Id="cmp984CDA6E2B9DF79A342722257BDCD07E" Guid="*">
+                    <File Id="filD91AC64F07D9783AAFA2DCB959B2022B" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Memory.xml" />
+                </Component>
+                <Component Id="cmp3E8830DB380681F876129C8A7CD415C3" Guid="*">
+                    <File Id="fil99A2F332AA56D925C040BA348AC15F5B" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Net.Http.WinHttpHandler.dll" />
+                </Component>
+                <Component Id="cmpBD748352ADD9BD920E913017BAA96E8F" Guid="*">
+                    <File Id="fil779B8893CA48A08E1EA9F6C826050DF9" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Net.Http.WinHttpHandler.xml" />
+                </Component>
+                <Component Id="cmp99C392478715B8483D02023DAD7BB755" Guid="*">
+                    <File Id="fil4DA9CB8FB8288FB043F5309C57066B57" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Numerics.Vectors.dll" />
+                </Component>
+                <Component Id="cmp4F30170CC8C1391D873AD117140EB690" Guid="*">
+                    <File Id="fil2FDE0880EB27979FBA2F300336579A2C" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Numerics.Vectors.xml" />
+                </Component>
+                <Component Id="cmpB0CB3F109C591D82DA2901BC310A40B1" Guid="*">
+                    <File Id="filAC44DD2B9083C89AA3BEA5B9075825C7" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Runtime.CompilerServices.Unsafe.dll" />
+                </Component>
+                <Component Id="cmp4DB8968716A7E16B47B15628F674F19D" Guid="*">
+                    <File Id="fil28053D044F8123D84F557CDD771A69FF" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Runtime.CompilerServices.Unsafe.xml" />
+                </Component>
+                <Component Id="cmpA1FCA6EFCC7532AD8308B19F3C2EC222" Guid="*">
+                    <File Id="fil4D7B7572024E758AC2B511AA20572E7B" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Text.Encodings.Web.dll" />
+                </Component>
+                <Component Id="cmp5F341FD7A92A30FF1E3D6E1C37257999" Guid="*">
+                    <File Id="filE773D26E69164778C38B0D382EB16E8E" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Text.Encodings.Web.xml" />
+                </Component>
+                <Component Id="cmp33A5D485B813FAFD6CFDFF4FE086FFCB" Guid="*">
+                    <File Id="filE182CFFBE51BA8AE55CA108F790577CB" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Text.Json.dll" />
+                </Component>
+                <Component Id="cmpC0AE50EFBF64BEEC229BEFDFBA1CD46B" Guid="*">
+                    <File Id="filE289C44F5071A1DBE7EF5C4994BC362D" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Text.Json.xml" />
+                </Component>
+                <Component Id="cmpBACA758B0AB966173AD3DA63CF36EEDA" Guid="*">
+                    <File Id="filBE877AA2EAD3238DCE1DF96A9E40BA70" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Threading.Tasks.Extensions.dll" />
+                </Component>
+                <Component Id="cmp83C36727124255279B9989EE33AC33BD" Guid="*">
+                    <File Id="filFF684130BCEEB452B78032686CD976E2" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.Threading.Tasks.Extensions.xml" />
+                </Component>
+                <Component Id="cmp2A77651A760542917B0AFEE34BF9BC35" Guid="*">
+                    <File Id="fil137DACACC0598FE1E7FEA13F8C6414B8" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.ValueTuple.dll" />
+                </Component>
+                <Component Id="cmp6E3CE77B0349C589D098C9859AF5806B" Guid="*">
+                    <File Id="filF366652E593890023B570458A69587A7" KeyPath="yes" Source="$(var.JellyfinHarvestPath)\System.ValueTuple.xml" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="JellyfinFiles">
+            <ComponentRef Id="cmp68D87C54441436B814760A5A881D8FFF" />
+            <ComponentRef Id="cmpF1EDE145C5082F5F5A88ED51DD8FCB4B" />
+            <ComponentRef Id="cmpBE9125F5E2B39503B5A30BA99847B2AC" />
+            <ComponentRef Id="cmpE15484AA4EC71F52A92BA0142A1EEF26" />
+            <ComponentRef Id="cmp056C213D843F07144CD93EAD781ABA24" />
+            <ComponentRef Id="cmpBB23967827D431923E86D2145D6352DE" />
+            <ComponentRef Id="cmp43E683B2B1904FDF5B5CC9FA6DDA1C99" />
+            <ComponentRef Id="cmpC7B9776297FC53D60E4E7A282F40350D" />
+            <ComponentRef Id="cmpE0B42BA677FD8E8D5D16229C72EC3929" />
+            <ComponentRef Id="cmpC8993FD26C3EE609E4D346BAB1BF7B03" />
+            <ComponentRef Id="cmpD0C6DD45DA6CF0CD7D013F1D0E15AAEC" />
+            <ComponentRef Id="cmpAFD4BA3F7EBA2E55D348491D00F3B7B5" />
+            <ComponentRef Id="cmpB67BA5EE85E571926EB8274520742D8D" />
+            <ComponentRef Id="cmpCA85F774C93015E7AE83DCE6E572D93A" />
+            <ComponentRef Id="cmp2E03DDE870AFF7E5A46D1A3C4BB94BAE" />
+            <ComponentRef Id="cmpCBD05B9B253CF18118630C7462B2CD90" />
+            <ComponentRef Id="cmp4AAD94D4356FF8ABED674351DA2236F6" />
+            <ComponentRef Id="cmpFD9CF049384BA348A368FBD88996D391" />
+            <ComponentRef Id="cmp5A62C3FB153A513D0F9FF408C8105332" />
+            <ComponentRef Id="cmp9694B413E616395770E44979A4DFBE3C" />
+            <ComponentRef Id="cmp908A66ED5982E6DE7C212C8D82DDA17C" />
+            <ComponentRef Id="cmp479896D80029E975404AD29E12FFEC8E" />
+            <ComponentRef Id="cmp96D6BAF779DA11ECC3F1CF69FBD5BA4B" />
+            <ComponentRef Id="cmp5BDD666219C2CAD10F10DF3D232F9453" />
+            <ComponentRef Id="cmpBB3C6C03891ECB2F2D9C2FA622529B09" />
+            <ComponentRef Id="cmpE891F58AFFDB51E319E2FEA5C91B1F77" />
+            <ComponentRef Id="cmp984CDA6E2B9DF79A342722257BDCD07E" />
+            <ComponentRef Id="cmp3E8830DB380681F876129C8A7CD415C3" />
+            <ComponentRef Id="cmpBD748352ADD9BD920E913017BAA96E8F" />
+            <ComponentRef Id="cmp99C392478715B8483D02023DAD7BB755" />
+            <ComponentRef Id="cmp4F30170CC8C1391D873AD117140EB690" />
+            <ComponentRef Id="cmpB0CB3F109C591D82DA2901BC310A40B1" />
+            <ComponentRef Id="cmp4DB8968716A7E16B47B15628F674F19D" />
+            <ComponentRef Id="cmpA1FCA6EFCC7532AD8308B19F3C2EC222" />
+            <ComponentRef Id="cmp5F341FD7A92A30FF1E3D6E1C37257999" />
+            <ComponentRef Id="cmp33A5D485B813FAFD6CFDFF4FE086FFCB" />
+            <ComponentRef Id="cmpC0AE50EFBF64BEEC229BEFDFBA1CD46B" />
+            <ComponentRef Id="cmpBACA758B0AB966173AD3DA63CF36EEDA" />
+            <ComponentRef Id="cmp83C36727124255279B9989EE33AC33BD" />
+            <ComponentRef Id="cmp2A77651A760542917B0AFEE34BF9BC35" />
+            <ComponentRef Id="cmp6E3CE77B0349C589D098C9859AF5806B" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

@@ -66,6 +66,8 @@ namespace AudioBand
             _audioBandToolbar = _container.GetInstance<AudioBandToolbar>();
 
             _container.GetInstance<IMessageBus>().Subscribe<FocusChangedMessage>(FocusCaptured);
+
+            System.Diagnostics.Debugger.Launch();
         }
 
         /// <inheritdoc />

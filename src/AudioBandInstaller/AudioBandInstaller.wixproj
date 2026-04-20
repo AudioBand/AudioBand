@@ -28,6 +28,7 @@
     <Compile Include="SpotifyHeatGenerated.wxs" />
     <Compile Include="AudioBandCOM.wxs" />
     <Compile Include="Win10HeatGenerated.wxs" />
+    <Compile Include="JellyfinHeatGenerated.wxs" />
   </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixUIExtension">
@@ -112,6 +113,15 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>AudioSourcesFolder</RefTargetDir>
     </ProjectReference>
+    <ProjectReference Include="..\JellyfinAudioSource\JellyfinAudioSource.csproj">
+      <Name>JellyfinAudioSource</Name>
+      <Project>{8B530F21-F6C5-4E69-87B6-CF7BAFFF74EA}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>AudioSourcesFolder</RefTargetDir>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="audioband.ico" />
@@ -126,7 +136,7 @@
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
   <PropertyGroup>
-    <DefineConstants>AudioBandHarvestPath=..\Audioband\bin\$(Configuration);ITunesHarvestPath=..\iTunesAudioSource\bin\$(Configuration)\iTunes;MusicBeeHarvestPath=..\MusicBeeAudioSource\bin\$(Configuration)\MusicBee;SpotifyHarvestPath=..\SpotifyAudioSource\bin\$(Configuration)\spotify;Win10HarvestPath=..\Win10AudioSource\bin\$(Configuration)\Windows10</DefineConstants>
+    <DefineConstants>AudioBandHarvestPath=..\Audioband\bin\$(Configuration);ITunesHarvestPath=..\iTunesAudioSource\bin\$(Configuration)\iTunes;MusicBeeHarvestPath=..\MusicBeeAudioSource\bin\$(Configuration)\MusicBee;SpotifyHarvestPath=..\SpotifyAudioSource\bin\$(Configuration)\spotify;Win10HarvestPath=..\Win10AudioSource\bin\$(Configuration)\Windows10;JellyfinHarvestPath=..\JellyfinAudioSource\bin\$(Configuration)\Jellyfin</DefineConstants>
   </PropertyGroup>
   <Target Name="AfterResolveReferences">
     <HeatDirectory Directory="..\Audioband\bin\$(Configuration)" PreprocessorVariable="var.AudioBandHarvestPath" OutputFile="$(ProjectDir)\AudioBandHeatGenerated.wxs" ComponentGroupName="AudioBandFiles" DirectoryRefId="AUDIOBANDINSTALLFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" Transforms="$(ProjectDir)\AudioBandHeatXsl.xslt" />
@@ -135,5 +145,6 @@
     <HeatDirectory Directory="..\MusicBeeAudioSource\bin\$(Configuration)\MusicBee" PreprocessorVariable="var.MusicBeeHarvestPath" OutputFile="$(ProjectDir)\MusicBeeHeatGenerated.wxs" ComponentGroupName="MusicBeeFiles" DirectoryRefId="AUDIOSOURCESFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="false" Transforms="$(ProjectDir)\AudioSourcesXsl.xslt" />
     <HeatDirectory Directory="..\SpotifyAudioSource\bin\$(Configuration)\spotify" PreprocessorVariable="var.SpotifyHarvestPath" OutputFile="$(ProjectDir)\SpotifyHeatGenerated.wxs" ComponentGroupName="SpotifyFiles" DirectoryRefId="AUDIOSOURCESFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="false" Transforms="$(ProjectDir)\AudioSourcesXsl.xslt" />
     <HeatDirectory Directory="..\Win10AudioSource\bin\$(Configuration)\Windows10" PreprocessorVariable="var.Win10HarvestPath" OutputFile="$(ProjectDir)\Win10HeatGenerated.wxs" ComponentGroupName="Win10Files" DirectoryRefId="AUDIOSOURCESFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="false" Transforms="$(ProjectDir)\AudioSourcesXsl.xslt" />
+    <HeatDirectory Directory="..\JellyfinAudioSource\bin\$(Configuration)\Jellyfin" PreprocessorVariable="var.JellyfinHarvestPath" OutputFile="$(ProjectDir)\JellyfinHeatGenerated.wxs" ComponentGroupName="JellyfinFiles" DirectoryRefId="AUDIOSOURCESFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="false" Transforms="$(ProjectDir)\AudioSourcesXsl.xslt" />
   </Target>
 </Project>
