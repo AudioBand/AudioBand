@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using AudioBand.AudioSource;
 using Jellyfin.Sdk;
 using Jellyfin.Sdk.Generated.Models;
@@ -87,14 +88,26 @@ namespace JellyfinAudioSource
         public string ServerUrl
         {
             get => _serverUrl;
-            set { _serverUrl = value.TrimEnd('/'); RaiseSetting(nameof(ServerUrl)); }
+            set
+            {
+                _serverUrl = value.TrimEnd('/');
+                RaiseSetting(nameof(ServerUrl));
+
+                BuildSdkClient();
+            }
         }
 
         [AudioSourceSetting("API Key")]
         public string ApiKey
         {
             get => _apiKey;
-            set { _apiKey = value; RaiseSetting(nameof(ApiKey)); }
+            set
+            {
+                _apiKey = value;
+                RaiseSetting(nameof(ApiKey));
+
+                BuildSdkClient();
+            }
         }
 
         /// <summary>
@@ -105,7 +118,13 @@ namespace JellyfinAudioSource
         public string Username
         {
             get => _username;
-            set { _username = value; RaiseSetting(nameof(Username)); }
+            set
+            {
+                _username = value;
+                RaiseSetting(nameof(Username));
+
+                BuildSdkClient();
+            }
         }
 
         public Task ActivateAsync()
@@ -190,16 +209,21 @@ namespace JellyfinAudioSource
             return Task.CompletedTask;
         }
 
-        private async void CheckJellyfin(object sender, System.Timers.ElapsedEventArgs e)
+        private async void CheckJellyfin(object sender, ElapsedEventArgs args)
         {
             // Exceptions in async void can crash the whole app
             try
             {
+                if (_jellyfinClient == null)
+                {
+                    return;
+                }
+
                 await PollOnceAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Logger.Error(e);
                 throw;
             }
         }
@@ -297,6 +321,12 @@ namespace JellyfinAudioSource
             _jellyfinClient?.Dispose();
             _httpClient?.Dispose();
 
+            if (string.IsNullOrWhiteSpace(_serverUrl) || string.IsNullOrWhiteSpace(_apiKey))
+            {
+                _checkJellyfinTimer.Interval = 7500;
+                return;
+            }
+
             var sdkSettings = new JellyfinSdkSettings();
             sdkSettings.Initialize(
                 clientName: "AudioBand",
@@ -319,6 +349,7 @@ namespace JellyfinAudioSource
             requestAdapter.BaseUrl = _serverUrl;
 
             _jellyfinClient = new JellyfinApiClient(requestAdapter);
+            _checkJellyfinTimer.Interval = 100;
         }
 
         /// <summary>
@@ -390,6 +421,8 @@ namespace JellyfinAudioSource
         }
 
         private void RaiseSetting(string name)
-            => SettingChanged?.Invoke(this, new SettingChangedEventArgs(name));
+        {
+            //SettingChanged?.Invoke(this, new SettingChangedEventArgs(name));
+        }
     }
 }
